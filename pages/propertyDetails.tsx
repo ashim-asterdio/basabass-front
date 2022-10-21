@@ -1,17 +1,40 @@
 import type { NextPage } from 'next'
 import style from '../styles/propertyDetails.module.css'
 import { HiOutlineInformationCircle } from "react-icons/hi"
-import Head from "next/head"
-import styles from '../styles/basicDetail.module.css'
-import Navbar from "../components/Navbar"
 import AmenitiesCheckbox from '../components/ui components/customCheckbox'
 import Layout from '../components/layout'
+import { useFormik } from 'formik'
+import { propertyDetailsSchema } from '../components/validationSchema'
 
 const propertyDetails: NextPage = () => {
     const amenities=['Lawn','Drainage','Jacuzzi','Garage','Parking','Air Condition','Balcony','Deck','Fencing',
             'Garden','CCTV','Gym','Microwave','Modular Kitchen','Swimming Pool','TV Cable','Electricity Backup',
             'Intercom','Internet','Kids Playground','Lift','Maintainance','Security Staff','Store Room','Amenities']
-    const handelSubmit=(e:Event)=>{
+    
+
+    
+    const initialValues:Object={    
+        wardNumber:"",
+        city:"",
+        propertyArea:"",
+        areaMetric:"",
+        totalArea:"",
+        measurementUnit:"",
+        builtUpArea:"",
+        propertyFace:"",
+        roadAreaMetric:"",
+        roadAccess:"",
+        roadType:"",
+        buildYear:"",
+        furnishing:"",
+        numberOFUnits:"",
+        noOfBedroom:"",
+        noOfBathroom:"",
+        noOfKitchen:"",
+        noOfLivingroom:""
+    }        
+
+    const buttonCilck=(e:Event)=>{
         e.preventDefault();
         var arr=document.getElementsByName("amenities");
         var arrChecked:any=[]
@@ -33,9 +56,17 @@ const propertyDetails: NextPage = () => {
             
         console.log(arrChecked)
     }
+
+    const {values,errors,touched,handelSubmit,handelChange}=useFormik({
+        initialValues:initialValues,
+        validationSchema:propertyDetailsSchema,
+        onSubmit:(values)=>{
+            buttonCilck();
+        }
+    })
     return (
         <>
-        <Layout>
+        <Layout >
             <div className={style.propertydetails_container}>
                 {/* <div className={style.propertydetails_section_top}>
                     <h4>Property Details</h4>
@@ -48,11 +79,13 @@ const propertyDetails: NextPage = () => {
                     <label> Location  </label>
                     <div className={style.all_input_fields}>
                         <div>
-                            <input className={style.input_only} type="text" placeholder="Ward Number" ></input>
+                            <input className={style.input_only} type="text" placeholder="Ward Number" 
+                            name='wardNumber' value={values.wardNumber} onChange={handelChange} />
                         </div>
                         <div className={style.dropdown_only}>
                             <select
-                                name=""
+                                name="city"
+                                value={values.city}
                                 id=""
                                 // onChange={handleChange("designation")}
                                 required
@@ -64,7 +97,7 @@ const propertyDetails: NextPage = () => {
                             </select>
                         </div>
                         <div>
-                            <input className={style.input_only} type="text" placeholder="Property Area" ></input>
+                            <input className={style.input_only} type="text" placeholder="Property Area" name='propertyArea' value={values.propertyArea}></input>
                         </div>
                     </div>
                 </div>
@@ -75,8 +108,9 @@ const propertyDetails: NextPage = () => {
                     <div className={style.all_input_fields}>
                         <div className={style.dropdown_only}>
                             <select
-                                name=""
+                                name="areaMetric"
                                 id=""
+                                value={values.areaMetric}
                                 // onChange={handleChange("designation")}
                                 required
                             >
@@ -88,12 +122,13 @@ const propertyDetails: NextPage = () => {
                         </div>
                         
                         <div className={style.input_dropdown}>
-                            <input className={style.input_with_dropdown} type="text" placeholder=" Total Area(e.g. 0-1-2-4)" ></input>
+                            <input className={style.input_with_dropdown} name="totalArea" value={values.totalArea} type="text" placeholder=" Total Area(e.g. 0-1-2-4)" ></input>
                            
                            <hr className={style.gapBtw}/>
                             <div className={style.dropdown_with_input}>
                                 <select
-                                    name="aana"
+                                    name="totalAreaUnit"
+                                    value={values.totalAreaUnits}
                                     id="aana"
                                     // onChange={handleChange("designation")}
                                     required
@@ -106,11 +141,12 @@ const propertyDetails: NextPage = () => {
                             </div>
                         </div>
                         <div className={style.input_dropdown}>
-                            <input className={style.input_with_dropdown} type="text" placeholder="Built Up Area(e.g. 0-1-2-4)" ></input>
+                            <input className={style.input_with_dropdown} type="text" placeholder="Built Up Area(e.g. 0-1-2-4)" name='builtUpArea' value={values.builtUpArea} ></input>
                             <hr className={style.gapBtw}/>
                             <div className={style.dropdown_with_input}>
                                 <select
-                                    name="aana"
+                                    name="builtUpAreaUnit"
+                                    value={values.builtUpAreaUnit}
                                     id="aana"
                                     // onChange={handleChange("designation")}
                                     required
@@ -123,7 +159,7 @@ const propertyDetails: NextPage = () => {
                             </div>
                         </div>
                         <div>
-                            <input className={style.input_only} type="text" placeholder="Property Face" ></input>
+                            <input className={style.input_only} type="text" placeholder="Property Face" name='propertyFace' value={values.propertyFace} ></input>
                         </div>
 
                     </div>
@@ -134,7 +170,8 @@ const propertyDetails: NextPage = () => {
                     <div className={style.all_input_fields}>
                         <div className={style.dropdown_only}>
                             <select
-                                name=""
+                                name="roadAreaMetric"
+                                value={values.roadAreaMetric}
                                 id=""
                                 // onChange={handleChange("designation")}
                                 required
@@ -147,11 +184,12 @@ const propertyDetails: NextPage = () => {
                         </div>
 
                         <div>
-                            <input className={style.input_only} type="text" placeholder="Road Acess(e.g. 14)" ></input>
+                            <input className={style.input_only} type="text" placeholder="Road Acess(e.g. 14)" name='roadAccess' value={values.roadAccess} ></input>
                         </div>
                         <div className={style.dropdown_only}>
                             <select
-                                name=""
+                                name="roadType"
+                                value={values.roadType}
                                 id=""
                                 // onChange={handleChange("designation")}
                                 required
@@ -171,7 +209,8 @@ const propertyDetails: NextPage = () => {
                     <div className={style.all_input_fields}>
                         <div className={style.dropdown_only}>
                             <select
-                                name=""
+                                name="buildYear"
+                                value={values.buildYear}
                                 id=""
                                 // onChange={handleChange("designation")}
                                 required
@@ -184,7 +223,8 @@ const propertyDetails: NextPage = () => {
                         </div>
                         <div className={style.dropdown_only}>
                             <select
-                                name=""
+                                name="totalFloors"
+                                value={values.totalFloors}
                                 id=""
                                 // onChange={handleChange("designation")}
                                 required
@@ -197,7 +237,8 @@ const propertyDetails: NextPage = () => {
                         </div>
                         <div className={style.dropdown_only}>
                             <select
-                                name=""
+                                name="furnishing"
+                                value={values.furnishing}
                                 id=""
                                 // onChange={handleChange("designation")}
                                 required
@@ -206,6 +247,9 @@ const propertyDetails: NextPage = () => {
                                     selected
                                     hidden
                                     disabled>Furnishing</option>
+                                    <option value="Yes">Yes</option>
+                                    <option value="No">No</option>
+                                    <option value="Partially">Partially</option>
                             </select>
                         </div>
                     </div>
@@ -216,7 +260,8 @@ const propertyDetails: NextPage = () => {
                     <div className={style.all_input_fields}>
                         <div className={style.dropdown_only}>
                             <select
-                                name=""
+                                name="numberOFUnits"
+                                value={values.numberOFUnits}
                                 id=""
                                 // onChange={handleChange("designation")}
                                 required
@@ -234,16 +279,16 @@ const propertyDetails: NextPage = () => {
                     <label> Total Rooms  <HiOutlineInformationCircle /> </label>
                     <div className={style.all_input_fields}>
                         <div>
-                            <input className={style.input_only} type="text" placeholder="Total Bed Room" ></input>
+                            <input className={style.input_only} type="text" placeholder="Total Bed Room" name='noOfBedroom' value={values.noOfBedroom} ></input>
                         </div>
                         <div>
-                            <input className={style.input_only} type="text" placeholder="Total Bathroom" ></input>
+                            <input className={style.input_only} type="text" placeholder="Total Bathroom" name='noOfBathroom' value={values.noOfBathroom} ></input>
                         </div>
                         <div>
-                            <input className={style.input_only} type="text" placeholder="Total Kitchen" ></input>
+                            <input className={style.input_only} type="text" placeholder="Total Kitchen" name='noOfKitchen' value={values.noOfKitchen} ></input>
                         </div>
                         <div>
-                            <input className={style.input_only} type="text" placeholder="Total Living Room" ></input>
+                            <input className={style.input_only} type="text" placeholder="Total Living Room" name='noOfLivingroom' value={values.noOfLivingroom} ></input>
                         </div>
                         </div>
                         </div>
