@@ -13,6 +13,20 @@
     /* border: solid green; */
 }
 
+.doubleError{
+    display: flex;
+    padding: 0;
+    justify-content: space-between;
+    /* background-color: greenyellow; */
+}
+
+.error{
+    color: red;
+    font-size: x-small;
+    font-weight: 100;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
 .propertydetails_section_top{
     font-size: 16px;
     font-weight: 700;
@@ -52,13 +66,22 @@
     margin-bottom: 16px;
 }
 
-.input_dropdown {
+.input_dropdown{
+    display: flex;
+    flex-direction: column;
+}
+
+.input_dropdown div{
     display: flex;
     border: 1px solid #CED4DA;
     border-radius: 5px;
     width: 344.5px;
     height: 40px;
     
+}
+.input_dropdown .dropdown_with_input{
+    border:0px;
+    height: 99%;
 }
 
 .input_only {
@@ -100,6 +123,7 @@
     margin: 0px;
 }
 
+
 .dropdown_with_input select {
     color: #969696;
     padding: 10px ;
@@ -120,9 +144,12 @@
     z-index: 2;
 } */
 
+.dropdown_only{
+    display: flex;
+    flex-direction: column;
+}
 
 .dropdown_only select {
-
     color: #969696;
     padding: 4px 16px;
     gap: 16px;
@@ -133,11 +160,21 @@
     background-color: #ffffff;
 }
 
+.areaLocation{
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
 .all_input_fields {
     display: flex;
     flex-wrap: wrap;
     gap: 20px;
+}
 
+.all_input_fields div{
+    display: flex;
+    flex-direction: column;
 }
 
 .aminities_button {

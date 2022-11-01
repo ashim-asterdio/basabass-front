@@ -302,7 +302,7 @@
         padding: 0px;
         margin: 0px;
         margin-top:24px ;
-        width: 93px;
+        width: fit-content;
         height: 23px;
         font-family: 'Product Sans', sans-serif;
         font-style: normal;
@@ -333,7 +333,7 @@
         flex-grow: 1;
         /* border: solid brown; */
     }
-
+    
     .mainContentBody{
         position: relative;
         left: 0;

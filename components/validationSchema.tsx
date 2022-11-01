@@ -19,4 +19,15 @@ export const propertyDetailsSchema =Yup.object({
     noOfBathroom:Yup.string().required(),
     noOfKitchen:Yup.string().required(),
     noOfLivingroom:Yup.string().required(),
+    amenities:Yup.array().of(Yup.string()).required()
 }) 
+
+
+export const adDetailsSchema=Yup.object ({
+    image:Yup.mixed().nullable(),
+    youtubeLink:Yup.string().required("required"),
+    propertyTitle:Yup.string().required("required"),
+    propertyPrice:Yup.string().required("required"),
+    currency:Yup.string().required("required"),
+    description:Yup.string().required("required")
+})

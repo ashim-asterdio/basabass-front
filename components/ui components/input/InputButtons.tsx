@@ -9,7 +9,9 @@ export const CustomizableInputs = (props: any) => {
         className={style.customizableInputButtons}
         placeholder={props.placeholder}
         id={props.id}
-        value={props.value}
+        // value={props.value}
+        name={props.name}
+        onChange={props.onChange}
       />
     </>
   );
@@ -28,12 +30,15 @@ export const CustomizableInputButtonsWithSelect = (props: any) => {
           className={style.customizableInputPartOnly}
           type={text}
           placeholder={placeholder}
+          name={props.name1}
+          onChange={props.onChange}
         ></input>
         <div>
           <select
-            name={name}
             id={id}
             className={style.customizableSelectPartOnly}
+            name={props.name2}
+            onChange={props.onChange}
           >
             <option value={value0} selected hidden disabled>
               {value0}

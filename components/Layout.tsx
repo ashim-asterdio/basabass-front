@@ -2,8 +2,8 @@ import Head from "next/head"
 import Navbar from "./Navbar"
 import style from '../styles/layout.module.css'
 
-const Layout=({children},props:any)=> {
-
+const Layout=({children,topic, onSubmit})=> {
+ 
   return (
     <>
     <Head>
@@ -24,7 +24,7 @@ const Layout=({children},props:any)=> {
             <div className={style.topDiv}>Back to Dashboard</div>
 
             <div className={style.midDiv}>
-              <p className={style.midDetails}>Basic Details</p>
+              <p className={style.midDetails}>{topic}</p>
               Mathi ko step haru
             </div>
           </div>
@@ -38,16 +38,18 @@ const Layout=({children},props:any)=> {
 
               <div className={style.botLeftDiv}>
                 <div className={style.topicDiv}>
-                  <h1>topic</h1>
+                  <h1>{topic}</h1>
                 </div>
-                <form className={style.mainContentDiv}>
+                <form className={style.mainContentDiv} 
+                // onSubmit={props.onSubmit}
+                >
 
                   <div className={style.mainContentBody}>
                     {children}
                   </div>
 
                   <div className={style.footer}>
-                    <button className={style.next} onClick={props.onSubmit} >Next</button>
+                    <button className={style.next} onClick={onSubmit} >Next</button>
                   </div>
                 </form>
   
