@@ -121,7 +121,7 @@ const AdDetails: NextPage = () => {
             name="description"
             onChange={handleChange}
           ></input>
-          {errors.youtubeLink&&<span className={styles.error}>{errors.youtubeLink}</span>}
+          {errors.description&&<span className={styles.error}>{errors.description}</span>}
         </div>
 
       </div> 
