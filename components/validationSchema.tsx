@@ -1,5 +1,11 @@
 import * as Yup from 'yup'
 
+export const basicDetailsSchema=Yup.object({
+    adCategory: Yup.string().required("Must select aleast one option"),
+    propertyType: Yup.string().required("Must select aleast one option"),
+    propertyCategory:Yup.string().required("Must select aleast one option")
+})
+
 export const propertyDetailsSchema =Yup.object({
     wardNumber:Yup.number().required("Must enter ward number"),
     city:Yup.string().min(3).max(25).required("Must enter City"),
@@ -32,4 +38,18 @@ export const adDetailsSchema=Yup.object ({
     propertyPrice:Yup.string().required("required"),
     currency:Yup.string().required("required"),
     description:Yup.string().required("required")
+})
+
+
+export const otherDetailsSchema=Yup.object({
+    adPricingtype:Yup.string().required("required"),
+    email:Yup.string().email("Not a valid email").required("required"),
+    fullName:Yup.string().required("required"),
+    ownerType:Yup.string().required("required"),
+    phoneNumber:Yup.number()
+    .typeError("That doesn't look like a phone number")
+    .positive("A phone number can't start with a minus")
+    .integer("A phone number can't include a decimal point")
+    .min(9000000000,"Must have 10 digit").max(9999999999,"Must have 10 digit only")
+    .required('A phone number is required')
 })

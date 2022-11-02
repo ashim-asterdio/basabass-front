@@ -31,17 +31,13 @@ const AdDetails: NextPage = () => {
     onSubmit:(values, formikHelpers)=>{
       console.log("call Ad Details")
       console.log(values)
-      console.log(initialValues)
+      window.location.href = '/otherDetails';
     }
 })
   return (
   <>
   <Head>
-      {/* <link rel="stylesheet" href="https://egkoppel.github.io/product-sans/google-fonts.css" ></link> */}
       <link href="http://fonts.cdnfonts.com/css/product-sans" rel="stylesheet"></link>
-      {/* <style>
-        @import url('http://fonts.cdnfonts.com/css/product-sans');
-      </style> */}
     </Head>
   <Layout topic="Ad Deatils" onSubmit={handleSubmit} >
       <div className={styles.adDetailsMainWrapper}>

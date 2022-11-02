@@ -62,16 +62,29 @@
 }
 
 .ownerInfoDiv{
+
     display: flex;
     flex-direction: column;
     align-items: flex-start;
     padding: 0px;
     gap: 24px;
     width: 345px;
-    height: 168px;
+    height:104px;
     flex: none;
     order: 2;
     flex-grow: 0;
+    /* border: solid 1px; */
+}
+
+.inputFeildRow{
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+}
+
+.inputFeildDiv{
+    display: flex;
+    flex-direction: column;
 }
 
 .inputFeild{
@@ -112,6 +125,13 @@
     height: 20px;
     flex: none;
     flex-grow: 0;
+}
+
+.error{
+    color: red;
+    font-size: x-small;
+    font-weight: 100;
+    font-family: Arial, Helvetica, sans-serif;
 }
 
 
@@ -179,6 +199,18 @@
         height: 104px;
         flex: none;
         /* border: solid 1px; */
+        flex-grow: 0;
+    }
+
+    .inputFeildRow{
+        display: flex;
+        flex-direction: row;
+        align-items: flex-start;
+        padding: 0px;
+        gap: 16px;
+        width: 705px;
+        height: 40px;
+        flex: none;
         flex-grow: 0;
     }
 

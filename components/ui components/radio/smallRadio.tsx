@@ -5,7 +5,10 @@ const SmallRadio = (props:any) => {
     <>
         <span className={style.radioDivSpan}>
             <label className={style.customRadio}>
-                <input type="radio" name={props.name} value={props.value} className={style.radio} />
+                <input type="radio" name={props.name} 
+                value={props.value} 
+                className={style.radio}
+                onChange={props.onChange} />
                 <span className={style.checkmark}></span>
             </label>
             <p>{props.value}</p>

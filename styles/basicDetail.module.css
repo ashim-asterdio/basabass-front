@@ -178,7 +178,7 @@
     padding: 0px;
     gap: 16px;
     width: 344px;
-    height: 246px;
+    height: 200px;
     flex: none;
     order: 2;
     flex-grow: 0;
@@ -193,7 +193,7 @@
     padding: 0px;
     gap: 12px;
     width: 340px;
-    height: 58px;
+    height: fit-content;
     flex: none;
     flex-grow: 0;
     /* border: solid 1px red; */
@@ -256,6 +256,13 @@
     order: 1;
     flex-grow: 0;
     margin: 0px;
+}
+
+.error{
+    color: red;
+    font-size: x-small;
+    font-weight: 100;
+    font-family: Arial, Helvetica, sans-serif;
 }
 
 

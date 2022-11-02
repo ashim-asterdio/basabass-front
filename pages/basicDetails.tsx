@@ -1,9 +1,8 @@
-import { useState } from 'react'
 import type { NextPage } from 'next'
 import Head from 'next/head'
 import style from '../styles/basicDetail.module.css'
-import {HiOutlineInformationCircle} from "react-icons/hi"
-import {BiHome} from "react-icons/bi"
+import { HiOutlineInformationCircle } from "react-icons/hi"
+import { BiHome } from "react-icons/bi"
 import Image from 'next/image'
 import commercial from "../Images/commercial.svg"
 import agriculture from "../Images/agriculture.svg"
@@ -11,105 +10,65 @@ import SmallRadio from '../components/ui components/radio/smallRadio'
 import RectangleRadio from '../components/ui components/radio/rectangleRadio'
 import SquareRadio from '../components/ui components/radio/squareRadio'
 import Layout from '../components/Layout'
+import { useFormik } from 'formik'
+import { basicDetailsSchema } from '../components/validationSchema'
 
-const BasicDetail:NextPage =(e)=> {
-const [aCategory,setCategory]=useState(
-  [{key:"adCategory",value:""},
-  {key:"propertyType",value:""},
-  {key:"propertyCategory",value:""}]
-);
+const BasicDetail: NextPage = (e) => {
 
-const buttonClick=(e:Event)=>{
-  e.preventDefault();
-  var arr1=document.getElementsByName('adCategory')
-  var arr2=document.getElementsByName('propertyType')
-  var arr3=document.getElementsByName('propertyCategory')
-  var i:number;
-  var checkFlag:boolean=true;
-  for(i = 0; i < arr1.length; i++) {
-    if(arr1[i].checked)
-    {
-      document.getElementById("adCategoryError").innerHTML="" ;
-      checkFlag=true;
-      break;
-    }
-    else
-    {
-      document.getElementById("adCategoryError").innerHTML="Must select atleast one option" ;
-      checkFlag=false;
-    }
-    
+  const initialValues = {
+    adCategory: "",
+    propertyType: "",
+    propertyCategory: ""
   }
-  for(i = 0; i < arr2.length; i++) {
-    if(arr2[i].checked){
-      document.getElementById("propertyTypeError").innerHTML="" ;
-      if (checkFlag===true) checkFlag=true;
-      break;
+  const { values, errors, touched, handleSubmit, handleChange } = useFormik({
+    initialValues: initialValues,
+    validationSchema: basicDetailsSchema,
+    onSubmit: (values, formikHelpers) => {
+      console.log("basic Details")
+      console.log(values)
+      window.location.href = '/propertyDetails';
     }
-    else
-    {
-      document.getElementById("propertyTypeError").innerHTML="Must select atleast one option" ;
-      checkFlag=false;
-    }
-  }
-  for(i = 0; i < arr3.length; i++) {
-    if(arr3[i].checked){
-      document.getElementById("propertyCategoryError").innerHTML="" ;
-      if (checkFlag===true) checkFlag=true;
-      break;
-    }
-    else
-    {
-      document.getElementById("propertyCategoryError").innerHTML="Must select atleast one option" ;
-      checkFlag=false;
-    }
-  }
-  if(checkFlag)  window.location.href = '/propertyDetails';
-  console.log(arr1)
-}
+  })
   return (
-  <>
-    <Head>
-      {/* <link rel="stylesheet" href="https://egkoppel.github.io/product-sans/google-fonts.css" ></link> */}
-      <link href="http://fonts.cdnfonts.com/css/product-sans" rel="stylesheet"></link>
-      <style>
-        {/* @import url('http://fonts.cdnfonts.com/css/product-sans'); */}
-      </style>
+    <>
+      <Head>
+        {/* <link rel="stylesheet" href="https://egkoppel.github.io/product-sans/google-fonts.css" ></link> */}
+        <link href="http://fonts.cdnfonts.com/css/product-sans" rel="stylesheet"></link>
       </Head>
-  
-      <Layout onSubmit={buttonClick} topic="Basic Details">
+
+      <Layout onSubmit={handleSubmit} topic="Basic Details">
         <div className={style.adCategoryDiv}>
           <p className={style.topic}>Ad Category <HiOutlineInformationCircle className={style.infoIcon} /></p>
           <div className={style.radioDiv} >
-            <SmallRadio value="Sale" name="adCategory" />
-            <SmallRadio value="Rent" name="adCategory" />
-            <SmallRadio value="Lease" name="adCategory" />
-            <span id='adCategoryError'></span>
+            <SmallRadio value="Sale" name="adCategory" onChange={handleChange} />
+            <SmallRadio value="Rent" name="adCategory" onChange={handleChange} />
+            <SmallRadio value="Lease" name="adCategory" onChange={handleChange} />
+            {errors.adCategory && <span className={style.error}>{errors.adCategory}</span>}
           </div>
-      </div>
+        </div>
 
-      <div className={style.propertyTypeDiv}>
-      <p className={style.topic}>Property Type <HiOutlineInformationCircle className={style.infoIcon} /> </p>
-                      
+        <div className={style.propertyTypeDiv}>
+          <p className={style.topic}>Property Type <HiOutlineInformationCircle className={style.infoIcon} /> </p>
+
           <div className={style.propertyTypeDivRow}>
-            <RectangleRadio icon={<BiHome/>} value="Residential" />
-            <RectangleRadio icon={<Image src={commercial} alt="image" />} value="Commercial" />
-            <RectangleRadio icon={<Image src={agriculture} alt="image" />} value="Agriculture" />
-            <span id='propertyTypeError'></span>
+            <RectangleRadio icon={<BiHome />} value="Residential" onChange={handleChange} />
+            <RectangleRadio icon={<Image src={commercial} alt="image" />} value="Commercial" onChange={handleChange} />
+            <RectangleRadio icon={<Image src={agriculture} alt="image" />} value="Agriculture" onChange={handleChange} />
+            {errors.propertyType && <span className={style.error}>{errors.propertyType}</span>}
           </div>
-      </div>
+        </div>
 
-      <div className={style.propertyCategoryDiv}>
-        <p className={style.topic}>Porperty Category<HiOutlineInformationCircle className={style.infoIcon} /></p>
-        <div className={style.propertyCategoryRow}>
-          <SquareRadio value="House" icon={<BiHome/>} />
-          <SquareRadio value="Land" icon={<BiHome/>} />
-          <SquareRadio value="Flat" icon={<BiHome/>} />
-          <SquareRadio value="Apartment" icon={<BiHome/>} />
-          <SquareRadio value="Buginess" icon={<BiHome/>} />
-          <SquareRadio value="Office" icon={<BiHome/>} />
+        <div className={style.propertyCategoryDiv}>
+          <p className={style.topic}>Porperty Category<HiOutlineInformationCircle className={style.infoIcon} /></p>
+          <div className={style.propertyCategoryRow}>
+            <SquareRadio value="House" icon={<BiHome />} onChange={handleChange} />
+            <SquareRadio value="Land" icon={<BiHome />} onChange={handleChange} />
+            <SquareRadio value="Flat" icon={<BiHome />} onChange={handleChange} />
+            <SquareRadio value="Apartment" icon={<BiHome />} onChange={handleChange} />
+            <SquareRadio value="Buginess" icon={<BiHome />} onChange={handleChange} />
+            <SquareRadio value="Office" icon={<BiHome />} onChange={handleChange} />
           </div>
-          <span id='propertyCategoryError'></span>
+          {errors.propertyCategory && <span className={style.error}>{errors.propertyCategory}</span>}
         </div>
       </Layout>
     </>
