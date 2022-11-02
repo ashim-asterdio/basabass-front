@@ -5,10 +5,10 @@ const SmallRadio = (props:any) => {
     <>
         <span className={style.radioDivSpan}>
             <label className={style.customRadio}>
-                <input type="radio" name="adCategory" value={props.value} className={style.radio} />
+                <input type="radio" name={props.name} value={props.value} className={style.radio} />
                 <span className={style.checkmark}></span>
             </label>
-            {props.value}
+            <p>{props.value}</p>
         </span>
     </>
   )

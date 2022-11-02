@@ -19,13 +19,15 @@ const propertyDetails: NextPage = () => {
         propertyArea:"",
         areaMetric:"",
         totalArea:"",
-        measurementUnit:"",
+        totalAreaUnit:"",
         builtUpArea:"",
+        builtUpAreaUnit:"",
         propertyFace:"",
         roadAreaMetric:"",
         roadAccess:"",
         roadType:"",
         buildYear:"",
+        totalFloors:"",
         furnishing:"",
         numberOFUnits:"",
         noOfBedroom:"",
@@ -42,7 +44,7 @@ const propertyDetails: NextPage = () => {
             console.log(errors)
             console.log("call")
             console.log(values)
-            window.location.href = '/propertyDetails';
+            // window.location.href = '/propertyDetails';
         }          
     })
 
@@ -103,7 +105,7 @@ const propertyDetails: NextPage = () => {
                                     hidden
                                     disabled>Property City</option>
                             </select>
-                            {errors.wardNumber&&<span className={style.error}>{errors.city}</span>}
+                            {errors.city&&<span className={style.error}>{errors.city}</span>}
                         </div>
                         <div >
                             <input className={style.input_only} type="text" placeholder="Property Area"
@@ -111,7 +113,7 @@ const propertyDetails: NextPage = () => {
                              onChange={handleChange}
                             // value={values.propertyArea}
                             />
-                            {errors.wardNumber&&<span className={style.error}>{errors.propertyArea}</span>}
+                            {errors.propertyArea&&<span className={style.error}>{errors.propertyArea}</span>}
                         </div>
                     </div>
                 </div>
@@ -134,7 +136,7 @@ const propertyDetails: NextPage = () => {
                                     hidden
                                     disabled>Select Area Metric</option>
                             </select>
-                            {errors.wardNumber&&<span className={style.error}>{errors.propertyArea}</span>}
+                            {errors.areaMetric&&<span className={style.error}>{errors.areaMetric}</span>}
                         </div>
                         
                         <div className={style.input_dropdown}>
@@ -161,9 +163,9 @@ const propertyDetails: NextPage = () => {
                                 </select>
                             </div>
                             </div>
-                            {errors.wardNumber&&<span className={style.doubleError}>
-                                    <span className={style.error}>{errors.propertyArea}</span>
-                                    <span className={style.error}>{errors.propertyArea}</span>
+                            {(errors.totalArea||errors.totalAreaUnit)&&<span className={style.doubleError}>
+                                    <span className={style.error}>{errors.totalArea}</span>
+                                    {errors.totalAreaUnit&&<span className={style.error}>{errors.totalAreaUnit}</span>}
                                     </span>}
                         </div>
                         <div className={style.input_dropdown}>
@@ -189,9 +191,9 @@ const propertyDetails: NextPage = () => {
                                 </select>
                             </div>
                             </div>
-                            {errors.wardNumber&&<span className={style.doubleError}>
-                                    <span className={style.error}>{errors.propertyArea}</span>
-                                    <span className={style.error}>{errors.propertyArea}</span>
+                            {(errors.builtUpArea||errors.builtUpAreaUnit)&&<span className={style.doubleError}>
+                                    <span className={style.error}>{errors.builtUpArea}</span>
+                                    {errors.builtUpAreaUnit&&<span className={style.error}>{errors.builtUpAreaUnit}</span>}
                                     </span>}
                         </div>
                         <div style={{display:"flex",flexDirection:"column"}}>
@@ -200,7 +202,7 @@ const propertyDetails: NextPage = () => {
                              onChange={handleChange}
                             //  value={values.propertyFace} 
                              />
-                             {errors.wardNumber&&<span className={style.error}>{errors.propertyArea}</span>}
+                             {errors.propertyFace&&<span className={style.error}>{errors.propertyFace}</span>}
                         </div>
 
                     </div>
@@ -223,13 +225,13 @@ const propertyDetails: NextPage = () => {
                                     hidden
                                     disabled>Select Area Metric</option>
                             </select>
-                            {errors.wardNumber&&<span className={style.error}>{errors.propertyArea}</span>}
+                            {errors.roadAreaMetric&&<span className={style.error}>{errors.roadAreaMetric}</span>}
                         </div>
 
                         <div>
                             <input className={style.input_only} type="text" placeholder="Road Acess(e.g. 14)"
                              name='roadAccess' onChange={handleChange} ></input>
-                             {errors.wardNumber&&<span className={style.error}>{errors.propertyArea}</span>}
+                             {errors.roadAccess&&<span className={style.error}>{errors.roadAccess}</span>}
                         </div>
                         <div className={style.dropdown_only}>
                             <select
@@ -245,7 +247,7 @@ const propertyDetails: NextPage = () => {
                                     hidden
                                     disabled>Road Type</option>
                             </select>
-                            {errors.wardNumber&&<span className={style.error}>{errors.propertyArea}</span>}
+                            {errors.roadType&&<span className={style.error}>{errors.roadType}</span>}
                         </div>
 
                     </div>
@@ -268,7 +270,7 @@ const propertyDetails: NextPage = () => {
                                     hidden
                                     disabled>Build Year</option>
                             </select>
-                            {errors.wardNumber&&<span className={style.error}>{errors.propertyArea}</span>}
+                            {errors.buildYear&&<span className={style.error}>{errors.buildYear}</span>}
                         </div>
                         <div className={style.dropdown_only}>
                             <select
@@ -284,7 +286,7 @@ const propertyDetails: NextPage = () => {
                                     hidden
                                     disabled>Total floors</option>
                             </select>
-                            {errors.wardNumber&&<span className={style.error}>{errors.propertyArea}</span>}
+                            {errors.totalFloors&&<span className={style.error}>{errors.totalFloors}</span>}
                         </div>
                         <div className={style.dropdown_only}>
                             <select
@@ -303,7 +305,7 @@ const propertyDetails: NextPage = () => {
                                     <option value="No">No</option>
                                     <option value="Partially">Partially</option>
                             </select>
-                            {errors.wardNumber&&<span className={style.error}>{errors.propertyArea}</span>}
+                            {errors.furnishing&&<span className={style.error}>{errors.furnishing}</span>}
                         </div>
                     </div>
                 </div>
@@ -325,7 +327,7 @@ const propertyDetails: NextPage = () => {
                                     hidden
                                     disabled>Number of Units</option>
                             </select>
-                            {errors.wardNumber&&<span className={style.error}>{errors.propertyArea}</span>}
+                            {errors.numberOFUnits&&<span className={style.error}>{errors.numberOFUnits}</span>}
                         </div>
                     </div>  
                 </div>
@@ -337,25 +339,25 @@ const propertyDetails: NextPage = () => {
                             <input className={style.input_only} type="text" placeholder="Total Bed Room" 
                             name='noOfBedroom'
                             onChange={handleChange} />
-                            {errors.wardNumber&&<span className={style.error}>{errors.propertyArea}</span>}
+                            {errors.noOfBedroom&&<span className={style.error}>{errors.pnoOfBedroom}</span>}
                         </div>
                         <div>
                             <input className={style.input_only} type="text" placeholder="Total Bathroom" 
                             name='noOfBathroom'
                             onChange={handleChange} />
-                            {errors.wardNumber&&<span className={style.error}>{errors.propertyArea}</span>}
+                            {errors.noOfBathroom&&<span className={style.error}>{errors.noOfBathroom}</span>}
                         </div>
                         <div>
                             <input className={style.input_only} type="text" placeholder="Total Kitchen" 
                             name='noOfKitchen' 
                             onChange={handleChange} />
-                            {errors.wardNumber&&<span className={style.error}>{errors.propertyArea}</span>}
+                            {errors.noOfKitchen&&<span className={style.error}>{errors.noOfKitchen}</span>}
                         </div>
                         <div>
                             <input className={style.input_only} type="text" placeholder="Total Living Room" 
                             name='noOfLivingroom' 
                             onChange={handleChange}/>
-                            {errors.wardNumber&&<span className={style.error}>{errors.propertyArea}</span>}
+                            {errors.noOfLivingroom&&<span className={style.error}>{errors.noOfLivingroom}</span>}
                         </div>
                         </div>
                         </div>
@@ -365,7 +367,7 @@ const propertyDetails: NextPage = () => {
                         {/* <AminitiesCheckbox value="Aminities" /> */}
                         {amenities.map((value,key)=><AmenitiesCheckbox value={value} onChange={handleChange} />)}
                     </div>
-                    {errors.wardNumber&&<span className={style.error}>{errors.propertyArea}</span>}
+                    {errors.amenities&&<span className={style.error}>{errors.amenities}</span>}
                 </div>
         </div>    
         

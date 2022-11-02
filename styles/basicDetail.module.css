@@ -35,12 +35,18 @@
     width: fit-content;
     display:flex;
     gap:5px;
-    font-family: 'Product Sans', sans-serif;
+    font-family: 'Product Sans';
     font-style: normal;
     font-weight: 400;
-    font-size: 14px;
+    font-size: 13px;
     line-height: 14px;
     color: #333333;
+}
+
+.radioDivSpan p{
+    width:max-content;
+    padding: 0px;
+    margin: 0px;
 }
 
 .customRadio {

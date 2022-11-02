@@ -103,9 +103,9 @@ const AdDetails: NextPage = () => {
               onChange={handleChange}
             />
             {(errors.propertyPrice||errors.currency)&&<span className={styles.doubleError}>
-                                    <span className={styles.error}>{errors.propertyPrice}</span>
-                                    {errors.currency&&<span className={styles.error}>{errors.currency}</span>}
-                                    </span>}
+                <span className={styles.error}>{errors.propertyPrice}</span>
+                {errors.currency&&<span className={styles.error}>{errors.currency}</span>}
+                </span>}
           </div>
         </div>
 

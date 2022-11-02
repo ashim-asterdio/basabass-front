@@ -177,6 +177,11 @@
     flex-direction: column;
 }
 
+/* .property_details_components_aminities{
+    border: solid 1px;
+    height: 500px;
+} */
+
 .aminities_button {
     display: flex;
     flex-wrap: wrap;

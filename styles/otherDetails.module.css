@@ -1,0 +1,207 @@
+
+.mainContainer{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 0px;
+    gap: 16px;
+    position: absolute;
+    width: 345px;
+    height: 542px;
+    left: 0px;
+    top:0px;
+    /* border: solid 1px; */
+}
+
+.title{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding: 0px;
+    margin: 0px;
+    gap: 10px;
+    width: fit-content;
+    height: 24px;
+    flex: none;
+    flex-grow: 0;
+    font-family: 'Product Sans';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 14px;
+    line-height: 24px;
+    color: #333333;
+}
+
+.infoIcon{
+    font-size:medium;
+}
+
+.ownerInfo{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 0px;
+    gap: 16px;
+    width: 345px;
+    height: 244px;
+    flex: none;
+    order: 0;
+    flex-grow: 0;
+}
+
+.ownerRadioDiv{
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    padding: 0px;
+    gap: 11px;
+    width: 264px;
+    height: 20px;
+    flex: none;
+    flex-grow: 0;
+}
+
+.ownerInfoDiv{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 0px;
+    gap: 24px;
+    width: 345px;
+    height: 168px;
+    flex: none;
+    order: 2;
+    flex-grow: 0;
+}
+
+.inputFeild{
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    padding: 4px 16px;
+    gap: 10px;
+    width: 345px;
+    height: 40px;
+    border: 1px solid #CED4DA;
+    border-radius: 5px;
+    flex: none;
+    order: 0;
+    flex-grow: 0;
+}
+
+.adPricingDiv{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 0px;
+    gap: 16px;
+    width: 345px;
+    height: 282px;
+    flex: none;
+    flex-grow: 0;
+}
+
+.adPricingRadioDiv{
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    padding: 0px;
+    gap: 11px;
+    width: 206px;
+    height: 20px;
+    flex: none;
+    flex-grow: 0;
+}
+
+
+
+
+
+
+@media only screen and (min-width: 1024px){
+    .mainContainer{
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 0px;
+        gap: 40px;
+        width: 705px;
+        height: 430px;
+        flex: none;
+        order: 0;
+        flex-grow: 0;
+        /* border: solid 1px; */
+    }
+    
+    .title{
+        width: fit-content;
+        height: 24px;
+        font-family: 'Product Sans';
+        font-style: normal;
+        font-weight: 700;
+        font-size: 16px;
+        line-height: 24px;
+        display: flex;
+        gap: 12px;
+        align-items: center;
+        color: #333333;
+        flex: none;
+        order: 0;
+        flex-grow: 0;
+        padding: 0;
+        margin: 0;
+    }
+
+    .infoIcon{
+        font-size: large;
+    }
+
+    .ownerInfo{
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 0px;
+        gap: 16px;
+        width: 705px;
+        height: 180px;
+        flex: none;
+        flex-grow: 0;
+    }
+
+    .ownerInfoDiv{
+        display: flex;
+        flex-wrap:wrap;
+        align-items: flex-start;
+        padding: 0px;
+        gap: 24px;
+        width: 705px;
+        height: 104px;
+        flex: none;
+        /* border: solid 1px; */
+        flex-grow: 0;
+    }
+
+    .inputFeild{
+        box-sizing: border-box;
+        display: flex;
+        flex-direction: row;
+        align-items: flex-start;
+        padding: 4px 16px;
+        gap: 10px;
+        width: 340px;
+        height: 40px;
+        border: 1px solid #CED4DA;
+        border-radius: 5px;
+        flex: none;
+        align-self: stretch;
+        flex-grow: 0;
+    }
+
+    .adPricingDiv{
+        /* border: solid 1px; */
+        height:max-content;
+    }
+
+}
+

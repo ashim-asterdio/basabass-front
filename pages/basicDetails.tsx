@@ -10,7 +10,6 @@ import agriculture from "../Images/agriculture.svg"
 import SmallRadio from '../components/ui components/radio/smallRadio'
 import RectangleRadio from '../components/ui components/radio/rectangleRadio'
 import SquareRadio from '../components/ui components/radio/squareRadio'
-import { boolean } from 'yup/lib/locale'
 import Layout from '../components/Layout'
 
 const BasicDetail:NextPage =(e)=> {
@@ -82,9 +81,9 @@ const buttonClick=(e:Event)=>{
         <div className={style.adCategoryDiv}>
           <p className={style.topic}>Ad Category <HiOutlineInformationCircle className={style.infoIcon} /></p>
           <div className={style.radioDiv} >
-            <SmallRadio value="Sale" />
-            <SmallRadio value="Rent" />
-            <SmallRadio value="Lease" />
+            <SmallRadio value="Sale" name="adCategory" />
+            <SmallRadio value="Rent" name="adCategory" />
+            <SmallRadio value="Lease" name="adCategory" />
             <span id='adCategoryError'></span>
           </div>
       </div>
