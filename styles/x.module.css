@@ -1,12 +1,12 @@
-.amenitiesLabel{
+.aminities{
     box-sizing: border-box;
     display: flex;
     flex-direction: row;
     justify-content: center;
     align-items: center;
     padding: 12px 40px;
-    width: 107.5px !important; 
-    height: 32px !important;
+    width: 107.5px ; 
+    height: 32px;
     border: 1px solid #D8D8D8;
     border-radius: 5px;
     flex: none;
@@ -14,11 +14,11 @@
     box-sizing: border-box;
 }
 
-.amenitiesLabel input{
+.aminities input{
     display: none;
 }
 
-.amenitiesLabel div p{
+.aminities div p{
     width: 115px;
     height: 16px;
     font-family: 'Product Sans';
@@ -34,7 +34,7 @@
     margin: 0px;
 }
 
-.amenitiesLabel input:checked + div{
+.aminities input:checked + div{
     display: flex;
     flex-direction: row;
     justify-content: center;
@@ -54,28 +54,29 @@
     color: #FFFFFF;
 }
 
-.amenitiesLabel input:checked + div p{
+.aminities input:checked + div p{
     color: #FFFFFF;
 }
 
 
 @media only screen and (min-width: 1024px){
-    .amenitiesLabel{
+    .aminities{
+        box-sizing: border-box;
         display: flex;
         flex-direction: row;
         justify-content: center;
         align-items: center;
         padding: 12px 40px;
         gap: 8px;
-        width: 132px !important;
-        height: 40px !important;
+        width: 132px;
+        height: 40px;
         border: 1px solid #D8D8D8;
         border-radius: 5px;
         flex: none;
         /* flex-grow: 1; */
     }
 
-    .amenitiesLabel div p{
+    .aminities div p{
         width: 115px;
         height: 16px;
         font-family: 'Product Sans';
@@ -89,7 +90,7 @@
         flex-grow: 0;
     }
 
-    .amenitiesLabel input:checked + div{
+    .aminities input:checked + div{
         display: flex;
         flex-direction: row;
         justify-content: center;
@@ -103,7 +104,7 @@
         flex-grow: 1;
     }
 
-    .amenitiesLabel input:checked + div p{
+    .aminities input:checked + div p{
         width: 115px;
         height: 16px;
         font-family: 'Product Sans';

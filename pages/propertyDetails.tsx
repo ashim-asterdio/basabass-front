@@ -9,7 +9,7 @@ import { propertyDetailsSchema } from '../components/validationSchema'
 const propertyDetails: NextPage = () => {
     const amenities = ['Lawn', 'Drainage', 'Jacuzzi', 'Garage', 'Parking', 'Air Condition', 'Balcony', 'Deck', 'Fencing',
         'Garden', 'CCTV', 'Gym', 'Microwave', 'Modular Kitchen', 'Swimming Pool', 'TV Cable', 'Electricity Backup',
-        'Intercom', 'Internet', 'Kids Playground', 'Lift', 'Maintainance', 'Security Staff', 'Store Room', 'Amenities'];
+        'Intercom', 'Internet', 'Kids Playground', 'Lift', 'Maintainance', 'Security Staff', 'Store Room'];
 
 
 
@@ -54,164 +54,169 @@ const propertyDetails: NextPage = () => {
             <Layout onSubmit={handleSubmit} topic="Property Details">
                 <div className={style.propertydetails_container}>
 
-                    <div className={style.propertydetails_components}>
+                    <div className={style.locationComponent}>
 
                         <label> Location  <HiOutlineInformationCircle /></label>
+
                         <div className={style.all_input_fields}>
-                            <div style={{ display: "flex", flexDirection: "column" }}>
-                                <input className={style.input_only} type="text" placeholder="Ward Number"
-                                    name='wardNumber'
-                                    onChange={handleChange} />
-                                {errors.wardNumber && <span className={style.error}>{errors.wardNumber}</span>}
+                            <div className={style.inputFeildRow}>
+                                <div style={{ display: "flex", flexDirection: "column" }}>
+                                    <input className={style.input_only} type="text" placeholder="Ward Number"
+                                        name='wardNumber'
+                                        onChange={handleChange} />
+                                    {errors.wardNumber && <span className={style.error}>{errors.wardNumber}</span>}
+                                </div>
+
+                                <div className={style.dropdown_only}>
+                                    <select
+                                        name="city"
+                                        // value={values.city}
+                                        id=""
+                                        onChange={handleChange}
+                                    >
+                                        <option value="Property City"
+                                            selected
+                                            hidden
+                                            disabled>Property City</option>
+                                    </select>
+                                    {errors.city && <span className={style.error}>{errors.city}</span>}
+                                </div>
                             </div>
-                            <div className={style.dropdown_only}>
-                                <select
-                                    name="city"
-                                    // value={values.city}
-                                    id=""
-                                    onChange={handleChange}
-                                >
-                                    <option value="Property City"
-                                        selected
-                                        hidden
-                                        disabled>Property City</option>
-                                </select>
-                                {errors.city && <span className={style.error}>{errors.city}</span>}
-                            </div>
-                            <div >
+                            <div>
                                 <input className={style.input_only} type="text" placeholder="Property Area"
                                     name='propertyArea'
                                     onChange={handleChange}
-                                // value={values.propertyArea}
                                 />
                                 {errors.propertyArea && <span className={style.error}>{errors.propertyArea}</span>}
                             </div>
                         </div>
                     </div>
 
-
-                    <div className={style.propertydetails_components}>
+                    <div className={style.areaComponent}>
                         <label> Area  Location  <HiOutlineInformationCircle /></label>
                         <div className={style.areaLocation}>
-                            <div className={style.dropdown_only}>
-                                <select
-                                    name="areaMetric"
-                                    id=""
-                                    onChange={handleChange}
-                                // value={values.areaMetric}
-                                // onChange={handleChange("designation")}
 
-                                >
-                                    <option value=""
-                                        selected
-                                        hidden
-                                        disabled>Select Area Metric</option>
-                                </select>
-                                {errors.areaMetric && <span className={style.error}>{errors.areaMetric}</span>}
-                            </div>
+                            <div className={style.inputFeildRow}>
+                                <div className={style.dropdown_only}>
+                                    <select
+                                        name="areaMetric"
+                                        id=""
+                                        onChange={handleChange}
+                                    // value={values.areaMetric}
+                                    // onChange={handleChange("designation")}
 
-                            <div className={style.input_dropdown}>
-                                <div>
-                                    <input className={style.input_with_dropdown} name="totalArea"
-                                        // value={values.totalArea} 
-                                        type="text" placeholder=" Total Area(e.g. 0-1-2-4)"
-                                        onChange={handleChange} />
-
-                                    <hr className={style.gapBtw} />
-                                    <div className={style.dropdown_with_input}>
-                                        <select
-                                            name="totalAreaUnit"
-                                            // value={values.totalAreaUnits}
-                                            id="aana"
-                                            onChange={handleChange}
-                                        // onChange={handleChange("designation")}
-
-                                        >
-                                            <option value="Aana"
-                                                selected
-                                                hidden
-                                                disabled>Aana</option>
-                                        </select>
-                                    </div>
+                                    >
+                                        <option value=""
+                                            selected
+                                            hidden
+                                            disabled>Select Area Metric</option>
+                                    </select>
+                                    {errors.areaMetric && <span className={style.error}>{errors.areaMetric}</span>}
                                 </div>
-                                {(errors.totalArea || errors.totalAreaUnit) && <span className={style.doubleError}>
-                                    <span className={style.error}>{errors.totalArea}</span>
-                                    {errors.totalAreaUnit && <span className={style.error}>{errors.totalAreaUnit}</span>}
-                                </span>}
-                            </div>
-                            <div className={style.input_dropdown}>
-                                <div>
-                                    <input className={style.input_with_dropdown} type="text"
-                                        placeholder="Built Up Area(e.g. 0-1-2-4)"
-                                        name='builtUpArea'
-                                        onChange={handleChange} />
-                                    <hr className={style.gapBtw} />
-                                    <div className={style.dropdown_with_input}>
-                                        <select
-                                            name="builtUpAreaUnit"
-                                            // value={values.builtUpAreaUnit}
-                                            id="aana"
-                                            onChange={handleChange}
-                                        // onChange={handleChange("designation")}
 
-                                        >
-                                            <option value="Aana"
-                                                selected
-                                                hidden
-                                                disabled>Aana</option>
-                                        </select>
+                                <div className={style.input_dropdown}>
+                                    <div>
+                                        <input className={style.input_with_dropdown} name="totalArea"
+                                            // value={values.totalArea} 
+                                            type="text" placeholder=" Total Area(e.g. 0-1-2-4)"
+                                            onChange={handleChange} />
+
+                                        <hr className={style.gapBtw} />
+                                        <div className={style.dropdown_with_input}>
+                                            <select
+                                                name="totalAreaUnit"
+                                                // value={values.totalAreaUnits}
+                                                id="aana"
+                                                onChange={handleChange}
+                                            // onChange={handleChange("designation")}
+
+                                            >
+                                                <option value="Aana"
+                                                    selected
+                                                    hidden
+                                                    disabled>Aana</option>
+                                            </select>
+                                        </div>
                                     </div>
+                                    {(errors.totalArea || errors.totalAreaUnit) && <span className={style.doubleError}>
+                                        <span className={style.error}>{errors.totalArea}</span>
+                                        {errors.totalAreaUnit && <span className={style.error}>{errors.totalAreaUnit}</span>}
+                                    </span>}
                                 </div>
-                                {(errors.builtUpArea || errors.builtUpAreaUnit) && <span className={style.doubleError}>
-                                    <span className={style.error}>{errors.builtUpArea}</span>
-                                    {errors.builtUpAreaUnit && <span className={style.error}>{errors.builtUpAreaUnit}</span>}
-                                </span>}
-                            </div>
-                            <div style={{ display: "flex", flexDirection: "column" }}>
-                                <input className={style.input_only} type="text" placeholder="Property Face"
-                                    name='propertyFace'
-                                    onChange={handleChange}
-                                //  value={values.propertyFace} 
-                                />
-                                {errors.propertyFace && <span className={style.error}>{errors.propertyFace}</span>}
                             </div>
 
+                            <div className={style.inputFeildRow}>
+                                <div className={style.input_dropdown}>
+                                    <div>
+                                        <input className={style.input_with_dropdown} type="text"
+                                            placeholder="Built Up Area(e.g. 0-1-2-4)"
+                                            name='builtUpArea'
+                                            onChange={handleChange} />
+                                        <hr className={style.gapBtw} />
+                                        <div className={style.dropdown_with_input}>
+                                            <select
+                                                name="builtUpAreaUnit"
+                                                // value={values.builtUpAreaUnit}
+                                                id="aana"
+                                                onChange={handleChange}
+                                            // onChange={handleChange("designation")}
+
+                                            >
+                                                <option value="Aana"
+                                                    selected
+                                                    hidden
+                                                    disabled>Aana</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    {(errors.builtUpArea || errors.builtUpAreaUnit) && <span className={style.doubleError}>
+                                        <span className={style.error}>{errors.builtUpArea}</span>
+                                        {errors.builtUpAreaUnit && <span className={style.error}>{errors.builtUpAreaUnit}</span>}
+                                    </span>}
+                                </div>
+                                <div style={{ display: "flex", flexDirection: "column" }}>
+                                    <input className={style.input_only} type="text" placeholder="Property Face"
+                                        name='propertyFace'
+                                        onChange={handleChange}
+                                    />
+                                    {errors.propertyFace && <span className={style.error}>{errors.propertyFace}</span>}
+                                </div>
+                            </div>
                         </div>
                     </div>
 
-                    <div className={style.propertydetails_components}>
+                    <div className={style.roadComponent}>
                         <label> Road Location <HiOutlineInformationCircle /></label>
                         <div className={style.all_input_fields}>
-                            <div className={style.dropdown_only}>
-                                <select
-                                    name="roadAreaMetric"
-                                    // value={values.roadAreaMetric}
-                                    id=""
-                                    onChange={handleChange}
-                                // onChange={handleChange("designation")}
+                            <div className={style.inputFeildRow}>
+                                <div className={style.dropdown_only}>
+                                    <select
+                                        name="roadAreaMetric"
+                                        // value={values.roadAreaMetric}
+                                        id=""
+                                        onChange={handleChange}
+                                    // onChange={handleChange("designation")}
 
-                                >
-                                    <option value=""
-                                        selected
-                                        hidden
-                                        disabled>Select Area Metric</option>
-                                </select>
-                                {errors.roadAreaMetric && <span className={style.error}>{errors.roadAreaMetric}</span>}
-                            </div>
+                                    >
+                                        <option value=""
+                                            selected
+                                            hidden
+                                            disabled>Select Area Metric</option>
+                                    </select>
+                                    {errors.roadAreaMetric && <span className={style.error}>{errors.roadAreaMetric}</span>}
+                                </div>
 
-                            <div>
-                                <input className={style.input_only} type="text" placeholder="Road Acess(e.g. 14)"
-                                    name='roadAccess' onChange={handleChange} ></input>
-                                {errors.roadAccess && <span className={style.error}>{errors.roadAccess}</span>}
+                                <div>
+                                    <input className={style.input_only} type="text" placeholder="Road Acess(e.g. 14)"
+                                        name='roadAccess' onChange={handleChange} ></input>
+                                    {errors.roadAccess && <span className={style.error}>{errors.roadAccess}</span>}
+                                </div>
                             </div>
                             <div className={style.dropdown_only}>
                                 <select
                                     name="roadType"
-                                    // value={values.roadType}
                                     id=""
                                     onChange={handleChange}
-                                // onChange={handleChange("designation")}
-
                                 >
                                     <option value=""
                                         selected
@@ -224,40 +229,38 @@ const propertyDetails: NextPage = () => {
                         </div>
                     </div>
 
-                    <div className={style.propertydetails_components}>
+                    <div className={style.buldingDetailsComponent}>
                         <label> Building Details  <HiOutlineInformationCircle /></label>
                         <div className={style.all_input_fields}>
-                            <div className={style.dropdown_only}>
-                                <select
-                                    name="buildYear"
-                                    // value={values.buildYear}
-                                    id=""
-                                    onChange={handleChange}
-                                // onChange={handleChange("designation")}
+                            <div className={style.inputFeildRow}>
+                                <div className={style.dropdown_only}>
+                                    <select
+                                        name="buildYear"
+                                        // value={values.buildYear}
+                                        id=""
+                                        onChange={handleChange}
+                                    // onChange={handleChange("designation")}
 
-                                >
-                                    <option value=""
-                                        selected
-                                        hidden
-                                        disabled>Build Year</option>
-                                </select>
-                                {errors.buildYear && <span className={style.error}>{errors.buildYear}</span>}
-                            </div>
-                            <div className={style.dropdown_only}>
-                                <select
-                                    name="totalFloors"
-                                    // value={values.totalFloors}
-                                    id=""
-                                    onChange={handleChange}
-                                // onChange={handleChange("designation")}
-
-                                >
-                                    <option value=""
-                                        selected
-                                        hidden
-                                        disabled>Total floors</option>
-                                </select>
-                                {errors.totalFloors && <span className={style.error}>{errors.totalFloors}</span>}
+                                    >
+                                        <option value=""
+                                            selected
+                                            hidden
+                                            disabled>Build Year</option>
+                                    </select>
+                                    {errors.buildYear && <span className={style.error}>{errors.buildYear}</span>}
+                                </div>
+                                <div className={style.dropdown_only}>
+                                    <select
+                                        name="totalFloors"
+                                        onChange={handleChange}
+                                    >
+                                        <option value=""
+                                            selected
+                                            hidden
+                                            disabled>Total floors</option>
+                                    </select>
+                                    {errors.totalFloors && <span className={style.error}>{errors.totalFloors}</span>}
+                                </div>
                             </div>
                             <div className={style.dropdown_only}>
                                 <select
@@ -281,9 +284,9 @@ const propertyDetails: NextPage = () => {
                         </div>
                     </div>
 
-                    <div className={style.propertydetails_components}>
+                    <div className={style.multipleUnitsComponent}>
                         <label> Muntiple Units  <HiOutlineInformationCircle /></label>
-                        <div className={style.all_input_fields}>
+                        <div className={style.multipleUnits}>
                             <div className={style.dropdown_only}>
                                 <select
                                     name="numberOFUnits"
@@ -302,39 +305,46 @@ const propertyDetails: NextPage = () => {
                             </div>
                         </div>
                     </div>
-                    <div className={style.propertydetails_components}>
+
+
+                    <div className={style.totalRoomsComponent}>
 
                         <label> Total Rooms  <HiOutlineInformationCircle /> </label>
                         <div className={style.all_input_fields}>
-                            <div>
-                                <input className={style.input_only} type="text" placeholder="Total Bed Room"
-                                    name='noOfBedroom'
-                                    onChange={handleChange} />
-                                {errors.noOfBedroom && <span className={style.error}>{errors.pnoOfBedroom}</span>}
+                            <div className={style.inputFeildRow}>
+                                <div>
+                                    <input className={style.input_only} type="text" placeholder="Total Bed Room"
+                                        name='noOfBedroom'
+                                        onChange={handleChange} />
+                                    {errors.noOfBedroom && <span className={style.error}>{errors.pnoOfBedroom}</span>}
+                                </div>
+                                <div>
+                                    <input className={style.input_only} type="text" placeholder="Total Bathroom"
+                                        name='noOfBathroom'
+                                        onChange={handleChange} />
+                                    {errors.noOfBathroom && <span className={style.error}>{errors.noOfBathroom}</span>}
+                                </div>
                             </div>
-                            <div>
-                                <input className={style.input_only} type="text" placeholder="Total Bathroom"
-                                    name='noOfBathroom'
-                                    onChange={handleChange} />
-                                {errors.noOfBathroom && <span className={style.error}>{errors.noOfBathroom}</span>}
-                            </div>
-                            <div>
-                                <input className={style.input_only} type="text" placeholder="Total Kitchen"
-                                    name='noOfKitchen'
-                                    onChange={handleChange} />
-                                {errors.noOfKitchen && <span className={style.error}>{errors.noOfKitchen}</span>}
-                            </div>
-                            <div>
-                                <input className={style.input_only} type="text" placeholder="Total Living Room"
-                                    name='noOfLivingroom'
-                                    onChange={handleChange} />
-                                {errors.noOfLivingroom && <span className={style.error}>{errors.noOfLivingroom}</span>}
+
+                            <div className={style.inputFeildRow}>
+                                <div>
+                                    <input className={style.input_only} type="text" placeholder="Total Kitchen"
+                                        name='noOfKitchen'
+                                        onChange={handleChange} />
+                                    {errors.noOfKitchen && <span className={style.error}>{errors.noOfKitchen}</span>}
+                                </div>
+                                <div>
+                                    <input className={style.input_only} type="text" placeholder="Total Living Room"
+                                        name='noOfLivingroom'
+                                        onChange={handleChange} />
+                                    {errors.noOfLivingroom && <span className={style.error}>{errors.noOfLivingroom}</span>}
+                                </div>
                             </div>
                         </div>
                     </div>
-                    <div className={style.property_details_components_aminities} >
+                    <div className={style.amenitiesComponent} >
                         <label className={style.label} htmlFor=""> Ameneties  <HiOutlineInformationCircle /></label>
-                        <div className={style.aminities_button}>
+                        <div className={style.aminitiesDiv}>
                             {/* <AminitiesCheckbox value="Aminities" /> */}
                             {amenities.map((value, key) => <AmenitiesCheckbox value={value} onChange={handleChange} />)}
                         </div>
