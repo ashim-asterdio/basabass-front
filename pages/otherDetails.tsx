@@ -25,7 +25,7 @@ const OtherDetails: NextPage = () => {
     }
     const { values, errors, touched, handleSubmit, handleChange } = useFormik({
         initialValues: initialValues,
-        validationSchema: otherDetailsSchema,
+        // validationSchema: otherDetailsSchema,
         onSubmit: (values, formikHelpers) => {
             console.log("call Ad Details")
             console.log(values)

@@ -53,7 +53,7 @@ const propertyDetails: NextPage = () => {
 
     const { values, errors, touched, handleSubmit, handleChange } = useFormik({
         initialValues: initialValues,
-        validationSchema: propertyDetailsSchema,
+        // validationSchema: propertyDetailsSchema,
         onSubmit(values, formikHelpers) {
             console.log(errors)
             console.log("call")

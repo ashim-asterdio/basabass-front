@@ -39,7 +39,7 @@ const AdDetails: NextPage = () => {
   // const [file, setFile] = useState(null);
   const { values, errors, touched, handleSubmit, handleChange } = useFormik({
     initialValues: initialValues,
-    validationSchema: adDetailsSchema,
+    // validationSchema: adDetailsSchema,
     onSubmit: (values, formikHelpers) => {
       console.log("call Ad Details")
       console.log(values)
@@ -64,7 +64,7 @@ const AdDetails: NextPage = () => {
             </label>
 
             <div className={styles.image}>
-              <UploadZone />
+              {/* <UploadZone /> */}
               {/* <label><UploadZone/></label> */}
             </div>
             <small id="emailHelp" className="form-text text-muted">

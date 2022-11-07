@@ -69,20 +69,6 @@ const ProgressBar = (props:any) => {
         color:page<4&&"#444444"
     }
 
-
-    const progressSteps:any=(stepNumber:number,value:string)=>
-        <div className={style.progressSteps}>
-            <div className={style.circleDiv}>
-                <hr className={style.progressLine}  />
-                <div className={style.outerCircle}  >
-                    <div className={style.innerCircle}>
-                        {stepNumber}
-                    </div>
-                </div>
-            </div>
-            <div className={style.descriptionDiv}>{value}</div>
-        </div>
-    ;
   return (
     <>
         <div className={style.progressSteps}>
@@ -123,12 +109,13 @@ const ProgressBar = (props:any) => {
 
         <div className={style.progressSteps}>
             <div className={style.finalCircleDiv}>
+                <hr className={style.firstProgressLine} style={styleLine4} />
                 <div className={style.outerCircle}  style={styleCircle4}>
                     <div className={style.innerCircle} style={inCircle4}>
                         4
                     </div>
                 </div>
-                <hr className={style.firstProgressLine} style={styleLine4} />
+                
             </div>
             <div className={style.descriptionDiv}>Other Details</div>
         </div>
