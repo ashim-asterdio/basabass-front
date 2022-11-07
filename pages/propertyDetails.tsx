@@ -5,8 +5,22 @@ import AmenitiesCheckbox from '../components/ui components/customCheckbox'
 import Layout from '../components/Layout'
 import { useFormik } from 'formik'
 import { propertyDetailsSchema } from '../components/validationSchema'
+import {useRouter} from 'next/router'
+import { useDispatch,useSelector } from 'react-redux'
+import { RootState } from '../store'
+import { increment } from "../slices/progressBarSlice";
 
 const propertyDetails: NextPage = () => {
+
+    const router=useRouter()
+    const dispatch=useDispatch();
+    const page=useSelector((state:RootState)=>state.progressBar.value)
+
+    const previous=(e:Event)=>{
+        e.preventDefault()
+        router.push('/basicDetails')
+    }
+
     const amenities = ['Lawn', 'Drainage', 'Jacuzzi', 'Garage', 'Parking', 'Air Condition', 'Balcony', 'Deck', 'Fencing',
         'Garden', 'CCTV', 'Gym', 'Microwave', 'Modular Kitchen', 'Swimming Pool', 'TV Cable', 'Electricity Backup',
         'Intercom', 'Internet', 'Kids Playground', 'Lift', 'Maintainance', 'Security Staff', 'Store Room'];
@@ -44,14 +58,16 @@ const propertyDetails: NextPage = () => {
             console.log(errors)
             console.log("call")
             console.log(values)
-            window.location.href = '/adDetails';
+            if(page==2)
+                dispatch(increment())
+            router.push('/adDetails') ;
         }
     })
 
 
     return (
         <>
-            <Layout onSubmit={handleSubmit} topic="Property Details">
+            <Layout onSubmit={handleSubmit} topic="Property Details" page="2" previous={previous}>
                 <div className={style.propertydetails_container}>
 
                     <div className={style.locationComponent}>

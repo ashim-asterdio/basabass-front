@@ -1,8 +1,13 @@
 import Head from "next/head"
 import Navbar from "./Navbar"
 import style from '../styles/layout.module.css'
+import { ReactElement } from "react"
+import ProgressBar from "./ui components/progressBar"
+import Link from "next/link"
 
-const Layout = ({ children, topic, onSubmit }) => {
+
+const Layout = ({ children, topic, onSubmit,page,previous }:
+  {children:any;topic:string;onSubmit:any;page:any;previous:any} ) => {
 
   return (
     <>
@@ -25,7 +30,9 @@ const Layout = ({ children, topic, onSubmit }) => {
 
             <div className={style.midDiv}>
               <p className={style.midDetails}>{topic}</p>
-              <div className={style.progressBarDiv}>Mathi ko step haru</div>
+              <div className={style.progressBarDiv}>
+                <ProgressBar page={page} />
+              </div>
             </div>
           </div>
 
@@ -48,7 +55,7 @@ const Layout = ({ children, topic, onSubmit }) => {
 
                   <div className={style.footer}>
                     <div className={style.buttonDiv}>
-                      <button className={style.previous} >Previous</button>
+                      <button className={style.previous} onClick={previous}>Previous</button>
                       <div className={style.submitDiv}>
                         <span className={style.savetoDraft}>Save to draft</span>
                         <button className={style.next} onClick={onSubmit} >Next</button>

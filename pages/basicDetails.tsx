@@ -12,8 +12,16 @@ import SquareRadio from '../components/ui components/radio/squareRadio'
 import Layout from '../components/Layout'
 import { useFormik } from 'formik'
 import { basicDetailsSchema } from '../components/validationSchema'
+import { increment } from '../slices/progressBarSlice'
+import { useDispatch,useSelector } from 'react-redux'
+import { RootState } from '../store'
+import { useRouter } from "next/router"
+
 
 const BasicDetail: NextPage = (e) => {
+  const dispatch=useDispatch();
+  const page=useSelector((state:RootState)=>state.progressBar.value)
+  const router =useRouter();
 
   const initialValues = {
     adCategory: "",
@@ -26,7 +34,9 @@ const BasicDetail: NextPage = (e) => {
     onSubmit: (values, formikHelpers) => {
       console.log("basic Details")
       console.log(values)
-      window.location.href = '/propertyDetails';
+      if(page==1)
+      dispatch(increment())
+      router.push ('/propertyDetails');
     }
   })
   return (
@@ -36,7 +46,7 @@ const BasicDetail: NextPage = (e) => {
         <link href="http://fonts.cdnfonts.com/css/product-sans" rel="stylesheet"></link>
       </Head>
 
-      <Layout onSubmit={handleSubmit} topic="Basic Details">
+      <Layout onSubmit={handleSubmit} topic="Basic Details" page="1" previous={"none"}>
         <div className={style.adCategoryDiv}>
           <p className={style.topic}>Ad Category <HiOutlineInformationCircle className={style.infoIcon} /></p>
           <div className={style.radioDiv} >

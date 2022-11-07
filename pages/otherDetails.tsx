@@ -6,8 +6,16 @@ import Layout from "../components/Layout"
 import SmallRadio from "../components/ui components/radio/smallRadio"
 import { HiOutlineInformationCircle } from "react-icons/hi"
 import { otherDetailsSchema } from "../components/validationSchema"
+import { useRouter } from "next/router"
 
 const OtherDetails: NextPage = () => {
+    const router=useRouter();
+
+    const previous=(e:Event)=>{
+        e.preventDefault()
+        router.push('/adDetails')
+    }
+
     const initialValues = {
         ownerType: "",
         fullName: "",
@@ -29,7 +37,7 @@ const OtherDetails: NextPage = () => {
             <Head>
                 <link href="http://fonts.cdnfonts.com/css/product-sans" rel="stylesheet"></link>
             </Head>
-            <Layout topic="Other Details" onSubmit={handleSubmit}>
+            <Layout topic="Other Details" onSubmit={handleSubmit} page="4" previous={previous}>
                 <div className={style.mainContainer}>
                     <div className={style.ownerInfo}>
                         <p className={style.title}>Owner Info <HiOutlineInformationCircle className={style.infoIcon} /></p>

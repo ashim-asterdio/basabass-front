@@ -113,6 +113,17 @@
   flex-grow: 0;
 }
 
+.image {
+  box-sizing: border-box;
+  width: 345.5px;
+  height: 145px;
+  border: 1px dashed #969696;
+  flex: none;
+  /* order: 0; */
+  align-self: stretch;
+  flex-grow: 0;
+}
+
 .doubleError{
   display: flex;
   padding: 0;
@@ -161,5 +172,20 @@
     order: 1;
     align-self: stretch;
     flex-grow: 0;
+  }
+
+  .image {
+    display: flex;
+    justify-content: center;
+    box-sizing: border-box;
+    width: 705px;
+    height: 258px;
+    border: 1px dashed #969696;
+    flex: none;
+    order: 0;
+    align-self: stretch;
+    flex-grow: 0;
+    align-items: center;
+    padding: 10px;
   }
 }
