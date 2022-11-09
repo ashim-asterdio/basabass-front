@@ -44,7 +44,7 @@ const UploadArea: React.FC = () => {
     <>
       {fileList.length === 0 ? (
         <div className="fileListDefaultState">
-          <Image src={uploadsLogo} width={"20px"} height={"20px"} />
+          <Image src={uploadsLogo} width={"20px"} height={"20px"} alt="No Img"/>
           <button type="button" className={styles.antdDragAndDrop}>
             Upload Image
           </button>
@@ -81,7 +81,7 @@ const UploadArea: React.FC = () => {
         footer={null}
         onCancel={handleCancel}
       >
-        <img alt="example" style={{ width: "100%" }} src={previewImage} />
+        <Image alt="example" style={{ width: "100%" }} src={previewImage} />
       </Modal>
     </>
   );

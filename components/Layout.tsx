@@ -4,19 +4,17 @@ import style from '../styles/layout.module.css'
 import { ReactElement } from "react"
 import ProgressBar from "./ui components/progressBar"
 import Link from "next/link"
+import { IoInformationCircleOutline } from "react-icons/io5";
 
 
-const Layout = ({ children, topic, onSubmit,page,previous }:
-  {children:any;topic:string;onSubmit:any;page:any;previous:any} ) => {
+const Layout = ({ children, topic, onSubmit, page, previous, info }:
+  { children: any; topic: string; onSubmit: any; page: any; previous: any; info: any }) => {
 
   return (
     <>
       <Head>
         {/* <link rel="stylesheet" href="https://egkoppel.github.io/product-sans/google-fonts.css" ></link> */}
         <link href="http://fonts.cdnfonts.com/css/product-sans" rel="stylesheet"></link>
-        <style>
-          @import url('http://fonts.cdnfonts.com/css/product-sans');
-        </style>
       </Head>
       <div className={style.containerDiv}>
         <div className={style.nav}>
@@ -65,7 +63,21 @@ const Layout = ({ children, topic, onSubmit,page,previous }:
                 </form>
 
               </div>
-              <div className={style.botRightDiv}>information</div>
+              <div className={style.botRightDiv}>
+                <div className={style.infoInnerDiv}>
+                  <div className={style.infoTopic}>
+                    <p><IoInformationCircleOutline fontSize={"large"} />INFORMATION</p>
+                  </div>
+                  <div className={style.infoContentDiv}>
+                    <h3>
+                      {info}
+                    </h3>
+                    <div className={style.infoContent}>
+                      Information about stuff
+                    </div>
+                  </div>
+                </div>
+              </div>
             </div>
 
           </div>

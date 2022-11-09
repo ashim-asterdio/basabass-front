@@ -1,35 +1,203 @@
 .nav{
-    position: absolute;
-    width: 1366px;
-    height: 70px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: flex-start;
+    padding: 12px 20px;
+    /* gap: 360px; */
+    width: 1440px;
+    height: 67px;
     left: 0px;
     top: 0px;
     background: #FFFFFF;
-    box-shadow: 0px 3px 20px rgba(0, 0, 0, 0.05);
-    border-radius: 0px;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.05);
+}
+
+.leftDiv{
     display: flex;
-    z-index: 2 ;
+    flex-direction: row;
+    align-items: center;
+    padding: 0px;
+    gap: 40px;
+    width: 740px;
+    height: 43px;
+    flex: none;
+    order: 0;
+    flex-grow: 0;
     /* border: solid 1px; */
 }
 
 .logo{
-    /* border: solid 1px blue; */
+    width: 139px;
+    height: 35px;
+    flex: none;
+    order: 0;
+    flex-grow: 0;
+}
+
+.linkDiv{
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    padding: 0px;
+    gap: 24px;
+    width: 561px;
+    height: 35px;
+    flex: none;
+    order: 1;
+    flex-grow: 0;
+    /* border: solid 1px; */
+}
+
+.links{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding: 8px;
+    gap: 10px;
+    width: fit-content;
+    height: 35px;
+    flex: none;
+    flex-grow: 0;
+}
+
+.linksData{
+    width: fit-content;
+    height: 19px;
+    font-family: 'Product Sans';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 19px;
+    text-align: center;
+    color: #333333;
+    flex: none;
+    flex-grow: 0;
+}
+
+.rightDiv{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding: 0px;
+    gap: 20px;
+    width: 382px;
+    height: 43px;
+    flex: none;
+    order: 1;
+    flex-grow: 0;
+    /* border: solid 1px; */
+}
+
+.searchIcon{
+    display: flex;
+    flex-direction: row;
+    align-items:center;
+    padding: 8px;
+    gap: 10px;
+    width: 40px;
+    height: 40px;
+    flex: none;
+    flex-grow: 0;
+    margin-top: 1.5px;
+    margin-bottom: 1.5px;
+    /* border: solid 1px; */
+}
+
+.buttonDiv{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding: 0px;
+    gap: 16px;
+    width: 322px;
+    height: 43px;
+    flex: none;
+    flex-grow: 0;
+}
+
+.blueButton{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: flex-start;
+    padding: 12px;
+    gap: 10px;
+    width: 173px;
+    height: 43px;
+    background: #0000FF;
+    border-radius: 5px;
+    border: none;
+    flex: none;
+    order: 0;
+    flex-grow: 0;
+}
+
+.blueButton p{
+    width: 123px;
+    height: 19px;
+    font-family: 'Product Sans';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 19px;
+    text-transform: capitalize;
+    color: #FFFFFF;
+    flex: none;
+    flex-grow: 0;
+    margin: 0px;
+    padding: 0px;
+}
+
+.userDiv{
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    padding: 8px;
+    gap: 8px;
+    width: 133px;
+    height: 40px;
+    flex: none;
+    flex-grow: 0;
+}
+
+.imageDiv{
+    display: flex;
+    width: 24px;
+    height: 24px;
+    flex: none;
+    flex-grow: 0;
+    justify-content: center;
+    /* border: solid 1px; */
+}
+
+.name{
+    width: 85px;
+    height: 24px;
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 24px;
+    color: #161616;
+    flex: none;
+    order: 1;
+    flex-grow: 0;
+}
+
+/* .logo{
     height: 100%;
-    /* position: absolute; */
     margin: 0px;
     align-items: center;
     display: flex;
     justify-content: center;
     padding-left: 15px;
-    /* top: 0px; */
 }
 
 .searchDiv{
     position: absolute;
     left: 188px;
-    /* top: 15px; */
     display: flex;
-    /* border: solid 1px; */
     align-items: center;
     width: 393px;
     height: 100%;
@@ -37,7 +205,6 @@
 
 .searchArea{
     box-sizing: border-box;
-    /* position: absolute; */
     width: 320px;
     height: 40px;
     background: #FFFFFF;
@@ -190,4 +357,4 @@
     flex: none;
     order: 1;
     flex-grow: 0;
-}
+} */

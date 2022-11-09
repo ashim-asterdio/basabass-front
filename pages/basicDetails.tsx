@@ -1,4 +1,5 @@
 import type { NextPage } from 'next'
+import { useState } from "react"
 import Head from 'next/head'
 import style from '../styles/basicDetail.module.css'
 import { HiOutlineInformationCircle } from "react-icons/hi"
@@ -13,15 +14,17 @@ import Layout from '../components/Layout'
 import { useFormik } from 'formik'
 import { basicDetailsSchema } from '../components/validationSchema'
 import { increment } from '../slices/progressBarSlice'
-import { useDispatch,useSelector } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { RootState } from '../store'
 import { useRouter } from "next/router"
 
 
-const BasicDetail: NextPage = (e) => {
-  const dispatch=useDispatch();
-  const page=useSelector((state:RootState)=>state.progressBar.value)
-  const router =useRouter();
+const BasicDetail: NextPage = () => {
+  const dispatch = useDispatch();
+  const page = useSelector((state: RootState) => state.progressBar.value);
+  const router = useRouter();
+  const [info, setInfo] = useState("");
+
 
   const initialValues = {
     adCategory: "",
@@ -34,11 +37,14 @@ const BasicDetail: NextPage = (e) => {
     onSubmit: (values, formikHelpers) => {
       console.log("basic Details")
       console.log(values)
-      if(page==1)
-      dispatch(increment())
-      router.push ('/propertyDetails');
+      if (page == 1)
+        dispatch(increment())
+      router.push('/propertyDetails');
     }
   })
+
+    console.log(info)
+
   return (
     <>
       <Head>
@@ -46,18 +52,18 @@ const BasicDetail: NextPage = (e) => {
         <link href="http://fonts.cdnfonts.com/css/product-sans" rel="stylesheet"></link>
       </Head>
 
-      <Layout onSubmit={handleSubmit} topic="Basic Details" page="1" previous={"none"}>
-        <div className={style.adCategoryDiv}>
+      <Layout onSubmit={handleSubmit} topic="Basic Details" page="1" previous={"none"} info={info}>
+        <div className={style.adCategoryDiv} onClick={()=>{setInfo("Ad Category")}}>
           <p className={style.topic}>Ad Category <HiOutlineInformationCircle className={style.infoIcon} /></p>
           <div className={style.radioDiv} >
             <SmallRadio value="Sale" name="adCategory" onChange={handleChange} />
-            <SmallRadio value="Rent" name="adCategory" onChange={handleChange} />
+            <SmallRadio value="Rent" name="adCategory" onChange={handleChange}  />
             <SmallRadio value="Lease" name="adCategory" onChange={handleChange} />
             {errors.adCategory && <span className={style.error}>{errors.adCategory}</span>}
           </div>
         </div>
 
-        <div className={style.propertyTypeDiv}>
+        <div className={style.propertyTypeDiv} onClick={()=>{setInfo("Property Type")}}>
           <p className={style.topic}>Property Type <HiOutlineInformationCircle className={style.infoIcon} /> </p>
 
           <div className={style.propertyTypeDivRow}>
@@ -68,12 +74,12 @@ const BasicDetail: NextPage = (e) => {
           </div>
         </div>
 
-        <div className={style.propertyCategoryDiv}>
+        <div className={style.propertyCategoryDiv} onClick={()=>{setInfo("Property Category")}}>
           <p className={style.topic}>Porperty Category<HiOutlineInformationCircle className={style.infoIcon} /></p>
-          <div className={style.propertyCategoryRow}>
+          <div className={style.propertyCategoryRow} >
             <SquareRadio value="House" icon={<BiHome />} onChange={handleChange} />
             <SquareRadio value="Land" icon={<BiHome />} onChange={handleChange} />
-            <SquareRadio value="Flat" icon={<BiHome />} onChange={handleChange} />
+            <SquareRadio value="Flat" icon={<BiHome />} onChange={handleChange}  />
             <SquareRadio value="Apartment" icon={<BiHome />} onChange={handleChange} />
             <SquareRadio value="Buginess" icon={<BiHome />} onChange={handleChange} />
             <SquareRadio value="Office" icon={<BiHome />} onChange={handleChange} />

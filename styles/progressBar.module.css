@@ -20,7 +20,7 @@
     height: 48px;
     flex: none;
     flex-grow: 1;
-    border: solid 1px;
+    /* border: solid 1px; */
 }
 
 .circleDiv{
@@ -34,7 +34,7 @@
     height: 48px;
     flex: none;
     flex-grow: 1;
-    border: solid 1px;
+    /* border: solid 1px; */
 }
 
 .finalCircleDiv{
@@ -48,7 +48,7 @@
     height: 48px;
     flex: none;
     flex-grow: 1;
-    border: solid 1px;
+    /* border: solid 1px; */
 }
 
 .firstProgressLine{

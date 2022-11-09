@@ -56,17 +56,17 @@ const ProgressBar = (props:any) => {
 
     const inCircle2={
         backgroundColor:page==2&&props.page==2?" #012367":page>2?"#1CB35D":"#DCDCDC",
-        color:page<2&&"#444444"
+        color:page<2?"#444444":"#FFFFFF"
     }
 
     const inCircle3={
         backgroundColor:page==3&&props.page==3?" #012367":page>3?"#1CB35D":"#DCDCDC",
-        color:page<3&&"#444444"
+        color:page<3?"#444444":"#FFFFFF"
     }
 
     const inCircle4={
         backgroundColor:page==4&&props.page==4?" #012367":page>4?"#1CB35D":"#DCDCDC",
-        color:page<4&&"#444444"
+        color:page<4?"#444444":"#FFFFFF"
     }
 
   return (

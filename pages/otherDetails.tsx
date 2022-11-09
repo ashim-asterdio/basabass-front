@@ -7,9 +7,11 @@ import SmallRadio from "../components/ui components/radio/smallRadio"
 import { HiOutlineInformationCircle } from "react-icons/hi"
 import { otherDetailsSchema } from "../components/validationSchema"
 import { useRouter } from "next/router"
+import {useState} from "react"
 
 const OtherDetails: NextPage = () => {
     const router=useRouter();
+    const [info,setInfo]=useState("");
 
     const previous=(e:Event)=>{
         e.preventDefault()
@@ -25,7 +27,7 @@ const OtherDetails: NextPage = () => {
     }
     const { values, errors, touched, handleSubmit, handleChange } = useFormik({
         initialValues: initialValues,
-        // validationSchema: otherDetailsSchema,
+        validationSchema: otherDetailsSchema,
         onSubmit: (values, formikHelpers) => {
             console.log("call Ad Details")
             console.log(values)
@@ -37,9 +39,9 @@ const OtherDetails: NextPage = () => {
             <Head>
                 <link href="http://fonts.cdnfonts.com/css/product-sans" rel="stylesheet"></link>
             </Head>
-            <Layout topic="Other Details" onSubmit={handleSubmit} page="4" previous={previous}>
+            <Layout topic="Other Details" onSubmit={handleSubmit} page="4" previous={previous} info={info}>
                 <div className={style.mainContainer}>
-                    <div className={style.ownerInfo}>
+                    <div className={style.ownerInfo} onClick={()=>{setInfo("Owner Info")}}>
                         <p className={style.title}>Owner Info <HiOutlineInformationCircle className={style.infoIcon} /></p>
                         <div className={style.ownerRadioDiv}>
                             <SmallRadio name="ownerType" value="Use my info" onChange={handleChange} />
@@ -83,7 +85,7 @@ const OtherDetails: NextPage = () => {
                         </div>
                     </div>
 
-                    <div className={style.adPricingDiv}>
+                    <div className={style.adPricingDiv} onClick={()=>{setInfo("Ad Pricing Plan")}}>
                         <p className={style.title}>Ad Pricing Plan <HiOutlineInformationCircle className={style.infoIcon} /></p>
                         <div className={style.adPricingRadioDiv}>
                             <SmallRadio name="adPricingtype" value="Free Listing" onChange={handleChange} />

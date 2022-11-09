@@ -9,12 +9,14 @@ import {useRouter} from 'next/router'
 import { useDispatch,useSelector } from 'react-redux'
 import { RootState } from '../store'
 import { increment } from "../slices/progressBarSlice";
+import { useState } from "react"
 
-const propertyDetails: NextPage = () => {
 
+const PropertyDetails: NextPage = () => {
     const router=useRouter()
     const dispatch=useDispatch();
     const page=useSelector((state:RootState)=>state.progressBar.value)
+    const [info, setInfo] = useState("");
 
     const previous=(e:Event)=>{
         e.preventDefault()
@@ -67,10 +69,10 @@ const propertyDetails: NextPage = () => {
 
     return (
         <>
-            <Layout onSubmit={handleSubmit} topic="Property Details" page="2" previous={previous}>
+            <Layout onSubmit={handleSubmit} topic="Property Details" page="2" previous={previous} info={info}>
                 <div className={style.propertydetails_container}>
 
-                    <div className={style.locationComponent}>
+                    <div className={style.locationComponent} onClick={()=>{setInfo("Location")}}>
 
                         <label> Location  <HiOutlineInformationCircle /></label>
 
@@ -108,7 +110,7 @@ const propertyDetails: NextPage = () => {
                         </div>
                     </div>
 
-                    <div className={style.areaComponent}>
+                    <div className={style.areaComponent} onClick={()=>{setInfo("Area Location")}}>
                         <label> Area  Location  <HiOutlineInformationCircle /></label>
                         <div className={style.areaLocation}>
 
@@ -201,7 +203,7 @@ const propertyDetails: NextPage = () => {
                         </div>
                     </div>
 
-                    <div className={style.roadComponent}>
+                    <div className={style.roadComponent} onClick={()=>{setInfo("Road Location")}}>
                         <label> Road Location <HiOutlineInformationCircle /></label>
                         <div className={style.all_input_fields}>
                             <div className={style.inputFeildRow}>
@@ -245,7 +247,7 @@ const propertyDetails: NextPage = () => {
                         </div>
                     </div>
 
-                    <div className={style.buldingDetailsComponent}>
+                    <div className={style.buldingDetailsComponent} onClick={()=>{setInfo("Bulding Details")}}>
                         <label> Building Details  <HiOutlineInformationCircle /></label>
                         <div className={style.all_input_fields}>
                             <div className={style.inputFeildRow}>
@@ -300,7 +302,7 @@ const propertyDetails: NextPage = () => {
                         </div>
                     </div>
 
-                    <div className={style.multipleUnitsComponent}>
+                    <div className={style.multipleUnitsComponent} onClick={()=>{setInfo("Multiple Unit")}}>
                         <label> Muntiple Units  <HiOutlineInformationCircle /></label>
                         <div className={style.multipleUnits}>
                             <div className={style.dropdown_only}>
@@ -323,7 +325,7 @@ const propertyDetails: NextPage = () => {
                     </div>
 
 
-                    <div className={style.totalRoomsComponent}>
+                    <div className={style.totalRoomsComponent} onClick={()=>{setInfo("Total Rooms")}}>
 
                         <label> Total Rooms  <HiOutlineInformationCircle /> </label>
                         <div className={style.all_input_fields}>
@@ -332,7 +334,7 @@ const propertyDetails: NextPage = () => {
                                     <input className={style.input_only} type="text" placeholder="Total Bed Room"
                                         name='noOfBedroom'
                                         onChange={handleChange} />
-                                    {errors.noOfBedroom && <span className={style.error}>{errors.pnoOfBedroom}</span>}
+                                    {errors.noOfBedroom && <span className={style.error}>{errors.noOfBedroom}</span>}
                                 </div>
                                 <div>
                                     <input className={style.input_only} type="text" placeholder="Total Bathroom"
@@ -358,11 +360,11 @@ const propertyDetails: NextPage = () => {
                             </div>
                         </div>
                     </div>
-                    <div className={style.amenitiesComponent} >
+                    <div className={style.amenitiesComponent} onClick={()=>{setInfo("Amenities")}}>
                         <label className={style.label} htmlFor=""> Ameneties  <HiOutlineInformationCircle /></label>
                         <div className={style.aminitiesDiv}>
                             {/* <AminitiesCheckbox value="Aminities" /> */}
-                            {amenities.map((value, key) => <AmenitiesCheckbox value={value} onChange={handleChange} />)}
+                            {amenities.map((value, key) => <AmenitiesCheckbox value={value} onChange={handleChange} key={key} />)}
                         </div>
                         {errors.amenities && <span className={style.error}>{errors.amenities}</span>}
                     </div>
@@ -372,4 +374,4 @@ const propertyDetails: NextPage = () => {
         </>
     )
 }
-export default propertyDetails
+export default PropertyDetails

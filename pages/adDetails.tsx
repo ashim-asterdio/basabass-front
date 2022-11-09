@@ -18,10 +18,12 @@ import { RootState } from '../store'
 import { increment } from "../slices/progressBarSlice";
 
 
+
 const AdDetails: NextPage = () => {
   const router=useRouter()
   const dispatch=useDispatch();
   const page=useSelector((state:RootState)=>state.progressBar.value)
+  const [info,setInfo]=useState("");
 
   const previous=(e:Event)=>{
     e.preventDefault()
@@ -53,11 +55,11 @@ const AdDetails: NextPage = () => {
       <Head>
         <link href="http://fonts.cdnfonts.com/css/product-sans" rel="stylesheet"></link>
       </Head>
-      <Layout topic="Ad Deatils" onSubmit={handleSubmit} page="3" previous={previous}>
+      <Layout topic="Ad Deatils" onSubmit={handleSubmit} page="3" previous={previous} info={info}>
         <div className={styles.adDetailsMainWrapper}>
-          <div className={styles.adDetailsLine}></div>
+          {/* <div className={styles.adDetailsLine}></div> */}
 
-          <div className={styles.adDetailsUploads}>
+          <div className={styles.adDetailsUploads} onClick={()=>{setInfo("Upload Image")}}>
             <label>
               Upload Images
               <IoInformationCircleOutline className={uiStyle.reactIconI} />
@@ -73,7 +75,7 @@ const AdDetails: NextPage = () => {
             {errors.image && <span className={styles.error}>{errors.image}</span>}
           </div>
 
-          <div className={styles.adDetailsYoutube}>
+          <div className={styles.adDetailsYoutube} onClick={()=>{setInfo("Youtube Video Link")}}>
             <label>
               Youtube Video Link
               <IoInformationCircleOutline className={uiStyle.reactIconI} />
@@ -89,7 +91,7 @@ const AdDetails: NextPage = () => {
           </div>
 
           <div className={styles.flexTwo}>
-            <div className={styles.adDetailsTitle}>
+            <div className={styles.adDetailsTitle} onClick={()=>{setInfo("Title")}}>
               <label>
                 Title <IoInformationCircleOutline className={uiStyle.reactIconI} />
               </label>
@@ -103,7 +105,7 @@ const AdDetails: NextPage = () => {
               {errors.propertyTitle && <span className={styles.error}>{errors.propertyTitle}</span>}
             </div>
 
-            <div className={styles.adDetailsPrice}>
+            <div className={styles.adDetailsPrice} onClick={()=>{setInfo("Price")}}>
               <label>
                 Price <IoInformationCircleOutline className={uiStyle.reactIconI} />
               </label>
@@ -123,7 +125,7 @@ const AdDetails: NextPage = () => {
             </div>
           </div>
 
-          <div className={styles.adDetailsFormDescription}>
+          <div className={styles.adDetailsFormDescription} onClick={()=>{setInfo("Description")}}>
             <label>
               Description{" "}
               <IoInformationCircleOutline className={uiStyle.reactIconI} />
