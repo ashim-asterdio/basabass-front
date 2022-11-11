@@ -1,4 +1,7 @@
 import * as Yup from 'yup'
+const areaRegex = RegExp(
+    /^\(?([0-9]{1})\)?[- ]?([0-9]{1})[- ]?([0-9]{1})[- ]?([0-9]{1})$/
+  );
 
 export const basicDetailsSchema=Yup.object({
     adCategory: Yup.string().required("Must select aleast one option"),
@@ -11,9 +14,9 @@ export const propertyDetailsSchema =Yup.object({
     city:Yup.string().min(3).max(25).required("Must enter City"),
     propertyArea:Yup.string().min(3).max(25).required("Must enter Location"),
     areaMetric:Yup.string().required("Enter Metric"),
-    totalArea:Yup.number().required("select unit"),
+    totalArea:Yup.string().matches(areaRegex, "Invalid area").required("select unit"),
     totalAreaUnit:Yup.string().required("required"),
-    builtUpArea:Yup.number().required("required"),
+    builtUpArea:Yup.string().matches(areaRegex, "Invalid area").required("required"),
     builtUpAreaUnit:Yup.string().required("required"),
     propertyFace:Yup.string().required("required"),
     roadAreaMetric:Yup.string().required("required"),
@@ -50,6 +53,6 @@ export const otherDetailsSchema=Yup.object({
     .typeError("That doesn't look like a phone number")
     .positive("A phone number can't start with a minus")
     .integer("A phone number can't include a decimal point")
-    .min(9000000000,"Must have 10 digit").max(9999999999,"Must have 10 digit only")
+    .min(1000000000,"Must have 10 digit").max(9999999999,"Must have 10 digit only")
     .required('A phone number is required')
 })
