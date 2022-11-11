@@ -33,7 +33,7 @@ const BasicDetail: NextPage = () => {
   }
   const { values, errors, touched, handleSubmit, handleChange } = useFormik({
     initialValues: initialValues,
-    // validationSchema: basicDetailsSchema,
+    validationSchema: basicDetailsSchema,
     onSubmit: (values, formikHelpers) => {
       console.log("basic Details")
       console.log(values)

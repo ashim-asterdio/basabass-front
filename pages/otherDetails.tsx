@@ -8,10 +8,17 @@ import { HiOutlineInformationCircle } from "react-icons/hi"
 import { otherDetailsSchema } from "../components/validationSchema"
 import { useRouter } from "next/router"
 import {useState} from "react"
+import PaymentPop from '../components/paymentPop'
+import { useDispatch, useSelector } from "react-redux"
+import { RootState } from "../store"
+import { change } from "../slices/payPopSlice"
 
 const OtherDetails: NextPage = () => {
     const router=useRouter();
+    const dispatch=useDispatch();
+    const status=useSelector((state:RootState)=>state.payPop.value)
     const [info,setInfo]=useState("");
+    const [pay,setPay]=useState(false);
 
     const previous=(e:Event)=>{
         e.preventDefault()
@@ -32,6 +39,8 @@ const OtherDetails: NextPage = () => {
             console.log("call Ad Details")
             console.log(values)
             console.log(initialValues)
+            if (values.adPricingtype=="Paid Listing")
+                dispatch(change())
         }
     })
     return (
@@ -39,6 +48,7 @@ const OtherDetails: NextPage = () => {
             <Head>
                 <link href="http://fonts.cdnfonts.com/css/product-sans" rel="stylesheet"></link>
             </Head>
+            <PaymentPop />
             <Layout topic="Other Details" onSubmit={handleSubmit} page="4" previous={previous} info={info}>
                 <div className={style.mainContainer}>
                     <div className={style.ownerInfo} onClick={()=>{setInfo("Owner Info")}}>
@@ -89,7 +99,7 @@ const OtherDetails: NextPage = () => {
                         <p className={style.title}>Ad Pricing Plan <HiOutlineInformationCircle className={style.infoIcon} /></p>
                         <div className={style.adPricingRadioDiv}>
                             <SmallRadio name="adPricingtype" value="Free Listing" onChange={handleChange} />
-                            <SmallRadio name="adPricingtype" value="Paid Listing" onChange={handleChange} />
+                            <SmallRadio name="adPricingtype" value="Paid Listing" onChange={handleChange}  />
                             {errors.adPricingtype && <span className={style.error}>{errors.adPricingtype}</span>}
                         </div>
                     </div>

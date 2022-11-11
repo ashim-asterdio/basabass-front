@@ -55,7 +55,7 @@ const PropertyDetails: NextPage = () => {
 
     const { values, errors, touched, handleSubmit, handleChange } = useFormik({
         initialValues: initialValues,
-        // validationSchema: propertyDetailsSchema,
+        validationSchema: propertyDetailsSchema,
         onSubmit(values, formikHelpers) {
             console.log(errors)
             console.log("call")
@@ -86,16 +86,9 @@ const PropertyDetails: NextPage = () => {
                                 </div>
 
                                 <div className={style.dropdown_only}>
-                                    <select
-                                        name="city"
-                                        // value={values.city}
-                                        id=""
-                                        onChange={handleChange}
-                                    >
-                                        <option value="Property City"
-                                            selected
-                                            hidden
-                                            disabled>Property City</option>
+                                    <select name="city" onChange={handleChange}>
+                                        <option value=""selected hidden disabled>Property City</option>
+                                        <option value="Lalitpur"> Lalitpur</option>
                                     </select>
                                     {errors.city && <span className={style.error}>{errors.city}</span>}
                                 </div>
@@ -117,17 +110,9 @@ const PropertyDetails: NextPage = () => {
                             <div className={style.inputFeildRow}>
                                 <div className={style.dropdown_only}>
                                     <select
-                                        name="areaMetric"
-                                        id=""
-                                        onChange={handleChange}
-                                    // value={values.areaMetric}
-                                    // onChange={handleChange("designation")}
-
-                                    >
-                                        <option value=""
-                                            selected
-                                            hidden
-                                            disabled>Select Area Metric</option>
+                                        name="areaMetric"onChange={handleChange} placeholder="Area Metric">
+                                        <option value="A"selected disabled>Area Metric</option>
+                                        <option value="Aana">Aana</option>
                                     </select>
                                     {errors.areaMetric && <span className={style.error}>{errors.areaMetric}</span>}
                                 </div>
@@ -141,18 +126,10 @@ const PropertyDetails: NextPage = () => {
 
                                         <hr className={style.gapBtw} />
                                         <div className={style.dropdown_with_input}>
-                                            <select
-                                                name="totalAreaUnit"
-                                                // value={values.totalAreaUnits}
-                                                id="aana"
-                                                onChange={handleChange}
-                                            // onChange={handleChange("designation")}
-
-                                            >
-                                                <option value="Aana"
-                                                    selected
-                                                    hidden
-                                                    disabled>Aana</option>
+                                            <select name="totalAreaUnit" onChange={handleChange}>
+                                                <option value=""selected hidden disabled>Unit</option>
+                                                <option value="Aana">Aana</option>
+                                                <option value="Dhur">Dhur</option>
                                             </select>
                                         </div>
                                     </div>
@@ -172,18 +149,10 @@ const PropertyDetails: NextPage = () => {
                                             onChange={handleChange} />
                                         <hr className={style.gapBtw} />
                                         <div className={style.dropdown_with_input}>
-                                            <select
-                                                name="builtUpAreaUnit"
-                                                // value={values.builtUpAreaUnit}
-                                                id="aana"
-                                                onChange={handleChange}
-                                            // onChange={handleChange("designation")}
-
-                                            >
-                                                <option value="Aana"
-                                                    selected
-                                                    hidden
-                                                    disabled>Aana</option>
+                                            <select name="builtUpAreaUnit" onChange={handleChange}>
+                                                <option value=""selected hidden disabled>Unit</option>
+                                                <option value="Aana">Aana</option>
+                                                <option value="Dhur">Dhur</option>
                                             </select>
                                         </div>
                                     </div>
@@ -208,18 +177,10 @@ const PropertyDetails: NextPage = () => {
                         <div className={style.all_input_fields}>
                             <div className={style.inputFeildRow}>
                                 <div className={style.dropdown_only}>
-                                    <select
-                                        name="roadAreaMetric"
-                                        // value={values.roadAreaMetric}
-                                        id=""
-                                        onChange={handleChange}
-                                    // onChange={handleChange("designation")}
-
-                                    >
-                                        <option value=""
-                                            selected
-                                            hidden
-                                            disabled>Select Area Metric</option>
+                                    <select name="roadAreaMetric" onChange={handleChange}>
+                                        <option value=""selected hidden disabled>Select Area Metric</option>
+                                        <option value="Feet">Feet</option>
+                                        <option value="Meter">Meter</option>
                                     </select>
                                     {errors.roadAreaMetric && <span className={style.error}>{errors.roadAreaMetric}</span>}
                                 </div>
@@ -231,15 +192,10 @@ const PropertyDetails: NextPage = () => {
                                 </div>
                             </div>
                             <div className={style.dropdown_only}>
-                                <select
-                                    name="roadType"
-                                    id=""
-                                    onChange={handleChange}
-                                >
-                                    <option value=""
-                                        selected
-                                        hidden
-                                        disabled>Road Type</option>
+                                <select name="roadType" onChange={handleChange}>
+                                    <option value="" selected hidden disabled>Road Type</option>
+                                    <option value="One Way">One Way</option>
+                                    <option value="Two Way">Two Way</option>
                                 </select>
                                 {errors.roadType && <span className={style.error}>{errors.roadType}</span>}
                             </div>
@@ -252,47 +208,26 @@ const PropertyDetails: NextPage = () => {
                         <div className={style.all_input_fields}>
                             <div className={style.inputFeildRow}>
                                 <div className={style.dropdown_only}>
-                                    <select
-                                        name="buildYear"
-                                        // value={values.buildYear}
-                                        id=""
-                                        onChange={handleChange}
-                                    // onChange={handleChange("designation")}
-
-                                    >
-                                        <option value=""
-                                            selected
-                                            hidden
-                                            disabled>Build Year</option>
+                                    <select name="buildYear" onChange={handleChange}>
+                                    <option value="" selected hidden disabled>Built Year</option>
+                                    <option value="2079">2079</option>
+                                    <option value="2078">2078</option>
                                     </select>
                                     {errors.buildYear && <span className={style.error}>{errors.buildYear}</span>}
                                 </div>
                                 <div className={style.dropdown_only}>
-                                    <select
-                                        name="totalFloors"
-                                        onChange={handleChange}
-                                    >
-                                        <option value=""
-                                            selected
-                                            hidden
-                                            disabled>Total floors</option>
+                                    <select name="totalFloors" onChange={handleChange}>
+                                        <option value="" selected hidden disabled>Total Floors</option>
+                                        <option value="1">1</option>
+                                        <option value="2">2</option>
+                                        <option value="3">3</option>
                                     </select>
                                     {errors.totalFloors && <span className={style.error}>{errors.totalFloors}</span>}
                                 </div>
                             </div>
                             <div className={style.dropdown_only}>
-                                <select
-                                    name="furnishing"
-                                    // value={values.furnishing}
-                                    id=""
-                                    onChange={handleChange}
-                                // onChange={handleChange("designation")}
-
-                                >
-                                    <option value=""
-                                        selected
-                                        hidden
-                                        disabled>Furnishing</option>
+                                <select name="furnishing" onChange={handleChange} >
+                                    <option value="" selected hidden disabled>Furnishing</option>
                                     <option value="Yes">Yes</option>
                                     <option value="No">No</option>
                                     <option value="Partially">Partially</option>
@@ -306,18 +241,11 @@ const PropertyDetails: NextPage = () => {
                         <label> Muntiple Units  <HiOutlineInformationCircle /></label>
                         <div className={style.multipleUnits}>
                             <div className={style.dropdown_only}>
-                                <select
-                                    name="numberOFUnits"
-                                    // value={values.numberOFUnits}
-                                    id=""
-                                    onChange={handleChange}
-                                // onChange={handleChange("designation")}
-
-                                >
-                                    <option value=""
-                                        selected
-                                        hidden
-                                        disabled>Number of Units</option>
+                                <select name="numberOFUnits" onChange={handleChange}>
+                                    <option value="" selected hidden disabled>Number Of Units</option>
+                                    <option value="1">1</option>
+                                    <option value="2">2</option>
+                                    <option value="3">3</option>
                                 </select>
                                 {errors.numberOFUnits && <span className={style.error}>{errors.numberOFUnits}</span>}
                             </div>

@@ -1,9 +1,12 @@
 import { configureStore } from '@reduxjs/toolkit'
 import progressReducer from "./slices/progressBarSlice"
+import payPopReducer from "./slices/payPopSlice"
+
 
 export const store = configureStore({
   reducer: {
-    progressBar:progressReducer
+    progressBar:progressReducer,
+    payPop:payPopReducer
   },
 })
 
