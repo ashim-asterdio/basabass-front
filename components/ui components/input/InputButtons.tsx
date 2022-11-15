@@ -33,18 +33,20 @@ export const CustomizableInputButtonsWithSelect = (props: any) => {
           name={props.name1}
           onChange={props.onChange}
         ></input>
-        <div>
+        <div className={style.partationDiv}></div>
+        <div className={style.customizableSelectPartOnly}>
           <select
             id={id}
-            className={style.customizableSelectPartOnly}
+            
             name={props.name2}
             onChange={props.onChange}
           >
+            
             <option value={value0} selected hidden disabled>
               {value0}
             </option>
 
-            <option value={value1}>{value1}</option>
+            <option value={value1} selected>{value1}</option>
 
             <option value={value2}>{value2}</option>
           </select>

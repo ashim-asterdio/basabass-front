@@ -47,11 +47,7 @@ const BasicDetail: NextPage = () => {
 
   return (
     <>
-      <Head>
-        {/* <link rel="stylesheet" href="https://egkoppel.github.io/product-sans/google-fonts.css" ></link> */}
-        <link href="http://fonts.cdnfonts.com/css/product-sans" rel="stylesheet"></link>
-      </Head>
-
+      
       <Layout onSubmit={handleSubmit} topic="Basic Details" page="1" previous={"none"} info={info}>
         <div className={style.adCategoryDiv} onClick={()=>{setInfo("Ad Category")}}>
           <p className={style.topic}>Ad Category <HiOutlineInformationCircle className={style.infoIcon} /></p>

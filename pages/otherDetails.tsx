@@ -45,9 +45,6 @@ const OtherDetails: NextPage = () => {
     })
     return (
         <>
-            <Head>
-                <link href="http://fonts.cdnfonts.com/css/product-sans" rel="stylesheet"></link>
-            </Head>
             <PaymentPop />
             <Layout topic="Other Details" onSubmit={handleSubmit} page="4" previous={previous} info={info}>
                 <div className={style.mainContainer}>

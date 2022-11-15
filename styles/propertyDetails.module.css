@@ -289,12 +289,12 @@
         align-items: flex-start;
         padding: 0px;
         gap: 26px;
-        width: 705px;
+        width: 100%;
         height: 1320px;
         flex: none;
         order: 2;
         flex-grow: 0;
-        /* border: solid green; */
+        /* border: solid 1px green; */
     }
     
     .propertydetails_container label {
@@ -315,7 +315,7 @@
         align-items: flex-start;
         padding: 0px;
         gap: 16px;
-        width: 705px;
+        width: 100%;  /*705px*/
         height: 144px;
         flex: none;
         order: 0;
@@ -329,10 +329,11 @@
         align-items: flex-start;
         padding: 0px;
         gap: 16px;
-        width: 705px;
+        width: 100%;
         height: 144px;
         flex: none;
         flex-grow: 0;
+        /* border: solid 1px; */
     }
 
     .roadComponent{
@@ -341,10 +342,11 @@
         align-items: flex-start;
         padding: 0px;
         gap: 16px;
-        width: 705px;
+        width: 100%;
         height: 144px;
         flex: none;
         flex-grow: 0;
+        /* border: solid 1px; */
     }
 
     .buldingDetailsComponent{
@@ -353,10 +355,11 @@
         align-items: flex-start;
         padding: 0px;
         gap: 16px;
-        width: 705px;
+        width: 100%;
         height: 144px;
         flex: none;
         flex-grow: 0;
+        /* border: solid 1px; */
     }
         
     .multipleUnitsComponent{
@@ -365,7 +368,7 @@
         align-items: flex-start;
         padding: 0px;
         gap: 16px;
-        width: 705px;
+        width: 100%;
         height: 80px;
         flex: none;
         flex-grow: 0;
@@ -378,10 +381,11 @@
         align-items: flex-start;
         padding: 0px;
         gap: 16px;
-        width: 705px;
+        width: 100%;
         height: 144px;
         flex: none;
         flex-grow: 0;
+        /* border:solid 1px blue; */
     }
     
     .all_input_fields {
@@ -390,11 +394,16 @@
         align-items: flex-start;
         padding: 0px;
         gap: 24px;
-        width: 705px;
+        width: 100%;
         height: 104px;
         flex: none;
         flex-grow: 0;
         /* border: solid 1px green; */
+    }
+
+    .multipleUnits{
+        /* border: solid 1px red; */
+        width: 100%;
     }
     
     .areaLocation{
@@ -403,11 +412,12 @@
         align-items: flex-start;
         padding: 0px;
         gap: 24px;
-        width: 705px;
+        width: 100%;
         height: 104px;
         flex: none;
         flex-grow: 0;
         border: 0px;
+        /* border: solid 1px; */
     }
     
     .inputFeildRow{
@@ -416,69 +426,90 @@
         justify-content: space-between;
         align-items: flex-start;
         padding: 0px;
-        gap: 5px;
-        width: 705px;
+        /* gap: 5px; */
+        width: 100%;
         height: 40px;
         flex: none;
         flex-grow: 0;
         /* border: solid 1px; */
         box-sizing: border-box;
     }
+
+    .feildDiv{
+        display: flex;
+        flex-direction: column;
+        /* border: solid 1px; */
+        width: 48.8%;
+    }
     
     .input_only {
         padding: 4px 16px;
         gap: 16px;
-        width: 344.5px;
+        width: 100%;
         height: 40px;
         border: 1px solid #CED4DA;
         border-radius: 5px;
         background-color: #ffffff;
         opacity: 0.86;
+        
     }
     
     .dropdown_only{
         /* border: solid 1px; */
         padding: 0px;
+        width: 48.8%;
+        /* 344.5px */
     }
     
     .dropdown_only select {
         color: #969696;
         padding: 4px 16px;
         gap: 16px;
-        width: 344.5px;
+        width: 100%;
         height: 40px;
         border: 1px solid #CED4DA;
         border-radius: 5px;
         background-color: #ffffff;
     }
-    
-    .input_with_dropdown {
-        padding: 4px 16px;
-        gap: 16px;
-        border: 1px solid #CED4DA;
-        border-radius: 5px;
-        border:none;
-        background-color: #ffffff;
-        opacity: 0.86;
-    }
-    
+
     .input_dropdown{
         display: flex;
         flex-direction: column;
+        width: 48.8%;
     }
     
     .input_dropdown div{
         display: flex;
+        /* align-items: center; */
+        gap: 16px;
         border: 1px solid #CED4DA;
         border-radius: 5px;
-        width: 344.5px;
+        width: 100%;
         height: 40px;
-        
     }
     
+    .input_with_dropdown {
+        width: calc(170.5*100%/344.5);
+        height: 98%;
+        padding: 4px 16px;
+        border: 1px solid ;
+        border-radius: 5px;
+        border:none;
+        background-color: #ffffff;
+        opacity: 0.86;
+
+    }
+    
+    
+    
+    
+    
     .input_dropdown .dropdown_with_input{
+        width: calc(110*100%/344.5);
         border:0px;
         height: 99%;
+        width: auto;
+        /* border: solid 1px; */
     }
     
     
@@ -500,8 +531,8 @@
         color: #969696;
         padding: 10px ;
         gap: 16px;
-        width:114px;
-        border: 1px solid #CED4DA;
+        width:100%;
+        /* border: 1px solid #CED4DA; */
         border: none;
         border-radius: 5px;
         background-color: #ffffff;
@@ -515,7 +546,8 @@
         align-items: flex-start;
         padding: 0px;
         gap: 16px;
-        width: 705px;
+        width: 100%;
+        /* 705px */
         height: 304px;
         flex: none;
         align-self: stretch;
@@ -527,10 +559,11 @@
         display: flex;
         flex-direction: row;
         flex-wrap:wrap ;
-        align-items: flex-start;
+        align-items: center;
+        justify-content: center;
         padding: 0px;
-        gap: 11px;
-        width: 705px;
+        /* gap: 11px; */
+        width: 100%;
         height: fit-content;
         flex: none;
         /* border: solid 1px; */

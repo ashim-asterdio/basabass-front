@@ -5,20 +5,21 @@ import AmenitiesCheckbox from '../components/ui components/customCheckbox'
 import Layout from '../components/Layout'
 import { useFormik } from 'formik'
 import { propertyDetailsSchema } from '../components/validationSchema'
-import {useRouter} from 'next/router'
-import { useDispatch,useSelector } from 'react-redux'
+import { useRouter } from 'next/router'
+import { useDispatch, useSelector } from 'react-redux'
 import { RootState } from '../store'
 import { increment } from "../slices/progressBarSlice";
 import { useState } from "react"
+import Head from 'next/head'
 
 
 const PropertyDetails: NextPage = () => {
-    const router=useRouter()
-    const dispatch=useDispatch();
-    const page=useSelector((state:RootState)=>state.progressBar.value)
+    const router = useRouter()
+    const dispatch = useDispatch();
+    const page = useSelector((state: RootState) => state.progressBar.value)
     const [info, setInfo] = useState("");
 
-    const previous=(e:Event)=>{
+    const previous = (e: Event) => {
         e.preventDefault()
         router.push('/basicDetails')
     }
@@ -60,9 +61,9 @@ const PropertyDetails: NextPage = () => {
             console.log(errors)
             console.log("call")
             console.log(values)
-            if(page==2)
+            if (page == 2)
                 dispatch(increment())
-            router.push('/adDetails') ;
+            router.push('/adDetails');
         }
     })
 
@@ -72,13 +73,13 @@ const PropertyDetails: NextPage = () => {
             <Layout onSubmit={handleSubmit} topic="Property Details" page="2" previous={previous} info={info}>
                 <div className={style.propertydetails_container}>
 
-                    <div className={style.locationComponent} onClick={()=>{setInfo("Location")}}>
+                    <div className={style.locationComponent} onClick={() => { setInfo("Location") }}>
 
                         <label> Location  <HiOutlineInformationCircle /></label>
 
                         <div className={style.all_input_fields}>
                             <div className={style.inputFeildRow}>
-                                <div style={{ display: "flex", flexDirection: "column" }}>
+                                <div className={style.feildDiv}>
                                     <input className={style.input_only} type="text" placeholder="Ward Number"
                                         name='wardNumber'
                                         onChange={handleChange} />
@@ -87,13 +88,13 @@ const PropertyDetails: NextPage = () => {
 
                                 <div className={style.dropdown_only}>
                                     <select name="city" onChange={handleChange}>
-                                        <option value=""selected hidden disabled>Property City</option>
+                                        <option value="" selected hidden disabled>Property City</option>
                                         <option value="Lalitpur"> Lalitpur</option>
                                     </select>
                                     {errors.city && <span className={style.error}>{errors.city}</span>}
                                 </div>
                             </div>
-                            <div>
+                            <div className={style.feildDiv}>
                                 <input className={style.input_only} type="text" placeholder="Property Area"
                                     name='propertyArea'
                                     onChange={handleChange}
@@ -103,15 +104,15 @@ const PropertyDetails: NextPage = () => {
                         </div>
                     </div>
 
-                    <div className={style.areaComponent} onClick={()=>{setInfo("Area Location")}}>
+                    <div className={style.areaComponent} onClick={() => { setInfo("Area Location") }}>
                         <label> Area  Location  <HiOutlineInformationCircle /></label>
                         <div className={style.areaLocation}>
 
                             <div className={style.inputFeildRow}>
                                 <div className={style.dropdown_only}>
                                     <select
-                                        name="areaMetric"onChange={handleChange} placeholder="Area Metric">
-                                        <option value="A"selected disabled>Area Metric</option>
+                                        name="areaMetric" onChange={handleChange} placeholder="Area Metric">
+                                        <option value="A" selected disabled>Area Metric</option>
                                         <option value="Aana">Aana</option>
                                     </select>
                                     {errors.areaMetric && <span className={style.error}>{errors.areaMetric}</span>}
@@ -127,7 +128,7 @@ const PropertyDetails: NextPage = () => {
                                         <hr className={style.gapBtw} />
                                         <div className={style.dropdown_with_input}>
                                             <select name="totalAreaUnit" onChange={handleChange}>
-                                                <option value=""selected hidden disabled>Unit</option>
+                                                <option value="" selected hidden disabled>Unit</option>
                                                 <option value="Aana">Aana</option>
                                                 <option value="Dhur">Dhur</option>
                                             </select>
@@ -150,7 +151,7 @@ const PropertyDetails: NextPage = () => {
                                         <hr className={style.gapBtw} />
                                         <div className={style.dropdown_with_input}>
                                             <select name="builtUpAreaUnit" onChange={handleChange}>
-                                                <option value=""selected hidden disabled>Unit</option>
+                                                <option value="" selected hidden disabled>Unit</option>
                                                 <option value="Aana">Aana</option>
                                                 <option value="Dhur">Dhur</option>
                                             </select>
@@ -161,7 +162,7 @@ const PropertyDetails: NextPage = () => {
                                         {errors.builtUpAreaUnit && <span className={style.error}>{errors.builtUpAreaUnit}</span>}
                                     </span>}
                                 </div>
-                                <div style={{ display: "flex", flexDirection: "column" }}>
+                                <div className={style.feildDiv}>
                                     <input className={style.input_only} type="text" placeholder="Property Face"
                                         name='propertyFace'
                                         onChange={handleChange}
@@ -172,20 +173,20 @@ const PropertyDetails: NextPage = () => {
                         </div>
                     </div>
 
-                    <div className={style.roadComponent} onClick={()=>{setInfo("Road Location")}}>
+                    <div className={style.roadComponent} onClick={() => { setInfo("Road Location") }}>
                         <label> Road Location <HiOutlineInformationCircle /></label>
                         <div className={style.all_input_fields}>
                             <div className={style.inputFeildRow}>
                                 <div className={style.dropdown_only}>
                                     <select name="roadAreaMetric" onChange={handleChange}>
-                                        <option value=""selected hidden disabled>Select Area Metric</option>
+                                        <option value="" selected hidden disabled>Select Area Metric</option>
                                         <option value="Feet">Feet</option>
                                         <option value="Meter">Meter</option>
                                     </select>
                                     {errors.roadAreaMetric && <span className={style.error}>{errors.roadAreaMetric}</span>}
                                 </div>
 
-                                <div>
+                                <div className={style.feildDiv}>
                                     <input className={style.input_only} type="text" placeholder="Road Acess(e.g. 14)"
                                         name='roadAccess' onChange={handleChange} ></input>
                                     {errors.roadAccess && <span className={style.error}>{errors.roadAccess}</span>}
@@ -203,15 +204,15 @@ const PropertyDetails: NextPage = () => {
                         </div>
                     </div>
 
-                    <div className={style.buldingDetailsComponent} onClick={()=>{setInfo("Bulding Details")}}>
+                    <div className={style.buldingDetailsComponent} onClick={() => { setInfo("Bulding Details") }}>
                         <label> Building Details  <HiOutlineInformationCircle /></label>
                         <div className={style.all_input_fields}>
                             <div className={style.inputFeildRow}>
                                 <div className={style.dropdown_only}>
                                     <select name="buildYear" onChange={handleChange}>
-                                    <option value="" selected hidden disabled>Built Year</option>
-                                    <option value="2079">2079</option>
-                                    <option value="2078">2078</option>
+                                        <option value="" selected hidden disabled>Built Year</option>
+                                        <option value="2079">2079</option>
+                                        <option value="2078">2078</option>
                                     </select>
                                     {errors.buildYear && <span className={style.error}>{errors.buildYear}</span>}
                                 </div>
@@ -237,7 +238,7 @@ const PropertyDetails: NextPage = () => {
                         </div>
                     </div>
 
-                    <div className={style.multipleUnitsComponent} onClick={()=>{setInfo("Multiple Unit")}}>
+                    <div className={style.multipleUnitsComponent} onClick={() => { setInfo("Multiple Unit") }}>
                         <label> Muntiple Units  <HiOutlineInformationCircle /></label>
                         <div className={style.multipleUnits}>
                             <div className={style.dropdown_only}>
@@ -253,18 +254,18 @@ const PropertyDetails: NextPage = () => {
                     </div>
 
 
-                    <div className={style.totalRoomsComponent} onClick={()=>{setInfo("Total Rooms")}}>
+                    <div className={style.totalRoomsComponent} onClick={() => { setInfo("Total Rooms") }}>
 
                         <label> Total Rooms  <HiOutlineInformationCircle /> </label>
                         <div className={style.all_input_fields}>
                             <div className={style.inputFeildRow}>
-                                <div>
+                                <div className={style.feildDiv}>
                                     <input className={style.input_only} type="text" placeholder="Total Bed Room"
                                         name='noOfBedroom'
                                         onChange={handleChange} />
                                     {errors.noOfBedroom && <span className={style.error}>{errors.noOfBedroom}</span>}
                                 </div>
-                                <div>
+                                <div className={style.feildDiv}>
                                     <input className={style.input_only} type="text" placeholder="Total Bathroom"
                                         name='noOfBathroom'
                                         onChange={handleChange} />
@@ -273,13 +274,13 @@ const PropertyDetails: NextPage = () => {
                             </div>
 
                             <div className={style.inputFeildRow}>
-                                <div>
+                                <div className={style.feildDiv}>
                                     <input className={style.input_only} type="text" placeholder="Total Kitchen"
                                         name='noOfKitchen'
                                         onChange={handleChange} />
                                     {errors.noOfKitchen && <span className={style.error}>{errors.noOfKitchen}</span>}
                                 </div>
-                                <div>
+                                <div className={style.feildDiv}>
                                     <input className={style.input_only} type="text" placeholder="Total Living Room"
                                         name='noOfLivingroom'
                                         onChange={handleChange} />
@@ -288,7 +289,7 @@ const PropertyDetails: NextPage = () => {
                             </div>
                         </div>
                     </div>
-                    <div className={style.amenitiesComponent} onClick={()=>{setInfo("Amenities")}}>
+                    <div className={style.amenitiesComponent} onClick={() => { setInfo("Amenities") }}>
                         <label className={style.label} htmlFor=""> Ameneties  <HiOutlineInformationCircle /></label>
                         <div className={style.aminitiesDiv}>
                             {/* <AminitiesCheckbox value="Aminities" /> */}

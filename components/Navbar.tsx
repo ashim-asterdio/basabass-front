@@ -13,11 +13,6 @@ const Navbar: NextPage = () => {
 
   return (
     <>
-      <Head>
-        {/* <link rel="stylesheet" href="https://egkoppel.github.io/product-sans/google-fonts.css" ></link> */}
-        <link href="http://fonts.cdnfonts.com/css/product-sans" rel="stylesheet"></link>
-        {/* <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet"></link> */}
-      </Head>
       <div className={style.nav}>
 
         <div className={style.leftDiv}>
@@ -41,7 +36,7 @@ const Navbar: NextPage = () => {
           <div className={style.searchIcon}><Image src={search} alt="no image" /></div>
           <div className={style.buttonDiv}>
             <button className={style.blueButton}>
-              <Image src={buldingLogo} alt="no image" />
+              <span><Image src={buldingLogo} alt="no image" /></span>
               <p>List Your Property</p>
             </button>
             <div className={style.userDiv}>
@@ -50,35 +45,6 @@ const Navbar: NextPage = () => {
             </div>
           </div>
         </div>
-        {/* <div className={style.logo}>
-            <span className={style.icon}><Image src={BasobasLogo} alt="no image"/></span>
-            <h1 className={style.logoName}></h1>
-        </div>
-
-        <div className={style.searchDiv}>
-            <input className={style.searchArea} />
-            <span>Icon</span>
-        </div>
-        <div className={style.rightSection}>
-          <div className={style.linkDiv}>
-            {
-              links.map((data:any)=>
-              <a href="" className={style.links}>{data}</a>
-              )
-            }
-            <a href="" className={style.greenLinks}>For NRNs</a>
-          </div>
-
-          <div className={style.buttonDiv}>
-            <button className={style.blueButton}>
-              <p>Post Property Free</p>
-            </button>
-            <div className={style.userDiv}>
-              <div className={style.imageDiv}></div>
-              <p className={style.name}> Kismat Thapa</p>
-            </div>
-          </div>
-        </div> */}
       </div>
     </>
   )

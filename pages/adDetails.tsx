@@ -13,22 +13,22 @@ import Head from 'next/head'
 import { useFormik } from "formik";
 import { adDetailsSchema } from "../components/validationSchema";
 import { useRouter } from "next/router";
-import { useDispatch,useSelector } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { RootState } from '../store'
 import { increment } from "../slices/progressBarSlice";
 
 
 
 const AdDetails: NextPage = () => {
-  const router=useRouter()
-  const dispatch=useDispatch();
-  const page=useSelector((state:RootState)=>state.progressBar.value)
-  const [info,setInfo]=useState("");
+  const router = useRouter()
+  const dispatch = useDispatch();
+  const page = useSelector((state: RootState) => state.progressBar.value)
+  const [info, setInfo] = useState("");
 
-  const previous=(e:Event)=>{
+  const previous = (e: Event) => {
     e.preventDefault()
     router.push('/propertyDetails')
-}
+  }
 
   const initialValues = {
     image: null,
@@ -45,21 +45,18 @@ const AdDetails: NextPage = () => {
     onSubmit: (values, formikHelpers) => {
       console.log("call Ad Details")
       console.log(values)
-      if(page==3)
+      if (page == 3)
         dispatch(increment())
-      router.push ('/otherDetails'); 
+      router.push('/otherDetails');
     }
   })
   return (
     <>
-      <Head>
-        <link href="http://fonts.cdnfonts.com/css/product-sans" rel="stylesheet"></link>
-      </Head>
       <Layout topic="Ad Deatils" onSubmit={handleSubmit} page="3" previous={previous} info={info}>
         <div className={styles.adDetailsMainWrapper}>
           {/* <div className={styles.adDetailsLine}></div> */}
 
-          <div className={styles.adDetailsUploads} onClick={()=>{setInfo("Upload Image")}}>
+          <div className={styles.adDetailsUploads} onClick={() => { setInfo("Upload Image") }}>
             <label>
               Upload Images
               <IoInformationCircleOutline className={uiStyle.reactIconI} />
@@ -75,23 +72,25 @@ const AdDetails: NextPage = () => {
             {errors.image && <span className={styles.error}>{errors.image}</span>}
           </div>
 
-          <div className={styles.adDetailsYoutube} onClick={()=>{setInfo("Youtube Video Link")}}>
+          <div className={styles.adDetailsYoutube} onClick={() => { setInfo("Youtube Video Link") }}>
             <label>
               Youtube Video Link
               <IoInformationCircleOutline className={uiStyle.reactIconI} />
             </label>
-            <CustomizableInputs
-              type={"text"}
-              placeholder={"eg.www.youtube.com/asada"}
-              id={""}
-              name="youtubeLink"
-              onChange={handleChange}
-            />
-            {errors.youtubeLink && <span className={styles.error}>{errors.youtubeLink}</span>}
+            <div className={styles.inputWrapper}>
+              <CustomizableInputs
+                type={"text"}
+                placeholder={"eg.www.youtube.com/asada"}
+                id={""}
+                name="youtubeLink"
+                onChange={handleChange}
+              />
+              {errors.youtubeLink && <span className={styles.error}>{errors.youtubeLink}</span>}
+            </div>
           </div>
 
           <div className={styles.flexTwo}>
-            <div className={styles.adDetailsTitle} onClick={()=>{setInfo("Title")}}>
+            <div className={styles.adDetailsTitle} onClick={() => { setInfo("Title") }}>
               <label>
                 Title <IoInformationCircleOutline className={uiStyle.reactIconI} />
               </label>
@@ -105,10 +104,11 @@ const AdDetails: NextPage = () => {
               {errors.propertyTitle && <span className={styles.error}>{errors.propertyTitle}</span>}
             </div>
 
-            <div className={styles.adDetailsPrice} onClick={()=>{setInfo("Price")}}>
+            <div className={styles.adDetailsPrice} onClick={() => { setInfo("Price") }}>
               <label>
                 Price <IoInformationCircleOutline className={uiStyle.reactIconI} />
               </label>
+              
               <CustomizableInputButtonsWithSelect
                 type={"text"}
                 placeholder={"Property Price"}
@@ -122,10 +122,11 @@ const AdDetails: NextPage = () => {
                 <span className={styles.error}>{errors.propertyPrice}</span>
                 {errors.currency && <span className={styles.error}>{errors.currency}</span>}
               </span>}
+             
             </div>
           </div>
 
-          <div className={styles.adDetailsFormDescription} onClick={()=>{setInfo("Description")}}>
+          <div className={styles.adDetailsFormDescription} onClick={() => { setInfo("Description") }}>
             <label>
               Description{" "}
               <IoInformationCircleOutline className={uiStyle.reactIconI} />

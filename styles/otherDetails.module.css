@@ -147,7 +147,7 @@
         align-items: flex-start;
         padding: 0px;
         gap: 40px;
-        width: 705px;
+        width: 100%;
         height: 430px;
         flex: none;
         order: 0;
@@ -184,10 +184,11 @@
         align-items: flex-start;
         padding: 0px;
         gap: 16px;
-        width: 705px;
+        width: 100%;
         height: 180px;
         flex: none;
         flex-grow: 0;
+        /* border: solid 1px; */
     }
 
     .ownerInfoDiv{
@@ -196,7 +197,7 @@
         align-items: flex-start;
         padding: 0px;
         gap: 24px;
-        width: 705px;
+        width: 100%;
         height: 104px;
         flex: none;
         /* border: solid 1px; */
@@ -209,11 +210,15 @@
         align-items: flex-start;
         padding: 0px;
         gap: 16px;
-        width: 705px;
+        width: 100%;
         height: 40px;
         flex: none;
         flex-grow: 0;
         /* border: solid 1px; */
+    }
+
+    .inputFeildDiv{
+        width: calc(344*100%/705)
     }
 
     .inputFeild{
@@ -223,7 +228,7 @@
         align-items: flex-start;
         padding: 4px 16px;
         gap: 10px;
-        width: 340px;
+        width:100%;
         height: 40px;
         border: 1px solid #CED4DA;
         border-radius: 5px;
