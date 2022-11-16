@@ -282,7 +282,7 @@
 
 
 
-@media only screen and (min-width: 1024px){
+@media only screen and (min-width: 753px){
     .propertydetails_container {
         display: flex;
         flex-direction: column;
@@ -511,8 +511,6 @@
         width: auto;
         /* border: solid 1px; */
     }
-    
-    
     
     .gapBtw{
         width: 24px;

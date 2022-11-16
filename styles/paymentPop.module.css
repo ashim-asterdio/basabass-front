@@ -7,14 +7,15 @@
     gap: 40px;
     isolation: isolate;
     position: absolute;
-    left: 284px;
+    left: calc(248*100%/1440); /*248px*/
+    /* right: calc(1192*100%/1440); */
     top: 130px;
     width: 872px;
     height: 549px;
     background: #FFFFFF;
     box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.14);
     border-radius: 10px;
-    border: solid 1px;
+    /* border: solid 1px; */
     z-index: 3;
 }
 

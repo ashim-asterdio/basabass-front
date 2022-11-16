@@ -41,7 +41,7 @@ const Navbar: NextPage = () => {
             </button>
             <div className={style.userDiv}>
               <div className={style.imageDiv}><Image src={navPerson} alt="no image" /></div>
-              <span className={style.name}> Ram Bahadur</span>
+              <p className={style.name}> Ram Bahadur</p>
             </div>
           </div>
         </div>

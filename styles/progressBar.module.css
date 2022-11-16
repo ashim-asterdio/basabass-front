@@ -187,20 +187,20 @@
     .firstProgressLine{
         height:50px;
         background-color: gray;
-        width: 0px;
-        border-right:solid 1px gray;
-        border-left:solid 1px gray;
+        width: 2px;
+        /* border-right:solid 1px gray;
+        border-left:solid 1px gray; */
         margin: 0px;
     }
     
     .progressLine{
         position: absolute;
-        left: 21px;
+        /* left: 20.5px; */
         height:100px;
         background-color: #012367;
-        width: 0px;
-        border-right: solid 1px #012367;
-        border-left: solid 1px #012367;
+        width: 2px;
+        /* border-right: solid 1px #012367;
+        border-left: solid 1px #012367; */
         margin: 0px;
         /* z-index: 1; */
     }

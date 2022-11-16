@@ -2,14 +2,14 @@
 .mainContainer{
     display: flex;
     flex-direction: column;
-    align-items: flex-start;
+    align-items: center;
     padding: 0px;
     gap: 16px;
-    position: absolute;
+    position: relative;
     width: 345px;
     height: 542px;
-    left: 0px;
-    top:0px;
+    /* left: 0px;
+    top:0px; */
     /* border: solid 1px; */
 }
 
@@ -140,7 +140,7 @@
 
 
 
-@media only screen and (min-width: 1024px){
+@media only screen and (min-width: 753px){
     .mainContainer{
         display: flex;
         flex-direction: column;
