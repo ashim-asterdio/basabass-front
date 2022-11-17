@@ -5,14 +5,15 @@ import { ReactElement } from "react"
 import ProgressBar from "./ui components/progressBar"
 import Link from "next/link"
 import { IoInformationCircleOutline } from "react-icons/io5";
+import { useSelector } from "react-redux"
+import { RootState } from "../store"
 
-
-const Layout = ({ children, topic, onSubmit, page, previous, info }:
-  { children: any; topic: string; onSubmit: any; page: any; previous: any; info: any }) => {
+// const page = useSelector((state: RootState) => state.progressBar.value)
+const Layout = ({ children, topic, onSubmit, page, previous, info,next }:
+  { children: any; topic: string; onSubmit: any; page: any; previous: any; info: any;next:string }) => {
 
   return (
     <>
-
       <div className={style.alignmentContainer}>
         <div className={style.navBlend}>
           <div className={style.nav}>
@@ -57,7 +58,7 @@ const Layout = ({ children, topic, onSubmit, page, previous, info }:
                         <button className={style.previous} onClick={previous}>Previous</button>
                         <div className={style.submitDiv}>
                           <span className={style.savetoDraft}>Save to draft</span>
-                          <button className={style.next} onClick={onSubmit} >Next</button>
+                          <button className={style.next} onClick={onSubmit} >Next:{next}</button>
                         </div>
                       </div>
                     </div>

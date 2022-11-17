@@ -29,7 +29,7 @@ const AdDetails: NextPage = () => {
   useEffect(() => {
       if (page===1)
           router.push('/basicDetails')
-    }, [])
+    })
 
   const previous = (e: Event) => {
     e.preventDefault()
@@ -58,7 +58,7 @@ const AdDetails: NextPage = () => {
   })
   return (
     <>
-      <Layout topic="Ad Deatils" onSubmit={handleSubmit} page="3" previous={previous} info={info}>
+      <Layout topic="Ad Deatils" onSubmit={handleSubmit} page="3" previous={previous} info={info} next="Owner Details">
         <div className={styles.adDetailsMainWrapper}>
           {/* <div className={styles.adDetailsLine}></div> */}
 

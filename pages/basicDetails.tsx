@@ -49,7 +49,7 @@ const BasicDetail: NextPage = () => {
   return (
     <>
 
-      <Layout onSubmit={handleSubmit} topic="Basic Details" page="1" previous={"none"} info={info}>
+      <Layout onSubmit={handleSubmit} topic="Basic Details" page="1" previous={"none"} info={info} next="Area & Address">
         <div className={style.basicDetailWrapper}>
           <div className={style.adCategoryDiv} onClick={() => { setInfo("Ad Category") }}>
             <p className={style.topic}>Ad Category <HiOutlineInformationCircle className={style.infoIcon} /></p>

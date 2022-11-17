@@ -22,9 +22,12 @@ const OtherDetails: NextPage = () => {
     const page=useSelector((state:RootState)=>state.progressBar.value)
 
     useEffect(() => {
-        if (page==1)
-            router.push('/basicDetails')
-      }, [])
+        try {if (page==1)
+            router.push('/basicDetails')}
+            catch{
+                console.log("milena")
+            }
+      })
 
     const previous=(e:Event)=>{
         e.preventDefault()
@@ -52,7 +55,7 @@ const OtherDetails: NextPage = () => {
     return (
         <>
             <PaymentPop />
-            <Layout topic="Other Details" onSubmit={handleSubmit} page="4" previous={previous} info={info}>
+            <Layout topic="Other Details" onSubmit={handleSubmit} page="4" previous={previous} info={info} next="">
                 <div className={style.otherDetailsContainer}>
                     <div className={style.ownerInfo} onClick={()=>{setInfo("Owner Info")}}>
                         <p className={style.title}>Owner Info <HiOutlineInformationCircle className={style.infoIcon} /></p>

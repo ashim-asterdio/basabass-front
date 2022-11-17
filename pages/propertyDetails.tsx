@@ -22,7 +22,7 @@ const PropertyDetails: NextPage = () => {
     useEffect(() => {
         if (page==1)
             router.push('/basicDetails')
-      }, [])
+      })
 
     const previous = (e: Event) => {
         e.preventDefault()
@@ -75,7 +75,7 @@ const PropertyDetails: NextPage = () => {
 
     return (
         <>
-            <Layout onSubmit={handleSubmit} topic="Property Details" page="2" previous={previous} info={info}>
+            <Layout onSubmit={handleSubmit} topic="Property Details" page="2" previous={previous} info={info} next="Ad Details">
                 <div className={style.propertydetails_container}>
 
                     <div className={style.locationComponent} onClick={() => { setInfo("Location") }}>
