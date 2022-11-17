@@ -1,5 +1,5 @@
 
-.mainContainer{
+.otherDetailsContainer{
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -141,18 +141,19 @@
 
 
 @media only screen and (min-width: 753px){
-    .mainContainer{
+    .otherDetailsContainer{
         display: flex;
         flex-direction: column;
         align-items: flex-start;
         padding: 0px;
         gap: 40px;
         width: 100%;
-        height: 430px;
+        height: fit-content;
+        max-height: 430px;
         flex: none;
         order: 0;
         flex-grow: 0;
-        /* border: solid 1px; */
+        border: solid 1px;
     }
     
     .title{
@@ -209,7 +210,7 @@
         flex-direction: row;
         align-items: flex-start;
         padding: 0px;
-        gap: 16px;
+        gap: calc(16*100%/705);
         width: 100%;
         height: 40px;
         flex: none;

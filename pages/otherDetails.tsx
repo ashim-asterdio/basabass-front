@@ -7,7 +7,7 @@ import SmallRadio from "../components/ui components/radio/smallRadio"
 import { HiOutlineInformationCircle } from "react-icons/hi"
 import { otherDetailsSchema } from "../components/validationSchema"
 import { useRouter } from "next/router"
-import {useState} from "react"
+import {useState,useEffect} from "react"
 import PaymentPop from '../components/paymentPop'
 import { useDispatch, useSelector } from "react-redux"
 import { RootState } from "../store"
@@ -19,6 +19,12 @@ const OtherDetails: NextPage = () => {
     const status=useSelector((state:RootState)=>state.payPop.value)
     const [info,setInfo]=useState("");
     const [pay,setPay]=useState(false);
+    const page=useSelector((state:RootState)=>state.progressBar.value)
+
+    useEffect(() => {
+        if (page==1)
+            router.push('/basicDetails')
+      }, [])
 
     const previous=(e:Event)=>{
         e.preventDefault()
@@ -47,7 +53,7 @@ const OtherDetails: NextPage = () => {
         <>
             <PaymentPop />
             <Layout topic="Other Details" onSubmit={handleSubmit} page="4" previous={previous} info={info}>
-                <div className={style.mainContainer}>
+                <div className={style.otherDetailsContainer}>
                     <div className={style.ownerInfo} onClick={()=>{setInfo("Owner Info")}}>
                         <p className={style.title}>Owner Info <HiOutlineInformationCircle className={style.infoIcon} /></p>
                         <div className={style.ownerRadioDiv}>

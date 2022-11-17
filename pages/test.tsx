@@ -2,16 +2,13 @@ import type { NextPage } from 'next'
 import Head from 'next/head'
 import PaymentPop from '../components/paymentPop'
 import ProgressBar from '../components/ui components/progressBar'
+import { Icon } from '@iconify/react';
 
 
 const test:NextPage = ()=> {
   return (
     <>
-      <Head>
-        {/* <link rel="stylesheet" href="https://egkoppel.github.io/product-sans/google-fonts.css" ></link> */}
-        <link href="http://fonts.cdnfonts.com/css/product-sans" rel="stylesheet"></link>
-      </Head>
-        Test page
+        <Icon icon="icon-park-outline:building-two" width="16" height="18" inline={true} />
       
     </>
     

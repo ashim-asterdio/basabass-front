@@ -16,6 +16,7 @@ import { useRouter } from "next/router";
 import { useDispatch, useSelector } from 'react-redux'
 import { RootState } from '../store'
 import { increment } from "../slices/progressBarSlice";
+import {useEffect} from "react"
 
 
 
@@ -24,6 +25,11 @@ const AdDetails: NextPage = () => {
   const dispatch = useDispatch();
   const page = useSelector((state: RootState) => state.progressBar.value)
   const [info, setInfo] = useState("");
+
+  useEffect(() => {
+      if (page===1)
+          router.push('/basicDetails')
+    }, [])
 
   const previous = (e: Event) => {
     e.preventDefault()
@@ -66,9 +72,11 @@ const AdDetails: NextPage = () => {
               <UploadZone />
               {/* <label><UploadZone/></label> */}
             </div>
-            <small id="emailHelp" className="form-text text-muted">
-              *The first image is thumbnail for this listing
-            </small>
+            <div>
+              <small id="emailHelp" className="form-text text-muted">
+                *The first image is thumbnail for this listing
+              </small>
+            </div>
             {errors.image && <span className={styles.error}>{errors.image}</span>}
           </div>
 

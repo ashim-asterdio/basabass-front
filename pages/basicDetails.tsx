@@ -1,5 +1,5 @@
 import type { NextPage } from 'next'
-import { useState } from "react"
+import { useState,useEffect } from "react"
 import Head from 'next/head'
 import style from '../styles/basicDetail.module.css'
 import { HiOutlineInformationCircle } from "react-icons/hi"
@@ -17,6 +17,7 @@ import { increment } from '../slices/progressBarSlice'
 import { useDispatch, useSelector } from 'react-redux'
 import { RootState } from '../store'
 import { useRouter } from "next/router"
+import { Icon } from '@iconify/react';
 
 
 const BasicDetail: NextPage = () => {
@@ -43,44 +44,48 @@ const BasicDetail: NextPage = () => {
     }
   })
 
-    console.log(info)
+  console.log(info)
 
   return (
     <>
-      
+
       <Layout onSubmit={handleSubmit} topic="Basic Details" page="1" previous={"none"} info={info}>
-        <div className={style.adCategoryDiv} onClick={()=>{setInfo("Ad Category")}}>
-          <p className={style.topic}>Ad Category <HiOutlineInformationCircle className={style.infoIcon} /></p>
-          <div className={style.radioDiv} >
-            <SmallRadio value="Sale" name="adCategory" onChange={handleChange} />
-            <SmallRadio value="Rent" name="adCategory" onChange={handleChange}  />
-            <SmallRadio value="Lease" name="adCategory" onChange={handleChange} />
-            {errors.adCategory && <span className={style.error}>{errors.adCategory}</span>}
+        <div className={style.basicDetailWrapper}>
+          <div className={style.adCategoryDiv} onClick={() => { setInfo("Ad Category") }}>
+            <p className={style.topic}>Ad Category <HiOutlineInformationCircle className={style.infoIcon} /></p>
+            <div className={style.radioDiv} >
+              <SmallRadio value="Sale" name="adCategory" onChange={handleChange} />
+              <SmallRadio value="Rent" name="adCategory" onChange={handleChange} />
+              <SmallRadio value="Lease" name="adCategory" onChange={handleChange} />
+              {errors.adCategory && <span className={style.error}>{errors.adCategory}</span>}
+            </div>
           </div>
-        </div>
 
-        <div className={style.propertyTypeDiv} onClick={()=>{setInfo("Property Type")}}>
-          <p className={style.topic}>Property Type <HiOutlineInformationCircle className={style.infoIcon} /> </p>
+          <div className={style.propertyTypeDiv} onClick={() => { setInfo("Property Type") }}>
+            <p className={style.topic}>Property Type <HiOutlineInformationCircle className={style.infoIcon} /> </p>
 
-          <div className={style.propertyTypeDivRow}>
-            <RectangleRadio icon={<BiHome />} value="Residential" onChange={handleChange} />
-            <RectangleRadio icon={<Image src={commercial} alt="image" />} value="Commercial" onChange={handleChange} />
-            <RectangleRadio icon={<Image src={agriculture} alt="image" />} value="Agriculture" onChange={handleChange} />
-            {errors.propertyType && <span className={style.error}>{errors.propertyType}</span>}
+            <div className={style.propertyTypeDivRow}>
+              <RectangleRadio icon={<Icon icon="bx:home" width="16" height="18" inline={true} />} value="Residential" onChange={handleChange} />
+              <RectangleRadio icon={<Icon icon="icon-park-outline:building-two" width="16" height="18" inline={true} />}
+               value="Commercial" onChange={handleChange} />
+              <RectangleRadio icon={<Icon icon="icon-park-outline:landscape" width="16" height="18" inline={true} />}
+               value="Agriculture" onChange={handleChange} />
+              {errors.propertyType && <span className={style.error}>{errors.propertyType}</span>}
+            </div>
           </div>
-        </div>
 
-        <div className={style.propertyCategoryDiv} onClick={()=>{setInfo("Property Category")}}>
-          <p className={style.topic}>Porperty Category<HiOutlineInformationCircle className={style.infoIcon} /></p>
-          <div className={style.propertyCategoryRow} >
-            <SquareRadio value="House" icon={<BiHome />} onChange={handleChange} />
-            <SquareRadio value="Land" icon={<BiHome />} onChange={handleChange} />
-            <SquareRadio value="Flat" icon={<BiHome />} onChange={handleChange}  />
-            <SquareRadio value="Apartment" icon={<BiHome />} onChange={handleChange} />
-            <SquareRadio value="Buginess" icon={<BiHome />} onChange={handleChange} />
-            <SquareRadio value="Office" icon={<BiHome />} onChange={handleChange} />
+          <div className={style.propertyCategoryDiv} onClick={() => { setInfo("Property Category") }}>
+            <p className={style.topic}>Porperty Category<HiOutlineInformationCircle className={style.infoIcon} /></p>
+            <div className={style.propertyCategoryRow} >
+              <SquareRadio value="House" icon={<Icon icon="bx:home" width="18" height="18" inline={true} />} onChange={handleChange} />
+              <SquareRadio value="Land" icon={<Icon icon="bx:home" width="18" height="18" inline={true} />} onChange={handleChange} />
+              <SquareRadio value="Flat" icon={<Icon icon="bx:home" width="18" height="18" inline={true} />} onChange={handleChange} />
+              <SquareRadio value="Apartment" icon={<Icon icon="bx:home" width="18" height="18" inline={true} />} onChange={handleChange} />
+              <SquareRadio value="Buginess" icon={<Icon icon="bx:home" width="18" height="18" inline={true} />} onChange={handleChange} />
+              <SquareRadio value="Office" icon={<Icon icon="bx:home" width="18" height="18" inline={true} />} onChange={handleChange} />
+            </div>
+            {errors.propertyCategory && <span className={style.error}>{errors.propertyCategory}</span>}
           </div>
-          {errors.propertyCategory && <span className={style.error}>{errors.propertyCategory}</span>}
         </div>
       </Layout>
     </>

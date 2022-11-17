@@ -9,6 +9,7 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@icon-park/react": "^1.4.2",
     "@reduxjs/toolkit": "^1.8.6",
     "antd": "^4.24.1",
     "formik": "^2.2.9",
@@ -21,6 +22,7 @@
     "yup": "^0.32.11"
   },
   "devDependencies": {
+    "@iconify/react": "^4.0.0",
     "@types/node": "18.7.18",
     "@types/react": "18.0.20",
     "@types/react-dom": "18.0.6",

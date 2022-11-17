@@ -9,7 +9,7 @@ import { useRouter } from 'next/router'
 import { useDispatch, useSelector } from 'react-redux'
 import { RootState } from '../store'
 import { increment } from "../slices/progressBarSlice";
-import { useState } from "react"
+import { useState,useEffect} from "react"
 import Head from 'next/head'
 
 
@@ -18,6 +18,11 @@ const PropertyDetails: NextPage = () => {
     const dispatch = useDispatch();
     const page = useSelector((state: RootState) => state.progressBar.value)
     const [info, setInfo] = useState("");
+
+    useEffect(() => {
+        if (page==1)
+            router.push('/basicDetails')
+      }, [])
 
     const previous = (e: Event) => {
         e.preventDefault()

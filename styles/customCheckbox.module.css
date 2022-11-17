@@ -72,6 +72,7 @@
         border: 1px solid #D8D8D8;
         border-radius: 5px;
         flex: none;
+        margin-bottom:5px ;
         /* flex-grow: 1; */
     }
 

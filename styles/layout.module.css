@@ -172,16 +172,18 @@
     position: relative;
     display: flex;
     flex-direction: column;
+    min-height: 615px;
+    height: fit-content;
 }
 
 .mainContentDiv{
     width: 100%;
     display: flex;
     flex-direction: column;
-    /* gap: 35px; */
+    gap: 0px;
     align-items: flex-start;
-    min-height: 660px;
-    height: max-content;
+    min-height: none;
+    height: fit-content;
     /* border: solid brown; */
     position: relative;
     /* top: 156px; */
@@ -197,11 +199,11 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    padding-bottom: 35px;
+    padding-bottom: 0px;
     gap: 16px;
     position: relative;
     width: 100%;
-    min-height: 600px;
+    min-height: 200px;
     height: fit-content;
     /* left: 16px; */
     /* top: 162px; */
@@ -219,6 +221,7 @@
     align-items: center;
     background: #FFFFFF;
     box-shadow: 0px -4px 4px rgba(0, 0, 0, 0.05);
+    z-index: 2;
 }
 
 .buttonDiv{
@@ -328,7 +331,7 @@
         position: relative;
         width: 100%;
         max-width: 1440px;
-        min-height: 805px;
+        min-height: 738px;
         background: #F5F7F9;
         height: fit-content;
         align-items: flex-start;
@@ -512,10 +515,10 @@
         align-items: flex-start;
         padding: 0px;
         padding-bottom: 24px;
-        gap: 0px;
+        /* gap: 40px; */
         width: calc(705*100%/753);
-        min-height: 496px;
-        height: max-content;
+        min-height: none;
+        height: fit-content;
         flex: none;
         order: 2;
         align-self: stretch;
@@ -527,8 +530,9 @@
         position: relative;
         left: 0;
         top: 0px;
+        padding: 0px;
         min-height: 440px;
-        height: max-content;
+        height: fit-content;
         /* border: solid blue; */
         width: 100% ;
         align-self:stretch ;
