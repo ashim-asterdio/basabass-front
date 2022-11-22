@@ -67,7 +67,7 @@ const BasicDetail: NextPage = () => {
               <RectangleRadio icon={<Icon icon="icon-park-outline:building-two" width="16" height="18" inline={true} />}
                value="Commercial" onChange={handleChange} />
               <RectangleRadio icon={<Icon icon="icon-park-outline:landscape" width="16" height="18" inline={true} />}
-               value="Agriculture" onChange={handleChange} />
+               value="Agricultural" onChange={handleChange} />
               {errors.propertyType && <span className={style.error}>{errors.propertyType}</span>}
             </div>
           </div>

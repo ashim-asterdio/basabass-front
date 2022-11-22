@@ -76,7 +76,7 @@ const Layout = ({ children, topic, onSubmit, page, previous, info, next }:
                       <div className={style.buttonDiv}>
                         <button className={style.previous} onClick={previous}>Previous</button>
                         <div className={style.submitDiv}>
-                          <span className={style.savetoDraft}>Save to draft</span>
+                          <span className={style.savetoDraft}>Save as draft</span>
                           <button className={style.next} onClick={onSubmit} >Next:{next}</button>
                         </div>
                       </div>
