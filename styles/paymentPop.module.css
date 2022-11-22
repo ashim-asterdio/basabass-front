@@ -7,7 +7,8 @@
     gap: 40px;
     isolation: isolate;
     position: absolute;
-    left: calc(248*100%/1440); /*248px*/
+    left: 50%; /*248px*/
+    transform: translate(-50%,0%);
     /* right: calc(1192*100%/1440); */
     top: 130px;
     width: 872px;
