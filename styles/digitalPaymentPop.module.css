@@ -1,0 +1,40 @@
+.popContainer{
+    position: absolute;
+    left: 50%;
+    top: calc(216*100%/807);
+    transform: translate(-50%,0%);
+    width: 370px;
+    height: 368px;
+    background: #FFFFFF;
+    /* Shadow 1 */
+    box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.14);
+    border-radius: 4px;
+    padding: 20px;
+}
+
+.crossButton{
+    position: absolute;
+    right: 20px;
+    top: 20px;
+}
+
+.topDiv{
+    display: flex;
+    gap: 6px;
+}
+
+.topic{
+    width: 119px;
+    height: 20px;
+    font-family: 'Product Sans';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 16px;
+    line-height: 20px;
+    color: #000000;
+    flex: none;
+    order: 1;
+    flex-grow: 0;
+}
+
+

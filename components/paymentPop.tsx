@@ -5,7 +5,7 @@ import blueArrow from "../Images/blueArrow.svg"
 import xMark from "../Images/xMark.svg"
 import { useDispatch, useSelector } from "react-redux"
 import { RootState } from "../store"
-import { change } from "../slices/payPopSlice"
+import { change, changepopUpBg } from "../slices/payPopSlice"
 
 
 
@@ -18,7 +18,7 @@ const PaymentPop = (props:any) => {
 
   return (
     <div className={style.container} style={{display:status?"flex":"none"}}>
-      <span className={style.crossButton} onClick={()=>{dispatch(change())}}><Image alt="no image" src={xMark} /></span>
+      <span className={style.crossButton} onClick={()=>{dispatch(change());dispatch(changepopUpBg())}}><Image alt="no image" src={xMark} /></span>
       <label className={style.textDiv}>
         <span className={style.bigText}>Select paid palns to get more response</span>
         <span className={style.smallText}>Here are different plans with exciting offers.</span>

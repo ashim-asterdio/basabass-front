@@ -1,27 +1,44 @@
-import Head from "next/head"
+import { useState } from "react"
 import Navbar from "./Navbar"
 import style from '../styles/layout.module.css'
 import { ReactElement } from "react"
 import ProgressBar from "./ui components/progressBar"
 import Link from "next/link"
 import { IoInformationCircleOutline } from "react-icons/io5";
-import { useSelector } from "react-redux"
+import { useDispatch, useSelector } from 'react-redux'
 import { RootState } from "../store"
+import { Icon } from "@iconify/react"
+import { changeInfo } from "../slices/payPopSlice"
+import cn from "classnames"
+import { Display } from "@icon-park/react"
 
 // const page = useSelector((state: RootState) => state.progressBar.value)
-const Layout = ({ children, topic, onSubmit, page, previous, info,next }:
-  { children: any; topic: string; onSubmit: any; page: any; previous: any; info: any;next:string }) => {
+const Layout = ({ children, topic, onSubmit, page, previous, info, next }:
+  { children: any; topic: string; onSubmit: any; page: any; previous: any; info: any; next: string }) => {
+
+  // const [information,setInformation]=useState("")  
+  // var pop=info
+  // const collaps=()=>{
+     
+  // }
+  const dispatch = useDispatch();
+  const information=useSelector((state:RootState)=>state.payPop.information)
+  const popUpBg=useSelector((state:RootState)=>state.payPop.popUpBg)
 
   return (
     <>
       <div className={style.alignmentContainer}>
+        <div className={cn({[style.popUpBg]: popUpBg ,[style.popUpBgInv]: !popUpBg})} >
+        </div>
+        <div className={cn({[style.popUpMobileBg]: information != "",[style.popUpMobileBgInv]: information == '',})} >
+        </div>
         <div className={style.navBlend}>
           <div className={style.nav}>
             <Navbar />
           </div>
         </div>
         <div className={style.containerDiv}>
-          
+
 
           <div className={style.contentDiv}>
 
@@ -65,14 +82,17 @@ const Layout = ({ children, topic, onSubmit, page, previous, info,next }:
                   </form>
 
                 </div>
-                <div className={style.botRightDiv}>
+
+                <div className={cn({[style.botRightDiv]: information != "",[style.botRightDivInv]: information == '',})}>
                   <div className={style.infoInnerDiv}>
                     <div className={style.infoTopic}>
                       <p><IoInformationCircleOutline fontSize={"large"} />INFORMATION</p>
+                      <Icon icon="radix-icons:cross-2" width="20" height="20" className={style.crossButton} 
+                      onClick={()=>{dispatch(changeInfo(""))}} />
                     </div>
                     <div className={style.infoContentDiv}>
                       <h3>
-                        {info}
+                        {information}
                       </h3>
                       <div className={style.infoContent}>
                         Information about stuff

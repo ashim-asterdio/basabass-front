@@ -19,10 +19,10 @@ const PropertyDetails: NextPage = () => {
     const page = useSelector((state: RootState) => state.progressBar.value)
     const [info, setInfo] = useState("");
 
-    useEffect(() => {
-        if (page==1)
-            router.push('/basicDetails')
-      })
+    // useEffect(() => {
+    //     if (page==1)
+    //         router.push('/basicDetails')
+    //   })
 
     const previous = (e: Event) => {
         e.preventDefault()

@@ -3,10 +3,6 @@ import { useState,useEffect } from "react"
 import Head from 'next/head'
 import style from '../styles/basicDetail.module.css'
 import { HiOutlineInformationCircle } from "react-icons/hi"
-import { BiHome } from "react-icons/bi"
-import Image from 'next/image'
-import commercial from "../Images/commercial.svg"
-import agriculture from "../Images/agriculture.svg"
 import SmallRadio from '../components/ui components/radio/smallRadio'
 import RectangleRadio from '../components/ui components/radio/rectangleRadio'
 import SquareRadio from '../components/ui components/radio/squareRadio'
@@ -18,6 +14,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { RootState } from '../store'
 import { useRouter } from "next/router"
 import { Icon } from '@iconify/react';
+import { changeInfo } from '../slices/payPopSlice'
 
 
 const BasicDetail: NextPage = () => {
@@ -43,16 +40,17 @@ const BasicDetail: NextPage = () => {
       router.push('/propertyDetails');
     }
   })
-
-  console.log(info)
+  
+  
+  
 
   return (
     <>
 
       <Layout onSubmit={handleSubmit} topic="Basic Details" page="1" previous={"none"} info={info} next="Area & Address">
         <div className={style.basicDetailWrapper}>
-          <div className={style.adCategoryDiv} onClick={() => { setInfo("Ad Category") }}>
-            <p className={style.topic}>Ad Category <HiOutlineInformationCircle className={style.infoIcon} /></p>
+          <div className={style.adCategoryDiv} >
+            <p className={style.topic}>Ad Category <HiOutlineInformationCircle className={style.infoIcon} onClick={() => { setInfo("Ad Category") ;dispatch(changeInfo(info))}} /></p>
             <div className={style.radioDiv} >
               <SmallRadio value="Sale" name="adCategory" onChange={handleChange} />
               <SmallRadio value="Rent" name="adCategory" onChange={handleChange} />
@@ -61,8 +59,8 @@ const BasicDetail: NextPage = () => {
             </div>
           </div>
 
-          <div className={style.propertyTypeDiv} onClick={() => { setInfo("Property Type") }}>
-            <p className={style.topic}>Property Type <HiOutlineInformationCircle className={style.infoIcon} /> </p>
+          <div className={style.propertyTypeDiv} >
+            <p className={style.topic}>Property Type <HiOutlineInformationCircle className={style.infoIcon} onClick={() => { setInfo("Property Type") ;dispatch(changeInfo(info))}} /> </p>
 
             <div className={style.propertyTypeDivRow}>
               <RectangleRadio icon={<Icon icon="bx:home" width="16" height="18" inline={true} />} value="Residential" onChange={handleChange} />
@@ -74,8 +72,8 @@ const BasicDetail: NextPage = () => {
             </div>
           </div>
 
-          <div className={style.propertyCategoryDiv} onClick={() => { setInfo("Property Category") }}>
-            <p className={style.topic}>Porperty Category<HiOutlineInformationCircle className={style.infoIcon} /></p>
+          <div className={style.propertyCategoryDiv} >
+            <p className={style.topic}>Porperty Category<HiOutlineInformationCircle className={style.infoIcon} onClick={() => { setInfo("Property Category") ;dispatch(changeInfo(info))}} /></p>
             <div className={style.propertyCategoryRow} >
               <SquareRadio value="House" icon={<Icon icon="bx:home" width="18" height="18" inline={true} />} onChange={handleChange} />
               <SquareRadio value="Land" icon={<Icon icon="bx:home" width="18" height="18" inline={true} />} onChange={handleChange} />

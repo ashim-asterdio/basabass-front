@@ -7,29 +7,33 @@ import SmallRadio from "../components/ui components/radio/smallRadio"
 import { HiOutlineInformationCircle } from "react-icons/hi"
 import { otherDetailsSchema } from "../components/validationSchema"
 import { useRouter } from "next/router"
-import {useState,useEffect} from "react"
+import { useState, useEffect } from "react"
 import PaymentPop from '../components/paymentPop'
 import { useDispatch, useSelector } from "react-redux"
 import { RootState } from "../store"
-import { change } from "../slices/payPopSlice"
+import { change,changeInfo,changepopUpBg } from "../slices/payPopSlice"
 
 const OtherDetails: NextPage = () => {
-    const router=useRouter();
-    const dispatch=useDispatch();
-    const status=useSelector((state:RootState)=>state.payPop.value)
-    const [info,setInfo]=useState("");
-    const [pay,setPay]=useState(false);
-    const page=useSelector((state:RootState)=>state.progressBar.value)
+    const router = useRouter();
+    const dispatch = useDispatch();
 
-    useEffect(() => {
-        try {if (page==1)
-            router.push('/basicDetails')}
-            catch{
-                console.log("milena")
-            }
-      })
+    const [info, setInfo] = useState("");
+    const [pay, setPay] = useState(false);
+    const page = useSelector((state: RootState) => state.progressBar.value)
 
-    const previous=(e:Event)=>{
+
+
+    // useEffect(() => {
+    //     try {
+    //         if (page == 1)
+    //             router.push('/basicDetails')
+    //     }
+    //     catch {
+    //         console.log("milena")
+    //     }
+    // })
+
+    const previous = (e: Event) => {
         e.preventDefault()
         router.push('/adDetails')
     }
@@ -48,8 +52,12 @@ const OtherDetails: NextPage = () => {
             console.log("call Ad Details")
             console.log(values)
             console.log(initialValues)
-            if (values.adPricingtype=="Paid Listing")
+            if (values.adPricingtype == "Paid Listing")
+            {
                 dispatch(change())
+                dispatch(changepopUpBg  ())
+            }
+                
         }
     })
     return (
@@ -57,8 +65,10 @@ const OtherDetails: NextPage = () => {
             <PaymentPop />
             <Layout topic="Other Details" onSubmit={handleSubmit} page="4" previous={previous} info={info} next="">
                 <div className={style.otherDetailsContainer}>
-                    <div className={style.ownerInfo} onClick={()=>{setInfo("Owner Info")}}>
-                        <p className={style.title}>Owner Info <HiOutlineInformationCircle className={style.infoIcon} /></p>
+                    <div className={style.ownerInfo} >
+                        <p className={style.title}>Owner Info
+                            <HiOutlineInformationCircle className={style.infoIcon} onClick={() => {  dispatch(changeInfo("Owner Info")) }} />
+                        </p>
                         <div className={style.ownerRadioDiv}>
                             <SmallRadio name="ownerType" value="Use my info" onChange={handleChange} />
                             <SmallRadio name="ownerType" value="Use Different Owner" onChange={handleChange} />
@@ -101,11 +111,13 @@ const OtherDetails: NextPage = () => {
                         </div>
                     </div>
 
-                    <div className={style.adPricingDiv} onClick={()=>{setInfo("Ad Pricing Plan")}}>
-                        <p className={style.title}>Ad Pricing Plan <HiOutlineInformationCircle className={style.infoIcon} /></p>
+                    <div className={style.adPricingDiv} >
+                        <p className={style.title}>Ad Pricing Plan
+                            <HiOutlineInformationCircle className={style.infoIcon} onClick={() => { dispatch(changeInfo("Ad Pricing Plan")) }} />
+                        </p>
                         <div className={style.adPricingRadioDiv}>
                             <SmallRadio name="adPricingtype" value="Free Listing" onChange={handleChange} />
-                            <SmallRadio name="adPricingtype" value="Paid Listing" onChange={handleChange}  />
+                            <SmallRadio name="adPricingtype" value="Paid Listing" onChange={handleChange} />
                             {errors.adPricingtype && <span className={style.error}>{errors.adPricingtype}</span>}
                         </div>
                     </div>
