@@ -43,7 +43,9 @@ const Layout = ({ children, topic, onSubmit, page, previous, info, next }:
           <div className={style.contentDiv}>
 
             <div className={style.sideProgress}>
-              <div className={style.topDiv}>Back to Dashboard</div>
+              <div className={style.topDiv}>
+                <Icon icon="ic:round-chevron-left" width="24" height="24" /> Back to Dashboard
+              </div>
 
               <div className={style.midDiv}>
                 <p className={style.midDetails}>{topic}</p>
