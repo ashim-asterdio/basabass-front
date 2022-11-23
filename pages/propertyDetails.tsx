@@ -1,6 +1,6 @@
 import type { NextPage } from 'next'
 import style from '../styles/propertyDetails.module.css'
-import { HiOutlineInformationCircle } from "react-icons/hi"
+// import DigitalPaymentPop from '../components/digitalPaymantPop'
 import AmenitiesCheckbox from '../components/ui components/customCheckbox'
 import Layout from '../components/Layout'
 import { useFormik } from 'formik'
@@ -9,8 +9,9 @@ import { useRouter } from 'next/router'
 import { useDispatch, useSelector } from 'react-redux'
 import { RootState } from '../store'
 import { increment } from "../slices/progressBarSlice";
-import { useState,useEffect} from "react"
-import Head from 'next/head'
+import { useState, useEffect } from "react"
+import { changeInfo } from '../slices/payPopSlice'
+import { Icon } from '@iconify/react'
 
 
 const PropertyDetails: NextPage = () => {
@@ -75,12 +76,16 @@ const PropertyDetails: NextPage = () => {
 
     return (
         <>
+            {/* <DigitalPaymentPop /> */}
             <Layout onSubmit={handleSubmit} topic="Property Details" page="2" previous={previous} info={info} next="Ad Details">
                 <div className={style.propertydetails_container}>
 
-                    <div className={style.locationComponent} onClick={() => { setInfo("Location") }}>
+                    <div className={style.locationComponent}>
 
-                        <label> Location  <HiOutlineInformationCircle /></label>
+                        <label>
+                            Location
+                            <Icon icon="humbleicons:info-circle" width="18" height="18" onClick={() => { dispatch(changeInfo("Location")) }} />
+                        </label>
 
                         <div className={style.all_input_fields}>
                             <div className={style.inputFeildRow}>
@@ -109,8 +114,11 @@ const PropertyDetails: NextPage = () => {
                         </div>
                     </div>
 
-                    <div className={style.areaComponent} onClick={() => { setInfo("Area Location") }}>
-                        <label> Area  Location  <HiOutlineInformationCircle /></label>
+                    <div className={style.areaComponent}>
+                        <label>
+                            Area 
+                            <Icon icon="humbleicons:info-circle" width="18" height="18" onClick={() => { dispatch(changeInfo("Area Location")) }} />
+                        </label>
                         <div className={style.areaLocation}>
 
                             <div className={style.inputFeildRow}>
@@ -178,8 +186,11 @@ const PropertyDetails: NextPage = () => {
                         </div>
                     </div>
 
-                    <div className={style.roadComponent} onClick={() => { setInfo("Road Location") }}>
-                        <label> Road Location <HiOutlineInformationCircle /></label>
+                    <div className={style.roadComponent}>
+                        <label>
+                            Road
+                            <Icon icon="humbleicons:info-circle" width="18" height="18" onClick={() => { dispatch(changeInfo("Road Location")) }} />
+                        </label>
                         <div className={style.all_input_fields}>
                             <div className={style.inputFeildRow}>
                                 <div className={style.dropdown_only}>
@@ -209,8 +220,11 @@ const PropertyDetails: NextPage = () => {
                         </div>
                     </div>
 
-                    <div className={style.buldingDetailsComponent} onClick={() => { setInfo("Bulding Details") }}>
-                        <label> Building Details  <HiOutlineInformationCircle /></label>
+                    <div className={style.buldingDetailsComponent}>
+                        <label>
+                            Building Details
+                            <Icon icon="humbleicons:info-circle" width="18" height="18" onClick={() => { dispatch(changeInfo("Bulding Details")) }} />
+                        </label>
                         <div className={style.all_input_fields}>
                             <div className={style.inputFeildRow}>
                                 <div className={style.dropdown_only}>
@@ -243,8 +257,11 @@ const PropertyDetails: NextPage = () => {
                         </div>
                     </div>
 
-                    <div className={style.multipleUnitsComponent} onClick={() => { setInfo("Multiple Unit") }}>
-                        <label> Muntiple Units  <HiOutlineInformationCircle /></label>
+                    <div className={style.multipleUnitsComponent}>
+                        <label>
+                            Muntiple Units
+                            <Icon icon="humbleicons:info-circle" width="18" height="18" onClick={() => { dispatch(changeInfo("Multiple Unit")) }} />
+                        </label>
                         <div className={style.multipleUnits}>
                             <div className={style.dropdown_only}>
                                 <select name="numberOFUnits" onChange={handleChange}>
@@ -259,9 +276,12 @@ const PropertyDetails: NextPage = () => {
                     </div>
 
 
-                    <div className={style.totalRoomsComponent} onClick={() => { setInfo("Total Rooms") }}>
+                    <div className={style.totalRoomsComponent}>
 
-                        <label> Total Rooms  <HiOutlineInformationCircle /> </label>
+                        <label>
+                            Total Rooms
+                            <Icon icon="humbleicons:info-circle" width="18" height="18" onClick={() => { dispatch(changeInfo("Total Rooms")) }} />
+                        </label>
                         <div className={style.all_input_fields}>
                             <div className={style.inputFeildRow}>
                                 <div className={style.feildDiv}>
@@ -294,8 +314,11 @@ const PropertyDetails: NextPage = () => {
                             </div>
                         </div>
                     </div>
-                    <div className={style.amenitiesComponent} onClick={() => { setInfo("Amenities") }}>
-                        <label className={style.label} htmlFor=""> Ameneties  <HiOutlineInformationCircle /></label>
+                    <div className={style.amenitiesComponent}>
+                        <label className={style.label} htmlFor="">
+                            Ameneties
+                            <Icon icon="humbleicons:info-circle" width="18" height="18" onClick={() => {dispatch(changeInfo("Amenitites")) }} />
+                        </label>
                         <div className={style.aminitiesDiv}>
                             {/* <AminitiesCheckbox value="Aminities" /> */}
                             {amenities.map((value, key) => <AmenitiesCheckbox value={value} onChange={handleChange} key={key} />)}

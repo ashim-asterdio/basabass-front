@@ -8,7 +8,7 @@ import { HiOutlineInformationCircle } from "react-icons/hi"
 import { otherDetailsSchema } from "../components/validationSchema"
 import { useRouter } from "next/router"
 import { useState, useEffect } from "react"
-import PaymentPop from '../components/paymentPop'
+import PaymentPop from '../components/paymentPopUps/paymentPop'
 import { useDispatch, useSelector } from "react-redux"
 import { RootState } from "../store"
 import { change,changeInfo,changepopUpBg } from "../slices/payPopSlice"
@@ -55,7 +55,7 @@ const OtherDetails: NextPage = () => {
             if (values.adPricingtype == "Paid Listing")
             {
                 dispatch(change())
-                dispatch(changepopUpBg  ())
+                
             }
                 
         }
@@ -67,7 +67,7 @@ const OtherDetails: NextPage = () => {
                 <div className={style.otherDetailsContainer}>
                     <div className={style.ownerInfo} >
                         <p className={style.title}>Owner Info
-                            <HiOutlineInformationCircle className={style.infoIcon} onClick={() => {  dispatch(changeInfo("Owner Info")) }} />
+                            <HiOutlineInformationCircle className={style.infoIcon} onClick={() => {dispatch(changeInfo("Owner Info")) }} />
                         </p>
                         <div className={style.ownerRadioDiv}>
                             <SmallRadio name="ownerType" value="Use my info" onChange={handleChange} />

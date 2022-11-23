@@ -6,11 +6,12 @@
     padding: 24px 32px 32px;
     gap: 40px;
     isolation: isolate;
-    position: absolute;
-    left: 50%; /*248px*/
-    transform: translate(-50%,0%);
+    position: fixed;
+    left: 50vw; /*248px*/
+    top: 50vh; /*130px*/
+    transform: translate(-50%,-50%);
     /* right: calc(1192*100%/1440); */
-    top: 130px;
+    
     width: 872px;
     height: 549px;
     background: #FFFFFF;
@@ -30,6 +31,33 @@
     flex: none;
     flex-grow: 0;
     z-index: 2;
+}
+
+.recomended{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    /* padding: 4px 12px; */
+    gap: 10px;
+    position: absolute;
+    width: 104px;
+    height: 28px;
+    left: 281px;
+    top: 105px;
+    background: #1CB35D;
+    border-radius: 4px;
+    font-family: 'Product Sans';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 12px;
+    line-height: 20px;
+    color: #F4F4F4;
+    flex: none;
+    order: 3;
+    flex-grow: 0;
+    z-index: 3;
+    
 }
 
 .textDiv{

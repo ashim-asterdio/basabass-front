@@ -10,7 +10,7 @@
 
 .topic {
     display: flex;
-    gap: 3px;
+    gap: 10px;
     height: 24px;
     font-family: 'Product Sans', sans-serif;
     font-style: normal;
