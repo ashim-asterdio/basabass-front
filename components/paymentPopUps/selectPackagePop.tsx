@@ -22,7 +22,7 @@ const SelectPackagePop = (props: any) => {
         <div className={style.container} >
             <Icon icon="radix-icons:cross-2" width="20" height="20" className={style.crossButton} onClick={() => { dispatch(change());dispatch(changePopUpPage(1))}} />
             <label className={style.textDiv}>
-                <span className={style.bigText}>Select paid palns to get more response</span>
+                <span className={style.bigText}>Select paid plans to get more response</span>
                 <span className={style.smallText}>Here are different plans with exciting offers.</span>
             </label>
 
