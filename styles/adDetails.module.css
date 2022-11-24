@@ -34,17 +34,33 @@
 .adDetailsTitle label,
 .adDetailsPrice label,
 .adDetailsFormDescription label {
+  display: flex;
+  gap: 10px;
   font-family: 'Product Sans', sans-serif;
   font-style: normal;
   font-weight: 700;
   font-size: 16px;
   line-height: 24px;
+  height: 24px;
   display: flex;
   align-items: center;
   color: #333333;
   flex: none;
   order: 0;
   flex-grow: 0;
+}
+
+.infoIcon{
+  font-size:larger;
+  cursor: pointer;
+  color: #333333;
+  /* border: solid 1px; */
+}
+
+.infoIcon:hover{
+  height: 25px;
+  width: 25px;
+  /* font-size: larger; */
 }
 
 .adDetailsUploads,
@@ -70,7 +86,7 @@
 }
 
 
-.adDetailsUploads label {
+/* .adDetailsUploads label {
   color: #333333;
   font-style: normal;
   font-weight: 700;
@@ -80,7 +96,7 @@
   align-items: center;
   margin-bottom: 10px;
   gap: 10px;
-}
+} */
 
 .adDetailsFormDescription textarea {
   display: flex;

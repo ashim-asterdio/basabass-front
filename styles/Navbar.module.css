@@ -39,6 +39,7 @@
     flex: none;
     order: 0;
     flex-grow: 0;
+    cursor: pointer;
     /* border: solid 1px; */
 }
 
@@ -58,7 +59,7 @@
 }
 
 .links{
-    display: flex;
+    display:flex;
     flex-direction: row;
     align-items: center;
     padding: 1%;
@@ -112,6 +113,7 @@
     height: 40px;
     flex: none;
     flex-grow: 0;
+    cursor: pointer;
     /* margin-top: 1.5px;
     margin-bottom: 1.5px; */
     /* border: solid 1px; */
@@ -148,6 +150,7 @@
     flex: none;
     order: 0;
     flex-grow: 0;
+    cursor: pointer;
 }
 
 .blueButton p{
@@ -197,6 +200,7 @@
     flex: none;
     flex-grow: 0;
     justify-content: center;
+    cursor: pointer;
     /* border: solid 1px;  */
 }
 
@@ -218,6 +222,7 @@
     /* border: solid 1px; */
     margin: 0px;
     padding: 0px;
+    cursor: pointer;
 }
 
 

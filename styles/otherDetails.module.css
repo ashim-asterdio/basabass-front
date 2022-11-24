@@ -33,7 +33,15 @@
 }
 
 .infoIcon{
-    font-size:medium;
+    font-size:larger;
+    cursor: pointer;
+    /* border: solid 1px; */
+}
+
+.infoIcon:hover{
+    height: 25px;
+    width: 25px;
+    /* font-size: larger; */
 }
 
 .ownerInfo{

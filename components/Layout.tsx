@@ -13,8 +13,8 @@ import cn from "classnames"
 import { Display } from "@icon-park/react"
 
 // const page = useSelector((state: RootState) => state.progressBar.value)
-const Layout = ({ children, topic, onSubmit, page, previous, info, next }:
-  { children: any; topic: string; onSubmit: any; page: any; previous: any; info: any; next: string }) => {
+const Layout = ({ children, topic, onSubmit, page, previous, info, next,back }:
+  { children: any; topic: string; onSubmit: any; page: any; previous: any; info: any; next: string ;back:string}) => {
 
   // const [information,setInformation]=useState("")  
   // var pop=info
@@ -44,7 +44,8 @@ const Layout = ({ children, topic, onSubmit, page, previous, info, next }:
 
             <div className={style.sideProgress}>
               <div className={style.topDiv}>
-                <Icon icon="ic:round-chevron-left" width="24" height="24" /> Back to Dashboard
+                <a href="#" className={style.backToDash}><Icon icon="ic:round-chevron-left" width="24" height="24" /> Back to Dashboard</a>
+                <a href="#" className={style.topDraft}>Save as Draft</a>
               </div>
 
               <div className={style.midDiv}>
@@ -74,11 +75,11 @@ const Layout = ({ children, topic, onSubmit, page, previous, info, next }:
 
                     <div className={style.footer}>
                       <div className={style.buttonDiv}>
-                        <button className={style.previous} onClick={previous}>Previous</button>
                         <div className={style.submitDiv}>
                           <span className={style.savetoDraft}>Save as draft</span>
-                          <button className={style.next} onClick={onSubmit} >Next:{next}</button>
+                          <button className={style.next} onClick={onSubmit} >Next{next}</button>
                         </div>
+                        <button className={style.previous} style={{display:(back=="none")?"none":"flex"}} onClick={previous}>Back {back}</button>
                       </div>
                     </div>
                   </form>
@@ -88,7 +89,7 @@ const Layout = ({ children, topic, onSubmit, page, previous, info, next }:
                 <div className={cn({[style.botRightDiv]: information != "",[style.botRightDivInv]: information == '',})}>
                   <div className={style.infoInnerDiv}>
                     <div className={style.infoTopic}>
-                      <p><IoInformationCircleOutline fontSize={"large"} />INFORMATION</p>
+                      <p><Icon icon="humbleicons:info-circle" width="20" height="20" />INFORMATION</p>
                       <Icon icon="radix-icons:cross-2" width="20" height="20" className={style.crossButton} 
                       onClick={()=>{dispatch(changeInfo(""))}} />
                     </div>

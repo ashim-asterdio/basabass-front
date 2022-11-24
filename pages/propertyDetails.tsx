@@ -77,14 +77,16 @@ const PropertyDetails: NextPage = () => {
     return (
         <>
             {/* <DigitalPaymentPop /> */}
-            <Layout onSubmit={handleSubmit} topic="Property Details" page="2" previous={previous} info={info} next="Ad Details">
+            <Layout onSubmit={handleSubmit} topic="Property Details" page="2" back=": Basic Details" previous={previous} info={info} next="Ad Details">
                 <div className={style.propertydetails_container}>
 
                     <div className={style.locationComponent}>
 
                         <label>
                             Location
-                            <Icon icon="humbleicons:info-circle" width="18" height="18" onClick={() => { dispatch(changeInfo("Location")) }} />
+                            <a href='#' style={{display:"flex"}} onClick={() => { dispatch(changeInfo("Location")) }}>
+                                <Icon icon="humbleicons:info-circle" width="20" height="20" className={style.infoIcon} />
+                            </a>
                         </label>
 
                         <div className={style.all_input_fields}>
@@ -117,7 +119,7 @@ const PropertyDetails: NextPage = () => {
                     <div className={style.areaComponent}>
                         <label>
                             Area 
-                            <Icon icon="humbleicons:info-circle" width="18" height="18" onClick={() => { dispatch(changeInfo("Area Location")) }} />
+                            <a href='#' style={{display:"flex"}}><Icon icon="humbleicons:info-circle" width="20" height="20" className={style.infoIcon} onClick={() => { dispatch(changeInfo("Area Location")) }} /></a>
                         </label>
                         <div className={style.areaLocation}>
 
@@ -189,7 +191,7 @@ const PropertyDetails: NextPage = () => {
                     <div className={style.roadComponent}>
                         <label>
                             Road
-                            <Icon icon="humbleicons:info-circle" width="18" height="18" onClick={() => { dispatch(changeInfo("Road Location")) }} />
+                            <a href='#' style={{display:"flex"}}><Icon icon="humbleicons:info-circle" width="20" height="20" className={style.infoIcon} onClick={() => { dispatch(changeInfo("Road Location")) }} /></a>
                         </label>
                         <div className={style.all_input_fields}>
                             <div className={style.inputFeildRow}>
@@ -223,7 +225,7 @@ const PropertyDetails: NextPage = () => {
                     <div className={style.buldingDetailsComponent}>
                         <label>
                             Building Details
-                            <Icon icon="humbleicons:info-circle" width="18" height="18" onClick={() => { dispatch(changeInfo("Bulding Details")) }} />
+                            <a href='#' style={{display:"flex"}}><Icon icon="humbleicons:info-circle" width="20" height="20" className={style.infoIcon} onClick={() => { dispatch(changeInfo("Bulding Details")) }} /></a>
                         </label>
                         <div className={style.all_input_fields}>
                             <div className={style.inputFeildRow}>
@@ -260,7 +262,7 @@ const PropertyDetails: NextPage = () => {
                     <div className={style.multipleUnitsComponent}>
                         <label>
                             Muntiple Units
-                            <Icon icon="humbleicons:info-circle" width="18" height="18" onClick={() => { dispatch(changeInfo("Multiple Unit")) }} />
+                            <a href='#' style={{display:"flex"}}><Icon icon="humbleicons:info-circle" width="20" height="20" className={style.infoIcon} onClick={() => { dispatch(changeInfo("Multiple Unit")) }} /></a>
                         </label>
                         <div className={style.multipleUnits}>
                             <div className={style.dropdown_only}>
@@ -280,7 +282,7 @@ const PropertyDetails: NextPage = () => {
 
                         <label>
                             Total Rooms
-                            <Icon icon="humbleicons:info-circle" width="18" height="18" onClick={() => { dispatch(changeInfo("Total Rooms")) }} />
+                            <a href='#' style={{display:"flex"}}><Icon icon="humbleicons:info-circle" width="20" height="20" className={style.infoIcon} onClick={() => { dispatch(changeInfo("Total Rooms")) }} /></a>
                         </label>
                         <div className={style.all_input_fields}>
                             <div className={style.inputFeildRow}>
@@ -317,7 +319,7 @@ const PropertyDetails: NextPage = () => {
                     <div className={style.amenitiesComponent}>
                         <label className={style.label} htmlFor="">
                             Ameneties
-                            <Icon icon="humbleicons:info-circle" width="18" height="18" onClick={() => {dispatch(changeInfo("Amenitites")) }} />
+                            <a href='#' style={{display:"flex"}}><Icon icon="humbleicons:info-circle" width="20" height="20" className={style.infoIcon} onClick={() => {dispatch(changeInfo("Amenitites")) }} /></a>
                         </label>
                         <div className={style.aminitiesDiv}>
                             {/* <AminitiesCheckbox value="Aminities" /> */}

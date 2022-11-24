@@ -14,9 +14,10 @@
 
 .popUpBg{
     display: none;
-    min-height: 100%;
-    width: 100vw;
-    position: absolute;
+    min-height: 100vh;
+    height: fit-content;
+    width: 100%;
+    position: fixed;
     top: 0px;
     display: flex;
     align-items: center;
@@ -30,7 +31,7 @@
     display: none;
     height: 102vh;
     width: 100vw;
-    position: absolute;
+    position: fixed;
     top: 0px;
     display: flex;
     align-items: center;
@@ -113,10 +114,9 @@
 .topDiv{
     display: flex;
     flex-direction: row;
-    justify-content: flex-start;
-    align-items: center;
-    padding: 12px 15px;
-    gap: 4px;
+    justify-content: space-between;
+    align-items: flex-start;
+    padding: 17px 8px;
     position: relative;
     width: 100%;
     height: 53px;
@@ -124,6 +124,16 @@
     top: 0px;
     background: #FFFFFF;
     box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.05);
+    /* border: solid 1px; */
+}
+
+.backToDash{
+    display: flex;
+    gap: 4px;
+    align-items: center;
+    margin: 0px;
+    padding: 0px;
+    height: 19px;
     font-family: 'Product Sans', sans-serif;
     font-style: normal;
     font-weight: 400;
@@ -131,6 +141,21 @@
     line-height: 16px;
     color: #012367;
     /* border: solid 1px; */
+}
+
+.topDraft{
+    width: 80px;
+    height: 16px;
+    font-family: 'Product Sans';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 16px;
+    display: flex;
+    align-items: center;
+    text-align: center;
+    color: #969696;
+    cursor: pointer;
 }
 
 .midDiv {
@@ -270,6 +295,7 @@
     width: 375px;
     /* border: solid 1px; */
     display: flex;
+    flex-direction: row-reverse;
     /* gap: 8px; */
     align-items: center;
     justify-content: space-between;
@@ -296,10 +322,12 @@
     line-height: 18px;
     text-transform: capitalize;
     color: #4F4F4F;
+    cursor: pointer;
 }
 
 .savetoDraft{
     display: none;
+    cursor: pointer;
 }
 
 .next {
@@ -325,6 +353,7 @@
     text-transform: capitalize;
     color: #FFFFFF;
     border: 0px;
+    cursor: pointer;
 }
 
 
@@ -334,12 +363,12 @@
     align-items: flex-start;
     padding: 24px;
     gap: 10px;
-    position: absolute;
+    position: fixed;
     width: 344px;
     height: 400px;
     left: 50%;
-    transform: translate(-50%,0%);
-    top:40px;
+    transform: translate(-50%,-50%);
+    top:50%;
     background: #FFFFFF;
     border-radius: 5px;
     /* border: solid 1px; */
@@ -404,6 +433,7 @@
 
 .crossButton{
     display: block;
+    cursor: pointer;
 }
 
 .infoContentDiv{
@@ -455,7 +485,7 @@
         display: block;
         height: 100%;
         width: 100vw;
-        position: absolute;
+        position: fixed;
         top: 0px;
         display: flex;
         align-items: center;
@@ -473,6 +503,38 @@
         padding-bottom: 24px;
     }
 
+    .topDiv{
+        display: flex;
+        padding:0px;
+        padding-left: 7px;
+        align-items: center;
+    }
+
+    .backToDash{
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+        padding: 0px;
+        gap: 4px;
+        height: 24px;
+        width: fit-content;
+        font-family: 'Product Sans';
+        font-style: normal;
+        font-weight: 400;
+        font-size: 1em;
+        line-height: 16px;
+        display: flex;
+        align-items: center;
+        text-align: center;
+        color: #012367;
+        /* border: solid 1px; */
+    }
+
+    .topDraft{
+        display: none;
+    }
+
     .footer{
         position: relative;
         left:0px;
@@ -487,7 +549,7 @@
         position: relative;
         top: 10%;
         display: flex;
-        flex-direction: row;
+        flex-direction: row-reverse;
         justify-content: space-between;
         align-items: flex-start;
         padding: 0px;
@@ -533,7 +595,6 @@
         width: 307px;
         height: 40px;
         flex: none;
-        order: 1;
         flex-grow: 0;
         /* border: solid 1px green; */
         /* background-color: green; */
@@ -578,13 +639,13 @@
         align-items: flex-start;
         padding: 24px;
         gap: 10px;
-        position: absolute;
+        position: fixed;
         width: 80%;
         /* min-width: 344px; */
         height: 400px;
         left: 50%;
-        transform: translate(-50%,0%);
-        top:40px;
+        transform: translate(-50%,-50%);
+        top:50%;
         background: #FFFFFF;
         border-radius: 5px;
         /* border: solid 1px; */
@@ -693,22 +754,40 @@
     .topDiv{
         display: flex;
         flex-direction: row;
-        gap: 4px;
         justify-content: flex-start;
+        align-items: center;
         position: relative;
         min-height: 78px;
         height: max-content;
         width: 100%;
         box-shadow: none;
-        font-family: 'Product Sans', sans-serif;
+        padding: 0px;
+        padding-left: 4%;
+    }
+
+    .backToDash{
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+        padding: 0px;
+        gap: 4px;
+        height: 24px;
+        width: fit-content;
+        font-family: 'Product Sans';
         font-style: normal;
         font-weight: 400;
-        font-size: 14px;
+        font-size: 1em;
         line-height: 16px;
+        display: flex;
+        align-items: center;
+        text-align: center;
         color: #012367;
-        /* border: solid; */
-        padding: 0px;
-        padding-left: 7%;
+        /* border: solid 1px; */
+    }
+
+    .topDraft{
+        display: none;
     }
 
     .midDiv{
@@ -877,7 +956,7 @@
         position: relative;
         top: 10%;
         display: flex;
-        flex-direction: row;
+        flex-direction: row-reverse;
         justify-content: space-between;
         align-items: flex-start;
         padding: 0px;
@@ -923,7 +1002,6 @@
         width: 307px;
         height: 40px;
         flex: none;
-        order: 1;
         flex-grow: 0;
         /* border: solid 1px green; */
         /* background-color: green; */
@@ -1055,7 +1133,7 @@
     }
     
     .crossButton{
-        display: block;
+        display: none;
     }
 
     .infoContentDiv{
@@ -1143,12 +1221,6 @@
         height: max-content;
         width: 100%;
         box-shadow: none;
-        font-family: 'Product Sans', sans-serif;
-        font-style: normal;
-        font-weight: 400;
-        font-size: 16px;
-        line-height: 16px;
-        color: #012367;
         padding-left: 7px;
     }
 

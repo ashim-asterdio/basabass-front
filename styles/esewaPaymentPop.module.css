@@ -20,6 +20,8 @@
     position: absolute;
     right: 20px;
     top: 20px;
+    color: #454545;
+    cursor: pointer;
 }
 
 .topDiv{
@@ -52,6 +54,12 @@
     /* border: solid 1px; */
 }
 
+.backIcon{
+    font-size:larger;
+    color: #454545;
+    cursor: pointer;
+}
+
 .midDiv{
     height: 189px;
     width: 330px;
@@ -67,7 +75,7 @@
     height: 19px;
     font-family: 'Product Sans';
     font-style: normal;
-    font-weight: 500;
+    font-weight: 400;
     font-size: 16px;
     line-height: 19px;
     color: #000000;
@@ -103,7 +111,7 @@
 }
 
 .packageDetails{
-    width: 184px;
+    width: fit-content;
     height: 19px;
     font-family: 'Product Sans';
     font-style: normal;
@@ -169,6 +177,7 @@
     border-radius: 4px;
     flex: none;
     flex-grow: 0;
+    cursor: pointer;
 }
 
 .imageDiv{
@@ -247,4 +256,5 @@
     font-size: 14px;
     line-height: 18px;
     border: none;
+    cursor: pointer;
 }

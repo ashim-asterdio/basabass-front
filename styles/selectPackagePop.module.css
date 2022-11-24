@@ -31,6 +31,7 @@
     flex: none;
     flex-grow: 0;
     z-index: 2;
+    cursor: pointer;
 }
 
 .recomended{
@@ -214,11 +215,13 @@
 
 .seperationBot{
     position: absolute;
+    height: 0px;
     left: 8.42%;
     right: 8.42%;
     top: 82.19%;
     bottom: 17.81%;
     border: 1px solid #D8D8D8;
+    background-color: #D8D8D8;
     flex: none;
     order: 3;
     flex-grow: 0;
@@ -314,6 +317,7 @@
 .seperation{
     width: 158px;
     height: 0px;
+    background-color: #D8D8D8 ;
     border: 1px solid #D8D8D8;
     flex: none;
     align-self: stretch;
@@ -406,4 +410,5 @@
     text-align: center;
     text-transform: capitalize;
     color: #012367;
+    cursor: pointer;
 }

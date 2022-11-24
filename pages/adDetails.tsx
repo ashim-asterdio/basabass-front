@@ -7,7 +7,6 @@ import {
   CustomizableInputs,
   CustomizableInputButtonsWithSelect,
 } from "../components/ui components/input/InputButtons";
-import { IoInformationCircleOutline } from "react-icons/io5";
 import Layout from '../components/Layout'
 import Head from 'next/head'
 import { useFormik } from "formik";
@@ -16,7 +15,9 @@ import { useRouter } from "next/router";
 import { useDispatch, useSelector } from 'react-redux'
 import { RootState } from '../store'
 import { increment } from "../slices/progressBarSlice";
+import { Icon } from '@iconify/react'
 import {useEffect} from "react"
+import { changeInfo } from "../slices/payPopSlice";
 
 
 
@@ -58,14 +59,16 @@ const AdDetails: NextPage = () => {
   })
   return (
     <>
-      <Layout topic="Ad Deatils" onSubmit={handleSubmit} page="3" previous={previous} info={info} next="Owner Details">
+      <Layout topic="Ad Deatils" onSubmit={handleSubmit} page="3" back=": Property Details" previous={previous} info={info} next="Owner Details">
         <div className={styles.adDetailsMainWrapper}>
           {/* <div className={styles.adDetailsLine}></div> */}
 
-          <div className={styles.adDetailsUploads} onClick={() => { setInfo("Upload Image") }}>
+          <div className={styles.adDetailsUploads}>
             <label>
               Upload Images
-              <IoInformationCircleOutline className={uiStyle.reactIconI} />
+              <a href='#' style={{display:"flex"}}>
+                <Icon icon="humbleicons:info-circle" width="20" height="20" className={styles.infoIcon} onClick={() => { dispatch(changeInfo("Upload Image")) }} />
+              </a>
             </label>
 
             <div className={styles.image}>
@@ -83,7 +86,7 @@ const AdDetails: NextPage = () => {
           <div className={styles.adDetailsYoutube} onClick={() => { setInfo("Youtube Video Link") }}>
             <label>
               Youtube Video Link
-              <IoInformationCircleOutline className={uiStyle.reactIconI} />
+              <a href='#' style={{display:"flex"}}><Icon icon="humbleicons:info-circle" width="20" height="20" className={styles.infoIcon} onClick={() => { dispatch(changeInfo("Youtube Video Link")) }} /></a>
             </label>
             <div className={styles.inputWrapper}>
               <CustomizableInputs
@@ -100,7 +103,10 @@ const AdDetails: NextPage = () => {
           <div className={styles.flexTwo}>
             <div className={styles.adDetailsTitle} onClick={() => { setInfo("Title") }}>
               <label>
-                Title <IoInformationCircleOutline className={uiStyle.reactIconI} />
+                Title
+                <a href='#' style={{display:"flex"}}>
+                  <Icon icon="humbleicons:info-circle" width="20" height="20" className={styles.infoIcon} onClick={() => { dispatch(changeInfo("Title")) }} />
+                  </a>
               </label>
               <CustomizableInputs
                 type={"text"}
@@ -114,7 +120,8 @@ const AdDetails: NextPage = () => {
 
             <div className={styles.adDetailsPrice} onClick={() => { setInfo("Price") }}>
               <label>
-                Price <IoInformationCircleOutline className={uiStyle.reactIconI} />
+                Price 
+                <a href='#' style={{display:"flex"}}><Icon icon="humbleicons:info-circle" width="20" height="20" className={styles.infoIcon} onClick={() => { dispatch(changeInfo("Price")) }} /></a>
               </label>
               
               <CustomizableInputButtonsWithSelect
@@ -137,7 +144,7 @@ const AdDetails: NextPage = () => {
           <div className={styles.adDetailsFormDescription} onClick={() => { setInfo("Description") }}>
             <label>
               Description{" "}
-              <IoInformationCircleOutline className={uiStyle.reactIconI} />
+              <a href='#' style={{display:"flex"}}><Icon icon="humbleicons:info-circle" width="20" height="20" className={styles.infoIcon} onClick={() => { dispatch(changeInfo("Description")) }} /></a>
             </label>
             <input
               className={styles.textArea}

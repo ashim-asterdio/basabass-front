@@ -37,6 +37,16 @@
     flex-grow: 0;
 }
 
+.infoIcon{
+    font-size: larger;
+    cursor:pointer;
+}
+
+.infoIcon:hover{
+    height: 25px;
+    width: 25px;
+}
+
 .locationComponent{
     display: flex;
     flex-direction: column;

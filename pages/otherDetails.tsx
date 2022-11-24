@@ -4,7 +4,6 @@ import Head from "next/head"
 import style from "../styles/otherDetails.module.css"
 import Layout from "../components/Layout"
 import SmallRadio from "../components/ui components/radio/smallRadio"
-import { HiOutlineInformationCircle } from "react-icons/hi"
 import { otherDetailsSchema } from "../components/validationSchema"
 import { useRouter } from "next/router"
 import { useState, useEffect } from "react"
@@ -12,6 +11,7 @@ import PaymentPop from '../components/paymentPopUps/paymentPop'
 import { useDispatch, useSelector } from "react-redux"
 import { RootState } from "../store"
 import { change,changeInfo,changepopUpBg } from "../slices/payPopSlice"
+import { Icon } from "@iconify/react"
 
 const OtherDetails: NextPage = () => {
     const router = useRouter();
@@ -63,11 +63,11 @@ const OtherDetails: NextPage = () => {
     return (
         <>
             <PaymentPop />
-            <Layout topic="Other Details" onSubmit={handleSubmit} page="4" previous={previous} info={info} next="">
+            <Layout topic="Other Details" onSubmit={handleSubmit} page="4" back=": Ad Detail" previous={previous} info={info} next="">
                 <div className={style.otherDetailsContainer}>
                     <div className={style.ownerInfo} >
                         <p className={style.title}>Owner Info
-                            <HiOutlineInformationCircle className={style.infoIcon} onClick={() => {dispatch(changeInfo("Owner Info")) }} />
+                            <Icon icon="humbleicons:info-circle" width="20" height="20" className={style.infoIcon} onClick={() => {dispatch(changeInfo("Owner Info")) }} />
                         </p>
                         <div className={style.ownerRadioDiv}>
                             <SmallRadio name="ownerType" value="Use my info" onChange={handleChange} />
@@ -113,7 +113,7 @@ const OtherDetails: NextPage = () => {
 
                     <div className={style.adPricingDiv} >
                         <p className={style.title}>Ad Pricing Plan
-                            <HiOutlineInformationCircle className={style.infoIcon} onClick={() => { dispatch(changeInfo("Ad Pricing Plan")) }} />
+                            <Icon icon="humbleicons:info-circle" width="20" height="20" className={style.infoIcon} onClick={() => { dispatch(changeInfo("Ad Pricing Plan")) }} />
                         </p>
                         <div className={style.adPricingRadioDiv}>
                             <SmallRadio name="adPricingtype" value="Free Listing" onChange={handleChange} />

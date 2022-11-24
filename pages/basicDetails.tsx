@@ -1,5 +1,5 @@
 import type { NextPage } from 'next'
-import { useState,useEffect } from "react"
+import { useState, useEffect } from "react"
 import Head from 'next/head'
 import style from '../styles/basicDetail.module.css'
 import SmallRadio from '../components/ui components/radio/smallRadio'
@@ -39,17 +39,21 @@ const BasicDetail: NextPage = () => {
       router.push('/propertyDetails');
     }
   })
-  
-  
-  
+
+
+
 
   return (
     <>
 
-      <Layout onSubmit={handleSubmit} topic="Basic Details" page="1" previous={"none"} info={info} next="Area & Address">
+      <Layout onSubmit={handleSubmit} topic="Basic Details" page="1" back="none" previous="none" info={info} next=" :Property Detail">
         <div className={style.basicDetailWrapper}>
           <div className={style.adCategoryDiv} >
-            <p className={style.topic}>Ad Category <Icon icon="humbleicons:info-circle" width="18" height="18" className={style.infoIcon} onClick={() => { setInfo("Ad Category") ;dispatch(changeInfo(info))}} /></p>
+            <p className={style.topic}>Ad Category
+              <a style={{ display: "flex" }} href='#' onClick={() => { dispatch(changeInfo("Ad Category")) }}>
+                <Icon icon="humbleicons:info-circle" width="20" height="20" className={style.infoIcon} />
+              </a>
+            </p>
             <div className={style.radioDiv}>
               <SmallRadio value="Sale" name="adCategory" onChange={handleChange} />
               <SmallRadio value="Rent" name="adCategory" onChange={handleChange} />
@@ -59,20 +63,29 @@ const BasicDetail: NextPage = () => {
           </div>
 
           <div className={style.propertyTypeDiv} >
-            <p className={style.topic}>Property Type <Icon icon="humbleicons:info-circle" width="18" height="18" className={style.infoIcon} onClick={() => { setInfo("Property Type") ;dispatch(changeInfo(info))}} /> </p>
+            <p className={style.topic}>
+              Property Type
+              <a style={{ display: "flex" }} href='#' onClick={() => { dispatch(changeInfo("Property Type")) }} >
+                <Icon icon="humbleicons:info-circle" width="20" height="20" className={style.infoIcon} />
+              </a>
+            </p>
 
             <div className={style.propertyTypeDivRow}>
-              <RectangleRadio icon={<Icon icon="bx:home" width="16" height="18" inline={true} />} value="Residential" onChange={handleChange} />
-              <RectangleRadio icon={<Icon icon="icon-park-outline:building-two" width="16" height="18" inline={true} />}
-               value="Commercial" onChange={handleChange} />
+              <RectangleRadio icon={<Icon icon="bx:home" width="20" height="20" inline={true} />} value="Residential" onChange={handleChange} />
+              <RectangleRadio icon={<Icon icon="icon-park-outline:building-two" width="16" height="20" inline={true} />}
+                value="Commercial" onChange={handleChange} />
               <RectangleRadio icon={<Icon icon="icon-park-outline:landscape" width="16" height="18" inline={true} />}
-               value="Agricultural" onChange={handleChange} />
+                value="Agricultural" onChange={handleChange} />
               {errors.propertyType && <span className={style.error}>{errors.propertyType}</span>}
             </div>
           </div>
 
           <div className={style.propertyCategoryDiv} >
-            <p className={style.topic}>Porperty Category<Icon icon="humbleicons:info-circle" width="18" height="18" className={style.infoIcon} onClick={() => { setInfo("Property Category") ;dispatch(changeInfo(info))}} /></p>
+            <p className={style.topic}>Porperty Category
+              <a style={{ display: "flex" }} href='#' onClick={() => { dispatch(changeInfo("Property Category")) }}>
+                <Icon icon="humbleicons:info-circle" width="20" height="20" className={style.infoIcon} />
+              </a>
+            </p>
             <div className={style.propertyCategoryRow} >
               <SquareRadio value="House" icon={<Icon icon="bx:home" width="18" height="18" inline={true} />} onChange={handleChange} />
               <SquareRadio value="Land" icon={<Icon icon="bx:home" width="18" height="18" inline={true} />} onChange={handleChange} />

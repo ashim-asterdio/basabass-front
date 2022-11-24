@@ -134,7 +134,7 @@ const SelectPackagePop = (props: any) => {
                             <span className={style.packageName}>Titanium</span>
                             <span className={style.packagePrice}>
                                 <span className={style.before}></span>
-                                <span className={style.current}>Contact Sale</span>
+                                <span className={style.current}>Contact Sales</span>
                             </span>
                         </div>
                         <hr className={style.seperation} />
@@ -148,7 +148,7 @@ const SelectPackagePop = (props: any) => {
                         </div>
                     </div>
                     <div className={style.buttonDiv}>
-                        <button className={style.button} onClick={()=>{sendInfo("Titanium","15,000")}}>Select & Continue</button>
+                        <button className={style.button} onClick={()=>{sendInfo("Titanium","15,000")}}>Contact Sales</button>
                     </div>
                 </div>
             </div>

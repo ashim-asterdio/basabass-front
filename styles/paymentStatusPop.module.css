@@ -22,6 +22,7 @@
     position: absolute;
     right: 16px;
     top: 14px;
+    cursor: pointer;
 }
 
 .iconDiv{

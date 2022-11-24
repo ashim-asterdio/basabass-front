@@ -13,17 +13,17 @@ const EsewaPaymantPop = () => {
 
     return (
         <div className={style.popContainer}>
-            <Icon icon="radix-icons:cross-2" width="20" height="20" className={style.crossButton} onClick={() => { dispatch(change());dispatch(changePopUpPage(1))}} />
+            <Icon icon="radix-icons:cross-2" width="24" height="24" className={style.crossButton} onClick={() => { dispatch(change());dispatch(changePopUpPage(1))}} />
 
             <div className={style.topDiv}>
-                <Icon icon="ic:round-chevron-left" width="24" height="24" onClick={() => {dispatch(changePopUpPage(1))}} />
+                <Icon icon="ph:caret-left-bold" width="24" height="24" inline={true} className={style.backIcon} onClick={() => {dispatch(changePopUpPage(1))}} />
                 <div className={style.topic}>Billing Summary</div>
             </div>
             <div className={style.midDiv}>
                 <div className={style.selectPlanDiv}>
-                    <label className={style.labels}>Select Plan</label>
+                    <label className={style.labels}>Selected Plan</label>
                     <div className={style.packageDetailsDiv}>
-                        <p className={style.packageDetails}>{packageInfo.name}<b className={style.anotherPlan}>(Choose another plan)</b></p>
+                        <p className={style.packageDetails}>{packageInfo.name} <b className={style.anotherPlan}>(Choose another plan)</b></p>
                         <p className={style.packagePrice}>Rs. {packageInfo.price}</p>
                     </div>
                 </div>

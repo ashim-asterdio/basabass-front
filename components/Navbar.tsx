@@ -22,11 +22,11 @@ const Navbar: NextPage = () => {
           <div className={style.linkDiv}>
             {
               links.map((data: any) =>
-                <span key={data} className={style.links}>
-                  <Link href="#">
+                <Link key={data} href="#">
+                  <a href="#" className={style.links}>
                     <span className={style.linksData}>{data}</span>
-                  </Link>
-                </span>
+                  </a>
+                </Link>
               )
             }
           </div>
