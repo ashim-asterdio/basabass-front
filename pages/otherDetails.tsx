@@ -63,7 +63,7 @@ const OtherDetails: NextPage = () => {
     return (
         <>
             <PaymentPop />
-            <Layout topic="Other Details" onSubmit={handleSubmit} page="4" back=": Ad Detail" previous={previous} info={info} next=" : Save & Continue">
+            <Layout topic="Other Details" onSubmit={handleSubmit} page="4" back=": Ad Detail" previous={previous} info={info} next=": Save & Continue">
                 <div className={style.otherDetailsContainer}>
                     <div className={style.ownerInfo} >
                         <p className={style.title}>Owner Info

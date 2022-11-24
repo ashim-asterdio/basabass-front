@@ -11,7 +11,7 @@ const SmallRadio = (props:any) => {
                 onChange={props.onChange} />
                 <span className={style.checkmark}></span> 
             </label>
-            <p>{props.value}</p>
+            <p style={{fontSize:"14px"}}>{props.value}</p>
         </label>
     </>
   )

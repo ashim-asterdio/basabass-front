@@ -59,7 +59,7 @@ const AdDetails: NextPage = () => {
   })
   return (
     <>
-      <Layout topic="Ad Deatils" onSubmit={handleSubmit} page="3" back=": Property Details" previous={previous} info={info} next="Owner Details">
+      <Layout topic="Ad Details" onSubmit={handleSubmit} page="3" back=": Property Details" previous={previous} info={info} next=" : Owner Details">
         <div className={styles.adDetailsMainWrapper}>
           {/* <div className={styles.adDetailsLine}></div> */}
 

@@ -77,7 +77,7 @@ const PropertyDetails: NextPage = () => {
     return (
         <>
             {/* <DigitalPaymentPop /> */}
-            <Layout onSubmit={handleSubmit} topic="Property Details" page="2" back=": Basic Details" previous={previous} info={info} next="Ad Details">
+            <Layout onSubmit={handleSubmit} topic="Property Details" page="2" back=": Basic Details" previous={previous} info={info} next=" : Ad Details">
                 <div className={style.propertydetails_container}>
 
                     <div className={style.locationComponent}>
