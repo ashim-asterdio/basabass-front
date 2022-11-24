@@ -346,7 +346,7 @@
     flex-grow: 1;
     font-family: 'Product Sans';
     font-style: normal;
-    font-weight: 700;
+    font-weight: 400;
     font-size: 14px;
     line-height: 18px;
     text-align: center;
@@ -904,7 +904,7 @@
         font-weight: 700;
         font-size: 16px;
         line-height: 22px;
-        text-transform: uppercase;
+        /* text-transform: uppercase; */
         color: #000000;
         flex: none;
         flex-grow: 0;

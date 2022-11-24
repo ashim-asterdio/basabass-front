@@ -126,8 +126,8 @@ const PropertyDetails: NextPage = () => {
                             <div className={style.inputFeildRow}>
                                 <div className={style.dropdown_only}>
                                     <select
-                                        name="areaMetric" onChange={handleChange} placeholder="Area Metric">
-                                        <option value="A" selected disabled>Area Metric</option>
+                                        name="areaMetric" onChange={handleChange} placeholder="Select Area Metric">
+                                        <option value="A" selected disabled>Select Area Metric</option>
                                         <option value="Aana">Aana</option>
                                     </select>
                                     {errors.areaMetric && <span className={style.error}>{errors.areaMetric}</span>}

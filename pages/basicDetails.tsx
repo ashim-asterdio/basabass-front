@@ -91,7 +91,7 @@ const BasicDetail: NextPage = () => {
               <SquareRadio value="Land" icon={<Icon icon="bx:home" width="18" height="18" inline={true} />} onChange={handleChange} />
               <SquareRadio value="Flat" icon={<Icon icon="bx:home" width="18" height="18" inline={true} />} onChange={handleChange} />
               <SquareRadio value="Apartment" icon={<Icon icon="bx:home" width="18" height="18" inline={true} />} onChange={handleChange} />
-              <SquareRadio value="Buginess" icon={<Icon icon="bx:home" width="18" height="18" inline={true} />} onChange={handleChange} />
+              <SquareRadio value="Business" icon={<Icon icon="bx:home" width="18" height="18" inline={true} />} onChange={handleChange} />
               <SquareRadio value="Office" icon={<Icon icon="bx:home" width="18" height="18" inline={true} />} onChange={handleChange} />
             </div>
             {errors.propertyCategory && <span className={style.error}>{errors.propertyCategory}</span>}

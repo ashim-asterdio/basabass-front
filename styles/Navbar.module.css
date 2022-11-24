@@ -21,9 +21,10 @@
     align-items: center;
     justify-content: space-between;
     padding: 0px;
-    /* gap: calc(40*100%/740); */
-    width: 53%;    /* 740px */
-    max-width: 740px;
+    gap: calc(40*100%/740);
+    min-width: 53%;/* 740px */
+    width: fit-content;    
+    /* max-width: 740px; */
     height: 43px;
     flex: none;
     order: 0;
