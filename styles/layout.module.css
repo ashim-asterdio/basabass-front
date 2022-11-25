@@ -335,6 +335,12 @@
 .savetoDraft{
     display: none;
     cursor: pointer;
+    transition-duration: 0.3s;
+}
+
+.savetoDraft:hover{
+    text-decoration: underline;
+    color: #000000;
 }
 
 .next {
@@ -361,6 +367,13 @@
     color: #FFFFFF;
     border: 0px;
     cursor: pointer;
+    transition-delay: 0.1s;  
+    transition-duration: 0.3s;
+}
+
+.next:hover{
+    opacity: 0.8;
+    background: #012367;
 }
 
 .buttonValue{

@@ -87,6 +87,7 @@
     font-size: 14px;
     line-height: 16px;
     color: #333333;
+    cursor: pointer;
 }
 
 .customRadio input:checked + .customRadio {
@@ -159,8 +160,7 @@
     /* border: 1px solid ; */
 }
 
-.propertyTypeCard{
-    
+.propertyTypeCard{  
     width: 164px;
     height: 42px;
     border-radius: 5px;
@@ -173,6 +173,13 @@
     line-height: 16px;
     align-items: center;
     color: #333333;
+    cursor: pointer;
+    transition-duration: 0.3s;
+}
+
+.propertyTypeCard:hover{
+    background-color: #3366FF;
+    opacity: 0.8;
 }
 
 .propertyTypeCard div{
@@ -233,7 +240,13 @@
     width: 105.33px;
     height: 56px; 
     border-radius: 5px;
-    
+    transition-duration: 0.3s;
+    cursor: pointer; 
+}
+
+.propertyCategoryCard:hover{
+    background-color: #3366FF;
+    opacity: 0.8;
 }
 
 .propertyCategoryCard div{

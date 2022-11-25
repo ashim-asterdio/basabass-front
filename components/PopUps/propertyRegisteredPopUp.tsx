@@ -1,7 +1,7 @@
 import style from "../../styles/propertyRegisteredPopUp.module.css"
 import { useDispatch, useSelector } from "react-redux"
 import { Icon } from "@iconify/react"
-import { change, changepopUpBg, changeRegistrationStatus } from "../../slices/payPopSlice"
+import { change, changePaymentStatus, changepopUpBg, changeRegistrationStatus } from "../../slices/payPopSlice"
 import Image from "next/image"
 import webImage from "../../Images/propertyAddedImage.svg"
 import { RootState } from "../../store"
@@ -12,13 +12,12 @@ const PropertyRegisteredPopUp = () => {
   const done=()=>{
     dispatch(changepopUpBg())
     dispatch(changeRegistrationStatus(false))
+    dispatch(changePaymentStatus(false))
   }
 
   return (
     <div className={style.mainContainer} style={{display:reg?"block":"none"}}>
-      <Icon icon="radix-icons:cross-2" width="24" height="24" className={style.crossButton}
-      onClick={done}
-      />
+      <Icon icon="radix-icons:cross-2" width="24" height="24" className={style.crossButton} onClick={done}/>
       
       <div className={style.imageDiv}>
         <Image src={webImage} alt="no image" />

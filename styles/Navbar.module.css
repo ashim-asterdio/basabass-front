@@ -70,6 +70,14 @@
     flex: none;
     flex-grow: 0;
     /* border: solid 1px; */
+    transition-duration: 0.3s;
+}
+
+.links:hover{
+    text-decoration: underline;
+    color: #000000;
+    background-color: lightblue;
+    opacity: 0.9;
 }
 
 .linksData{
@@ -114,10 +122,15 @@
     height: 40px;
     flex: none;
     flex-grow: 0;
+    transition-duration: 0.3s;
     cursor: pointer;
     /* margin-top: 1.5px;
     margin-bottom: 1.5px; */
     /* border: solid 1px; */
+}
+
+.searchIcon:hover{
+    opacity: 0.7;
 }
 
 .buttonDiv{
@@ -152,6 +165,12 @@
     order: 0;
     flex-grow: 0;
     cursor: pointer;
+    transition-duration: 0.3s;
+}
+
+.blueButton:hover{
+    opacity: 0.8;
+    background: #012367;
 }
 
 .blueButton p{
