@@ -3,13 +3,17 @@ import { Icon } from "@iconify/react"
 import Image from "next/image"
 import eSewa from "../../Images/eSewa.svg"
 import { useDispatch,useSelector } from "react-redux"
-import { change, changePopUpPage } from "../../slices/payPopSlice"
+import { change, changePaymentStatus, changepopUpBg, changePopUpPage } from "../../slices/payPopSlice"
 import { RootState } from "../../store"
 
 const EsewaPaymantPop = () => {
 
     const dispatch=useDispatch()
     const packageInfo=useSelector((state: RootState) => state.payPop.packageInfo)
+    const confirm=()=>{
+        dispatch(changePopUpPage(3))
+        dispatch(changePaymentStatus(true))
+    }
 
     return (
         <div className={style.popContainer}>
@@ -42,7 +46,7 @@ const EsewaPaymantPop = () => {
                 <p className={style.totalPayAmount}>Rs. {packageInfo.price}</p>
             </div>
 
-            <button className={style.confirmButton} onClick={()=>{dispatch(changePopUpPage(3))}} >Confirm</button>
+            <button className={style.confirmButton} onClick={confirm} >Confirm</button>
             
         </div>
     )

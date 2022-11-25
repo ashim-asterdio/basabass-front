@@ -6,7 +6,9 @@ export interface PopUpState {
   information:string,
   popUpBg:boolean,
   popUpPage:number,
-  packageInfo:{name:string,price:any}
+  packageInfo:{name:string,price:any},
+  paymentStatus:boolean,
+  registrationStatus:boolean
 }
 
 const initialState: PopUpState = {
@@ -14,7 +16,9 @@ const initialState: PopUpState = {
   information:"",
   popUpBg:false,
   popUpPage:1,
-  packageInfo:{name:"",price:0}
+  packageInfo:{name:"",price:0},
+  paymentStatus:false,
+  registrationStatus:false
 }
 
 export const payPopSlice = createSlice({
@@ -37,10 +41,16 @@ export const payPopSlice = createSlice({
     changePackageInfo:(state, action: PayloadAction<{name:string,price:any}>)=>{
       state.packageInfo=action.payload
     },
+    changeRegistrationStatus:(state,action: PayloadAction<boolean>)=>{
+      state.registrationStatus=action.payload
+    },
+    changePaymentStatus:(state,action: PayloadAction<boolean>)=>{
+      state.paymentStatus=action.payload
+    }
   },
 })
 
 // Action creators are generated for each case reducer function
-export const {change,changeInfo,changepopUpBg,changePopUpPage,changePackageInfo} =payPopSlice.actions
+export const {change,changeInfo,changepopUpBg,changePopUpPage,changePackageInfo,changeRegistrationStatus,changePaymentStatus} =payPopSlice.actions
 
 export default payPopSlice.reducer

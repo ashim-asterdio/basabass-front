@@ -8,9 +8,10 @@ import { otherDetailsSchema } from "../components/validationSchema"
 import { useRouter } from "next/router"
 import { useState, useEffect } from "react"
 import PaymentPop from '../components/paymentPopUps/paymentPop'
+import PropertyRegisteredPopUp from "../components/PopUps/propertyRegisteredPopUp"
 import { useDispatch, useSelector } from "react-redux"
 import { RootState } from "../store"
-import { change,changeInfo,changepopUpBg } from "../slices/payPopSlice"
+import { change,changeInfo,changePaymentStatus,changepopUpBg, changeRegistrationStatus } from "../slices/payPopSlice"
 import { Icon } from "@iconify/react"
 
 const OtherDetails: NextPage = () => {
@@ -18,9 +19,9 @@ const OtherDetails: NextPage = () => {
     const dispatch = useDispatch();
 
     const [info, setInfo] = useState("");
-    const [pay, setPay] = useState(false);
+    // const [pay, setPay] = useState(false);
     const page = useSelector((state: RootState) => state.progressBar.value)
-
+    const pay = useSelector((state: RootState) => state.payPop.paymentStatus)
 
 
     // useEffect(() => {
@@ -54,14 +55,28 @@ const OtherDetails: NextPage = () => {
             console.log(initialValues)
             if (values.adPricingtype == "Paid Listing")
             {
-                dispatch(change())
                 
+                if(pay)
+                {
+                    dispatch(changepopUpBg())
+                    dispatch(changeRegistrationStatus(true))
+                }
+                else
+                {
+                    dispatch(change())
+                }
+            }
+            else
+            {   
+                dispatch(changepopUpBg())
+                dispatch(changeRegistrationStatus(true))
             }
                 
         }
     })
     return (
         <>
+            <PropertyRegisteredPopUp/>
             <PaymentPop />
             <Layout topic="Other Details" onSubmit={handleSubmit} page="4" back=": Ad Detail" previous={previous} info={info} next=": Save & Continue">
                 <div className={style.otherDetailsContainer}>

@@ -5,13 +5,15 @@ import SelectPackagePop from "../components/paymentPopUps/selectPackagePop"
 import PaymentStatusPop from "../components/paymentPopUps/paymentStatusPop"
 import ProgressBar from '../components/ui components/progressBar'
 import { Icon } from '@iconify/react';
+import PropertyRegisteredPopUp from '../components/PopUps/propertyRegisteredPopUp'
 
 
 const test:NextPage = ()=> {
   return (
     <>
         {/* <Icon icon="icon-park-outline:building-two" width="16" height="18" inline={true} /> */}
-        <SelectPackagePop />
+        {/* <SelectPackagePop /> */}
+        <PropertyRegisteredPopUp/>
         {/* <PaymentStatusPop /> */}
       
     </>

@@ -46,7 +46,7 @@
 } */
 
 .navBlend{
-    position:absolute;
+    position:fixed;
     top:0%;
     display: flex;
     flex-direction: row;
@@ -100,6 +100,7 @@
 
 
 .sideProgress{
+    position: sticky;
     width: 100%;
     height: fit-content;
     display: flex;
@@ -107,7 +108,7 @@
     /* justify-content: center; */
     gap: 12px;
     align-items: center;
-    /* border: solid ; */
+    /* border: solid 1px; */
     
 }
 
@@ -220,6 +221,7 @@
     position: relative;
     width: 92%;
     height: fit-content;
+    /* overflow: hidden; */
 }
 
 .mainBotDiv{
@@ -239,6 +241,7 @@
     flex-direction: column;
     /* min-height: 615px; */
     height: fit-content;
+    /* overflow-y: scroll; */
 }
 
 .mainContentDiv{
@@ -693,6 +696,13 @@
 }
 
 
+
+
+
+
+
+
+
 @media only screen and (min-width: 1024px){
 
     .alignmentContainer{
@@ -703,6 +713,7 @@
         justify-content: flex-start;
         align-items: center;
         background: #F5F7F9;
+        
     }
 
     .popUpMobileBg{
@@ -714,7 +725,7 @@
     }
     
     .navBlend{
-        position: relative;
+        position: sticky;
         width: 100%;
         height:67px ;
         background:#FFFFFF ;
@@ -766,6 +777,7 @@
     }
 
     .sideProgress{
+        position: sticky;
         width: calc((240*100%/1440));
         height: 735px;
         background: #FFFFFF;
@@ -848,7 +860,7 @@
     .mainDiv{
         width: calc(1200*100%/1440);
         min-height: 708px;
-        height: max-content;
+        height: fit-content;
         /* background-color: gray; */
         z-index: 2;
         /* border: solid ; */
@@ -901,7 +913,7 @@
         position: relative;
         width: calc(753*100%/1200);
         min-height: 615px;
-        height: max-content;
+        height: fit-content;
         background: #FFFFFF;
         border-radius: 5px;
         /* border: solid red; */
