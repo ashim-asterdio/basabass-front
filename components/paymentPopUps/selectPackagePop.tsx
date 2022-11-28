@@ -13,16 +13,16 @@ const SelectPackagePop = (props: any) => {
     const dispatch = useDispatch();
     const status = useSelector((state: RootState) => state.payPop.value)
     const list = ["30 Days Validation", "Number of Listing:1", "Mobile number of all response", "High position in"]
-    const sendInfo=(name:string,price:any)=>{
+    const sendInfo=(name:string,price:any,price2:any)=>{
         dispatch(changePopUpPage(2))
-        dispatch(changePackageInfo({name:name,price:price}))
+        dispatch(changePackageInfo({name:name,price:price,price2:price2}))
     }
 
     return (
         <div className={style.container} >
             <Icon icon="radix-icons:cross-2" width="20" height="20" className={style.crossButton} onClick={() => { dispatch(change());dispatch(changePopUpPage(1))}} />
             <label className={style.textDiv}>
-                <span className={style.bigText}>Select paid plans to get more response</span>
+                <span className={style.bigText}>Select paid plans to get more responses</span>
                 <span className={style.smallText}>Here are different plans with exciting offers.</span>
             </label>
 
@@ -55,7 +55,7 @@ const SelectPackagePop = (props: any) => {
                         </div>
                     </div>
                     <div className={style.buttonDiv}>
-                        <button className={style.button} onClick={()=>{sendInfo("Silver","1,000")}}>Select & Continue</button>
+                        <button className={style.button} onClick={()=>{sendInfo("Silver","1000","1,000")}}>Select & Continue</button>
                     </div>
                 </div>
 
@@ -86,7 +86,7 @@ const SelectPackagePop = (props: any) => {
                         </div>
                     </div>
                     <div className={style.buttonDiv}>
-                        <button className={style.button} onClick={()=>{sendInfo("Gold","3,500")}}>Select & Continue</button>
+                        <button className={style.button} onClick={()=>{sendInfo("Gold","3500","3,500")}}>Select & Continue</button>
                     </div>
                 </div>
 
@@ -117,7 +117,7 @@ const SelectPackagePop = (props: any) => {
                         </div>
                     </div>
                     <div className={style.buttonDiv}>
-                        <button className={style.button} onClick={()=>{sendInfo("Platinium","10,500")}}>Select & Continue</button>
+                        <button className={style.button} onClick={()=>{sendInfo("Platinium","10500","10,500")}}>Select & Continue</button>
                     </div>
                 </div>
 
@@ -148,7 +148,7 @@ const SelectPackagePop = (props: any) => {
                         </div>
                     </div>
                     <div className={style.buttonDiv}>
-                        <button className={style.button} onClick={()=>{sendInfo("Titanium","15,000")}}>Contact Sales</button>
+                        <button className={style.button} onClick={()=>{sendInfo("Titanium","15000","15,000")}}>Contact Sales</button>
                     </div>
                 </div>
             </div>

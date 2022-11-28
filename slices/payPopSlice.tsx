@@ -6,7 +6,7 @@ export interface PopUpState {
   information:string,
   popUpBg:boolean,
   popUpPage:number,
-  packageInfo:{name:string,price:any},
+  packageInfo:{name:string,price:any,price2:any},
   paymentStatus:boolean,
   registrationStatus:boolean
 }
@@ -16,7 +16,7 @@ const initialState: PopUpState = {
   information:"",
   popUpBg:false,
   popUpPage:1,
-  packageInfo:{name:"",price:0},
+  packageInfo:{name:"",price:0,price2:""},
   paymentStatus:false,
   registrationStatus:false
 }
@@ -38,7 +38,7 @@ export const payPopSlice = createSlice({
     changePopUpPage:(state, action: PayloadAction<number>)=>{
       state.popUpPage=action.payload
     },
-    changePackageInfo:(state, action: PayloadAction<{name:string,price:any}>)=>{
+    changePackageInfo:(state, action: PayloadAction<{name:string,price:any,price2:any}>)=>{
       state.packageInfo=action.payload
     },
     changeRegistrationStatus:(state,action: PayloadAction<boolean>)=>{

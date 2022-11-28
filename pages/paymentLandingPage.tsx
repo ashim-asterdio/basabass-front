@@ -11,12 +11,20 @@ import PaymentPop from '../components/paymentPopUps/paymentPop'
 import PropertyRegisteredPopUp from "../components/PopUps/propertyRegisteredPopUp"
 import { useDispatch, useSelector } from "react-redux"
 import { RootState } from "../store"
-import { change,changeInfo,changePaymentStatus,changepopUpBg, changeRegistrationStatus } from "../slices/payPopSlice"
+import { change,changeInfo,changePaymentStatus,changepopUpBg, changePopUpPage, changeRegistrationStatus } from "../slices/payPopSlice"
 import { Icon } from "@iconify/react"
+import { incrementByAmount } from "../slices/progressBarSlice"
+import PaymentStatusPop from "../components/paymentPopUps/paymentStatusPop"
 
-const OtherDetails: NextPage = () => {
-    const router = useRouter();
+const PaymentLandingPage: NextPage = () => {
+ const router = useRouter();
     const dispatch = useDispatch();
+
+    dispatch(incrementByAmount(4))
+    dispatch(changePaymentStatus(true))
+    dispatch(change())
+    dispatch(changePopUpPage(3))
+    
 
     const [info, setInfo] = useState("");
     // const [pay, setPay] = useState(false);
@@ -24,17 +32,6 @@ const OtherDetails: NextPage = () => {
     const pay = useSelector((state: RootState) => state.payPop.paymentStatus);
     const id = router.query
     console.log(id) 
-
-
-    // useEffect(() => {
-    //     try {
-    //         if (page == 1)
-    //             router.push('/basicDetails')
-    //     }
-    //     catch {
-    //         console.log("milena")
-    //     }
-    // })
 
     const previous = (e: Event) => {
         e.preventDefault()
@@ -50,11 +47,8 @@ const OtherDetails: NextPage = () => {
     }
     const { values, errors, touched, handleSubmit, handleChange } = useFormik({
         initialValues: initialValues,
-        validationSchema: otherDetailsSchema,
+        // validationSchema: otherDetailsSchema,
         onSubmit: async (values, formikHelpers) => {
-            console.log("call Ad Details")
-            console.log(values)
-            console.log(initialValues)
             if (values.adPricingtype == "Paid Listing")
             {
                 if(pay)
@@ -79,7 +73,7 @@ const OtherDetails: NextPage = () => {
     return (
         <>
             <PropertyRegisteredPopUp/>
-            <PaymentPop />
+            <PaymentStatusPop />
             <Layout topic="Other Details" onSubmit={handleSubmit} page="4" back=": Ad Detail" previous={previous} info={info} next=": Save & Continue">
                 <div className={style.otherDetailsContainer}>
                     <div className={style.ownerInfo} >
@@ -144,4 +138,4 @@ const OtherDetails: NextPage = () => {
     )
 }
 
-export default OtherDetails
+export default PaymentLandingPage

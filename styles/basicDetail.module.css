@@ -174,12 +174,15 @@
     align-items: center;
     color: #333333;
     cursor: pointer;
-    transition-duration: 0.3s;
+    transition-duration: 0.1s;
 }
 
 .propertyTypeCard:hover{
-    background-color: #3366FF;
-    opacity: 0.8;
+    /* background-color: #3366FF; */
+    color:#3366FF ;
+    font-weight: 800;
+    border: solid 2px;
+    /* opacity: 1; */
 }
 
 .propertyTypeCard div{
@@ -245,8 +248,15 @@
 }
 
 .propertyCategoryCard:hover{
-    background-color: #3366FF;
+    /* background-color: rgb(0, 29, 158); */
+    /* color: white; */
+    border: solid #0000FF 2px;
     opacity: 0.8;
+}
+
+.propertyCategoryCard:hover p{
+    /* color: white; */
+    font-weight: 800;
 }
 
 .propertyCategoryCard div{
