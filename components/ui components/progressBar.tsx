@@ -80,7 +80,7 @@ const ProgressBar = (props:any) => {
                 </div>
                 <hr className={style.firstProgressLine} style={styleLine1} />
             </div>
-            <div className={style.descriptionDiv}>Basic Details</div>
+            <div className={style.descriptionDiv} style={{fontWeight:props.page==1?"700":"400"}}>Basic Details</div>
         </div>
 
         <div className={style.progressSteps}>
@@ -92,7 +92,7 @@ const ProgressBar = (props:any) => {
                     </div>
                 </div>
             </div>
-            <div className={style.descriptionDiv}>Property Details</div>
+            <div className={style.descriptionDiv} style={{fontWeight:props.page==2?"700":"400"}}>Property Details</div>
         </div>
 
         <div className={style.progressSteps}>
@@ -104,7 +104,7 @@ const ProgressBar = (props:any) => {
                     </div>
                 </div>
             </div>
-            <div className={style.descriptionDiv}>Ad Details</div>
+            <div className={style.descriptionDiv} style={{fontWeight:props.page==3?"700":"400"}}>Ad Details</div>
         </div>
 
         <div className={style.progressSteps}>
@@ -117,7 +117,7 @@ const ProgressBar = (props:any) => {
                 </div>
                 
             </div>
-            <div className={style.descriptionDiv}>Other Details</div>
+            <div className={style.descriptionDiv} style={{fontWeight:props.page==4?"700":"400"}}>Other Details</div>
         </div>
     </>
   )
