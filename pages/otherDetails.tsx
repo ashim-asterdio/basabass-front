@@ -6,7 +6,7 @@ import Layout from "../components/Layout"
 import SmallRadio from "../components/ui components/radio/smallRadio"
 import { otherDetailsSchema } from "../components/validationSchema"
 import { useRouter } from "next/router"
-import { useState, useEffect } from "react"
+import { useState, useEffect,useRef } from "react"
 import PaymentPop from '../components/paymentPopUps/paymentPop'
 import PropertyRegisteredPopUp from "../components/PopUps/propertyRegisteredPopUp"
 import { useDispatch, useSelector } from "react-redux"
@@ -25,16 +25,20 @@ const OtherDetails: NextPage = () => {
     const id = router.query
     console.log(id) 
 
-
-    // useEffect(() => {
-    //     try {
-    //         if (page == 1)
-    //             router.push('/basicDetails')
-    //     }
-    //     catch {
-    //         console.log("milena")
-    //     }
-    // })
+    const firstRender=useRef(true)
+    useEffect(() => {
+        if (firstRender.current){
+            firstRender.current=false
+            document.title="Other Details"
+        }
+        // try {
+        //     if (page == 1)
+        //         router.push('/basicDetails')
+        // }
+        // catch {
+        //     console.log("milena")
+        // }
+    })
 
     const previous = (e: Event) => {
         e.preventDefault()

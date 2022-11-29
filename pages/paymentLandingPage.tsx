@@ -6,7 +6,7 @@ import Layout from "../components/Layout"
 import SmallRadio from "../components/ui components/radio/smallRadio"
 import { otherDetailsSchema } from "../components/validationSchema"
 import { useRouter } from "next/router"
-import { useState, useEffect } from "react"
+import { useState, useEffect,useRef } from "react"
 import PaymentPop from '../components/paymentPopUps/paymentPop'
 import PropertyRegisteredPopUp from "../components/PopUps/propertyRegisteredPopUp"
 import { useDispatch, useSelector } from "react-redux"
@@ -15,15 +15,30 @@ import { change,changeInfo,changePaymentStatus,changepopUpBg, changePopUpPage, c
 import { Icon } from "@iconify/react"
 import { incrementByAmount } from "../slices/progressBarSlice"
 import PaymentStatusPop from "../components/paymentPopUps/paymentStatusPop"
+// import {}
 
 const PaymentLandingPage: NextPage = () => {
  const router = useRouter();
     const dispatch = useDispatch();
 
-    dispatch(incrementByAmount(4))
-    dispatch(changePaymentStatus(true))
-    dispatch(change())
-    dispatch(changePopUpPage(3))
+    const isClient=():boolean=>{
+        if (typeof window!=="undefined")
+         return(false)
+        else 
+         return true
+    }
+    
+    const firstRender=useRef(true)
+    useEffect(()=>{
+        if (firstRender.current){
+            firstRender.current=false
+            dispatch(incrementByAmount(4))
+            dispatch(changePaymentStatus(true))
+            dispatch(change())
+            document.title="Payment Status"
+        }
+    })
+    // dispatch(changePopUpPage(3))
     
 
     const [info, setInfo] = useState("");
@@ -49,23 +64,31 @@ const PaymentLandingPage: NextPage = () => {
         initialValues: initialValues,
         // validationSchema: otherDetailsSchema,
         onSubmit: async (values, formikHelpers) => {
-            if (values.adPricingtype == "Paid Listing")
+            // if (values.adPricingtype == "Paid Listing")
+            // {
+            //     if(pay)
+            //     {
+            //         dispatch(changepopUpBg())
+            //         dispatch(changeRegistrationStatus(true))
+            //     }
+            //     else
+            //     {
+            //         dispatch(change())
+            //     }
+            // }
+            // else
+            // {   
+            //     dispatch(changepopUpBg())
+            //     dispatch(changeRegistrationStatus(true))
+            // } 
+            if (pay)
             {
-                if(pay)
-                {
-                    dispatch(changepopUpBg())
-                    dispatch(changeRegistrationStatus(true))
-                }
-                else
-                {
-                    dispatch(change())
-                }
-            }
-            else
-            {   
                 dispatch(changepopUpBg())
                 dispatch(changeRegistrationStatus(true))
-            } 
+            }
+            else{
+                router.push('/otherDetails')
+            }
                 
         }
     })

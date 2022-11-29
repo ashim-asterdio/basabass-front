@@ -9,7 +9,7 @@ import { useRouter } from 'next/router'
 import { useDispatch, useSelector } from 'react-redux'
 import { RootState } from '../store'
 import { increment } from "../slices/progressBarSlice";
-import { useState, useEffect } from "react"
+import { useState, useEffect,useRef } from "react"
 import { changeInfo } from '../slices/payPopSlice'
 import { Icon } from '@iconify/react'
 
@@ -19,6 +19,12 @@ const PropertyDetails: NextPage = () => {
     const dispatch = useDispatch();
     const page = useSelector((state: RootState) => state.progressBar.value)
     const [info, setInfo] = useState("");
+    const firstRender=useRef(true)
+    useEffect(()=>{
+      if (firstRender.current){
+      document.title = "Property Details";
+      }
+    })
 
     // useEffect(() => {
     //     if (page==1)
@@ -34,8 +40,6 @@ const PropertyDetails: NextPage = () => {
         'Garden', 'CCTV', 'Gym', 'Microwave', 'Modular Kitchen', 'Swimming Pool', 'TV Cable', 'Electricity Backup',
         'Intercom', 'Internet', 'Kids Playground', 'Lift', 'Maintainance', 'Security Staff', 'Store Room'];
 
-
-
     const initialValues = {
         wardNumber: "",
         city: "",
@@ -49,7 +53,7 @@ const PropertyDetails: NextPage = () => {
         roadAreaMetric: "",
         roadAccess: "",
         roadType: "",
-        buildYear: "",
+        builtYear: "",
         totalFloors: "",
         furnishing: "",
         numberOFUnits: "",
@@ -64,12 +68,36 @@ const PropertyDetails: NextPage = () => {
         initialValues: initialValues,
         validationSchema: propertyDetailsSchema,
         onSubmit(values, formikHelpers) {
-            console.log(errors)
-            console.log("call")
-            console.log(values)
+            // console.log(errors)
+            // console.log("call")
+            // console.log(values)
             if (page == 2)
                 dispatch(increment())
-            router.push('/adDetails');
+            var details:any=JSON.parse(sessionStorage.getItem("details")??' ')
+            console.log(details)
+            details.wardNumber=values.wardNumber;
+            details.city=values.city;
+            details.locality=values.propertyArea
+            details.areaMetric=values.areaMetric
+            details.totalArea=values.totalArea
+            details.areaMetric=values.totalAreaUnit
+            details.buildUpArea=values.builtUpArea
+            details.areaMetric=values.builtUpAreaUnit
+            details.facing=values.propertyFace
+            details.unit=values.roadAreaMetric
+            details.access=values.roadAccess
+            details.roadType=values.roadType
+            details.buildYear=values.builtYear
+            details.totalFloors=values.totalFloors
+            details.furnishing=values.furnishing
+            // details.=values.numberOFUnits
+            details.bedroom=values.noOfBedroom
+            details.bathroom=values.noOfBathroom
+            details.kitcheb=values.noOfKitchen
+            details.livingRoom=values.noOfLivingroom
+            details.amenities=values.amenities
+            
+            // router.push('/adDetails');
         }
     })
 
@@ -235,7 +263,7 @@ const PropertyDetails: NextPage = () => {
                                         <option value="2079">2079</option>
                                         <option value="2078">2078</option>
                                     </select>
-                                    {errors.buildYear && <span className={style.error}>{errors.buildYear}</span>}
+                                    {errors.builtYear && <span className={style.error}>{errors.builtYear}</span>}
                                 </div>
                                 <div className={style.dropdown_only}>
                                     <select name="totalFloors" onChange={handleChange}>

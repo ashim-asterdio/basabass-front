@@ -22,7 +22,7 @@ const EsewaPaymantPop = () => {
                 pdc: 0,
                 txAmt: 0,
                 tAmt: packageInfo.price,
-                pid: "637f1d5ccee0227628670d7",
+                pid: "637f1x5cxee0227628690d7",
                 scd: "EPAYTEST",    
                 su: "http://localhost:3000/paymentLandingPage?q=su",
                 fu: "http://localhost:3000/paymentLandingPage?q=fu"

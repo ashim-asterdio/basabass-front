@@ -1,5 +1,5 @@
 import type { NextPage } from 'next'
-import { useState, useEffect } from "react"
+import { useState, useEffect,useRef } from "react"
 import Head from 'next/head'
 import style from '../styles/basicDetail.module.css'
 import SmallRadio from '../components/ui components/radio/smallRadio'
@@ -28,6 +28,53 @@ const BasicDetail: NextPage = () => {
     propertyType: "",
     propertyCategory: ""
   }
+
+  const details: any = {
+    for: "",
+    type: "",
+    category: "",
+    wardNumber: "",
+    streetName: "",
+    city: "",
+    locality: "",
+    areaMetric: '',
+    totalArea: "",
+    buildUpArea: "",
+    facing: "",
+    unit: "",
+    access: "",
+    roadType: "",
+    buildYear: '',
+    totalFloors: '',
+    furnishing: '',
+    amenities: [],
+    youtubeLink: '',
+    title: '',
+    description: '',
+    price: '',
+    ownerId: '',
+    name: '',
+    phone: '',
+    email: '',
+    // country:USA
+    // availability:"",
+    //status:active
+    kitchen: "",
+    bedroom: "",
+    bathroom: "",
+    parking: "",
+    livingRoom: ""
+  }
+
+  const firstRender=useRef(true)
+  useEffect(()=>{
+    if (firstRender.current){
+    document.title = "Basic Details";
+    // sessionStorage.setItem("details",JSON.stringify(details))
+    sessionStorage.setItem("page","1")
+    }
+  })
+
   const { values, errors, touched, handleSubmit, handleChange } = useFormik({
     initialValues: initialValues,
     validationSchema: basicDetailsSchema,
@@ -36,6 +83,11 @@ const BasicDetail: NextPage = () => {
       console.log(values)
       if (page == 1)
         dispatch(increment())
+      details.for=values.adCategory;
+      details.type=values.propertyType;
+      details.category=values.propertyCategory;
+      console.log(details)
+      sessionStorage.setItem("details",JSON.stringify(details))
       router.push('/propertyDetails');
     }
   })
@@ -45,7 +97,6 @@ const BasicDetail: NextPage = () => {
 
   return (
     <>
-
       <Layout onSubmit={handleSubmit} topic="Basic Details" page="1" back="none" previous="none" info={info} next=" :Property Detail">
         <div className={style.basicDetailWrapper}>
           <div className={style.adCategoryDiv} >
@@ -57,7 +108,7 @@ const BasicDetail: NextPage = () => {
             <div className={style.radioDiv}>
               <SmallRadio value="Sale" name="adCategory" onChange={handleChange} />
               <SmallRadio value="Rent" name="adCategory" onChange={handleChange} />
-              <SmallRadio value="Lease" name="adCategory" onChange={handleChange} />
+              {/* <SmallRadio value="Lease" name="adCategory" onChange={handleChange} /> */}
               {errors.adCategory && <span className={style.error}>{errors.adCategory}</span>}
             </div>
           </div>

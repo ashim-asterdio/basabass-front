@@ -2,7 +2,7 @@ import type { NextPage } from "next";
 import UploadZone from "../components/ui components/uploadZone";
 import styles from "../styles/adDetails.module.css";
 import uiStyle from "../styles/uiComponents.module.css";
-import React, { useState } from "react";
+import React, { useState,useEffect,useRef } from "react";
 import {
   CustomizableInputs,
   CustomizableInputButtonsWithSelect,
@@ -16,7 +16,6 @@ import { useDispatch, useSelector } from 'react-redux'
 import { RootState } from '../store'
 import { increment } from "../slices/progressBarSlice";
 import { Icon } from '@iconify/react'
-import {useEffect} from "react"
 import { changeInfo } from "../slices/payPopSlice";
 
 
@@ -27,6 +26,12 @@ const AdDetails: NextPage = () => {
   const page = useSelector((state: RootState) => state.progressBar.value)
   const [info, setInfo] = useState("");
 
+  const firstRender=useRef(true)
+  useEffect(()=>{
+    if (firstRender.current){
+    document.title = "Ad Details";
+    }
+  })
   // useEffect(() => {
   //     if (page===1)
   //         router.push('/basicDetails')

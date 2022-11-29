@@ -22,7 +22,7 @@ export const propertyDetailsSchema =Yup.object({
     roadAreaMetric:Yup.string().required("required"),
     roadAccess:Yup.number().required("required"),
     roadType:Yup.string().required("required"),
-    buildYear:Yup.date().required("required"),
+    builtYear:Yup.date().required("required"),
     totalFloors:Yup.number().required("required"),
     furnishing:Yup.string().required("required"),
     numberOFUnits:Yup.string().required("required"),
