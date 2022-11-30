@@ -31,22 +31,22 @@ const ProgressBar = (props:any) => {
     }
 
     const styleCircle1={
-        border:props.page!=1?"solid rgba(225,225,225,0)":props.page==1&&page==1?"solid 1px #012367":"solid 1px #1CB35D",
+        border:props.page!=1?"solid rgba(225,225,225,0)":props.page==1&&page==1?"solid 2px #012367":"solid 2px #1CB35D",
         backgroundColor: props.page==1?"white":"rgba(225,225,225,0)",
     }
 
     const styleCircle2={
-        border:props.page!=2?"solid rgba(225,225,225,0)":props.page==2&&page==2?"solid 1px #012367":"solid 1px #1CB35D",
+        border:props.page!=2?"solid rgba(225,225,225,0)":props.page==2&&page==2?"solid 2px #012367":"solid 2px #1CB35D",
         backgroundColor: props.page==2?"white":"rgba(225,225,225,0)",
     }
 
     const styleCircle3={
-        border:props.page!=3?"solid rgba(225,225,225,0)":props.page==3&&page==3?"solid 1px #012367":"solid 1px #1CB35D",
+        border:props.page!=3?"solid rgba(225,225,225,0)":props.page==3&&page==3?"solid 2px #012367":"solid 2px #1CB35D",
         backgroundColor: props.page==3?"white":"rgba(225,225,225,0)",
     }
 
     const styleCircle4={
-        border:props.page!=4?"solid rgba(225,225,225,0)":props.page==4&&page==4?"solid 1px #012367":"solid 1px #1CB35D",
+        border:props.page!=4?"solid rgba(225,225,225,0)":props.page==4&&page==4?"solid 2px #012367":"solid 2px #1CB35D",
         backgroundColor: props.page==4?"white":"rgba(225,225,225,0)",
     }
 

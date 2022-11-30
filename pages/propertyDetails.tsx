@@ -72,7 +72,9 @@ const PropertyDetails: NextPage = () => {
             // console.log("call")
             // console.log(values)
             if (page == 2)
+            {
                 dispatch(increment())
+            }  
             var details:any=JSON.parse(sessionStorage.getItem("details")??' ')
             console.log(details)
             details.wardNumber=values.wardNumber;
@@ -90,14 +92,17 @@ const PropertyDetails: NextPage = () => {
             details.buildYear=values.builtYear
             details.totalFloors=values.totalFloors
             details.furnishing=values.furnishing
-            // details.=values.numberOFUnits
+            details.multipleUnit=values.numberOFUnits
             details.bedroom=values.noOfBedroom
             details.bathroom=values.noOfBathroom
-            details.kitcheb=values.noOfKitchen
+            details.kitchen=values.noOfKitchen
             details.livingRoom=values.noOfLivingroom
             details.amenities=values.amenities
-            
-            // router.push('/adDetails');
+
+            sessionStorage.setItem("page","3")
+            sessionStorage.setItem("details",JSON.stringify(details))
+
+            router.push('/adDetails');
         }
     })
 
@@ -258,7 +263,7 @@ const PropertyDetails: NextPage = () => {
                         <div className={style.all_input_fields}>
                             <div className={style.inputFeildRow}>
                                 <div className={style.dropdown_only}>
-                                    <select name="buildYear" onChange={handleChange}>
+                                    <select name="builtYear" onChange={handleChange}>
                                         <option value="" selected hidden disabled>Built Year</option>
                                         <option value="2079">2079</option>
                                         <option value="2078">2078</option>
@@ -295,7 +300,7 @@ const PropertyDetails: NextPage = () => {
                         <div className={style.multipleUnits}>
                             <div className={style.dropdown_only}>
                                 <select name="numberOFUnits" onChange={handleChange}>
-                                    <option value="" selected hidden disabled>Number Of Units</option>
+                                     <option value="" selected hidden disabled>Number Of Units</option>
                                     <option value="1">1</option>
                                     <option value="2">2</option>
                                     <option value="3">3</option>

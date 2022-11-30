@@ -1,4 +1,4 @@
-import style from '../../../styles/basicDetail.module.css'
+import style from '../../../styles/component/smallRadio.module.css'
 
 const SmallRadio = (props:any) => {
   return (
@@ -9,6 +9,7 @@ const SmallRadio = (props:any) => {
                 value={props.value} 
                 className={style.radio}
                 onChange={props.onChange} />
+                {/* <span></span> */}
                 <span className={style.checkmark}></span> 
             </label>
             <p style={{fontSize:"14px"}}>{props.value}</p>

@@ -59,6 +59,12 @@ const OtherDetails: NextPage = () => {
             console.log("call Ad Details")
             console.log(values)
             console.log(initialValues)
+            var details:any=JSON.parse(sessionStorage.getItem("details")??' ')
+            
+            details.name=values.fullName
+            details.email=values.email
+            details.phone=values.phoneNumber
+            sessionStorage.setItem("details",JSON.stringify(details))
             if (values.adPricingtype == "Paid Listing")
             {
                 if(pay)

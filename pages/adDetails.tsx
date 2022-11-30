@@ -2,7 +2,7 @@ import type { NextPage } from "next";
 import UploadZone from "../components/ui components/uploadZone";
 import styles from "../styles/adDetails.module.css";
 import uiStyle from "../styles/uiComponents.module.css";
-import React, { useState,useEffect,useRef } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import {
   CustomizableInputs,
   CustomizableInputButtonsWithSelect,
@@ -26,10 +26,10 @@ const AdDetails: NextPage = () => {
   const page = useSelector((state: RootState) => state.progressBar.value)
   const [info, setInfo] = useState("");
 
-  const firstRender=useRef(true)
-  useEffect(()=>{
-    if (firstRender.current){
-    document.title = "Ad Details";
+  const firstRender = useRef(true)
+  useEffect(() => {
+    if (firstRender.current) {
+      document.title = "Ad Details";
     }
   })
   // useEffect(() => {
@@ -57,8 +57,19 @@ const AdDetails: NextPage = () => {
     onSubmit: (values, formikHelpers) => {
       console.log("call Ad Details")
       console.log(values)
-      if (page == 3)
+      if (page == 3){
         dispatch(increment())
+      }
+      sessionStorage.setItem("page","4")
+      var details:any=JSON.parse(sessionStorage.getItem("details")??' ')
+      details.propertyImages=values.image
+      details.youtubeLink=values.youtubeLink
+      details.title=values.propertyTitle
+      details.price=values.propertyPrice
+      details.label=values.currency
+      details.description=values.description
+
+      sessionStorage.setItem("details",JSON.stringify(details))
       router.push('/otherDetails');
     }
   })
@@ -71,7 +82,7 @@ const AdDetails: NextPage = () => {
           <div className={styles.adDetailsUploads}>
             <label>
               Upload Images
-              <a href='#' style={{display:"flex"}}>
+              <a href='#' style={{ display: "flex" }}>
                 <Icon icon="humbleicons:info-circle" width="20" height="20" className={styles.infoIcon} onClick={() => { dispatch(changeInfo("Upload Image")) }} />
               </a>
             </label>
@@ -91,7 +102,7 @@ const AdDetails: NextPage = () => {
           <div className={styles.adDetailsYoutube} onClick={() => { setInfo("Youtube Video Link") }}>
             <label>
               Youtube Video Link
-              <a href='#' style={{display:"flex"}}><Icon icon="humbleicons:info-circle" width="20" height="20" className={styles.infoIcon} onClick={() => { dispatch(changeInfo("Youtube Video Link")) }} /></a>
+              <a href='#' style={{ display: "flex" }}><Icon icon="humbleicons:info-circle" width="20" height="20" className={styles.infoIcon} onClick={() => { dispatch(changeInfo("Youtube Video Link")) }} /></a>
             </label>
             <div className={styles.inputWrapper}>
               <CustomizableInputs
@@ -109,9 +120,9 @@ const AdDetails: NextPage = () => {
             <div className={styles.adDetailsTitle} onClick={() => { setInfo("Title") }}>
               <label>
                 Title
-                <a href='#' style={{display:"flex"}}>
+                <a href='#' style={{ display: "flex" }}>
                   <Icon icon="humbleicons:info-circle" width="20" height="20" className={styles.infoIcon} onClick={() => { dispatch(changeInfo("Title")) }} />
-                  </a>
+                </a>
               </label>
               <CustomizableInputs
                 type={"text"}
@@ -125,10 +136,10 @@ const AdDetails: NextPage = () => {
 
             <div className={styles.adDetailsPrice} onClick={() => { setInfo("Price") }}>
               <label>
-                Price 
-                <a href='#' style={{display:"flex"}}><Icon icon="humbleicons:info-circle" width="20" height="20" className={styles.infoIcon} onClick={() => { dispatch(changeInfo("Price")) }} /></a>
+                Price
+                <a href='#' style={{ display: "flex" }}><Icon icon="humbleicons:info-circle" width="20" height="20" className={styles.infoIcon} onClick={() => { dispatch(changeInfo("Price")) }} /></a>
               </label>
-              
+
               <CustomizableInputButtonsWithSelect
                 type={"text"}
                 placeholder={"Property Price"}
@@ -142,22 +153,25 @@ const AdDetails: NextPage = () => {
                 <span className={styles.error}>{errors.propertyPrice}</span>
                 {errors.currency && <span className={styles.error}>{errors.currency}</span>}
               </span>}
-             
+
             </div>
           </div>
 
           <div className={styles.adDetailsFormDescription} onClick={() => { setInfo("Description") }}>
             <label>
               Description{" "}
-              <a href='#' style={{display:"flex"}}><Icon icon="humbleicons:info-circle" width="20" height="20" className={styles.infoIcon} onClick={() => { dispatch(changeInfo("Description")) }} /></a>
+              <a href='#' style={{ display: "flex" }}><Icon icon="humbleicons:info-circle" width="20" height="20" className={styles.infoIcon} onClick={() => { dispatch(changeInfo("Description")) }} /></a>
             </label>
-            <input
-              className={styles.textArea}
-              id="adDetailsFormDescription"
-              placeholder="Description about your property"
-              name="description"
-              onChange={handleChange}
-            ></input>
+            <div className={styles.descriptionDiv}>
+              <input
+                className={styles.textArea}
+                id="adDetailsFormDescription"
+                placeholder="Description about your property"
+                name="description"
+                onChange={handleChange}
+              />
+            </div>
+
             {errors.description && <span className={styles.error}>{errors.description}</span>}
           </div>
 

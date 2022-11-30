@@ -77,7 +77,7 @@ const Layout = ({ children, topic, onSubmit, page, previous, info, next,back }:
                       <div className={style.buttonDiv}>
                         <div className={style.submitDiv}>
                           <span className={style.savetoDraft}>Save as draft</span>
-                          <button className={style.next} onClick={onSubmit} >Next<span className={style.buttonValue}>{next}</span></button>
+                          <button className={style.next} type="submit" onClick={onSubmit} >Next<span className={style.buttonValue}>{next}</span></button>
                         </div>
                         <button className={style.previous} style={{display:(back=="none")?"none":"flex"}} onClick={previous}>
                           <span className={style.buttonValueMobile}>Previous</span>

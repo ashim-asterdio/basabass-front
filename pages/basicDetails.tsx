@@ -81,8 +81,10 @@ const BasicDetail: NextPage = () => {
     onSubmit: (values, formikHelpers) => {
       console.log("basic Details")
       console.log(values)
-      if (page == 1)
+      if (page == 1){
         dispatch(increment())
+        sessionStorage.setItem("page","2")
+      } 
       details.for=values.adCategory;
       details.type=values.propertyType;
       details.category=values.propertyCategory;
@@ -132,7 +134,7 @@ const BasicDetail: NextPage = () => {
           </div>
 
           <div className={style.propertyCategoryDiv} >
-            <p className={style.topic}>Porperty Category
+            <p className={style.topic}>Property Category
               <a style={{ display: "flex" }} href='#' onClick={() => { dispatch(changeInfo("Property Category")) }}>
                 <Icon icon="humbleicons:info-circle" width="20" height="20" className={style.infoIcon} />
               </a>
