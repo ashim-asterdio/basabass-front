@@ -20,6 +20,7 @@ import { changeInfo } from "../slices/payPopSlice";
 
 
 
+
 const AdDetails: NextPage = () => {
   const router = useRouter()
   const dispatch = useDispatch();
@@ -104,7 +105,7 @@ const AdDetails: NextPage = () => {
               Youtube Video Link
               <a href='#' style={{ display: "flex" }}><Icon icon="humbleicons:info-circle" width="20" height="20" className={styles.infoIcon} onClick={() => { dispatch(changeInfo("Youtube Video Link")) }} /></a>
             </label>
-            <div className={styles.inputWrapper}>
+            <div className={styles.inputWrapper}> 
               <CustomizableInputs
                 type={"text"}
                 placeholder={"eg.www.youtube.com/asada"}

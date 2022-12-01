@@ -144,6 +144,35 @@
     /* border: solid 1px; */
 }
 
+.backToDash:hover{
+    color: #2465bb;
+    text-decoration: underline;
+}
+
+/* .backToDash::after{
+    display: block;
+    content: "";
+    border-bottom: none;
+    transform: scaleY(2.2);
+    color: white;
+    border-bottom: solid 0px;
+    transition: ease-in-out 0.4s;
+    height:15%;
+    width: 1%;
+    position:absolute;
+    left:11.5%;
+}
+
+.backToDash:hover::after{
+    color: #2465bb;
+    border-bottom: solid 1px #2465bb;
+    background-color: #000000;
+    transform: scale(2);
+    bottom: 35%;
+} */
+
+
+
 .topDraft{
     width: 80px;
     height: 16px;
@@ -157,6 +186,11 @@
     text-align: center;
     color: #969696;
     cursor: pointer;
+}
+
+.topDraft:hover{
+    text-decoration: underline;
+    color: #000000;
 }
 
 .midDiv {
@@ -372,7 +406,7 @@
 }
 
 .next:hover{
-    opacity: 0.8;
+    /* opacity: 0.8; */
     background: #012367;
 }
 
@@ -563,6 +597,32 @@
         color: #012367;
         /* border: solid 1px; */
     }
+
+    .backToDash:hover{
+        color: #2465bb;
+    }
+    
+    /* .backToDash::after{
+        display: block;
+        content: "";
+        border-bottom: none;
+        transform: scaleY(2.2);
+        color: white;
+        border-bottom: solid 0px;
+        transition: ease-in-out 0.4s;
+        height:15%;
+        width: 8.6%;
+        position:absolute;
+        left:6.8%;
+    }
+    
+    .backToDash:hover::after{
+        color: #2465bb;
+        border-bottom: solid 1px #2465bb;
+        background-color: #000000;
+        transform: scale(2);
+        bottom: 35%;
+    } */
 
     .topDraft{
         display: none;
@@ -835,6 +895,30 @@
         color: #012367;
         /* border: solid 1px; */
     }
+
+    .backToDash:hover{
+        color: #2465bb;
+    }
+    
+    /* .backToDash::after{
+        display: block;
+        content: "";
+        border-bottom: none;
+        color: white;
+        border-bottom: solid 1px;
+        transition: ease-in-out 0.4s;
+        height:15%;
+        width: 28%;
+        position:absolute;
+        left: 27%;
+    }
+    
+    .backToDash:hover::after{
+        color: #2465bb;
+        border-bottom: solid 1px #2465bb;
+        background-color: #000000;
+        transform: scale(2);
+    } */
 
     .topDraft{
         display: none;

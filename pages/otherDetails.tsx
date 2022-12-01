@@ -65,23 +65,23 @@ const OtherDetails: NextPage = () => {
             details.email=values.email
             details.phone=values.phoneNumber
             sessionStorage.setItem("details",JSON.stringify(details))
-            if (values.adPricingtype == "Paid Listing")
-            {
-                if(pay)
-                {
-                    dispatch(changepopUpBg())
-                    dispatch(changeRegistrationStatus(true))
-                }
-                else
-                {
-                    dispatch(change())
-                }
-            }
-            else
-            {   
-                dispatch(changepopUpBg())
-                dispatch(changeRegistrationStatus(true))
-            } 
+            // if (values.adPricingtype == "Paid Listing")
+            // {
+            //     if(pay)
+            //     {
+            //         dispatch(changepopUpBg())
+            //         dispatch(changeRegistrationStatus(true))
+            //     }
+            //     else
+            //     {
+            //         dispatch(change())
+            //     }
+            // }
+            // else
+            // {   
+            //     dispatch(changepopUpBg())
+            //     dispatch(changeRegistrationStatus(true))
+            // } 
                 
         }
     })
@@ -99,8 +99,8 @@ const OtherDetails: NextPage = () => {
                         <div className={style.ownerRadioDiv}>
                             <SmallRadio name="ownerType" value="Use my info" onChange={handleChange} />
                             <SmallRadio name="ownerType" value="Use Different Owner" onChange={handleChange} />
-                            {errors.ownerType && <span className={style.error}>{errors.ownerType}</span>}
                         </div>
+                        {errors.ownerType && <span style={{marginTop:"-15px"}} className={style.error}>{errors.ownerType}</span>}
 
                         <div className={style.ownerInfoDiv}>
                             <div className={style.inputFeildRow}>
@@ -145,8 +145,8 @@ const OtherDetails: NextPage = () => {
                         <div className={style.adPricingRadioDiv}>
                             <SmallRadio name="adPricingtype" value="Free Listing" onChange={handleChange} />
                             <SmallRadio name="adPricingtype" value="Paid Listing" onChange={handleChange} />
-                            {errors.adPricingtype && <span className={style.error}>{errors.adPricingtype}</span>}
                         </div>
+                        {errors.adPricingtype && <span style={{marginTop:"-15px"}} className={style.error}>{errors.adPricingtype}</span>}
                     </div>
                 </div>
             </Layout>

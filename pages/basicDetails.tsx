@@ -34,7 +34,7 @@ const BasicDetail: NextPage = () => {
     type: "",
     category: "",
     wardNumber: "",
-    streetName: "",
+    // streetName: "",
     city: "",
     locality: "",
     areaMetric: '',
@@ -62,7 +62,7 @@ const BasicDetail: NextPage = () => {
     kitchen: "",
     bedroom: "",
     bathroom: "",
-    parking: "",
+    // parking: "",
     livingRoom: ""
   }
 
@@ -111,8 +111,8 @@ const BasicDetail: NextPage = () => {
               <SmallRadio value="Sale" name="adCategory" onChange={handleChange} />
               <SmallRadio value="Rent" name="adCategory" onChange={handleChange} />
               {/* <SmallRadio value="Lease" name="adCategory" onChange={handleChange} /> */}
-              {errors.adCategory && <span className={style.error}>{errors.adCategory}</span>}
             </div>
+            {errors.adCategory && <span className={style.error}>{errors.adCategory}</span>}
           </div>
 
           <div className={style.propertyTypeDiv} >
@@ -129,8 +129,8 @@ const BasicDetail: NextPage = () => {
                 value="Commercial" onChange={handleChange} />
               <RectangleRadio icon={<Icon icon="icon-park-outline:landscape" width="16" height="18" inline={true} />}
                 value="Agricultural" onChange={handleChange} />
-              {errors.propertyType && <span className={style.error}>{errors.propertyType}</span>}
             </div>
+            {errors.propertyType && <span className={style.error}>{errors.propertyType}</span>}
           </div>
 
           <div className={style.propertyCategoryDiv} >

@@ -1,5 +1,7 @@
 import { IoOptions } from "react-icons/io5";
 import style from "../../../styles/uiComponents.module.css";
+import { createRef } from "react";
+const ref=createRef<HTMLSelectElement>()
 
 export const CustomizableInputs = (props: any) => {
   return (
@@ -36,6 +38,7 @@ export const CustomizableInputButtonsWithSelect = (props: any) => {
         <div className={style.partationDiv}></div>
         <div className={style.customizableSelectPartOnly}>
           <select
+          ref={ref}
             id={id}
             
             name={props.name2}

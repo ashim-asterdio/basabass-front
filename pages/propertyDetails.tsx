@@ -46,9 +46,9 @@ const PropertyDetails: NextPage = () => {
         propertyArea: "",
         areaMetric: "",
         totalArea: "",
-        totalAreaUnit: "",
+        // totalAreaUnit: "",
         builtUpArea: "",
-        builtUpAreaUnit: "",
+        // builtUpAreaUnit: "",
         propertyFace: "",
         roadAreaMetric: "",
         roadAccess: "",
@@ -82,9 +82,9 @@ const PropertyDetails: NextPage = () => {
             details.locality=values.propertyArea
             details.areaMetric=values.areaMetric
             details.totalArea=values.totalArea
-            details.areaMetric=values.totalAreaUnit
+            // details.areaMetric=values.totalAreaUnit
             details.buildUpArea=values.builtUpArea
-            details.areaMetric=values.builtUpAreaUnit
+            // details.areaMetric=values.builtUpAreaUnit
             details.facing=values.propertyFace
             details.unit=values.roadAreaMetric
             details.access=values.roadAccess
@@ -132,7 +132,7 @@ const PropertyDetails: NextPage = () => {
                                 </div>
 
                                 <div className={style.dropdown_only}>
-                                    <select name="city" onChange={handleChange}>
+                                    <select name="city" onChange={handleChange} defaultValue="">
                                         <option value="" selected hidden disabled>Property City</option>
                                         <option value="Lalitpur"> Lalitpur</option>
                                     </select>
@@ -160,8 +160,9 @@ const PropertyDetails: NextPage = () => {
                                 <div className={style.dropdown_only}>
                                     <select
                                         name="areaMetric" onChange={handleChange} placeholder="Select Area Metric">
-                                        <option value="A" selected disabled>Select Area Metric</option>
+                                        <option value="" selected disabled>Select Area Metric</option>
                                         <option value="Aana">Aana</option>
+                                        <option value="Dhur">Dhur</option>
                                     </select>
                                     {errors.areaMetric && <span className={style.error}>{errors.areaMetric}</span>}
                                 </div>
@@ -175,17 +176,19 @@ const PropertyDetails: NextPage = () => {
 
                                         <hr className={style.gapBtw} />
                                         <div className={style.dropdown_with_input}>
-                                            <select name="totalAreaUnit" onChange={handleChange}>
+                                            {values.areaMetric?values.areaMetric:"Unit"}
+                                            {/* <select name="totalAreaUnit" onChange={handleChange}>
                                                 <option value="" selected hidden disabled>Unit</option>
                                                 <option value="Aana">Aana</option>
                                                 <option value="Dhur">Dhur</option>
-                                            </select>
+                                            </select> */}
                                         </div>
                                     </div>
-                                    {(errors.totalArea || errors.totalAreaUnit) && <span className={style.doubleError}>
+                                    {errors.totalArea && <span className={style.error}>{errors.totalArea}</span>}
+                                    {/* {(errors.totalArea || errors.totalAreaUnit) && <span className={style.doubleError}>
                                         <span className={style.error}>{errors.totalArea}</span>
                                         {errors.totalAreaUnit && <span className={style.error}>{errors.totalAreaUnit}</span>}
-                                    </span>}
+                                    </span>} */}
                                 </div>
                             </div>
 
@@ -198,17 +201,19 @@ const PropertyDetails: NextPage = () => {
                                             onChange={handleChange} />
                                         <hr className={style.gapBtw} />
                                         <div className={style.dropdown_with_input}>
-                                            <select name="builtUpAreaUnit" onChange={handleChange}>
-                                                <option value="" selected hidden disabled>Unit</option>
+                                        {values.areaMetric?values.areaMetric:"Unit"}
+                                            {/* <select name="builtUpAreaUnit" onChange={handleChange} >
+                                                <option value="" defaultValue="Unit" hidden disabled>Unit</option>
                                                 <option value="Aana">Aana</option>
                                                 <option value="Dhur">Dhur</option>
-                                            </select>
+                                            </select> */}
                                         </div>
                                     </div>
-                                    {(errors.builtUpArea || errors.builtUpAreaUnit) && <span className={style.doubleError}>
+                                    {errors.builtUpArea && <span className={style.error}>{errors.builtUpArea}</span>}
+                                    {/* {(errors.builtUpArea || errors.builtUpAreaUnit) && <span className={style.doubleError}>
                                         <span className={style.error}>{errors.builtUpArea}</span>
                                         {errors.builtUpAreaUnit && <span className={style.error}>{errors.builtUpAreaUnit}</span>}
-                                    </span>}
+                                    </span>} */}
                                 </div>
                                 <div className={style.feildDiv}>
                                     <input className={style.input_only} type="text" placeholder="Property Face"
