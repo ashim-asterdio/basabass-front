@@ -195,6 +195,7 @@
 
 .midDiv {
     /* border: solid red 1px;  */
+    font-family: "Product sans";
     display: flex;
     flex-direction: column;
     justify-content: center;

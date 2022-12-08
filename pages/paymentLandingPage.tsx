@@ -19,7 +19,10 @@ import PaymentStatusPop from "../components/paymentPopUps/paymentStatusPop"
 
 const PaymentLandingPage: NextPage = () => {
  const router = useRouter();
-    const dispatch = useDispatch();
+const dispatch = useDispatch();
+
+// const query=router.query
+const [query,setQuery]=useState({})
 
     const isClient=():boolean=>{
         if (typeof window!=="undefined")
@@ -33,7 +36,16 @@ const PaymentLandingPage: NextPage = () => {
         if (firstRender.current){
             firstRender.current=false
             dispatch(incrementByAmount(4))
+            // setQuery(router.query)
+            // console.log('test',query)
+            //  if (query.q==="success"){
+            //     dispatch(changePaymentStatus(true))
+            // }
+            // else if(router.query.q==="failure") {
+            //     dispatch(changePaymentStatus(false))
+            // }
             dispatch(changePaymentStatus(true))
+            // dispatch(changePaymentStatus(true))
             dispatch(change())
             document.title="Payment Status"
         }
@@ -45,8 +57,8 @@ const PaymentLandingPage: NextPage = () => {
     // const [pay, setPay] = useState(false);
     const page = useSelector((state: RootState) => state.progressBar.value)
     const pay = useSelector((state: RootState) => state.payPop.paymentStatus);
-    const id = router.query
-    console.log(id) 
+    // const id = router.query
+    // console.log(id) 
 
     const previous = (e: Event) => {
         e.preventDefault()
@@ -64,23 +76,6 @@ const PaymentLandingPage: NextPage = () => {
         initialValues: initialValues,
         // validationSchema: otherDetailsSchema,
         onSubmit: async (values, formikHelpers) => {
-            // if (values.adPricingtype == "Paid Listing")
-            // {
-            //     if(pay)
-            //     {
-            //         dispatch(changepopUpBg())
-            //         dispatch(changeRegistrationStatus(true))
-            //     }
-            //     else
-            //     {
-            //         dispatch(change())
-            //     }
-            // }
-            // else
-            // {   
-            //     dispatch(changepopUpBg())
-            //     dispatch(changeRegistrationStatus(true))
-            // } 
             if (pay)
             {
                 dispatch(changepopUpBg())

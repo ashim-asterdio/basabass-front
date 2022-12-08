@@ -1,13 +1,8 @@
-import { Modal, Upload } from "antd";
-import { PlusOutlined } from "@ant-design/icons";
-import "antd/dist/antd.css";
-import type { RcFile, UploadProps } from "antd/es/upload";
-import type { UploadFile } from "antd/es/upload/interface";
-import Image from "next/image";
-import React, { useState } from "react";
-import uploadsLogo from "../../Images/uploadsLogo.svg";
-import styles from "../../styles/uiComponents.module.css";
-import Head from "next/head";
+import React, { useState } from 'react';
+import { PlusOutlined } from '@ant-design/icons';
+import { Modal, Upload } from 'antd';
+import type { RcFile, UploadProps } from 'antd/es/upload';
+import type { UploadFile } from 'antd/es/upload/interface';
 
 const getBase64 = (file: RcFile): Promise<string> =>
   new Promise((resolve, reject) => {
@@ -17,10 +12,10 @@ const getBase64 = (file: RcFile): Promise<string> =>
     reader.onerror = (error) => reject(error);
   });
 
-const UploadArea: React.FC = () => {
+  const UploadArea= ({setImages,files}:{setImages:any,files:any}) => {
   const [previewOpen, setPreviewOpen] = useState(false);
-  const [previewImage, setPreviewImage] = useState("");
-  const [previewTitle, setPreviewTitle] = useState("");
+  const [previewImage, setPreviewImage] = useState('');
+  const [previewTitle, setPreviewTitle] = useState('');
   const [fileList, setFileList] = useState<UploadFile[]>([]);
 
   const handleCancel = () => setPreviewOpen(false);
@@ -32,38 +27,25 @@ const UploadArea: React.FC = () => {
 
     setPreviewImage(file.url || (file.preview as string));
     setPreviewOpen(true);
-    setPreviewTitle(
-      file.name || file.url!.substring(file.url!.lastIndexOf("/") + 1)
-    );
+    setPreviewTitle(file.name || file.url!.substring(file.url!.lastIndexOf('/') + 1));
   };
 
-  const handleChange: UploadProps["onChange"] = ({ fileList: newFileList }) =>
+  const handleChange: UploadProps["onChange"] = ({ fileList: newFileList }) => {
     setFileList(newFileList);
+    let afterResponse = [...newFileList];
+    afterResponse.map((value, index) => {
+      afterResponse[index].status = "done";
+    });
+    setFileList(afterResponse);
+    setImages(afterResponse)
+  };
 
   const uploadButton = (
-    <>
-      {fileList.length === 0 ? (
-        <div className="fileListDefaultState">
-          <Image src={uploadsLogo} width={"20px"} height={"20px"} alt="No Img"/>
-          <button type="button" className={styles.antdDragAndDrop}>
-            Upload Image
-          </button>
-          <p className={styles.dragDesktopView}>or drag photos here</p>
-          <p className={styles.uploadAreaDrop}>(Upto 10 photos)</p>
-        </div>
-      ) : (
-        <>
-          <div style={{ marginTop: 8 }} className="fileListUploadedState">
-            <p style={{ fontSize: "20px" }}>
-              <PlusOutlined />
-            </p>
-            <p>Add Images</p>
-          </div>
-        </>
-      )}
-    </>
+    <div>
+      <PlusOutlined />
+      <div style={{ marginTop: 8 }}>Upload</div>
+    </div>
   );
-
   return (
     <>
       <Upload
@@ -75,13 +57,8 @@ const UploadArea: React.FC = () => {
       >
         {fileList.length >= 8 ? null : uploadButton}
       </Upload>
-      <Modal
-        open={previewOpen}
-        title={previewTitle}
-        footer={null}
-        onCancel={handleCancel}
-      >
-        <Image alt="example" style={{ width: "100%" }} src={previewImage} />
+      <Modal open={previewOpen} title={previewTitle} footer={null} onCancel={handleCancel}>
+        <img alt="example" style={{ width: '100%' }} src={previewImage} />
       </Modal>
     </>
   );

@@ -1,5 +1,5 @@
 import type { NextPage } from 'next'
-import { useState, useEffect,useRef } from "react"
+import { useState, useEffect, useRef } from "react"
 import Head from 'next/head'
 import style from '../styles/basicDetail.module.css'
 import SmallRadio from '../components/ui components/radio/smallRadio'
@@ -30,48 +30,53 @@ const BasicDetail: NextPage = () => {
   }
 
   const details: any = {
-    for: "",
-    type: "",
-    category: "",
-    wardNumber: "",
-    // streetName: "",
-    city: "",
-    locality: "",
-    areaMetric: '',
-    totalArea: "",
-    buildUpArea: "",
-    facing: "",
-    unit: "",
-    access: "",
-    roadType: "",
-    buildYear: '',
-    totalFloors: '',
-    furnishing: '',
-    amenities: [],
-    youtubeLink: '',
-    title: '',
-    description: '',
-    price: '',
-    ownerId: '',
-    name: '',
-    phone: '',
-    email: '',
-    // country:USA
-    // availability:"",
-    //status:active
-    kitchen: "",
-    bedroom: "",
-    bathroom: "",
-    // parking: "",
-    livingRoom: ""
+    for: "rent",
+    type: "agricultural",
+    category: "land",
+    coordinates: "41.40338,2.17403",
+    wardNumber: "12",
+    streetName: "asterdio road",
+    city: "6375e1d9a771ab4368586e55",
+    locality: "Sankhamul",
+    areaMetric: "bigha",
+    totalArea: "10-1-1-1",
+    buildUpArea: "10-1-1-1",
+    facing: "east",
+    unit: "feet",
+    access: '8',
+    roadType: 'gravelled',
+    buildYear: '2020',
+    totalFloors: '7',
+    furnishing: 'unfurnished',
+    amenities: ['6364c9050910364b36d1644d', '6364c9870910364b36d16458'],
+    view360Link: 'https://www.youtube.com/watch?v=H2lRuOsfUlU',
+    youtubeLink: 'https://www.youtube.com/watch?v=H2lRuOsfUlU',
+    title: 'Basobaas',
+    description: 'Build your dream building  here',
+    price: '1000000000000',
+    deal: 'negotiable',
+    label: 'onwards',
+    ownerId: "22626asas",
+    name: 'Niru Mishr',
+    phone: '981186as5755',
+    email: 'ashrestha@asterdio.com',
+    country: 'Nepal',
+    // availability:'available',
+    //status:active,
+    kitchen: "2",
+    bedroom: "2",
+    bathroom: "2",
+    parking: "2",
+    livingRoom: "2",
+    // propertyImage:[]
   }
 
-  const firstRender=useRef(true)
-  useEffect(()=>{
-    if (firstRender.current){
-    document.title = "Basic Details";
-    // sessionStorage.setItem("details",JSON.stringify(details))
-    sessionStorage.setItem("page","1")
+  const firstRender = useRef(true)
+  useEffect(() => {
+    if (firstRender.current) {
+      document.title = "Basic Details";
+      // sessionStorage.setItem("details",JSON.stringify(details))
+      sessionStorage.setItem("page", "1")
     }
   })
 
@@ -79,17 +84,17 @@ const BasicDetail: NextPage = () => {
     initialValues: initialValues,
     validationSchema: basicDetailsSchema,
     onSubmit: (values, formikHelpers) => {
+      sessionStorage.setItem("page", "2")
       console.log("basic Details")
       console.log(values)
-      if (page == 1){
+      if (page == 1) {
         dispatch(increment())
-        sessionStorage.setItem("page","2")
-      } 
-      details.for=values.adCategory;
-      details.type=values.propertyType;
-      details.category=values.propertyCategory;
+      }
+      details.for = values.adCategory;
+      details.type = values.propertyType;
+      details.category = values.propertyCategory;
       console.log(details)
-      sessionStorage.setItem("details",JSON.stringify(details))
+      sessionStorage.setItem("details", JSON.stringify(details))
       router.push('/propertyDetails');
     }
   })
@@ -108,8 +113,8 @@ const BasicDetail: NextPage = () => {
               </a>
             </p>
             <div className={style.radioDiv}>
-              <SmallRadio value="Sale" name="adCategory" onChange={handleChange} />
-              <SmallRadio value="Rent" name="adCategory" onChange={handleChange} />
+              <SmallRadio value="sale" name="adCategory" onChange={handleChange} />
+              <SmallRadio value="rent" name="adCategory" onChange={handleChange} />
               {/* <SmallRadio value="Lease" name="adCategory" onChange={handleChange} /> */}
             </div>
             {errors.adCategory && <span className={style.error}>{errors.adCategory}</span>}
@@ -124,11 +129,11 @@ const BasicDetail: NextPage = () => {
             </p>
 
             <div className={style.propertyTypeDivRow}>
-              <RectangleRadio icon={<Icon icon="bx:home" width="20" height="20" inline={true} />} value="Residential" onChange={handleChange} />
+              <RectangleRadio icon={<Icon icon="bx:home" width="20" height="20" inline={true} />} value="residential" onChange={handleChange} />
               <RectangleRadio icon={<Icon icon="icon-park-outline:building-two" width="16" height="20" inline={true} />}
-                value="Commercial" onChange={handleChange} />
+                value="commercial" onChange={handleChange} />
               <RectangleRadio icon={<Icon icon="icon-park-outline:landscape" width="16" height="18" inline={true} />}
-                value="Agricultural" onChange={handleChange} />
+                value="agricultural" onChange={handleChange} />
             </div>
             {errors.propertyType && <span className={style.error}>{errors.propertyType}</span>}
           </div>
@@ -140,12 +145,12 @@ const BasicDetail: NextPage = () => {
               </a>
             </p>
             <div className={style.propertyCategoryRow} >
-              <SquareRadio value="House" icon={<Icon icon="bx:home" width="18" height="18" inline={true} />} onChange={handleChange} />
-              <SquareRadio value="Land" icon={<Icon icon="bx:home" width="18" height="18" inline={true} />} onChange={handleChange} />
-              <SquareRadio value="Flat" icon={<Icon icon="bx:home" width="18" height="18" inline={true} />} onChange={handleChange} />
-              <SquareRadio value="Apartment" icon={<Icon icon="bx:home" width="18" height="18" inline={true} />} onChange={handleChange} />
-              <SquareRadio value="Business" icon={<Icon icon="bx:home" width="18" height="18" inline={true} />} onChange={handleChange} />
-              <SquareRadio value="Office" icon={<Icon icon="bx:home" width="18" height="18" inline={true} />} onChange={handleChange} />
+              <SquareRadio value="house" icon={<Icon icon="bx:home" width="18" height="18" inline={true} />} onChange={handleChange} />
+              <SquareRadio value="land" icon={<Icon icon="bx:home" width="18" height="18" inline={true} />} onChange={handleChange} />
+              <SquareRadio value="flat" icon={<Icon icon="bx:home" width="18" height="18" inline={true} />} onChange={handleChange} />
+              <SquareRadio value="apartment" icon={<Icon icon="bx:home" width="18" height="18" inline={true} />} onChange={handleChange} />
+              <SquareRadio value="business" icon={<Icon icon="bx:home" width="18" height="18" inline={true} />} onChange={handleChange} />
+              <SquareRadio value="office" icon={<Icon icon="bx:home" width="18" height="18" inline={true} />} onChange={handleChange} />
             </div>
             {errors.propertyCategory && <span className={style.error}>{errors.propertyCategory}</span>}
           </div>

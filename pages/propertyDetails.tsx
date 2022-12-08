@@ -78,7 +78,7 @@ const PropertyDetails: NextPage = () => {
             var details:any=JSON.parse(sessionStorage.getItem("details")??' ')
             console.log(details)
             details.wardNumber=values.wardNumber;
-            details.city=values.city;
+            details.city="6375e1d9a771ab4368586e55";
             details.locality=values.propertyArea
             details.areaMetric=values.areaMetric
             details.totalArea=values.totalArea
@@ -97,7 +97,10 @@ const PropertyDetails: NextPage = () => {
             details.bathroom=values.noOfBathroom
             details.kitchen=values.noOfKitchen
             details.livingRoom=values.noOfLivingroom
-            details.amenities=values.amenities
+            details.amenities=[
+                "6364c9050910364b36d1644d",
+                "6364c9870910364b36d16458"
+                ]
 
             sessionStorage.setItem("page","3")
             sessionStorage.setItem("details",JSON.stringify(details))
@@ -161,8 +164,8 @@ const PropertyDetails: NextPage = () => {
                                     <select
                                         name="areaMetric" onChange={handleChange} placeholder="Select Area Metric">
                                         <option value="" selected disabled>Select Area Metric</option>
-                                        <option value="Aana">Aana</option>
-                                        <option value="Dhur">Dhur</option>
+                                        <option value="aana">Aana</option>
+                                        <option value="dhur">Dhur</option>
                                     </select>
                                     {errors.areaMetric && <span className={style.error}>{errors.areaMetric}</span>}
                                 </div>
@@ -235,9 +238,9 @@ const PropertyDetails: NextPage = () => {
                             <div className={style.inputFeildRow}>
                                 <div className={style.dropdown_only}>
                                     <select name="roadAreaMetric" onChange={handleChange}>
-                                        <option value="" selected hidden disabled>Select Area Metric</option>
-                                        <option value="Feet">Feet</option>
-                                        <option value="Meter">Meter</option>
+                                        <option value="" selected disabled>Select Area Metric</option>
+                                        <option value="feet">Feet</option>
+                                        <option value="meter">Meter</option>
                                     </select>
                                     {errors.roadAreaMetric && <span className={style.error}>{errors.roadAreaMetric}</span>}
                                 </div>
@@ -251,8 +254,10 @@ const PropertyDetails: NextPage = () => {
                             <div className={style.dropdown_only}>
                                 <select name="roadType" onChange={handleChange}>
                                     <option value="" selected hidden disabled>Road Type</option>
-                                    <option value="One Way">One Way</option>
-                                    <option value="Two Way">Two Way</option>
+                                    <option value="soil stabilized">Soil Stabilized</option>
+                                    <option value="gravelled">Gravelled</option>
+                                    <option value="paved">Paved</option>
+                                    <option value="black topped">Black topped</option>
                                 </select>
                                 {errors.roadType && <span className={style.error}>{errors.roadType}</span>}
                             </div>
@@ -270,8 +275,8 @@ const PropertyDetails: NextPage = () => {
                                 <div className={style.dropdown_only}>
                                     <select name="builtYear" onChange={handleChange}>
                                         <option value="" selected hidden disabled>Built Year</option>
-                                        <option value="2079">2079</option>
-                                        <option value="2078">2078</option>
+                                        <option value="2000">2000</option>
+                                        <option value="2001">2001</option>
                                     </select>
                                     {errors.builtYear && <span className={style.error}>{errors.builtYear}</span>}
                                 </div>
@@ -288,9 +293,9 @@ const PropertyDetails: NextPage = () => {
                             <div className={style.dropdown_only}>
                                 <select name="furnishing" onChange={handleChange} >
                                     <option value="" selected hidden disabled>Furnishing</option>
-                                    <option value="Yes">Yes</option>
-                                    <option value="No">No</option>
-                                    <option value="Partially">Partially</option>
+                                    <option value="fully furnished">Fully Furnished</option>
+                                    <option value="unfurnished">Unfurnished</option>
+                                    <option value="semi furnished">Semi Furnished</option>
                                 </select>
                                 {errors.furnishing && <span className={style.error}>{errors.furnishing}</span>}
                             </div>

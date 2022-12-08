@@ -45,11 +45,11 @@ export const CustomizableInputButtonsWithSelect = (props: any) => {
             onChange={props.onChange}
           >
             
-            <option value={value0} selected hidden disabled>
+            <option value={value0} selected disabled>
               {value0}
             </option>
 
-            <option value={value1} selected>{value1}</option>
+            <option value={value1}>{value1}</option>
 
             <option value={value2}>{value2}</option>
           </select>

@@ -27,6 +27,14 @@ a {
 
 /* ==================****************===============
 CSS TO CHANGE ANT-DESIGN COMPONENTS */
+/* ==================****************===============
+CSS TO CHANGE ANT-DESIGN COMPONENTS */
+.ant-upload-list{
+  display:flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  height: fit-content;
+}
 
 .ant-upload-picture-card-wrapper {
   display: flex !important;
@@ -37,35 +45,27 @@ CSS TO CHANGE ANT-DESIGN COMPONENTS */
 
 .ant-upload {
   background-color: #ffffff;
-  width: 130px;
-  height: 110px;
   border-radius: 10px;
   border: none !important;
-  flex: none;
-  order: 2;
-  flex-grow: 0;
+  height: 100px;
 }
 
 .ant-upload-select-picture-card {
   border: none !important;
+  /* width: 120px; */
 }
 
-.fileListDefaultState {
-  display: block;
-  margin: auto;
-}
-
-.ant-upload-list-picture-card-container {
-  width: 130px !important;
+/* .ant-upload-list-picture-card-container {
+  width: 120px !important;
   height: 110px !important;
-}
+} */
 
 .fileListUploadedState {
   margin: 0%;
   padding: 0%;
   box-sizing: border-box;
-  width: 130px !important;
-  height: 110px !important;
+  width: 100px !important;
+  height: 102px !important;
   background: #f6f6f6;
   border: 1px solid #d8dce6;
   border-radius: 10px;
@@ -79,5 +79,6 @@ CSS TO CHANGE ANT-DESIGN COMPONENTS */
   border-color: #d8dce6 !important;
   border-radius: 10px !important;
 }
+/* ==================****************===============
 /* ==================****************===============
 END OF CSS TO CHANGE ANT-DESIGN COMPONENTS */

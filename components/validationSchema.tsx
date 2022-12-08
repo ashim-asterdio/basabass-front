@@ -4,9 +4,9 @@ const areaRegex = RegExp(
   );
 
 export const basicDetailsSchema=Yup.object({
-    adCategory: Yup.string().required("PLease select aleast one option"),
-    propertyType: Yup.string().required("PLease select aleast one option"),
-    propertyCategory:Yup.string().required("PLease select aleast one option")
+    adCategory: Yup.string().required("Please select aleast one option"),
+    propertyType: Yup.string().required("Please select aleast one option"),
+    propertyCategory:Yup.string().required("Please select aleast one option")
 })
 
 export const propertyDetailsSchema =Yup.object({
@@ -26,10 +26,10 @@ export const propertyDetailsSchema =Yup.object({
     totalFloors:Yup.number().required("Please enter no. of floors"),
     furnishing:Yup.string().required("Please enter furnishing status"),
     numberOFUnits:Yup.string().required("Please enter no. of units"),
-    noOfBedroom:Yup.string().required("Please enter no. of bedroom"),
-    noOfBathroom:Yup.string().required("Please enter no. of bathroom"),
+    noOfBedroom:Yup.string().required("Please enter no. of bed room"),
+    noOfBathroom:Yup.string().required("Please enter no. of bath room"),
     noOfKitchen:Yup.string().required("Please enter no. of kitchen"),
-    noOfLivingroom:Yup.string().required("Please enter no. of livingroom"),
+    noOfLivingroom:Yup.string().required("Please enter no. of living room"),
     amenities:Yup.array().of(Yup.string()).min(1,"Require more amenities")
 }) 
 
@@ -38,8 +38,8 @@ export const adDetailsSchema=Yup.object ({
     image:Yup.mixed().nullable(),
     youtubeLink:Yup.string().required("Please enter Youtube link"),
     propertyTitle:Yup.string().required("Please enter propoerty title"),
-    propertyPrice:Yup.string().required("Please enter price"),
-    currency:Yup.string().required("Please enter Unit"),
+    propertyPrice:Yup.number().required("Please enter price"),
+    label:Yup.string().required("Please enter Unit"),
     description:Yup.string().required("Please enter description")
 })
 
@@ -47,7 +47,7 @@ export const adDetailsSchema=Yup.object ({
 export const otherDetailsSchema=Yup.object({
     adPricingtype:Yup.string().required("Please select atleast one option"),
     email:Yup.string().email("Not a valid email").required("Please enter email"),
-    fullName:Yup.string().required("Please enter name"),
+    name:Yup.string().required("Please enter name"),
     ownerType:Yup.string().required("Please select atleast one option"),
     phoneNumber:Yup.number()
     .typeError("That doesn't look like a phone number")

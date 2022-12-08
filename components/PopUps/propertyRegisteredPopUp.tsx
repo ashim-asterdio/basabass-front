@@ -5,14 +5,18 @@ import { change, changePaymentStatus, changepopUpBg, changeRegistrationStatus } 
 import Image from "next/image"
 import webImage from "../../Images/propertyAddedImage.svg"
 import { RootState } from "../../store"
+import { Router } from "@icon-park/react"
+import { useRouter } from "next/router"
 
 const PropertyRegisteredPopUp = () => {
+  const router=useRouter()
   const dispatch = useDispatch()
   const reg = useSelector((state: RootState) => state.payPop.registrationStatus)
   const done=()=>{
     dispatch(changepopUpBg())
     dispatch(changeRegistrationStatus(false))
     dispatch(changePaymentStatus(false))
+    router.push("/basicDetails")
   }
 
   return (

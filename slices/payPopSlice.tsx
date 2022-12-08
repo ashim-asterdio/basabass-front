@@ -6,9 +6,10 @@ export interface PopUpState {
   information:string,
   popUpBg:boolean,
   popUpPage:number,
-  packageInfo:{name:string,price:any,price2:any},
+  packageInfo:{name:string,price:any,price2:any,plan:string},
   paymentStatus:boolean,
   registrationStatus:boolean
+  files:any
 }
 
 const initialState: PopUpState = {
@@ -16,9 +17,10 @@ const initialState: PopUpState = {
   information:"",
   popUpBg:false,
   popUpPage:1,
-  packageInfo:{name:"",price:0,price2:""},
+  packageInfo:{name:"",price:0,price2:"",plan:""},
   paymentStatus:false,
-  registrationStatus:false
+  registrationStatus:false,
+  files:[]
 }
 
 export const payPopSlice = createSlice({
@@ -38,7 +40,7 @@ export const payPopSlice = createSlice({
     changePopUpPage:(state, action: PayloadAction<number>)=>{
       state.popUpPage=action.payload
     },
-    changePackageInfo:(state, action: PayloadAction<{name:string,price:any,price2:any}>)=>{
+    changePackageInfo:(state, action: PayloadAction<{name:string,price:any,price2:any,plan:string}>)=>{
       state.packageInfo=action.payload
     },
     changeRegistrationStatus:(state,action: PayloadAction<boolean>)=>{
@@ -46,11 +48,15 @@ export const payPopSlice = createSlice({
     },
     changePaymentStatus:(state,action: PayloadAction<boolean>)=>{
       state.paymentStatus=action.payload
+    },
+    saveFiles:(state,action)=>{
+      console.log('files',action.payload)
+      state.files=action.payload
     }
   },
 })
 
 // Action creators are generated for each case reducer function
-export const {change,changeInfo,changepopUpBg,changePopUpPage,changePackageInfo,changeRegistrationStatus,changePaymentStatus} =payPopSlice.actions
+export const {change,changeInfo,changepopUpBg,changePopUpPage,changePackageInfo,changeRegistrationStatus,changePaymentStatus,saveFiles} =payPopSlice.actions
 
 export default payPopSlice.reducer

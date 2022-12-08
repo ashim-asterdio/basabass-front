@@ -97,13 +97,14 @@
     color: #333333;
     cursor: pointer;
     transition-duration: 0.1s;
+    text-transform: capitalize;
 }
 
-.propertyTypeCard:hover{
+.propertyTypeCard div:hover{
     /* background-color: #3366FF; */
-    color:#3366FF ;
-    font-weight: 800;
-    border: solid 2px;
+    /* color:#3366FF ; */
+    /* font-weight: 800; */
+    border: solid #3366FF 2px ;
     /* opacity: 1; */
 }
 
@@ -126,9 +127,6 @@
     color: white;
 }
 
-.propertyTypeCard input:checked + div Image{
-    color: white;
-}
 
 .propertyCategoryDiv{
     position: relative;
@@ -169,17 +167,16 @@
     cursor: pointer; 
 }
 
-.propertyCategoryCard:hover{
+.propertyCategoryCard div:hover{
     /* background-color: rgb(0, 29, 158); */
     /* color: white; */
     border: solid #0000FF 2px;
     opacity: 0.8;
 }
 
-.propertyCategoryCard:hover p{
-    /* color: white; */
+/* .propertyCategoryCard:hover p{
     font-weight: 800;
-}
+} */
 
 .propertyCategoryCard div{
     box-sizing: border-box;
@@ -231,6 +228,7 @@
     order: 1;
     flex-grow: 0;
     margin: 0px;
+    text-transform: capitalize;
 }
 
 .error{

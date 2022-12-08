@@ -4,8 +4,10 @@ import tickMark from "../../Images/tickMark.svg"
 import blueArrow from "../../Images/blueArrow.svg"
 import { useDispatch, useSelector } from "react-redux"
 import { RootState } from "../../store"
-import { change, changePopUpPage,changePackageInfo } from "../../slices/payPopSlice"
+import { change, changePopUpPage, changePackageInfo } from "../../slices/payPopSlice"
 import { Icon } from "@iconify/react"
+import { useEffect, useRef, useState } from "react"
+import axios from "axios"
 
 
 const SelectPackagePop = (props: any) => {
@@ -13,20 +15,45 @@ const SelectPackagePop = (props: any) => {
     const dispatch = useDispatch();
     const status = useSelector((state: RootState) => state.payPop.value)
     const list = ["30 Days Validation", "Number of Listing:1", "Mobile number of all response", "High position in"]
-    const sendInfo=(name:string,price:any,price2:any)=>{
-        dispatch(changePopUpPage(2))
-        dispatch(changePackageInfo({name:name,price:price,price2:price2}))
+    const [allPackage, setAllPackage] = useState<any>([])
+
+    const getPlans = async () => {
+        const config = {
+            headers: { Authorization: `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2Mzg4NDc4YzY0ODI5YzhlMzg4ODYzOWUiLCJyb2xlIjoic3VwZXJhZG1pbiIsImlhdCI6MTY2OTk4MjAxOSwiZXhwIjoyMjc0NzgyMDE5fQ.K3ereptAn2D5QkNgDpyb5azImuXU9wxcwccjlfkwqiM` }
+        };
+        try {
+            const allPackageBe: any = await axios.get("https://basobaasnew.asterdio.xyz/api/paid-plans/", config)
+            setAllPackage(allPackageBe.data.paidplan)
+            console.log("state: ",allPackage)
+
+        } catch (e) {
+            console.log("all packageg error", e)
+        }
     }
+
+    const ref = useRef(true)
+    useEffect(() => {
+        if (ref) {
+            ref.current = false;
+            getPlans();
+        }
+    },[status])
+
+    const sendInfo = (name: string, price: any, price2: string,plan:string) => {
+        dispatch(changePopUpPage(2))
+        dispatch(changePackageInfo({ name: name, price: price, price2: price2,plan:plan }))
+    }
+
 
     return (
         <div className={style.container} >
-            <Icon icon="radix-icons:cross-2" width="20" height="20" className={style.crossButton} onClick={() => { dispatch(change());dispatch(changePopUpPage(1))}} />
+            <Icon icon="radix-icons:cross-2" width="20" height="20" className={style.crossButton} onClick={() => { dispatch(change()); dispatch(changePopUpPage(1)) }} />
             <label className={style.textDiv}>
                 <span className={style.bigText}>Select paid plans to get more responses</span>
                 <span className={style.smallText}>Here are different plans with exciting offers.</span>
             </label>
 
-            <div className={style.recomended}>Recomended</div> 
+            <div className={style.recomended}>Recomended</div>
 
             <div className={style.paymentOptionDiv}>
                 <div className={`${style.option1} ${style.paymentOption}`}>
@@ -55,7 +82,7 @@ const SelectPackagePop = (props: any) => {
                         </div>
                     </div>
                     <div className={style.buttonDiv}>
-                        <button className={style.button} onClick={()=>{sendInfo("Silver","1000","1,000")}}>Select & Continue</button>
+                        <button className={style.button} onClick={() => { sendInfo("Silver", "1000", "1,000",allPackage[1]._id) }}>Select & Continue</button>
                     </div>
                 </div>
 
@@ -86,7 +113,7 @@ const SelectPackagePop = (props: any) => {
                         </div>
                     </div>
                     <div className={style.buttonDiv}>
-                        <button className={style.button} onClick={()=>{sendInfo("Gold","3500","3,500")}}>Select & Continue</button>
+                        <button className={style.button} onClick={() => { sendInfo("Gold", "3500", "3,500",allPackage[2]._id) }}>Select & Continue</button>
                     </div>
                 </div>
 
@@ -117,7 +144,7 @@ const SelectPackagePop = (props: any) => {
                         </div>
                     </div>
                     <div className={style.buttonDiv}>
-                        <button className={style.button} onClick={()=>{sendInfo("Platinium","10500","10,500")}}>Select & Continue</button>
+                        <button className={style.button} onClick={() => { sendInfo("Platinium", "10500", "10,500",allPackage[3]._id) }}>Select & Continue</button>
                     </div>
                 </div>
 
@@ -148,7 +175,7 @@ const SelectPackagePop = (props: any) => {
                         </div>
                     </div>
                     <div className={style.buttonDiv}>
-                        <button className={style.button} onClick={()=>{sendInfo("Titanium","15000","15,000")}}>Contact Sales</button>
+                        <button className={style.button} onClick={() => { sendInfo("Titanium", "15000", "15,000",allPackage[4]._id) }}>Contact Sales</button>
                     </div>
                 </div>
             </div>

@@ -29,11 +29,11 @@
   justify-content: center;
 } */
 
-.adDetailsUploads label,
-.adDetailsYoutube label,
-.adDetailsTitle label,
-.adDetailsPrice label,
-.adDetailsFormDescription label {
+.adDetailsUploads .topic,
+.adDetailsYoutube .topic,
+.adDetailsTitle .topic,
+.adDetailsPrice .topic,
+.adDetailsFormDescription .topic {
   display: flex;
   gap: 10px;
   font-family: 'Product Sans', sans-serif;
@@ -41,7 +41,7 @@
   font-weight: 700;
   font-size: 16px;
   line-height: 24px;
-  height: 24px;
+  /* height: 24px; */
   display: flex;
   align-items: center;
   color: #333333;
