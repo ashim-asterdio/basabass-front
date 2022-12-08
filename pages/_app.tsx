@@ -2,7 +2,7 @@ import '../styles/globals.css'
 import basicDetai from '../styles/basicDetail.module.css'
 import { store } from '../store'
 import { Provider } from 'react-redux'
-import '../styles/Fonts.css'
+// import '../styles/Fonts.css'
 
 import type { AppProps } from 'next/app'
 import { PersistGate } from 'redux-persist/integration/react'
