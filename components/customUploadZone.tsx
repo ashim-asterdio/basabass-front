@@ -1,5 +1,5 @@
 import React, { createRef, useRef, useState } from 'react'
-import style from "../styles/component/CustomUploadZone.module.css"
+import style from "../styles/component/customUploadZone.module.css"
 import Image from 'next/image'
 import AddImage from "../Images/AddImage.svg"
 import { Icon } from '@iconify/react'

@@ -89,12 +89,8 @@ const AdDetails: NextPage = () => {
   // useEffect(()=>{
   //   if(persist.length) dispatch(saveFiles(persist)) 
   // },[persist])
-  useEffect(() => {
-    let changedImage: any = []
-    if (images?.length) {
-      console.log(images.length, "array")
-      let arr:any=[]
-      for (var i: number = 0; i < images.length; i++) {
+ 
+  
         // const reader = new FileReader();
         // reader.addEventListener("load", () => {
         //   changedImage.push(reader.result)
@@ -102,10 +98,10 @@ const AdDetails: NextPage = () => {
         // let f: Blob = images[i] as Blob
         // console.log(i)
         // reader.readAsDataURL(f as Blob);
-}
-values.image = changedImage
-}
-}, [images])
+// }
+// values.image = changedImage
+// }
+// }, [images])
 
 
 const previous = (e: Event) => {
