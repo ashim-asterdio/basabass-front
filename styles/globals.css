@@ -15,10 +15,10 @@ a {
   box-sizing: border-box;
 }
 
-@font-face {
-    font-family:Product Sans;
-    src: url(/public/Fonts/Product\ Sans.ttf);
-}
+/* @font-face {
+  font-family:"Product Sans";
+  src:local('Product Sans'), url("/public/Fonts/ProductSans.woff2") format('woff2');
+} */
 
 /* @media (prefers-color-scheme: dark) {
   html {

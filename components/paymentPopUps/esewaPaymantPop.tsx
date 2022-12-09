@@ -29,10 +29,10 @@ const EsewaPaymantPop = () => {
     }
 
     // const ref = useRef(true)
-    // useEffect(() => {
+    useEffect(() => {
     //     if (ref) {
     //         ref.current = false;
-    //         console.log("packageINfo", packageInfo)
+            console.log("packageINfo", packageInfo)
     //         const propertyToken: string = sessionStorage.getItem("propertyToken")??""
     //         const data: { amount: any; plan: string; property: string } = {
     //             amount: packageInfo.price,
@@ -44,7 +44,7 @@ const EsewaPaymantPop = () => {
             
 
     //     }
-    // })
+    })
     const confirm = async () => {
 
         try {
@@ -55,6 +55,8 @@ const EsewaPaymantPop = () => {
                 property: propertyToken
             }
             const token:any= await createUNiqueId(data)
+
+            localStorage.setItem("packageInfo",packageInfo.plan)
             
             // setTimeout(() => {  console.log(token.data.payment.paymentId)  ; }, 5000);
             console.log("token:",token.data.payment.paymentId)

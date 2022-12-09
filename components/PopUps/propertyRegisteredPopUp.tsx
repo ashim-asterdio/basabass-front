@@ -7,15 +7,17 @@ import webImage from "../../Images/propertyAddedImage.svg"
 import { RootState } from "../../store"
 import { Router } from "@icon-park/react"
 import { useRouter } from "next/router"
+import { incrementByAmount } from "../../slices/progressBarSlice"
 
 const PropertyRegisteredPopUp = () => {
   const router=useRouter()
   const dispatch = useDispatch()
   const reg = useSelector((state: RootState) => state.payPop.registrationStatus)
   const done=()=>{
+    dispatch(incrementByAmount(1))
     dispatch(changepopUpBg())
     dispatch(changeRegistrationStatus(false))
-    dispatch(changePaymentStatus(false))
+    dispatch(changePaymentStatus(false)) 
     router.push("/basicDetails")
   }
 

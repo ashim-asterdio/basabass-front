@@ -82,7 +82,7 @@ const SelectPackagePop = (props: any) => {
                         </div>
                     </div>
                     <div className={style.buttonDiv}>
-                        <button className={style.button} onClick={() => { sendInfo("Silver", "1000", "1,000",allPackage[1]._id) }}>Select & Continue</button>
+                        <button className={style.button} onClick={() => { sendInfo("Silver", allPackage[1].newPrice, "1,000",allPackage[1]._id) }}>Select & Continue</button>
                     </div>
                 </div>
 
@@ -113,7 +113,7 @@ const SelectPackagePop = (props: any) => {
                         </div>
                     </div>
                     <div className={style.buttonDiv}>
-                        <button className={style.button} onClick={() => { sendInfo("Gold", "3500", "3,500",allPackage[2]._id) }}>Select & Continue</button>
+                        <button className={style.button} onClick={() => { sendInfo("Gold", allPackage[2].newPrice, "3,500",allPackage[2]._id) }}>Select & Continue</button>
                     </div>
                 </div>
 
@@ -144,7 +144,7 @@ const SelectPackagePop = (props: any) => {
                         </div>
                     </div>
                     <div className={style.buttonDiv}>
-                        <button className={style.button} onClick={() => { sendInfo("Platinium", "10500", "10,500",allPackage[3]._id) }}>Select & Continue</button>
+                        <button className={style.button} onClick={() => { sendInfo("Platinium", allPackage[3].newPrice, "10,500",allPackage[3]._id) }}>Select & Continue</button>
                     </div>
                 </div>
 
@@ -175,7 +175,7 @@ const SelectPackagePop = (props: any) => {
                         </div>
                     </div>
                     <div className={style.buttonDiv}>
-                        <button className={style.button} onClick={() => { sendInfo("Titanium", "15000", "15,000",allPackage[4]._id) }}>Contact Sales</button>
+                        <button className={style.button} onClick={() => { sendInfo("Titanium", allPackage[4].newPrice, "15,000",allPackage[4]._id) }}>Contact Sales</button>
                     </div>
                 </div>
             </div>

@@ -147,10 +147,10 @@ const BasicDetail: NextPage = () => {
             <div className={style.propertyCategoryRow} >
               <SquareRadio value="house" icon={<Icon icon="bx:home" width="18" height="18" inline={true} />} onChange={handleChange} />
               <SquareRadio value="land" icon={<Icon icon="bx:home" width="18" height="18" inline={true} />} onChange={handleChange} />
-              <SquareRadio value="flat" icon={<Icon icon="bx:home" width="18" height="18" inline={true} />} onChange={handleChange} />
+              {/* <SquareRadio value="flat" icon={<Icon icon="bx:home" width="18" height="18" inline={true} />} onChange={handleChange} /> */}
               <SquareRadio value="apartment" icon={<Icon icon="bx:home" width="18" height="18" inline={true} />} onChange={handleChange} />
-              <SquareRadio value="business" icon={<Icon icon="bx:home" width="18" height="18" inline={true} />} onChange={handleChange} />
-              <SquareRadio value="office" icon={<Icon icon="bx:home" width="18" height="18" inline={true} />} onChange={handleChange} />
+              {/* <SquareRadio value="business" icon={<Icon icon="bx:home" width="18" height="18" inline={true} />} onChange={handleChange} /> */}
+              {/* <SquareRadio value="office" icon={<Icon icon="bx:home" width="18" height="18" inline={true} />} onChange={handleChange} /> */}
             </div>
             {errors.propertyCategory && <span className={style.error}>{errors.propertyCategory}</span>}
           </div>

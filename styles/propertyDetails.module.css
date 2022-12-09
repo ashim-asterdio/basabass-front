@@ -108,6 +108,10 @@
     flex-grow: 0;
 }
 
+.multipleUnits{
+    width: 100%;
+}
+
 .totalRoomsComponent{
     display: flex;
     flex-direction: column;

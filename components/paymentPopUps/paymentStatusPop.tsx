@@ -7,19 +7,46 @@ import whiteTickMark from "../../Images/whiteTickMark.svg"
 import { useDispatch, useSelector } from "react-redux"
 import { change, changepopUpBg, changePopUpPage, changeRegistrationStatus } from "../../slices/payPopSlice"
 import { RootState } from "../../store"
+import axios from "axios"
+import {useEffect,useRef} from "react"
 
 
 const PaymentStatusPop=()=> {
+
+  const addPropertyPlan=async()=>{
+    try{
+      const config = {
+        headers: { Authorization: `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2Mzg4NDc4YzY0ODI5YzhlMzg4ODYzOWUiLCJyb2xlIjoic3VwZXJhZG1pbiIsImlhdCI6MTY2OTk4MjAxOSwiZXhwIjoyMjc0NzgyMDE5fQ.K3ereptAn2D5QkNgDpyb5azImuXU9wxcwccjlfkwqiM` }
+    };
+    const propertyToken=localStorage.getItem("propertyToken")
+    const packageInfo=localStorage.getItem("packageInfo")
+    const data={property:propertyToken,plan:packageInfo}
+      const response = await axios.post("https://basobaasnew.asterdio.xyz/api/user-plans/",data,config)
+      console.log(response)
+    }
+    catch(e){
+      console.log(e)
+    } 
+  }
+
+  const ref=useRef(true)
+  useEffect(()=>{
+    if (payment&&ref){
+      ref.current=false
+      addPropertyPlan();      
+    }
+  })
 
   const dispatch=useDispatch()
   const status=useSelector((state:RootState)=>state.payPop.value)
   const payment=useSelector((state:RootState)=>state.payPop.paymentStatus)
 
-  const done=()=>{
+  const done=async()=>{
     dispatch(change());
     dispatch(changePopUpPage(1))
     dispatch(changepopUpBg())
     dispatch(changeRegistrationStatus(true))
+    
   }
   return (
     <>

@@ -21,8 +21,17 @@ const PaymentLandingPage: NextPage = () => {
  const router = useRouter();
 const dispatch = useDispatch();
 
-// const query=router.query
-const [query,setQuery]=useState({})
+const query=router.query
+console.log('test',query)
+             if (query.q==="success"){
+                dispatch(changePaymentStatus(true))
+                console.log(query)
+            }
+            else if(router.query.q==="failure") {
+                dispatch(changePaymentStatus(false))
+                console.log(query)
+            }
+// const [query,setQuery]=useState({})
 
     const isClient=():boolean=>{
         if (typeof window!=="undefined")
@@ -30,22 +39,13 @@ const [query,setQuery]=useState({})
         else 
          return true
     }
-    
+    // console.log(router.query)
     const firstRender=useRef(true)
     useEffect(()=>{
         if (firstRender.current){
             firstRender.current=false
+            // console.log("useEffect",router.query)
             dispatch(incrementByAmount(4))
-            // setQuery(router.query)
-            // console.log('test',query)
-            //  if (query.q==="success"){
-            //     dispatch(changePaymentStatus(true))
-            // }
-            // else if(router.query.q==="failure") {
-            //     dispatch(changePaymentStatus(false))
-            // }
-            dispatch(changePaymentStatus(true))
-            // dispatch(changePaymentStatus(true))
             dispatch(change())
             document.title="Payment Status"
         }

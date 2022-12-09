@@ -129,6 +129,7 @@ const OtherDetails: NextPage = () => {
                     details, config)
                 console.log("response : ",response)
                 sessionStorage.setItem("propertyToken",response?.data.property._id)
+                localStorage.setItem("propertyToken",response?.data.property._id)
 
             } catch (err) {
                 console.log(err)

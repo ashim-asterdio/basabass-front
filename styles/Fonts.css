@@ -1,4 +1,4 @@
-/* @font-face {
-    font-family:Product Sans;
-    src: url(/public/Fonts/Product\ Sans.ttf);
-} */
+@font-face {
+    font-family:"Product Sans";
+    src:local('ProductSans'), url("/public/Fonts/ProductSans.ttf") format('ttf');
+}
