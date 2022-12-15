@@ -7,6 +7,10 @@
     /* border: solid 1px; */
 }
 
+.basicDetailWrapper input:focus,.basicDetailWrapper select:focus{
+    outline: none;
+  }
+
 
 .topic {
     display: flex;

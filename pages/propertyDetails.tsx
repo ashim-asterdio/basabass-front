@@ -9,9 +9,10 @@ import { useRouter } from 'next/router'
 import { useDispatch, useSelector } from 'react-redux'
 import { RootState } from '../store'
 import { increment } from "../slices/progressBarSlice";
-import { useState, useEffect,useRef } from "react"
+import { useState, useEffect, useRef } from "react"
 import { changeInfo } from '../slices/payPopSlice'
 import { Icon } from '@iconify/react'
+import axios from "axios"
 
 
 const PropertyDetails: NextPage = () => {
@@ -19,11 +20,34 @@ const PropertyDetails: NextPage = () => {
     const dispatch = useDispatch();
     const page = useSelector((state: RootState) => state.progressBar.value)
     const [info, setInfo] = useState("");
-    const firstRender=useRef(true)
-    useEffect(()=>{
-      if (firstRender.current){
-      document.title = "Property Details";
-      }
+    const [list, setList] = useState<[]>([]);
+    // var list:[]=[]
+
+
+    const getData = async () => {
+        const response = await axios.get("https://basobaasnew.asterdio.xyz/api/property-amenities/")
+        // list=response.data.amenities
+        setList(response.data.amenities)
+        // if(list.lenght==0)
+        // {
+
+        // }
+        console.log("list ho la", list)
+        // return (response.data.amenities)
+    }
+
+    // const singletRender = useRef(true)
+    // useEffect(() => {
+    //     getData()
+    // }, [list])
+
+    const firstRender = useRef(true)
+    useEffect(() => {
+        if (firstRender.current) {
+            firstRender.current=false
+            document.title = "Property Details";
+            getData()
+        }
     })
 
     // useEffect(() => {
@@ -71,39 +95,35 @@ const PropertyDetails: NextPage = () => {
             // console.log(errors)
             // console.log("call")
             // console.log(values)
-            if (page == 2)
-            {
+            if (page == 2) {
                 dispatch(increment())
-            }  
-            var details:any=JSON.parse(sessionStorage.getItem("details")??' ')
+            }
+            var details: any = JSON.parse(sessionStorage.getItem("details") ?? ' ')
             console.log(details)
-            details.wardNumber=values.wardNumber;
-            details.city="6375e1d9a771ab4368586e55";
-            details.locality=values.propertyArea
-            details.areaMetric=values.areaMetric
-            details.totalArea=values.totalArea
+            details.wardNumber = values.wardNumber;
+            details.city = "6375e1d9a771ab4368586e55";
+            details.locality = values.propertyArea
+            details.areaMetric = values.areaMetric
+            details.totalArea = values.totalArea
             // details.areaMetric=values.totalAreaUnit
-            details.buildUpArea=values.builtUpArea
+            details.buildUpArea = values.builtUpArea
             // details.areaMetric=values.builtUpAreaUnit
-            details.facing=values.propertyFace
-            details.unit=values.roadAreaMetric
-            details.access=values.roadAccess
-            details.roadType=values.roadType
-            details.buildYear=values.builtYear
-            details.totalFloors=values.totalFloors
-            details.furnishing=values.furnishing
-            details.multipleUnit=values.numberOFUnits
-            details.bedroom=values.noOfBedroom
-            details.bathroom=values.noOfBathroom
-            details.kitchen=values.noOfKitchen
-            details.livingRoom=values.noOfLivingroom
-            details.amenities=[
-                "6364c9050910364b36d1644d",
-                "6364c9870910364b36d16458"
-                ]
+            details.facing = values.propertyFace
+            details.unit = values.roadAreaMetric
+            details.access = values.roadAccess
+            details.roadType = values.roadType
+            details.buildYear = values.builtYear
+            details.totalFloors = values.totalFloors
+            details.furnishing = values.furnishing
+            details.multipleUnit = values.numberOFUnits
+            details.bedroom = values.noOfBedroom
+            details.bathroom = values.noOfBathroom
+            details.kitchen = values.noOfKitchen
+            details.livingRoom = values.noOfLivingroom
+            details.amenities = values.amenities
 
-            sessionStorage.setItem("page","3")
-            sessionStorage.setItem("details",JSON.stringify(details))
+            sessionStorage.setItem("page", "3")
+            sessionStorage.setItem("details", JSON.stringify(details))
 
             router.push('/adDetails');
         }
@@ -120,7 +140,7 @@ const PropertyDetails: NextPage = () => {
 
                         <label>
                             Location
-                            <a href='#' style={{display:"flex"}} onClick={() => { dispatch(changeInfo("Location")) }}>
+                            <a href='#' style={{ display: "flex" }} onClick={() => { dispatch(changeInfo("Location")) }}>
                                 <Icon icon="humbleicons:info-circle" width="20" height="20" className={style.infoIcon} />
                             </a>
                         </label>
@@ -154,8 +174,8 @@ const PropertyDetails: NextPage = () => {
 
                     <div className={style.areaComponent}>
                         <label>
-                            Area 
-                            <a href='#' style={{display:"flex"}}><Icon icon="humbleicons:info-circle" width="20" height="20" className={style.infoIcon} onClick={() => { dispatch(changeInfo("Area Location")) }} /></a>
+                            Area
+                            <a href='#' style={{ display: "flex" }}><Icon icon="humbleicons:info-circle" width="20" height="20" className={style.infoIcon} onClick={() => { dispatch(changeInfo("Area Location")) }} /></a>
                         </label>
                         <div className={style.areaLocation}>
 
@@ -179,7 +199,7 @@ const PropertyDetails: NextPage = () => {
 
                                         <hr className={style.gapBtw} />
                                         <div className={style.dropdown_with_input}>
-                                            {values.areaMetric?values.areaMetric:"Unit"}
+                                            {values.areaMetric ? values.areaMetric : "Unit"}
                                             {/* <select name="totalAreaUnit" onChange={handleChange}>
                                                 <option value="" selected hidden disabled>Unit</option>
                                                 <option value="Aana">Aana</option>
@@ -204,7 +224,7 @@ const PropertyDetails: NextPage = () => {
                                             onChange={handleChange} />
                                         <hr className={style.gapBtw} />
                                         <div className={style.dropdown_with_input}>
-                                        {values.areaMetric?values.areaMetric:"Unit"}
+                                            {values.areaMetric ? values.areaMetric : "Unit"}
                                             {/* <select name="builtUpAreaUnit" onChange={handleChange} >
                                                 <option value="" defaultValue="Unit" hidden disabled>Unit</option>
                                                 <option value="Aana">Aana</option>
@@ -232,7 +252,7 @@ const PropertyDetails: NextPage = () => {
                     <div className={style.roadComponent}>
                         <label>
                             Road
-                            <a href='#' style={{display:"flex"}}><Icon icon="humbleicons:info-circle" width="20" height="20" className={style.infoIcon} onClick={() => { dispatch(changeInfo("Road Location")) }} /></a>
+                            <a href='#' style={{ display: "flex" }}><Icon icon="humbleicons:info-circle" width="20" height="20" className={style.infoIcon} onClick={() => { dispatch(changeInfo("Road Location")) }} /></a>
                         </label>
                         <div className={style.all_input_fields}>
                             <div className={style.inputFeildRow}>
@@ -268,7 +288,7 @@ const PropertyDetails: NextPage = () => {
                     <div className={style.buldingDetailsComponent}>
                         <label>
                             Building Details
-                            <a href='#' style={{display:"flex"}}><Icon icon="humbleicons:info-circle" width="20" height="20" className={style.infoIcon} onClick={() => { dispatch(changeInfo("Bulding Details")) }} /></a>
+                            <a href='#' style={{ display: "flex" }}><Icon icon="humbleicons:info-circle" width="20" height="20" className={style.infoIcon} onClick={() => { dispatch(changeInfo("Bulding Details")) }} /></a>
                         </label>
                         <div className={style.all_input_fields}>
                             <div className={style.inputFeildRow}>
@@ -305,12 +325,12 @@ const PropertyDetails: NextPage = () => {
                     <div className={style.multipleUnitsComponent}>
                         <label>
                             Muntiple Units
-                            <a href='#' style={{display:"flex"}}><Icon icon="humbleicons:info-circle" width="20" height="20" className={style.infoIcon} onClick={() => { dispatch(changeInfo("Multiple Unit")) }} /></a>
+                            <a href='#' style={{ display: "flex" }}><Icon icon="humbleicons:info-circle" width="20" height="20" className={style.infoIcon} onClick={() => { dispatch(changeInfo("Multiple Unit")) }} /></a>
                         </label>
                         <div className={style.multipleUnits}>
                             <div className={style.dropdown_only}>
                                 <select name="numberOFUnits" onChange={handleChange}>
-                                     <option value="" selected hidden disabled>Number Of Units</option>
+                                    <option value="" selected hidden disabled>Number Of Units</option>
                                     <option value="1">1</option>
                                     <option value="2">2</option>
                                     <option value="3">3</option>
@@ -325,7 +345,7 @@ const PropertyDetails: NextPage = () => {
 
                         <label>
                             Total Rooms
-                            <a href='#' style={{display:"flex"}}><Icon icon="humbleicons:info-circle" width="20" height="20" className={style.infoIcon} onClick={() => { dispatch(changeInfo("Total Rooms")) }} /></a>
+                            <a href='#' style={{ display: "flex" }}><Icon icon="humbleicons:info-circle" width="20" height="20" className={style.infoIcon} onClick={() => { dispatch(changeInfo("Total Rooms")) }} /></a>
                         </label>
                         <div className={style.all_input_fields}>
                             <div className={style.inputFeildRow}>
@@ -362,11 +382,11 @@ const PropertyDetails: NextPage = () => {
                     <div className={style.amenitiesComponent}>
                         <label className={style.label} htmlFor="">
                             Ameneties
-                            <a href='#' style={{display:"flex"}}><Icon icon="humbleicons:info-circle" width="20" height="20" className={style.infoIcon} onClick={() => {dispatch(changeInfo("Amenitites")) }} /></a>
+                            <a href='#' style={{ display: "flex" }}><Icon icon="humbleicons:info-circle" width="20" height="20" className={style.infoIcon} onClick={() => { dispatch(changeInfo("Amenitites")) }} /></a>
                         </label>
                         <div className={style.aminitiesDiv}>
                             {/* <AminitiesCheckbox value="Aminities" /> */}
-                            {amenities.map((value, key) => <AmenitiesCheckbox value={value} onChange={handleChange} key={key} />)}
+                            {list?.map((value: any, key) => <AmenitiesCheckbox value={value._id} onChange={handleChange} key={key} holder={value.amenity} />)}
                         </div>
                         {errors.amenities && <span className={style.error}>{errors.amenities}</span>}
                     </div>

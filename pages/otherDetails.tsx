@@ -29,7 +29,7 @@ const OtherDetails: NextPage = () => {
     const pay = useSelector((state: RootState) => state.payPop.paymentStatus);
     const id = router.query
     // console.log(id) 
-    
+
     const firstRender = useRef(true)
     useEffect(() => {
         if (firstRender.current) {
@@ -80,7 +80,7 @@ const OtherDetails: NextPage = () => {
             //       type: data.type || defaultType,
             //     });
             //   }
-              delete details.propertyImage
+            delete details.propertyImage
             try {
                 const config = {
                     headers: { Authorization: `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2Mzg4NDc4YzY0ODI5YzhlMzg4ODYzOWUiLCJyb2xlIjoic3VwZXJhZG1pbiIsImlhdCI6MTY2OTk4MjAxOSwiZXhwIjoyMjc0NzgyMDE5fQ.K3ereptAn2D5QkNgDpyb5azImuXU9wxcwccjlfkwqiM` }
@@ -127,32 +127,28 @@ const OtherDetails: NextPage = () => {
                 }
                 const response: any = await axios.post("https://basobaasnew.asterdio.xyz/api/properties",
                     details, config)
-                console.log("response : ",response)
-                sessionStorage.setItem("propertyToken",response?.data.property._id)
-                localStorage.setItem("propertyToken",response?.data.property._id)
+                console.log("response : ", response)
+                sessionStorage.setItem("propertyToken", response?.data.property._id)
+                localStorage.setItem("propertyToken", response?.data.property._id)
 
             } catch (err) {
                 console.log(err)
             }
 
 
-            if (values.adPricingtype == "Paid Listing")
-            {
-                if(pay)
-                {
+            if (values.adPricingtype == "Paid Listing") {
+                if (pay) {
                     dispatch(changepopUpBg())
                     dispatch(changeRegistrationStatus(true))
                 }
-                else
-                {
+                else {
                     dispatch(change())
                 }
             }
-            else
-            {   
+            else {
                 dispatch(changepopUpBg())
                 dispatch(changeRegistrationStatus(true))
-            } 
+            }
 
         }
     })
@@ -167,12 +163,13 @@ const OtherDetails: NextPage = () => {
                         <p className={style.title}>Owner Info
                             <Icon icon="humbleicons:info-circle" width="20" height="20" className={style.infoIcon} onClick={() => { dispatch(changeInfo("Owner Info")) }} />
                         </p>
-                        <div className={style.ownerRadioDiv}>
-                            <SmallRadio name="ownerType" value="Use my info" onChange={handleChange} />
-                            <SmallRadio name="ownerType" value="Use Different Owner" onChange={handleChange} />
+                        <div className={style.ownerRadioDivWrapper}>
+                            <div className={style.ownerRadioDiv}>
+                                <SmallRadio name="ownerType" value="Use my info" onChange={handleChange} />
+                                <SmallRadio name="ownerType" value="Use Different Owner" onChange={handleChange} />
+                            </div>
+                            {errors.ownerType && <span className={style.error}>{errors.ownerType}</span>}
                         </div>
-                        {errors.ownerType && <span style={{ marginTop: "-15px" }} className={style.error}>{errors.ownerType}</span>}
-
                         <div className={style.ownerInfoDiv}>
                             <div className={style.inputFeildRow}>
                                 <div className={style.inputFeildDiv}>

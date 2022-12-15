@@ -11,27 +11,40 @@
 }
 
 .emptyIcon {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 12px;
+    align-items: center;
     position: relative;
-    height:200px;
-    width: 200px;
-    padding-top: 4px;
-    /* border: solid 1px green; */
+    height:107px;
+    width: 130px;
+    padding-top: 0px;
+    border: solid 1px green;
     cursor: pointer;
 }
 
-.imageDiv {
-    position: absolute;
-    height: 40px;
-    width: 40px;
-    left: 50%;
-    transform: translate(-50%, 0%);
-    /* right: 0px; */
-    cursor: pointer;
+.imageDiv{
+    position: relative;
+    left: 0;
+    top: 0;
+    height: 20px;
+    width: 20px;
+    transform: none;
+    border: solid 1px;
+    /* margin-bottom: -15px;
+    margin-top: -10px; */
+    display: none;
 }
 
-.blueButton {
-    position: absolute;
-    top: 60px;
+.imageDivMobile{
+    display: block;
+}
+
+.imageBlueButton {
+    position: relative;
+    top: 0;
+    left: 0;
     display: flex;
     flex-direction: row;
     justify-content: center;
@@ -50,15 +63,13 @@
     font-weight: 400;
     font-size: 14px;
     line-height: 18px;
-    align-items: center;
-    text-align: center;
     text-transform: capitalize;
     color: #FFFFFF;
     cursor: pointer;
 /* visibility: hidden; */
 }
 
-.blueButton input{
+.imageBlueButton input{
     display: none;
     height:100%;
     width: 100%;
@@ -71,8 +82,9 @@
 }
 
 .textDiv {
+    padding: relative;
     display: flex;
-    /* border: solid 1px; */
+    border: solid 1px;
     flex-direction: column;
     justify-content: center;
     align-items: center;
@@ -82,14 +94,17 @@
     height: fit-content;
     flex: none;
     flex-grow: 0;
-    position: absolute;
-    top: 112px;
-    left: 50%;
-    transform: translate(-50%,0);
+    top: 0;
+    left: 0; 
 }
 
-.texts {
+.texts1{
+    display: none;
+}
+
+.texts2 {
     text-align: center;
+    position: relative;
     /* width: fit-content; */
     height: 24px;
     font-family: 'Product Sans';
@@ -103,6 +118,9 @@
     flex-grow: 0;
     /* border: solid 1px; */
 }
+
+
+
 
 .fullWrapper{
     display: flex;
@@ -144,8 +162,18 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    cursor: pointer;
+    position: relative;
     /* background: linear-gradient(360deg, rgba(0, 0, 0, 0.6) 2.27%, rgba(0, 0, 0, 0) 36.36%), url(.jpg); */
+}
+
+.deleteButton{
+    position:absolute;
+    right: 6.5%;
+    top: 6%;
+    height:fit-content ;
+    width: fit-content;
+    z-index: 3;
+    cursor: pointer;
 }
 
 .addedImageDiv Image{
@@ -167,7 +195,9 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    cursor: pointer;
 }
+
 
 .addImage input{
     display: none;
@@ -202,4 +232,127 @@
     align-self: center;
     /* border: solid 1px; */
     letter-spacing: 0.02em;
+}
+
+
+@media only screen and (min-width: 753px){
+.emptyIcon {
+    position: relative;
+    display:block;
+    height:200px;
+    width: 200px;
+    padding-top: 6px;
+    /* border: solid 1px green; */
+    cursor: pointer;
+}
+
+.imageDiv {
+    position: absolute;
+    display: block;
+    height: 40px;
+    width: 40px;
+    left: 50%;
+    top: 4px;
+    transform: translate(-50%, 0%);
+    /* right: 0px; */
+    cursor: pointer;
+}
+
+.imageDivMobile{
+    display: none;
+}
+
+.imageBlueButton {
+    position: absolute;
+    top: 60px;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    padding: 10px 18px;
+    gap: 10px;
+    width: 100%;
+    height: 60px;
+    background: #0000FF;
+    border-radius: 5px;
+    border: none;
+    flex: none;
+    flex-grow: 0;
+    font-family: 'Product Sans';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 18px;
+    align-items: center;
+    text-align: center;
+    text-transform: capitalize;
+    color: #FFFFFF;
+    cursor: pointer;
+/* visibility: hidden; */
+}
+
+.imageBlueButton input{
+    display: none;
+    height:100%;
+    width: 100%;
+}
+
+.dropZone{
+    display: none;
+    /* height: 100%;
+    width: 100%; */
+}
+
+.textDiv {
+    display: flex;
+    /* border: solid 1px; */
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 0px;
+    gap: 8px;
+    width: 100%;
+    height: fit-content;
+    flex: none;
+    flex-grow: 0;
+    position: absolute;
+    top: 140px;
+    left: 50%;
+    transform: translate(-50%,0);
+}
+
+.texts1 {
+    text-align: center;
+    display: flex;
+    /* width: fit-content; */
+    height: 24px;
+    font-family: 'Product Sans';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 24px;
+    color: #383838;
+    flex: none;
+    order: 0;
+    flex-grow: 0;
+    /* border: solid 1px; */
+}
+
+.texts2 {
+    text-align: center;
+    /* width: fit-content; */
+    height: 24px;
+    font-family: 'Product Sans';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 24px;
+    color: #383838;
+    flex: none;
+    order: 0;
+    flex-grow: 0;
+    /* border: solid 1px; */
+}
+    
+
 }

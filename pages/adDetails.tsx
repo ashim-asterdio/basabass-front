@@ -17,53 +17,8 @@ import { RootState } from '../store'
 import { increment } from "../slices/progressBarSlice";
 import { Icon } from '@iconify/react'
 import { changeInfo, saveFiles } from "../slices/payPopSlice";
-import UploadZone from "../components/ui components/uploadZone";
+// import UploadZone from "../components/ui components/uploadZone";
 
-
-
-function dataURItoBlob(dataURI: string) {
-  var byteString = atob(dataURI.split(',')[1]);
-
-  var mimeString = dataURI.split(',')[0].split(':')[1].split(';')[0];
-
-  var ab = new ArrayBuffer(byteString.length);
-  var ia = new Uint8Array(ab);
-  for (var i = 0; i < byteString.length; i++) {
-    ia[i] = byteString.charCodeAt(i);
-  }
-  return new Blob([ab], { type: mimeString });
-
-
-}
-
-
-function BlobToDataNinja(file: any) {
-  const reader = new FileReader();
-  reader.onloadend = (e) => {
-    console.log(e.target?.result, 'ello');
-    return Promise.resolve(e.target?.result)
-  }
-  reader.readAsDataURL(file)
-
-  //  console.log(result,'result')
-}
-async function fileToBase64(file: any) {
-  return new Promise((resolve, reject) => {
-    if (!file.type.match('image')) {
-      return reject(new Error('INVALID_FILE'));
-    }
-
-    if (!file.type.match('jpeg') && !file.type.match('jpg') && !file.type.match('png')) {
-      return reject(new Error('INVALID_FILE'));
-    }
-    const reader = new FileReader();
-    reader.readAsDataURL(file);
-    reader.onloadend = function () {
-      const base64data = reader.result;
-      resolve(base64data);
-    };
-  });
-}
 
 const AdDetails: NextPage = () => {
   const router = useRouter()
@@ -71,14 +26,14 @@ const AdDetails: NextPage = () => {
   const page = useSelector((state: RootState) => state.progressBar.value)
   const [info, setInfo] = useState("");
   const [images, setImages] = useState<any[]>();
-  const [persist,setPersist]=useState<any[]>([])
+  // const [persist,setPersist]=useState<any[]>([])
   // const [processedImages, setProcessedImages] = useState([]);
   const files = useSelector((state: RootState) => state.payPop.files)
 
   let i = typeof window !== 'undefined' && sessionStorage.getItem("image") as any
 
   // console.log('filesfrom', dataURItoBlob(files[0]))
-  console.log('filesfrom str',files)
+  // console.log('filesfrom str',files)
   const firstRender = useRef(true)
   useEffect(() => {
     if (firstRender.current) {
@@ -86,22 +41,13 @@ const AdDetails: NextPage = () => {
       document.title = "Ad Details";
     }
   })
-  // useEffect(()=>{
-  //   if(persist.length) dispatch(saveFiles(persist)) 
-  // },[persist])
- 
-  
-        // const reader = new FileReader();
-        // reader.addEventListener("load", () => {
-        //   changedImage.push(reader.result)
-        // })
-        // let f: Blob = images[i] as Blob
-        // console.log(i)
-        // reader.readAsDataURL(f as Blob);
-// }
-// values.image = changedImage
-// }
-// }, [images])
+
+  useEffect(() => {
+    values.image=images
+    console.log("images",values.image)
+    console.log("images main",images)
+    console.log("images",images?.length)
+  },[images])
 
 
 const previous = (e: Event) => {
@@ -109,7 +55,16 @@ const previous = (e: Event) => {
   router.push('/propertyDetails')
 }
 
-const initialValues = {
+interface inintialValues{
+  image: any,
+  youtubeLink: string,
+  propertyTitle: string,
+  propertyPrice: string,
+  label: string,
+  description: string
+}
+
+const initialValues:inintialValues = {
   image: [],
   youtubeLink: "",
   propertyTitle: "",
@@ -124,7 +79,7 @@ const { values, errors, touched, handleSubmit, handleChange } = useFormik({
   validationSchema: adDetailsSchema,
   onSubmit: (values, formikHelpers) => {
     // console.log("call Ad Details")
-    console.log(values)
+    // console.log(values)
     if (page == 3) {
       dispatch(increment())
     }
@@ -151,12 +106,18 @@ const { values, errors, touched, handleSubmit, handleChange } = useFormik({
     details.description = values.description
     // details.propertyImage = values.image;
 
-    console.log("images", values.image)
+    // console.log("images", values.image)
 
     sessionStorage.setItem("details", JSON.stringify(details))
     router.push('/otherDetails')
   }
 })
+
+// useEffect(() => {
+//   values.image=images
+//   console.log("images",values.image)
+// },[images])
+
 
 
 return (
@@ -192,7 +153,10 @@ return (
               *The first image is thumbnail for this listing
             </small>
           </div>
-          {errors.image && <span className={styles.error}>{errors.image}</span>}
+          { errors.image&&(!images||images?.length===0) ?<span className={styles.error}>Please enter image</span>
+          :
+          errors.image&&(!images||images?.length>10)&&<span className={styles.error}>You can only enter 10 images</span>
+          }
         </div>
 
         <div className={styles.adDetailsYoutube} onClick={() => { setInfo("Youtube Video Link") }}>
@@ -285,7 +249,7 @@ return (
             <a href='#' style={{ display: "flex" }}><Icon icon="humbleicons:info-circle" width="20" height="20" className={styles.infoIcon} onClick={() => { dispatch(changeInfo("Description")) }} /></a>
           </label>
           <div className={styles.descriptionDiv}>
-            <input
+            <textarea
               className={styles.textArea}
               id="adDetailsFormDescription"
               placeholder="Description about your property"
@@ -304,3 +268,67 @@ return (
 );
 };
 export default AdDetails;
+
+
+
+// function dataURItoBlob(dataURI: string) {
+//   var byteString = atob(dataURI.split(',')[1]);
+
+//   var mimeString = dataURI.split(',')[0].split(':')[1].split(';')[0];
+
+//   var ab = new ArrayBuffer(byteString.length);
+//   var ia = new Uint8Array(ab);
+//   for (var i = 0; i < byteString.length; i++) {
+//     ia[i] = byteString.charCodeAt(i);
+//   }
+//   return new Blob([ab], { type: mimeString });
+
+
+// }
+
+
+// function BlobToDataNinja(file: any) {
+//   const reader = new FileReader();
+//   reader.onloadend = (e) => {
+//     // console.log(e.target?.result, 'ello');
+//     return Promise.resolve(e.target?.result)
+//   }
+//   reader.readAsDataURL(file)
+
+//    console.log(result,'result')
+// }
+// async function fileToBase64(file: any) {
+//   return new Promise((resolve, reject) => {
+//     if (!file.type.match('image')) {
+//       return reject(new Error('INVALID_FILE'));
+//     }
+
+//     if (!file.type.match('jpeg') && !file.type.match('jpg') && !file.type.match('png')) {
+//       return reject(new Error('INVALID_FILE'));
+//     }
+//     const reader = new FileReader();
+//     reader.readAsDataURL(file);
+//     reader.onloadend = function () {
+//       const base64data = reader.result;
+//       resolve(base64data);
+//     };
+//   });
+// }
+
+
+  // useEffect(()=>{
+  //   if(persist.length) dispatch(saveFiles(persist)) 
+  // },[persist])
+ 
+  
+        // const reader = new FileReader();
+        // reader.addEventListener("load", () => {
+        //   changedImage.push(reader.result)
+        // })
+        // let f: Blob = images[i] as Blob
+        // console.log(i)
+        // reader.readAsDataURL(f as Blob);
+// }
+// values.image = changedImage
+// }
+// }, [images])

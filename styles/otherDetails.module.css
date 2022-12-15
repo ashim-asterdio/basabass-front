@@ -2,6 +2,7 @@
 .otherDetailsContainer{
     display: flex;
     flex-direction: column;
+    justify-content: flex-start;
     align-items: center;
     padding: 0px;
     gap: 16px;
@@ -10,8 +11,11 @@
     height: 542px;
     /* left: 0px;
     top:0px; */
-    /* border: solid 1px; */
 }
+
+.otherDetailsContainer input:focus,.otherDetailsContainer select:focus{
+    outline: none;
+  }
 
 .title{
     display: flex;
@@ -52,9 +56,18 @@
     gap: 16px;
     width: 345px;
     height: 244px;
+    height: fit-content;
     flex: none;
     order: 0;
     flex-grow: 0;
+}
+
+.ownerRadioDivWrapper{
+    display: flex;
+    flex-direction: column;
+    gap: 0px;
+    height: fit-content;
+    /* border: solid 1px; */
 }
 
 .ownerRadioDiv{
@@ -67,6 +80,7 @@
     height: 20px;
     flex: none;
     flex-grow: 0;
+    /* border: solid 1px; */
 }
 
 .ownerInfoDiv{
@@ -76,12 +90,11 @@
     align-items: flex-start;
     padding: 0px;
     gap: 24px;
-    width: 345px;
+    width: 100%;
     height:fit-content;
     flex: none;
     order: 2;
     flex-grow: 0;
-    /* border: solid 1px; */
 }
 
 .inputFeildRow{
@@ -89,12 +102,15 @@
     flex-direction: column;
     gap: 24px;
     height: fit-content;
+    width: 100%;
 }
 
 .inputFeildDiv{
     display: flex;
     flex-direction: column;
+    width: 100%;
     height: 40px;
+    /* height: fit-content; */
 }
 
 .inputFeild{
@@ -104,7 +120,7 @@
     align-items: flex-start;
     padding: 4px 16px;
     gap: 10px;
-    width: 345px;
+    width: 100%;
     height: 40px;
     border: 1px solid #CED4DA;
     border-radius: 5px;
@@ -114,13 +130,15 @@
 }
 
 .adPricingDiv{
+    position: relative;
     display: flex;
     flex-direction: column;
     align-items: flex-start;
     padding: 0px;
     gap: 16px;
     width: 345px;
-    height: 282px;
+    height: fit-content;
+    /* padding-bottom:230px; */
     flex: none;
     flex-grow: 0;
 }

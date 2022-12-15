@@ -17,6 +17,10 @@
     /* top: 162px; */
 }
 
+.propertydetails_container input:focus,.propertydetails_container select:focus{
+    outline: none;
+  }
+
 .propertydetails_container label{
     font-family: 'Product Sans';
     font-style: normal;

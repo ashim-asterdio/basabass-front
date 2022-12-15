@@ -6,7 +6,7 @@ const AmenitiesCheckbox=(props:any)=> {
         <label className={style.amenitiesLabel}>
         <input type="checkbox" name="amenities" value={props.value} className={style.aminitiesCheckbox} onChange={props.onChange} />
             <div>
-                <p>{props.value}</p>
+                <p>{props.holder}</p>
             </div>
         </label>
     </>
