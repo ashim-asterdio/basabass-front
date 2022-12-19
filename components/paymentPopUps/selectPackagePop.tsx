@@ -8,6 +8,7 @@ import { change, changePopUpPage, changePackageInfo } from "../../slices/payPopS
 import { Icon } from "@iconify/react"
 import { useEffect, useRef, useState } from "react"
 import axios from "axios"
+import { Descriptions } from "antd"
 
 
 const SelectPackagePop = (props: any) => {
@@ -16,6 +17,11 @@ const SelectPackagePop = (props: any) => {
     const status = useSelector((state: RootState) => state.payPop.value)
     const list = ["30 Days Validation", "Number of Listing:1", "Mobile number of all response", "High position in"]
     const [allPackage, setAllPackage] = useState<any>([])
+    const [silverFlag,setSilverFlag]=useState(false)
+    const [goldFlag,setGoldFlag]=useState(false)
+    const [platiniumFlag,setPlatiniumFlag]=useState(false)
+    const [titaniumFlag,setTitaniumFlag]=useState(false)
+
 
     const getPlans = async () => {
         const config = {
@@ -24,7 +30,7 @@ const SelectPackagePop = (props: any) => {
         try {
             const allPackageBe: any = await axios.get("https://basobaasnew.asterdio.xyz/api/paid-plans/", config)
             setAllPackage(allPackageBe.data.paidplan)
-            console.log("state: ",allPackage)
+            console.log("state: ", allPackage)
 
         } catch (e) {
             console.log("all packageg error", e)
@@ -37,17 +43,64 @@ const SelectPackagePop = (props: any) => {
             ref.current = false;
             getPlans();
         }
-    },[status])
+    }, [status])
 
-    const sendInfo = (name: string, price: any, price2: string,plan:string) => {
+    const description = {
+        silver: ["30 days Validity", "Number of Listings: 1", "Mobile no. of all responses", "Higher position in search for 7 days"],
+
+        gold: [
+            "90 days Validity", "Number of Listings: 1",
+            'Mobile no. of all responses',
+            'Higher position in search for 15 days',
+            'Property Description by Experts',
+            'Verified tag on Property'
+        ],
+
+        platinium: [
+            "120 days Validity",
+            "Number of Listings: 1",
+            "Mobile no. of all responses",
+            "Higher position in search for 30 days",
+            "1 Open house with Video tour*",
+            "Professional Photoshoot of Property",
+            "Verified tag on Property",
+            "Property Description by Experts",
+            "500 Email Promotions",
+            "Get ready list of 100 buyers"
+        ],
+        titanium: [
+            '180 days Validity',
+            "Number of Listings: 1",
+            "Mobile no. of all responses",
+            "Higher position in search for 60 days",
+            "3 Open houses with Video tour*",
+            "Professional Photoshoot of Property",
+            "Professional Videography of Property",
+            "Verified tag on Property",
+            "Property Description by Experts",
+            "Titanium Tag",
+            "1000 Email Promotions"
+            ]
+    }
+
+    const sendInfo = (name: string, price: any, price2: string, plan: string) => {
         dispatch(changePopUpPage(2))
-        dispatch(changePackageInfo({ name: name, price: price, price2: price2,plan:plan }))
+        dispatch(changePackageInfo({ name: name, price: price, price2: price2, plan: plan }))
+    }
+
+    const changeFlag=()=>{
+        dispatch(change()); 
+        dispatch(changePopUpPage(1))
+        setSilverFlag(false)
+        setGoldFlag(false)
+        setPlatiniumFlag(false)
+        setTitaniumFlag(false)
     }
 
 
     return (
         <div className={style.container} >
-            <Icon icon="radix-icons:cross-2" width="20" height="20" className={style.crossButton} onClick={() => { dispatch(change()); dispatch(changePopUpPage(1)) }} />
+            <Icon icon="radix-icons:cross-2" width="20" height="20" className={style.crossButton} onClick={changeFlag} />
             <label className={style.textDiv}>
                 <span className={style.bigText}>Select paid plans to get more responses</span>
                 <span className={style.smallText}>Here are different plans with exciting offers.</span>
@@ -57,11 +110,11 @@ const SelectPackagePop = (props: any) => {
 
             <div className={style.paymentOptionDiv}>
                 <div className={`${style.option1} ${style.paymentOption}`}>
-                    <div className={style.seeFullDiv}>
-                        <span className={style.seeFull}>See full package details</span>
-                        <span className={style.arrow}><Image alt="no image" src={blueArrow} /></span>
+                    <div className={style.seeFullDiv} style={{display:silverFlag?"none":"block"}}>
+                        <span className={style.seeFull} onClick={()=>{setSilverFlag(true)}}>See full package details</span>
+                        <span className={style.arrow} onClick={()=>{setSilverFlag(true)}}><Image alt="no image" src={blueArrow} /></span>
                     </div>
-                    <div className={style.blurDiv}></div>
+                    <div className={style.blurDiv} style={{display:silverFlag?"none":"block"}}></div>
                     <hr className={style.seperationBot} />
                     <div className={style.detailDiv}>
                         <div className={style.topicDiv}>
@@ -72,9 +125,9 @@ const SelectPackagePop = (props: any) => {
                             </span>
                         </div>
                         <hr className={style.seperation} />
-                        <div className={style.contentDiv}>
-                            {list.map((data) =>
-                                <div key={data} className={style.listDiv}>
+                        <div className={style.contentDiv} style={{overflowY:silverFlag?"scroll":"hidden"}}>
+                            {description.silver.map((data) =>
+                                <div key={data} className={style.listDiv} >
                                     <span className={style.tickMark}><Image alt="no image" src={tickMark} /></span>
                                     <span className={style.description}>{data}</span>
                                 </div>
@@ -82,30 +135,30 @@ const SelectPackagePop = (props: any) => {
                         </div>
                     </div>
                     <div className={style.buttonDiv}>
-                        <button className={style.button} onClick={() => { sendInfo("Silver", allPackage[1].newPrice, "1,000",allPackage[1]._id) }}>Select & Continue</button>
+                        <button className={style.button} onClick={() => { sendInfo("Silver", allPackage[1].newPrice, "1,000", allPackage[1]._id) }}>Select & Continue</button>
                     </div>
                 </div>
 
 
                 <div className={`${style.option2} ${style.paymentOption}`}>
-                    <div className={style.seeFullDiv}>
-                        <span className={style.seeFull}>See full package details</span>
-                        <span className={style.arrow}><Image alt="no Image" src={blueArrow} /></span>
+                    <div className={style.seeFullDiv} style={{display:goldFlag?"none":"block"}}>
+                        <span className={style.seeFull} onClick={()=>{setGoldFlag(true)}}>See full package details</span>
+                        <span className={style.arrow} onClick={()=>{setGoldFlag(true)}}><Image alt="no image" src={blueArrow} /></span>
                     </div>
-                    <div className={style.blurDiv}></div>
+                    <div className={style.blurDiv} style={{display:goldFlag?"none":"block"}}></div>
                     <hr className={style.seperationBot} />
                     <div className={style.detailDiv}>
                         <div className={style.topicDiv}>
                             <span className={style.packageName}>Gold</span>
                             <span className={style.packagePrice}>
-                                <span className={style.before}>Rs.5,00</span>
+                                <span className={style.before}>Rs.5,000</span>
                                 <span className={style.current}>Rs.3,500</span>
                             </span>
                         </div>
                         <hr className={style.seperation} />
-                        <div className={style.contentDiv}>
-                            {list.map((data) =>
-                                <div key={data} className={style.listDiv}>
+                        <div className={style.contentDiv} style={{overflowY:goldFlag?"scroll":"hidden"}}>
+                            {description.gold.map((data) =>
+                                <div key={data} className={style.listDiv} >
                                     <span className={style.tickMark}><Image alt="no Image" src={tickMark} /></span>
                                     <span className={style.description}>{data}</span>
                                 </div>
@@ -113,30 +166,30 @@ const SelectPackagePop = (props: any) => {
                         </div>
                     </div>
                     <div className={style.buttonDiv}>
-                        <button className={style.button} onClick={() => { sendInfo("Gold", allPackage[2].newPrice, "3,500",allPackage[2]._id) }}>Select & Continue</button>
+                        <button className={style.button} onClick={() => { sendInfo("Gold", allPackage[2].newPrice, "3,500", allPackage[2]._id) }}>Select & Continue</button>
                     </div>
                 </div>
 
 
                 <div className={`${style.option3} ${style.paymentOption}`}>
-                    <div className={style.seeFullDiv}>
-                        <span className={style.seeFull}>See full package details</span>
-                        <span className={style.arrow}><Image alt="no Image" src={blueArrow} /></span>
+                    <div className={style.seeFullDiv} style={{display:platiniumFlag?"none":"block"}}>
+                        <span className={style.seeFull} onClick={()=>{setPlatiniumFlag(true)}}>See full package details</span>
+                        <span className={style.arrow} onClick={()=>{setPlatiniumFlag(true)}}><Image alt="no image" src={blueArrow} /></span>
                     </div>
-                    <div className={style.blurDiv}></div>
+                    <div className={style.blurDiv} style={{display:platiniumFlag?"none":"block"}}></div>
                     <hr className={style.seperationBot} />
                     <div className={style.detailDiv}>
                         <div className={style.topicDiv}>
                             <span className={style.packageName}>Platinium</span>
                             <span className={style.packagePrice}>
                                 <span className={style.before}>Rs.15,000</span>
-                                <span className={style.current}>Rs.10,500</span>
+                                <span className={style.current}>Rs.10,000</span>
                             </span>
                         </div>
                         <hr className={style.seperation} />
-                        <div className={style.contentDiv}>
-                            {list.map((data) =>
-                                <div key={data} className={style.listDiv}>
+                        <div className={style.contentDiv} style={{overflowY:platiniumFlag?"scroll":"hidden"}}>
+                            {description.platinium.map((data) =>
+                                <div key={data} className={style.listDiv} >
                                     <span className={style.tickMark}><Image alt="no Image" src={tickMark} /></span>
                                     <span className={style.description}>{data}</span>
                                 </div>
@@ -144,17 +197,17 @@ const SelectPackagePop = (props: any) => {
                         </div>
                     </div>
                     <div className={style.buttonDiv}>
-                        <button className={style.button} onClick={() => { sendInfo("Platinium", allPackage[3].newPrice, "10,500",allPackage[3]._id) }}>Select & Continue</button>
+                        <button className={style.button} onClick={() => { sendInfo("Platinium", allPackage[3].newPrice, "10,500", allPackage[3]._id) }}>Select & Continue</button>
                     </div>
                 </div>
 
 
                 <div className={`${style.option4} ${style.paymentOption}`}>
-                    <div className={style.seeFullDiv}>
-                        <span className={style.seeFull}>See full package details</span>
-                        <span className={style.arrow}><Image alt="no Image" src={blueArrow} /></span>
+                    <div className={style.seeFullDiv} style={{display:titaniumFlag?"none":"block"}}>
+                        <span className={style.seeFull} onClick={()=>{setTitaniumFlag(true)}}>See full package details</span>
+                        <span className={style.arrow} onClick={()=>{setTitaniumFlag(true)}}><Image alt="no image" src={blueArrow} /></span>
                     </div>
-                    <div className={style.blurDiv}></div>
+                    <div className={style.blurDiv} style={{display:titaniumFlag?"none":"block"}}></div>
                     <hr className={style.seperationBot} />
                     <div className={style.detailDiv}>
                         <div className={style.topicDiv}>
@@ -165,9 +218,9 @@ const SelectPackagePop = (props: any) => {
                             </span>
                         </div>
                         <hr className={style.seperation} />
-                        <div className={style.contentDiv}>
-                            {list.map((data) =>
-                                <div key={data} className={style.listDiv}>
+                        <div className={style.contentDiv} style={{overflowY:titaniumFlag?"scroll":"hidden"}}>
+                            {description.titanium.map((data) =>
+                                <div key={data} className={style.listDiv} >
                                     <span className={style.tickMark}><Image alt="no Image" src={tickMark} /></span>
                                     <span className={style.description}>{data}</span>
                                 </div>
@@ -175,7 +228,7 @@ const SelectPackagePop = (props: any) => {
                         </div>
                     </div>
                     <div className={style.buttonDiv}>
-                        <button className={style.button} onClick={() => { sendInfo("Titanium", allPackage[4].newPrice, "15,000",allPackage[4]._id) }}>Contact Sales</button>
+                        <button className={style.button} onClick={() => { sendInfo("Titanium", allPackage[4].newPrice, "15,000", allPackage[4]._id) }}>Contact Sales</button>
                     </div>
                 </div>
             </div>

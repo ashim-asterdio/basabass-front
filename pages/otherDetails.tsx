@@ -65,12 +65,13 @@ const OtherDetails: NextPage = () => {
             // console.log("call Ad Details")
             // console.log(values)
             // console.log(initialValues)
-            var details: any = JSON.parse(sessionStorage.getItem("details") ?? ' ')
+            // var details: any = JSON.parse(sessionStorage.getItem("details") ?? ' ')
             // const photo:File=sessionStorage.getItem("propertyImage")
-            details.name = values.name
-            details.email = values.email
-            details.phone = values.phoneNumber
-            delete details.propertyImage
+            const details={
+                name:values.name,
+                email : values.email,
+                phone : values.phoneNumber
+            }
             // details.ownerId = ""
             // console.log("data",details.propertyImage[0] as Blob)
             // async function getFileFromUrl(url:string, name:string, defaultType = 'image/jpeg'){
@@ -80,7 +81,7 @@ const OtherDetails: NextPage = () => {
             //       type: data.type || defaultType,
             //     });
             //   }
-            delete details.propertyImage
+            // delete details.propertyImage
             try {
                 const config = {
                     headers: { Authorization: `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2Mzg4NDc4YzY0ODI5YzhlMzg4ODYzOWUiLCJyb2xlIjoic3VwZXJhZG1pbiIsImlhdCI6MTY2OTk4MjAxOSwiZXhwIjoyMjc0NzgyMDE5fQ.K3ereptAn2D5QkNgDpyb5azImuXU9wxcwccjlfkwqiM` }
@@ -125,16 +126,18 @@ const OtherDetails: NextPage = () => {
                     livingRoom: "2",
                     // propertyImage:[""]
                 }
-                const response: any = await axios.post("https://basobaasnew.asterdio.xyz/api/properties",
+
+                const propertyToken=localStorage.getItem("propertyToken")
+                console.log(propertyToken)
+
+                const response: any = await axios.put(`https://basobaasnew.asterdio.xyz/api/properties/${propertyToken}`,
                     details, config)
                 console.log("response : ", response)
-                sessionStorage.setItem("propertyToken", response?.data.property._id)
-                localStorage.setItem("propertyToken", response?.data.property._id)
+                
 
             } catch (err) {
                 console.log(err)
             }
-
 
             if (values.adPricingtype == "Paid Listing") {
                 if (pay) {

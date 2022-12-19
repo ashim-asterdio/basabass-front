@@ -60,13 +60,21 @@ const AdDetails: NextPage = () => {
   };
   try{
     const response: any = await axios.post("https://basobaasnew.asterdio.xyz/api/properties/",data, config)
-    // await fetch("/get_product/post_product", {
-    //   method: "POST",
-    //   headers :config.headers,
-    //   body:data,
-    // });
-    
     console.log("post response",response)
+    return (response.data.property._id)
+  }catch(e){
+    console.log("post error",e)
+  }
+  }
+
+  const putData=async (data:BodyInit,propertyToken:string)=>{
+    const config = {
+      headers: { Authorization: `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2Mzg4NDc4YzY0ODI5YzhlMzg4ODYzOWUiLCJyb2xlIjoic3VwZXJhZG1pbiIsImlhdCI6MTY2OTk4MjAxOSwiZXhwIjoyMjc0NzgyMDE5fQ.K3ereptAn2D5QkNgDpyb5azImuXU9wxcwccjlfkwqiM` }
+  };
+  try{
+    const response: any = await axios.put(`https://basobaasnew.asterdio.xyz/api/properties/${propertyToken}`,data, config)
+    console.log("post response",response)
+    return (response.data.property._id)
   }catch(e){
     console.log("post error",e)
   }
@@ -96,39 +104,24 @@ const initialValues:inintialValues = {
   description: ""
 }
 
-// const [file, setFile] = useState(null);
 const { values, errors, touched, handleSubmit, handleChange } = useFormik({
   initialValues: initialValues,
   validationSchema: adDetailsSchema,
-  onSubmit: (values, formikHelpers) => {
-    // console.log("call Ad Details")
-    // console.log(values)
+  onSubmit: async (values, formikHelpers) => {
+
     if (page == 3) {
       dispatch(increment())
     }
-    // let parsedImages=images?.map((i)=> {
-    //   let r=new FileReader()
-    //   let result=Array()
-    //   function readerFn()
-    //   {
-    //     console.log('reder funciton ',r.result)
-    //    r.readAsDataURL(i as Blob);
-    //       result.push(r.result);
-    //   }
-    //     r.addEventListener('load',readerFn)
-    //   return result;
-    // })
-    // console.log(parsedImages,'parsedImages')
     sessionStorage.setItem("page", "4")
     var details: any = JSON.parse(sessionStorage.getItem("details") ?? {} as any)
-    // details.propertyImages=values.image
     details.youtubeLink = values.youtubeLink
     details.title = values.propertyTitle
     details.price = values.propertyPrice
     details.label = values.label
     details.description = values.description
-    const formData=new FormData()
     details.propertyImages=images
+    delete details.ownerId
+    const formData=new FormData()
     console.log(details.amenities)
 
     for (var key in details) {
@@ -151,21 +144,18 @@ const { values, errors, touched, handleSubmit, handleChange } = useFormik({
         formData.append(key,details[key])
       } 
     }
-    
-    console.log("plz hoss",formData)
+    const propertyId=localStorage.getItem("propertToken")
+    if(!propertyId){
+      const propertyToken=await submitData(formData);
+      localStorage.setItem("propertyToken", propertyToken)
+    }
+    else{
+      putData(formData,propertyId)
+    }
 
-    delete details.ownerId
-    submitData(formData);
-
-    // sessionStorage.setItem("details", JSON.stringify(details))
-    // router.push('/otherDetails')
+    router.push('/otherDetails')
   }
 })
-
-// useEffect(() => {
-//   values.image=images
-//   console.log("images",values.image)
-// },[images])
 
 
 
