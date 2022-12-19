@@ -8,7 +8,7 @@ import deleteButton from "../Images/deleteButton.svg"
 const CustomUploadZone = ({setImages,files}:{setImages:any,files:any}) => {
   const [picture, setPicture] = useState<any>([])
   const image: any = useRef()
-  console.log(picture)
+  // console.log(picture)
   
   function sliceIntoChunks(arr:[], chunkSize:number) {
     const res = [];
@@ -20,7 +20,7 @@ const CustomUploadZone = ({setImages,files}:{setImages:any,files:any}) => {
 }
 
 function deleteImage(index:number){
-  console.log("index",index)
+  // console.log("index",index)
   setPicture([...picture.slice(0, index),...picture.slice(index + 1)])
   setImages([...picture.slice(0, index),...picture.slice(index + 1)])
 }

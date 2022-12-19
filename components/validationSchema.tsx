@@ -26,10 +26,10 @@ export const propertyDetailsSchema =Yup.object({
     totalFloors:Yup.number().required("Please enter No. of Floors"),
     furnishing:Yup.string().required("Please enter Furnishing status"),
     numberOFUnits:Yup.string().required("Please enter No. of Units"),
-    NoOfBedroom:Yup.string().required("Please enter No. of Bed Room"),
-    NoOfBathroom:Yup.string().required("Please enter No. of Bath Room"),
-    NoOfKitchen:Yup.string().required("Please enter No. of Kitchen"),
-    NoOfLivingroom:Yup.string().required("Please enter No. of Living Room"),
+    noOfBedroom:Yup.string().required("Please enter No. of Bed Room"),
+    noOfBathroom:Yup.string().required("Please enter No. of Bath Room"),
+    noOfKitchen:Yup.string().required("Please enter No. of Kitchen"),
+    noOfLivingroom:Yup.string().required("Please enter No. of Living Room"),
     amenities:Yup.array().of(Yup.string()).min(1,"Require more amenities")
 }) 
 

@@ -17,6 +17,7 @@ import { RootState } from '../store'
 import { increment } from "../slices/progressBarSlice";
 import { Icon } from '@iconify/react'
 import { changeInfo, saveFiles } from "../slices/payPopSlice";
+import axios from "axios"
 // import UploadZone from "../components/ui components/uploadZone";
 
 
@@ -25,7 +26,8 @@ const AdDetails: NextPage = () => {
   const dispatch = useDispatch();
   const page = useSelector((state: RootState) => state.progressBar.value)
   const [info, setInfo] = useState("");
-  const [images, setImages] = useState<any[]>();
+  const [images, setImages] = useState<FileList>();
+  const imgFile=useRef();
   // const [persist,setPersist]=useState<any[]>([])
   // const [processedImages, setProcessedImages] = useState([]);
   const files = useSelector((state: RootState) => state.payPop.files)
@@ -43,11 +45,32 @@ const AdDetails: NextPage = () => {
   })
 
   useEffect(() => {
-    values.image=images
+    if (typeof images!="undefined" && images.length>0 ){
+      values.image=images
+    }
     console.log("images",values.image)
     console.log("images main",images)
     console.log("images",images?.length)
   },[images])
+
+
+  const submitData=async (data:BodyInit)=>{
+    const config = {
+      headers: { Authorization: `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2Mzg4NDc4YzY0ODI5YzhlMzg4ODYzOWUiLCJyb2xlIjoic3VwZXJhZG1pbiIsImlhdCI6MTY2OTk4MjAxOSwiZXhwIjoyMjc0NzgyMDE5fQ.K3ereptAn2D5QkNgDpyb5azImuXU9wxcwccjlfkwqiM` }
+  };
+  try{
+    const response: any = await axios.post("https://basobaasnew.asterdio.xyz/api/properties/",data, config)
+    // await fetch("/get_product/post_product", {
+    //   method: "POST",
+    //   headers :config.headers,
+    //   body:data,
+    // });
+    
+    console.log("post response",response)
+  }catch(e){
+    console.log("post error",e)
+  }
+  }
 
 
 const previous = (e: Event) => {
@@ -104,12 +127,38 @@ const { values, errors, touched, handleSubmit, handleChange } = useFormik({
     details.price = values.propertyPrice
     details.label = values.label
     details.description = values.description
-    // details.propertyImage = values.image;
+    const formData=new FormData()
+    details.propertyImages=images
+    console.log(details.amenities)
 
-    // console.log("images", values.image)
+    for (var key in details) {
+      if(key=="amenities"){
+        for (let j in details[key])
+        {
 
-    sessionStorage.setItem("details", JSON.stringify(details))
-    router.push('/otherDetails')
+          formData.append(key,details[key][j])
+        }
+      }
+      else if (key=="propertyImages"){
+        for (let j in details[key])
+        {
+
+          formData.append(key,details[key][j])
+          console.log(key,details[key][j])
+        }
+      }
+      else{
+        formData.append(key,details[key])
+      } 
+    }
+    
+    console.log("plz hoss",formData)
+
+    delete details.ownerId
+    submitData(formData);
+
+    // sessionStorage.setItem("details", JSON.stringify(details))
+    // router.push('/otherDetails')
   }
 })
 

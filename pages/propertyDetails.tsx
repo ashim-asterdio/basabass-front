@@ -51,6 +51,10 @@ const PropertyDetails: NextPage = () => {
     })
 
     // useEffect(() => {
+    //     console.log(values)
+    //     })
+
+    // useEffect(() => {
     //     if (page==1)
     //         router.push('/basicDetails')
     //   })
@@ -91,7 +95,8 @@ const PropertyDetails: NextPage = () => {
     const { values, errors, touched, handleSubmit, handleChange } = useFormik({
         initialValues: initialValues,
         validationSchema: propertyDetailsSchema,
-        onSubmit(values, formikHelpers) {
+        onSubmit : async (values, formikHelpers)=> {
+            console.log(values)
             // console.log(errors)
             // console.log("call")
             // console.log(values)
@@ -374,7 +379,7 @@ const PropertyDetails: NextPage = () => {
                                     <input className={style.input_only} type="text" placeholder="Total Living Room"
                                         name='noOfLivingroom'
                                         onChange={handleChange} />
-                                    {errors.noOfLivingroom && <span className={style.error}>{errors.noOfLivingroom}</span>}
+                                    {errors.noOfLivingroom && <span className={style.error} style={{zIndex:"5"}}>{errors.noOfLivingroom}</span>}
                                 </div>
                             </div>
                         </div>
