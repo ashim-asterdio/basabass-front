@@ -13,24 +13,24 @@ import cn from "classnames"
 import { Display } from "@icon-park/react"
 
 // const page = useSelector((state: RootState) => state.progressBar.value)
-const Layout = ({ children, topic, onSubmit, page, previous, info, next,back }:
-  { children: any; topic: string; onSubmit: any; page: any; previous: any; info: any; next: string ;back:string}) => {
+const Layout = ({ children, topic, onSubmit, page, previous, info, next, back }:
+  { children: any; topic: string; onSubmit: any; page: any; previous: any; info: any; next: string; back: string }) => {
 
   // const [information,setInformation]=useState("")  
   // var pop=info
   // const collaps=()=>{
-     
+
   // }
   const dispatch = useDispatch();
-  const information=useSelector((state:RootState)=>state.payPop.information)
-  const popUpBg=useSelector((state:RootState)=>state.payPop.popUpBg)
+  const information = useSelector((state: RootState) => state.payPop.information)
+  const popUpBg = useSelector((state: RootState) => state.payPop.popUpBg)
 
   return (
     <>
       <div className={style.alignmentContainer}>
-        <div className={cn({[style.popUpBg]: popUpBg ,[style.popUpBgInv]: !popUpBg})} >
+        <div className={cn({ [style.popUpBg]: popUpBg, [style.popUpBgInv]: !popUpBg })} >
         </div>
-        <div className={cn({[style.popUpMobileBg]: information != "",[style.popUpMobileBgInv]: information == '',})} >
+        <div className={cn({ [style.popUpMobileBg]: information != "", [style.popUpMobileBgInv]: information == '', })} >
         </div>
         <div className={style.navBlend}>
           <div className={style.nav}>
@@ -79,7 +79,7 @@ const Layout = ({ children, topic, onSubmit, page, previous, info, next,back }:
                           <span className={style.savetoDraft}>Save as draft</span>
                           <button className={style.next} type="submit" onClick={onSubmit} >Next<span className={style.buttonValue}>{next}</span></button>
                         </div>
-                        <button className={style.previous} style={{display:(back=="none")?"none":"flex"}} onClick={previous}>
+                        <button className={style.previous} style={{ display: (back == "none") ? "none" : "flex" }} onClick={previous}>
                           <span className={style.buttonValueMobile}>Previous</span>
                           <span className={style.buttonValue}>Back {back}</span>
                         </button>
@@ -89,19 +89,29 @@ const Layout = ({ children, topic, onSubmit, page, previous, info, next,back }:
 
                 </div>
 
-                <div className={cn({[style.botRightDiv]: information != "",[style.botRightDivInv]: information == '',})}>
+                <div className={cn({ [style.botRightDiv]: information != "", [style.botRightDivInv]: information == '', })}>
                   <div className={style.infoInnerDiv}>
                     <div className={style.infoTopic}>
                       <p><Icon icon="humbleicons:info-circle" width="20" height="20" />INFORMATION</p>
-                      <Icon icon="radix-icons:cross-2" width="20" height="20" className={style.crossButton} 
-                      onClick={()=>{dispatch(changeInfo(""))}} />
+                      <Icon icon="radix-icons:cross-2" width="20" height="20" className={style.crossButton}
+                        onClick={() => { dispatch(changeInfo("")) }} />
                     </div>
                     <div className={style.infoContentDiv}>
                       <h3>
                         {information}
                       </h3>
                       <div className={style.infoContent}>
-                        Information about stuff
+                        {/* Information about stuff */}
+                        <div className={style.aboutInfo}>
+                          Here you have to select one option where these options indicate following information
+                        </div>
+                        <div className={style.infoTable}>
+                          <div className={style.infoTableRow}>
+                            <div className={style.infoTableTopic}>Sale</div>
+                            <div className={style.infoTableContent}>: This means to post your porperty for selling purpose.</div>
+                          </div>
+                        </div>
+
                       </div>
                     </div>
                   </div>

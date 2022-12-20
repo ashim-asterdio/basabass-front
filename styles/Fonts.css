@@ -1,4 +1,4 @@
 @font-face {
     font-family:"Product Sans";
-    src:local('ProductSans'), url("/public/Fonts/ProductSans/ProductSans.ttf") format('ttf');
+    src: url("/Fonts/ProductSans/ProductSans.ttf") format('truetype');
 }

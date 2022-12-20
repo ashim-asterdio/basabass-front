@@ -1,3 +1,8 @@
+@font-face {
+    font-family:"Product Sans";
+    src: url("/public/Fonts/ProductSans/ProductSans.ttf") format('truetype');
+}
+
 
 .nav{
     display: flex;
@@ -91,7 +96,7 @@
 .linksData{
     width: fit-content;
     height: 19px;
-    font-family: 'ProductSans';
+    font-family: 'Product Sans';
     font-style: normal;
     font-weight: 400;
     font-size: 1em;
