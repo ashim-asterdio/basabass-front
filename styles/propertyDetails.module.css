@@ -295,7 +295,7 @@
     padding: 0px;
     gap: 8px;
     width: 344.5px;
-    height: 372px;
+    height: fit-content;
     flex: none;
     flex-grow: 0;
     /* border: solid red 1px; */
@@ -306,10 +306,11 @@
     flex-direction: row;
     flex-wrap: wrap;
     align-items: flex-start;
+    justify-content: flex-start;
     padding: 0px;
     gap: 11px;
     width: 344.5px;
-    height: 340px;
+    height: fit-content;
     flex: none;
     flex-grow: 0;
     /* border: solid 1px; */

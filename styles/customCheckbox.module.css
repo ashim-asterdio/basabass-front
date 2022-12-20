@@ -13,6 +13,7 @@
     flex-grow: 1;
     box-sizing: border-box;
     cursor: pointer;
+    margin: 0;
 }
 
 .amenitiesLabel input{
@@ -119,5 +120,17 @@
         flex: none;
         order: 0;
         flex-grow: 0;
+    }
+}
+
+@media only screen and (min-width: 1024px){
+    .amenitiesLabel{
+        width: 22% !important;
+    }
+}
+
+@media only screen and (min-width: 1206px){
+    .amenitiesLabel{
+        width: 18.5% !important;
     }
 }
