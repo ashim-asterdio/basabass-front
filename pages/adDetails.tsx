@@ -27,7 +27,9 @@ const AdDetails: NextPage = () => {
   const page = useSelector((state: RootState) => state.progressBar.value)
   const [info, setInfo] = useState("");
   const [images, setImages] = useState<FileList>();
-  const imgFile=useRef();
+  const [rollBack, setRollBack] = useState<any>({})
+
+  // const imgFile=useRef();
   // const [persist,setPersist]=useState<any[]>([])
   // const [processedImages, setProcessedImages] = useState([]);
   const files = useSelector((state: RootState) => state.payPop.files)
@@ -40,7 +42,29 @@ const AdDetails: NextPage = () => {
   useEffect(() => {
     if (firstRender.current) {
       firstRender.current = false
+      try {
+        if (page == 1){
+          sessionStorage.clear()
+          // localStorage.clear()
+          router.push('/basicDetails')
+        }  
+      }
+      catch {
+        console.log("milena")
+      }
       document.title = "Ad Details";
+      setRollBack(details)
+
+      if (sessionStorage.getItem("details")) {
+        var details: any = JSON.parse(sessionStorage.getItem("details") ?? ' ')
+        if (details.title) {
+          values.youtubeLink= details.youtubeLink
+          values.propertyTitle=details.title 
+          values.propertyPrice=details.price
+          values.label=details.label
+          values.description=details.description
+        }
+      }
     }
   })
 
@@ -144,16 +168,28 @@ const { values, errors, touched, handleSubmit, handleChange } = useFormik({
         formData.append(key,details[key])
       } 
     }
-    const propertyId=localStorage.getItem("propertToken")
-    if(!propertyId){
-      const propertyToken=await submitData(formData);
-      localStorage.setItem("propertyToken", propertyToken)
+    const propertyId=localStorage.getItem("propertyToken")
+    console.log("propertyId",propertyId)
+    if(!propertyId||propertyId==null){
+      if(propertyId?.length==0){
+        const propertyToken=await submitData(formData);
+        localStorage.setItem("propertyToken", propertyToken)
+        console.log("post")
+        sessionStorage.setItem("details",JSON.stringify(details))
+        router.push('/otherDetails')
+      }
+      // else{
+      //   console.log("put")
+      //   putData(formData,propertyId)
+      // }
     }
-    else{
-      putData(formData,propertyId)
+    else if(propertyId!=null) {
+      console.log("put")
+      await putData(formData,propertyId)
+      sessionStorage.setItem("details",JSON.stringify(details))
+      router.push('/otherDetails')
     }
 
-    router.push('/otherDetails')
   }
 })
 
@@ -192,9 +228,9 @@ return (
               *The first image is thumbnail for this listing
             </small>
           </div>
-          { errors.image&&(!images||images?.length===0) ?<span className={styles.error}>Please enter image</span>
+          { errors.image&&touched.image&&(!images||images?.length===0) ?<span className={styles.error}>Please enter image</span>
           :
-          errors.image&&(!images||images?.length>10)&&<span className={styles.error}>You can only enter 10 images</span>
+          errors.image&&touched.image&&(!images||images?.length>10)&&<span className={styles.error}>You can only enter 10 images</span>
           }
         </div>
 
@@ -210,8 +246,9 @@ return (
               id={""}
               name="youtubeLink"
               onChange={handleChange}
+              value={values.youtubeLink}
             />
-            {errors.youtubeLink && <span className={styles.error}>{errors.youtubeLink}</span>}
+            {errors.youtubeLink && touched.youtubeLink && <span className={styles.error}>{errors.youtubeLink}</span>}
           </div>
         </div>
 
@@ -229,8 +266,9 @@ return (
               id={""}
               name="propertyTitle"
               onChange={handleChange}
+              value={values.propertyTitle}
             />
-            {errors.propertyTitle && <span className={styles.error}>{errors.propertyTitle}</span>}
+            {errors.propertyTitle && touched.propertyTitle && <span className={styles.error}>{errors.propertyTitle}</span>}
           </div>
 
           <div className={styles.adDetailsPrice} onClick={() => { setInfo("Price") }}>
@@ -238,17 +276,6 @@ return (
               Price
               <a href='#' style={{ display: "flex" }}><Icon icon="humbleicons:info-circle" width="20" height="20" className={styles.infoIcon} onClick={() => { dispatch(changeInfo("Price")) }} /></a>
             </label>
-
-            {/* <CustomizableInputButtonsWithSelect
-                type={"text"}
-                placeholder={"Property Price"}
-                value0={"Deals"}
-                value1={"Label"}
-                value2={"Rupees"}
-                name1="propertyPrice"
-                name2="label"
-                onChange={handleChange}
-              /> */}
             <div className={style.customizableInputButtonsWithSelect}>
               <input
                 className={style.customizableInputPartOnly}
@@ -256,12 +283,14 @@ return (
                 placeholder="Property Price"
                 name="propertyPrice"
                 onChange={handleChange}
+                value={values.propertyPrice}
               ></input>
               <div className={style.partationDiv}></div>
               <div className={style.customizableSelectPartOnly}>
                 <select
                   name="label"
                   onChange={handleChange}
+                  value={values.label}
                 >
 
                   <option value="Label" selected disabled>
@@ -274,9 +303,9 @@ return (
                 </select>
               </div>
             </div>
-            {(errors.propertyPrice || errors.label) && <span className={styles.doubleError}>
+            {(errors.propertyPrice || errors.label) && (touched.propertyPrice || touched.label) && <span className={styles.doubleError}>
               <span className={styles.error}>{errors.propertyPrice}</span>
-              {errors.label && <span className={styles.error}>{errors.label}</span>}
+              {errors.label && touched.label && <span className={styles.error}>{errors.label}</span>}
             </span>}
 
           </div>
@@ -294,10 +323,11 @@ return (
               placeholder="Description about your property"
               name="description"
               onChange={handleChange}
+              value={values.description}
             />
           </div>
 
-          {errors.description && <span className={styles.error}>{errors.description}</span>}
+          {errors.description && touched.description && <span className={styles.error}>{errors.description}</span>}
         </div>
 
       </div>

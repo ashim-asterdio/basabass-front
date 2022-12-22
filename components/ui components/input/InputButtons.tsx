@@ -14,6 +14,7 @@ export const CustomizableInputs = (props: any) => {
         // value={props.value}
         name={props.name}
         onChange={props.onChange}
+        value={props.value}
       />
     </>
   );

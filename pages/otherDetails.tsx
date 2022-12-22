@@ -22,7 +22,7 @@ import axios from "axios"
 const OtherDetails: NextPage = () => {
     const router = useRouter();
     const dispatch = useDispatch();
-
+    const [rollBack, setRollBack] = useState<any>({})
     const [info, setInfo] = useState("");
     // const [pay, setPay] = useState(false);
     const page = useSelector((state: RootState) => state.progressBar.value)
@@ -34,15 +34,34 @@ const OtherDetails: NextPage = () => {
     useEffect(() => {
         if (firstRender.current) {
             firstRender.current = false
+            try {
+                if (page == 1) {
+                    sessionStorage.clear()
+                    // localStorage.clear()
+                    router.push('/basicDetails')
+                }
+            }
+            catch {
+                console.log("milena")
+            }
             document.title = "Other Details"
+            setRollBack(details)
+            if (sessionStorage.getItem("details")) {
+                if (sessionStorage.getItem("page") == "4") {
+                    var details: any = JSON.parse(sessionStorage.getItem("details") ?? ' ')
+                    if (details.name) {
+                        values.name = details.name,
+                            values.email = details.email,
+                            values.phoneNumber = details.phone
+                    }
+                    if (sessionStorage.getItem("owner")) {
+                        var owner: any = JSON.parse(sessionStorage.getItem("owner") ?? ' ')
+                        values.adPricingtype = owner.adPricingtype
+                        values.ownerType = owner.ownerType
+                    }
+                }
+            }
         }
-        // try {
-        //     if (page == 1)
-        //         router.push('/basicDetails')
-        // }
-        // catch {
-        //     console.log("milena")
-        // }
     })
 
 
@@ -62,31 +81,15 @@ const OtherDetails: NextPage = () => {
         initialValues: initialValues,
         validationSchema: otherDetailsSchema,
         onSubmit: async (values, formikHelpers) => {
-            // console.log("call Ad Details")
-            // console.log(values)
-            // console.log(initialValues)
-            // var details: any = JSON.parse(sessionStorage.getItem("details") ?? ' ')
-            // const photo:File=sessionStorage.getItem("propertyImage")
-            const details={
-                name:values.name,
-                email : values.email,
-                phone : values.phoneNumber
+            const details = {
+                name: values.name,
+                email: values.email,
+                phone: values.phoneNumber
             }
-            // details.ownerId = ""
-            // console.log("data",details.propertyImage[0] as Blob)
-            // async function getFileFromUrl(url:string, name:string, defaultType = 'image/jpeg'){
-            //     const response = await fetch(url);
-            //     const data = await response.blob();
-            //     return new File([data], name, {
-            //       type: data.type || defaultType,
-            //     });
-            //   }
-            // delete details.propertyImage
             try {
                 const config = {
                     headers: { Authorization: `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2Mzg4NDc4YzY0ODI5YzhlMzg4ODYzOWUiLCJyb2xlIjoic3VwZXJhZG1pbiIsImlhdCI6MTY2OTk4MjAxOSwiZXhwIjoyMjc0NzgyMDE5fQ.K3ereptAn2D5QkNgDpyb5azImuXU9wxcwccjlfkwqiM` }
                 };
-                // console.log(details)
                 const ashim: any = {
                     for: "rent",
                     type: "agricultural",
@@ -97,8 +100,8 @@ const OtherDetails: NextPage = () => {
                     city: "6375e1d9a771ab4368586e55",
                     locality: "Sankhamul",
                     areaMetric: "bigha",
-                    totalArea: "10-1-1-1",
-                    buildUpArea: "10-1-1-1",
+                    totalArea: "10-2-1-1",
+                    buildUpArea: "9-1-1-1",
                     facing: "east",
                     unit: "feet",
                     access: '8',
@@ -124,33 +127,34 @@ const OtherDetails: NextPage = () => {
                     bathroom: "2",
                     parking: "2",
                     livingRoom: "2",
-                    // propertyImage:[""]
                 }
 
-                const propertyToken=localStorage.getItem("propertyToken")
+                const propertyToken = localStorage.getItem("propertyToken")
                 console.log(propertyToken)
-
                 const response: any = await axios.put(`https://basobaasnew.asterdio.xyz/api/properties/${propertyToken}`,
                     details, config)
                 console.log("response : ", response)
-                
-
-            } catch (err) {
-                console.log(err)
-            }
-
-            if (values.adPricingtype == "Paid Listing") {
-                if (pay) {
-                    dispatch(changepopUpBg())
-                    dispatch(changeRegistrationStatus(true))
+                var session: any = JSON.parse(sessionStorage.getItem("details") ?? {} as any)
+                session = { ...session, ...details }
+                sessionStorage.setItem("details", JSON.stringify(session))
+                var owner = { ownerType: values.ownerType, adPricingtype: values.adPricingtype }
+                sessionStorage.setItem("owner", JSON.stringify(owner))
+                if (values.adPricingtype == "Paid Listing") {
+                    if (pay) {
+                        dispatch(changepopUpBg())
+                        dispatch(changeRegistrationStatus(true))
+                    }
+                    else {
+                        dispatch(change())
+                    }
                 }
                 else {
-                    dispatch(change())
+                    dispatch(changepopUpBg())
+                    dispatch(changeRegistrationStatus(true))
+                    localStorage.removeItem("propertyToken")
                 }
-            }
-            else {
-                dispatch(changepopUpBg())
-                dispatch(changeRegistrationStatus(true))
+            } catch (err) {
+                console.log(err)
             }
 
         }
@@ -168,10 +172,10 @@ const OtherDetails: NextPage = () => {
                         </p>
                         <div className={style.ownerRadioDivWrapper}>
                             <div className={style.ownerRadioDiv}>
-                                <SmallRadio name="ownerType" value="Use my info" onChange={handleChange} />
-                                <SmallRadio name="ownerType" value="Use Different Owner" onChange={handleChange} />
+                                <SmallRadio name="ownerType" value="Use my info" onChange={handleChange} otherValue={values.ownerType} />
+                                <SmallRadio name="ownerType" value="Use Different Owner" onChange={handleChange} otherValue={values.ownerType} />
                             </div>
-                            {errors.ownerType && <span className={style.error}>{errors.ownerType}</span>}
+                            {errors.ownerType && touched.ownerType && <span className={style.error}>{errors.ownerType}</span>}
                         </div>
                         <div className={style.ownerInfoDiv}>
                             <div className={style.inputFeildRow}>
@@ -182,8 +186,9 @@ const OtherDetails: NextPage = () => {
                                         type="text"
                                         name="name"
                                         onChange={handleChange}
+                                        value={values.name}
                                     />
-                                    {errors.name && <span className={style.error}>{errors.name}</span>}
+                                    {errors.name && touched.name && <span className={style.error}>{errors.name}</span>}
                                 </div>
                                 <div className={style.inputFeildDiv}>
                                     <input
@@ -192,8 +197,9 @@ const OtherDetails: NextPage = () => {
                                         type="text"
                                         name="email"
                                         onChange={handleChange}
+                                        value={values.email}
                                     />
-                                    {errors.email && <span className={style.error}>{errors.email}</span>}
+                                    {errors.email && touched.email && <span className={style.error}>{errors.email}</span>}
                                 </div>
                             </div>
                             <div className={style.inputFeildDiv}>
@@ -203,8 +209,9 @@ const OtherDetails: NextPage = () => {
                                     type="text"
                                     name="phoneNumber"
                                     onChange={handleChange}
+                                    value={values.phoneNumber ?? ""}
                                 />
-                                {errors.phoneNumber && <span className={style.error}>{errors.phoneNumber}</span>}
+                                {errors.phoneNumber && touched.phoneNumber && <span className={style.error}>{errors.phoneNumber}</span>}
                             </div>
                         </div>
                     </div>
@@ -214,10 +221,10 @@ const OtherDetails: NextPage = () => {
                             <Icon icon="humbleicons:info-circle" width="20" height="20" className={style.infoIcon} onClick={() => { dispatch(changeInfo("Ad Pricing Plan")) }} />
                         </p>
                         <div className={style.adPricingRadioDiv}>
-                            <SmallRadio name="adPricingtype" value="Free Listing" onChange={handleChange} />
-                            <SmallRadio name="adPricingtype" value="Paid Listing" onChange={handleChange} />
+                            <SmallRadio name="adPricingtype" value="Free Listing" onChange={handleChange} otherValue={values.adPricingtype} />
+                            <SmallRadio name="adPricingtype" value="Paid Listing" onChange={handleChange} otherValue={values.adPricingtype} />
                         </div>
-                        {errors.adPricingtype && <span style={{ marginTop: "-15px" }} className={style.error}>{errors.adPricingtype}</span>}
+                        {errors.adPricingtype && touched.adPricingtype && <span style={{ marginTop: "-15px" }} className={style.error}>{errors.adPricingtype}</span>}
                     </div>
                     {/* <img src={sessionStorage.getItem("propertyImage")??""} alt="no image"/> */}
                 </div>

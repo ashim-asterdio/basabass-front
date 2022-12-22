@@ -18,6 +18,8 @@ const PropertyRegisteredPopUp = () => {
     dispatch(changepopUpBg())
     dispatch(changeRegistrationStatus(false))
     dispatch(changePaymentStatus(false)) 
+    localStorage.clear()
+    window.location.href="/basicDetails"
     router.push("/basicDetails")
   }
 

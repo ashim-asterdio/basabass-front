@@ -21,6 +21,7 @@ const BasicDetail: NextPage = () => {
   const page = useSelector((state: RootState) => state.progressBar.value);
   const router = useRouter();
   const [info, setInfo] = useState("");
+  const [rollBack, setRollBack] = useState({})
 
 
   const initialValues = {
@@ -30,25 +31,25 @@ const BasicDetail: NextPage = () => {
   }
 
   const details: any = {
-    for: "rent",
-    type: "agricultural",
-    category: "land",
+    for: "",
+    type: "",
+    category: "",
     coordinates: "41.40338,2.17403",
-    wardNumber: "",
+    // wardNumber: "",
     streetName: "asterdio road",
-    city: "6375e1d9a771ab4368586e55",
-    locality: "",
-    areaMetric: "",
-    totalArea: "",
-    buildUpArea: "",
-    facing: "",
-    unit: "",
-    access: '',
-    roadType: '',
-    buildYear: '',
-    totalFloors: '',
-    furnishing: '',
-    amenities: [],
+    // city: "6375e1d9a771ab4368586e55",
+    // locality: "",
+    // areaMetric: "",
+    // totalArea: "",
+    // buildUpArea: "",
+    // facing: "",
+    // unit: "",
+    // access: '',
+    // roadType: '',
+    // buildYear: '',
+    // totalFloors: '',
+    // furnishing: '',
+    // amenities: [],
     view360Link: 'https://www.youtube.com/watch?v=H2lRuOsfUlU',
     youtubeLink: 'https://www.youtube.com/watch?v=H2lRuOsfUlU',
     // title: '',
@@ -63,21 +64,48 @@ const BasicDetail: NextPage = () => {
     country: 'Nepal',
     // availability:'available',
     //status:active,
-    kitchen: "2",
-    bedroom: "2",
-    bathroom: "2",
+    // kitchen: "",
+    // bedroom: "",
+    // bathroom: "",
     // parking: "2",
-    livingRoom: "2",
+    // livingRoom: "",
     // propertyImage:[]
   }
 
   const firstRender = useRef(true)
   useEffect(() => {
     if (firstRender.current) {
-      firstRender.current=false
+      firstRender.current = false
       document.title = "Basic Details";
+      try {
+        if (page == 1) {
+          sessionStorage.clear()
+          // localStorage.clear()
+          router.push('/basicDetails')
+        }
+      }
+      catch {
+        console.log("milena")
+      }
+      if (sessionStorage.getItem("details")) {
+        var details: any = JSON.parse(sessionStorage.getItem("details") ?? ' ')
+        // console.log("yei ho maal pani",details)
+        setRollBack(details)
+        values.adCategory = details.for;
+        values.propertyType = details.type;
+        values.propertyCategory = details.category;
+        console.log(values)
+
+      }
+      else {
+        console.log("mall xaina")
+      }
+
       // sessionStorage.setItem("details",JSON.stringify(details))
-      sessionStorage.setItem("page", "1")
+      if (!sessionStorage.getItem("page")) {
+        sessionStorage.setItem("page", "1")
+      }
+      // (document.getElementById("sale")!=null)&&document.getElementById("sale")?.checked=true
     }
   })
 
@@ -95,7 +123,15 @@ const BasicDetail: NextPage = () => {
       details.type = values.propertyType;
       details.category = values.propertyCategory;
       console.log(details)
-      sessionStorage.setItem("details", JSON.stringify(details))
+      if (sessionStorage.getItem("details")) {
+        var temp: any = JSON.parse(sessionStorage.getItem("details") ?? ' ')
+        var temp2 = { ...temp, ...details }
+        sessionStorage.setItem("details", JSON.stringify(temp2))
+      }
+      else {
+        sessionStorage.setItem("details", JSON.stringify(details))
+      }
+
       router.push('/propertyDetails');
     }
   })
@@ -114,11 +150,11 @@ const BasicDetail: NextPage = () => {
               </a>
             </p>
             <div className={style.radioDiv}>
-              <SmallRadio value="sale" name="adCategory" onChange={handleChange} />
-              <SmallRadio value="rent" name="adCategory" onChange={handleChange} />
+              <SmallRadio value="sale" name="adCategory" onChange={handleChange} otherValue={values.adCategory} />
+              <SmallRadio value="rent" name="adCategory" onChange={handleChange} otherValue={values.adCategory} />
               {/* <SmallRadio value="Lease" name="adCategory" onChange={handleChange} /> */}
             </div>
-            {errors.adCategory && <span className={style.error}>{errors.adCategory}</span>}
+            {errors.adCategory && touched.adCategory && <span className={style.error}>{errors.adCategory}</span>}
           </div>
 
           <div className={style.propertyTypeDiv} >
@@ -130,13 +166,14 @@ const BasicDetail: NextPage = () => {
             </p>
 
             <div className={style.propertyTypeDivRow}>
-              <RectangleRadio icon={<Icon icon="bx:home" width="20" height="20" inline={true} />} value="residential" onChange={handleChange} />
+              <RectangleRadio icon={<Icon icon="bx:home" width="20" height="20" inline={true} />}
+                value="residential" onChange={handleChange} otherValue={values.propertyType} />
               <RectangleRadio icon={<Icon icon="icon-park-outline:building-two" width="16" height="20" inline={true} />}
-                value="commercial" onChange={handleChange} />
+                value="commercial" onChange={handleChange} otherValue={values.propertyType} />
               <RectangleRadio icon={<Icon icon="icon-park-outline:landscape" width="16" height="18" inline={true} />}
-                value="agricultural" onChange={handleChange} />
+                value="agricultural" onChange={handleChange} otherValue={values.propertyType} />
             </div>
-            {errors.propertyType && <span className={style.error}>{errors.propertyType}</span>}
+            {errors.propertyType && touched.propertyType && <span className={style.error}>{errors.propertyType}</span>}
           </div>
 
           <div className={style.propertyCategoryDiv} >
@@ -146,14 +183,14 @@ const BasicDetail: NextPage = () => {
               </a>
             </p>
             <div className={style.propertyCategoryRow} >
-              <SquareRadio value="house" icon={<Icon icon="bx:home" width="18" height="18" inline={true} />} onChange={handleChange} />
-              <SquareRadio value="land" icon={<Icon icon="bx:home" width="18" height="18" inline={true} />} onChange={handleChange} />
+              <SquareRadio value="house" icon={<Icon icon="bx:home" width="18" height="18" inline={true} />} onChange={handleChange} otherValue={values.propertyCategory} />
+              <SquareRadio value="land" icon={<Icon icon="bx:home" width="18" height="18" inline={true} />} onChange={handleChange} otherValue={values.propertyCategory} />
               {/* <SquareRadio value="flat" icon={<Icon icon="bx:home" width="18" height="18" inline={true} />} onChange={handleChange} /> */}
-              <SquareRadio value="apartment" icon={<Icon icon="bx:home" width="18" height="18" inline={true} />} onChange={handleChange} />
+              <SquareRadio value="apartment" icon={<Icon icon="bx:home" width="18" height="18" inline={true} />} onChange={handleChange} otherValue={values.propertyCategory} />
               {/* <SquareRadio value="business" icon={<Icon icon="bx:home" width="18" height="18" inline={true} />} onChange={handleChange} /> */}
               {/* <SquareRadio value="office" icon={<Icon icon="bx:home" width="18" height="18" inline={true} />} onChange={handleChange} /> */}
             </div>
-            {errors.propertyCategory && <span className={style.error}>{errors.propertyCategory}</span>}
+            {errors.propertyCategory && touched.propertyCategory && <span className={style.error}>{errors.propertyCategory}</span>}
           </div>
         </div>
       </Layout>

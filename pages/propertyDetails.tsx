@@ -3,7 +3,7 @@ import style from '../styles/propertyDetails.module.css'
 // import DigitalPaymentPop from '../components/digitalPaymantPop'
 import AmenitiesCheckbox from '../components/ui components/customCheckbox'
 import Layout from '../components/Layout'
-import { useFormik } from 'formik'
+import { FormikValues, useFormik } from 'formik'
 import { propertyDetailsSchema } from '../components/validationSchema'
 import { useRouter } from 'next/router'
 import { useDispatch, useSelector } from 'react-redux'
@@ -21,6 +21,7 @@ const PropertyDetails: NextPage = () => {
     const page = useSelector((state: RootState) => state.progressBar.value)
     const [info, setInfo] = useState("");
     const [list, setList] = useState<[]>([]);
+    const [rollBack, setRollBack] = useState<FormikValues>({})
     // var list:[]=[]
 
 
@@ -44,9 +45,50 @@ const PropertyDetails: NextPage = () => {
     const firstRender = useRef(true)
     useEffect(() => {
         if (firstRender.current) {
-            firstRender.current=false
+            firstRender.current = false
+            try {
+                if (page == 1)
+                {
+                    sessionStorage.clear()
+                    // localStorage.clear()
+                    router.push('/basicDetails')
+                }     
+            }
+            catch {
+                console.log("milena")
+            }
             document.title = "Property Details";
             getData()
+            // values.wardNumber="ashim"
+            if (sessionStorage.getItem("details")) {
+                var details: any = JSON.parse(sessionStorage.getItem("details") ?? ' ')
+                // setRollBack(details)
+                if (details.wardNumber) {
+                    values.wardNumber = details.wardNumber
+                    // details.wardNumber = values.wardNumber;
+                    // details.city = "6375e1d9a771ab4368586e55";
+                    values.city=details.city
+                    values.propertyArea = details.locality
+                    values.areaMetric = details.areaMetric
+                    values.totalArea = details.totalArea
+                    // details.areaMetric=values.totalAreaUnit
+                    values.builtUpArea = details.buildUpArea
+                    // details.areaMetric=values.builtUpAreaUnit
+                    values.propertyFace = details.facing
+                    values.roadAreaMetric = details.unit
+                    values.roadAccess = details.access
+                    values.roadType = details.roadType
+                    values.builtYear = details.buildYear
+                    values.totalFloors = details.totalFloors
+                    values.furnishing = details.furnishing
+                    values.numberOFUnits = details.multipleUnit
+                    values.noOfBedroom = details.bedroom
+                    values.noOfBathroom = details.bathroom
+                    values.noOfKitchen = details.kitchen
+                    values.noOfLivingroom = details.livingRoom
+                    values.amenities = details.amenities
+                }
+            }
         }
     })
 
@@ -95,7 +137,7 @@ const PropertyDetails: NextPage = () => {
     const { values, errors, touched, handleSubmit, handleChange } = useFormik({
         initialValues: initialValues,
         validationSchema: propertyDetailsSchema,
-        onSubmit : async (values, formikHelpers)=> {
+        onSubmit: async (values, formikHelpers) => {
             console.log(values)
             // console.log(errors)
             // console.log("call")
@@ -106,7 +148,7 @@ const PropertyDetails: NextPage = () => {
             var details: any = JSON.parse(sessionStorage.getItem("details") ?? ' ')
             console.log(details)
             details.wardNumber = values.wardNumber;
-            details.city = "6375e1d9a771ab4368586e55";
+            details.city = values.city;
             details.locality = values.propertyArea
             details.areaMetric = values.areaMetric
             details.totalArea = values.totalArea
@@ -155,24 +197,27 @@ const PropertyDetails: NextPage = () => {
                                 <div className={style.feildDiv}>
                                     <input className={style.input_only} type="text" placeholder="Ward Number"
                                         name='wardNumber'
-                                        onChange={handleChange} />
-                                    {errors.wardNumber && <span className={style.error}>{errors.wardNumber}</span>}
+                                        onChange={handleChange}
+                                        value={values.wardNumber} />
+                                    {errors.wardNumber && touched.wardNumber && <span className={style.error}>{errors.wardNumber}</span>}
                                 </div>
 
                                 <div className={style.dropdown_only}>
-                                    <select name="city" onChange={handleChange} defaultValue="">
+                                    <select name="city" onChange={handleChange} value={values.city}>
                                         <option value="" selected hidden disabled>Property City</option>
-                                        <option value="Lalitpur"> Lalitpur</option>
+                                        <option value={"6375e1d9a771ab4368586e55"}> Lalitpur</option>
+                                        <option value={"6375e1d9a771ab4368586e56"}> Kathmandu</option>
+
                                     </select>
-                                    {errors.city && <span className={style.error}>{errors.city}</span>}
+                                    {errors.city && touched.city && <span className={style.error}>{errors.city}</span>}
                                 </div>
                             </div>
                             <div className={style.feildDiv}>
                                 <input className={style.input_only} type="text" placeholder="Property Area"
                                     name='propertyArea'
-                                    onChange={handleChange}
+                                    onChange={handleChange} value={values.propertyArea}
                                 />
-                                {errors.propertyArea && <span className={style.error}>{errors.propertyArea}</span>}
+                                {errors.propertyArea && touched.propertyArea && <span className={style.error}>{errors.propertyArea}</span>}
                             </div>
                         </div>
                     </div>
@@ -186,13 +231,13 @@ const PropertyDetails: NextPage = () => {
 
                             <div className={style.inputFeildRow}>
                                 <div className={style.dropdown_only}>
-                                    <select
-                                        name="areaMetric" onChange={handleChange} placeholder="Select Area Metric">
-                                        <option value="" selected disabled>Select Area Metric</option>
+                                    <select value={values.areaMetric}
+                                        name="areaMetric" onChange={handleChange} placeholder="Select Area Metric" defaultValue={rollBack.unit}>
+                                        <option value="" disabled>Select Area Metric</option>
                                         <option value="aana">Aana</option>
                                         <option value="dhur">Dhur</option>
                                     </select>
-                                    {errors.areaMetric && <span className={style.error}>{errors.areaMetric}</span>}
+                                    {errors.areaMetric && touched.areaMetric && <span className={style.error}>{errors.areaMetric}</span>}
                                 </div>
 
                                 <div className={style.input_dropdown}>
@@ -200,7 +245,7 @@ const PropertyDetails: NextPage = () => {
                                         <input className={style.input_with_dropdown} name="totalArea"
                                             // value={values.totalArea} 
                                             type="text" placeholder=" Total Area(e.g. 0-1-2-4)"
-                                            onChange={handleChange} />
+                                            onChange={handleChange} value={values.totalArea} />
 
                                         <hr className={style.gapBtw} />
                                         <div className={style.dropdown_with_input}>
@@ -212,7 +257,7 @@ const PropertyDetails: NextPage = () => {
                                             </select> */}
                                         </div>
                                     </div>
-                                    {errors.totalArea && <span className={style.error}>{errors.totalArea}</span>}
+                                    {errors.totalArea && touched.totalArea && <span className={style.error}>{errors.totalArea}</span>}
                                     {/* {(errors.totalArea || errors.totalAreaUnit) && <span className={style.doubleError}>
                                         <span className={style.error}>{errors.totalArea}</span>
                                         {errors.totalAreaUnit && <span className={style.error}>{errors.totalAreaUnit}</span>}
@@ -226,7 +271,7 @@ const PropertyDetails: NextPage = () => {
                                         <input className={style.input_with_dropdown} type="text"
                                             placeholder="Built Up Area(e.g. 0-1-2-4)"
                                             name='builtUpArea'
-                                            onChange={handleChange} />
+                                            onChange={handleChange} value={values.builtUpArea} />
                                         <hr className={style.gapBtw} />
                                         <div className={style.dropdown_with_input}>
                                             {values.areaMetric ? values.areaMetric : "Unit"}
@@ -237,7 +282,7 @@ const PropertyDetails: NextPage = () => {
                                             </select> */}
                                         </div>
                                     </div>
-                                    {errors.builtUpArea && <span className={style.error}>{errors.builtUpArea}</span>}
+                                    {errors.builtUpArea && touched.builtUpArea && <span className={style.error}>{errors.builtUpArea}</span>}
                                     {/* {(errors.builtUpArea || errors.builtUpAreaUnit) && <span className={style.doubleError}>
                                         <span className={style.error}>{errors.builtUpArea}</span>
                                         {errors.builtUpAreaUnit && <span className={style.error}>{errors.builtUpAreaUnit}</span>}
@@ -246,9 +291,9 @@ const PropertyDetails: NextPage = () => {
                                 <div className={style.feildDiv}>
                                     <input className={style.input_only} type="text" placeholder="Property Face"
                                         name='propertyFace'
-                                        onChange={handleChange}
+                                        onChange={handleChange} value={values.propertyFace}
                                     />
-                                    {errors.propertyFace && <span className={style.error}>{errors.propertyFace}</span>}
+                                    {errors.propertyFace && touched.propertyFace && <span className={style.error}>{errors.propertyFace}</span>}
                                 </div>
                             </div>
                         </div>
@@ -262,29 +307,29 @@ const PropertyDetails: NextPage = () => {
                         <div className={style.all_input_fields}>
                             <div className={style.inputFeildRow}>
                                 <div className={style.dropdown_only}>
-                                    <select name="roadAreaMetric" onChange={handleChange}>
+                                    <select name="roadAreaMetric" onChange={handleChange} value={values.roadAreaMetric}>
                                         <option value="" selected disabled>Select Area Metric</option>
                                         <option value="feet">Feet</option>
                                         <option value="meter">Meter</option>
                                     </select>
-                                    {errors.roadAreaMetric && <span className={style.error}>{errors.roadAreaMetric}</span>}
+                                    {errors.roadAreaMetric && touched.roadAreaMetric && <span className={style.error}>{errors.roadAreaMetric}</span>}
                                 </div>
 
                                 <div className={style.feildDiv}>
                                     <input className={style.input_only} type="text" placeholder="Road Acess(e.g. 14)"
-                                        name='roadAccess' onChange={handleChange} ></input>
-                                    {errors.roadAccess && <span className={style.error}>{errors.roadAccess}</span>}
+                                        name='roadAccess' onChange={handleChange} value={values.roadAccess} />
+                                    {errors.roadAccess && touched.roadAccess && <span className={style.error}>{errors.roadAccess}</span>}
                                 </div>
                             </div>
                             <div className={style.dropdown_only}>
-                                <select name="roadType" onChange={handleChange}>
+                                <select name="roadType" onChange={handleChange} value={values.roadType}>
                                     <option value="" selected hidden disabled>Road Type</option>
                                     <option value="soil stabilized">Soil Stabilized</option>
                                     <option value="gravelled">Gravelled</option>
                                     <option value="paved">Paved</option>
                                     <option value="black topped">Black topped</option>
                                 </select>
-                                {errors.roadType && <span className={style.error}>{errors.roadType}</span>}
+                                {errors.roadType && touched.roadType && <span className={style.error}>{errors.roadType}</span>}
                             </div>
 
                         </div>
@@ -303,26 +348,26 @@ const PropertyDetails: NextPage = () => {
                                         <option value="2000">2000</option>
                                         <option value="2001">2001</option>
                                     </select>
-                                    {errors.builtYear && <span className={style.error}>{errors.builtYear}</span>}
+                                    {errors.builtYear && touched.builtYear && <span className={style.error}>{errors.builtYear}</span>}
                                 </div>
                                 <div className={style.dropdown_only}>
-                                    <select name="totalFloors" onChange={handleChange}>
+                                    <select name="totalFloors" onChange={handleChange} value={values.totalFloors}>
                                         <option value="" selected hidden disabled>Total Floors</option>
                                         <option value="1">1</option>
                                         <option value="2">2</option>
                                         <option value="3">3</option>
                                     </select>
-                                    {errors.totalFloors && <span className={style.error}>{errors.totalFloors}</span>}
+                                    {errors.totalFloors && touched.totalFloors && <span className={style.error}>{errors.totalFloors}</span>}
                                 </div>
                             </div>
                             <div className={style.dropdown_only}>
-                                <select name="furnishing" onChange={handleChange} >
+                                <select name="furnishing" onChange={handleChange} value={values.furnishing} >
                                     <option value="" selected hidden disabled>Furnishing</option>
                                     <option value="fully furnished">Fully Furnished</option>
                                     <option value="unfurnished">Unfurnished</option>
                                     <option value="semi furnished">Semi Furnished</option>
                                 </select>
-                                {errors.furnishing && <span className={style.error}>{errors.furnishing}</span>}
+                                {errors.furnishing && touched.furnishing && <span className={style.error}>{errors.furnishing}</span>}
                             </div>
                         </div>
                     </div>
@@ -334,13 +379,13 @@ const PropertyDetails: NextPage = () => {
                         </label>
                         <div className={style.multipleUnits}>
                             <div className={style.dropdown_only}>
-                                <select name="numberOFUnits" onChange={handleChange}>
+                                <select name="numberOFUnits" onChange={handleChange} value={values.numberOFUnits} >
                                     <option value="" selected hidden disabled>Number Of Units</option>
                                     <option value="1">1</option>
                                     <option value="2">2</option>
                                     <option value="3">3</option>
                                 </select>
-                                {errors.numberOFUnits && <span className={style.error}>{errors.numberOFUnits}</span>}
+                                {errors.numberOFUnits && touched.numberOFUnits && <span className={style.error}>{errors.numberOFUnits}</span>}
                             </div>
                         </div>
                     </div>
@@ -357,14 +402,14 @@ const PropertyDetails: NextPage = () => {
                                 <div className={style.feildDiv}>
                                     <input className={style.input_only} type="text" placeholder="Total Bed Room"
                                         name='noOfBedroom'
-                                        onChange={handleChange} />
-                                    {errors.noOfBedroom && <span className={style.error}>{errors.noOfBedroom}</span>}
+                                        onChange={handleChange} value={values.noOfBedroom} />
+                                    {errors.noOfBedroom && touched.noOfBedroom && <span className={style.error}>{errors.noOfBedroom}</span>}
                                 </div>
                                 <div className={style.feildDiv}>
                                     <input className={style.input_only} type="text" placeholder="Total Bathroom"
                                         name='noOfBathroom'
-                                        onChange={handleChange} />
-                                    {errors.noOfBathroom && <span className={style.error}>{errors.noOfBathroom}</span>}
+                                        onChange={handleChange} value={values.noOfBathroom} />
+                                    {errors.noOfBathroom && touched.noOfBathroom && <span className={style.error}>{errors.noOfBathroom}</span>}
                                 </div>
                             </div>
 
@@ -372,14 +417,14 @@ const PropertyDetails: NextPage = () => {
                                 <div className={style.feildDiv}>
                                     <input className={style.input_only} type="text" placeholder="Total Kitchen"
                                         name='noOfKitchen'
-                                        onChange={handleChange} />
-                                    {errors.noOfKitchen && <span className={style.error}>{errors.noOfKitchen}</span>}
+                                        onChange={handleChange} value={values.noOfKitchen} />
+                                    {errors.noOfKitchen && touched.noOfKitchen && <span className={style.error}>{errors.noOfKitchen}</span>}
                                 </div>
                                 <div className={style.feildDiv}>
                                     <input className={style.input_only} type="text" placeholder="Total Living Room"
                                         name='noOfLivingroom'
-                                        onChange={handleChange} />
-                                    {errors.noOfLivingroom && <span className={style.error} style={{zIndex:"5"}}>{errors.noOfLivingroom}</span>}
+                                        onChange={handleChange} value={values.noOfLivingroom} />
+                                    {errors.noOfLivingroom && touched.noOfLivingroom && <span className={style.error} style={{ zIndex: "5" }}>{errors.noOfLivingroom}</span>}
                                 </div>
                             </div>
                         </div>
@@ -391,9 +436,9 @@ const PropertyDetails: NextPage = () => {
                         </label>
                         <div className={style.aminitiesDiv}>
                             {/* <AminitiesCheckbox value="Aminities" /> */}
-                            {list?.map((value: any, key) => <AmenitiesCheckbox value={value._id} onChange={handleChange} key={key} holder={value.amenity} />)}
+                            {list?.map((value: any, key) => <AmenitiesCheckbox value={value._id} otherValue={values.amenities} onChange={handleChange} key={key} holder={value.amenity} />)}
                         </div>
-                        {errors.amenities && <span className={style.error}>{errors.amenities}</span>}
+                        {errors.amenities && touched.amenities && <span className={style.error}>{errors.amenities}</span>}
                     </div>
                 </div>
 

@@ -48,12 +48,13 @@ const EsewaPaymantPop = () => {
     const confirm = async () => {
 
         try {
-            const propertyToken: string = sessionStorage.getItem("propertyToken")??""
+            const propertyToken: string = localStorage.getItem("propertyToken")??""
             const data: { amount: any; plan: string; property: string } = {
                 amount: packageInfo.price,
                 plan: packageInfo.plan,
                 property: propertyToken
             }
+            console.log(data)
             const token:any= await createUNiqueId(data)
 
             localStorage.setItem("packageInfo",packageInfo.plan)
