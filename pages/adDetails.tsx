@@ -171,19 +171,19 @@ const { values, errors, touched, handleSubmit, handleChange } = useFormik({
     const propertyId=localStorage.getItem("propertyToken")
     console.log("propertyId",propertyId)
     if(!propertyId||propertyId==null){
-      if(propertyId?.length==0){
+      // if(propertyId?.length==0){
         const propertyToken=await submitData(formData);
         localStorage.setItem("propertyToken", propertyToken)
         console.log("post")
         sessionStorage.setItem("details",JSON.stringify(details))
         router.push('/otherDetails')
-      }
+      // }
       // else{
       //   console.log("put")
       //   putData(formData,propertyId)
       // }
     }
-    else if(propertyId!=null) {
+    else{
       console.log("put")
       await putData(formData,propertyId)
       sessionStorage.setItem("details",JSON.stringify(details))

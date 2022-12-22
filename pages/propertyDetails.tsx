@@ -343,7 +343,7 @@ const PropertyDetails: NextPage = () => {
                         <div className={style.all_input_fields}>
                             <div className={style.inputFeildRow}>
                                 <div className={style.dropdown_only}>
-                                    <select name="builtYear" onChange={handleChange}>
+                                    <select name="builtYear" onChange={handleChange} value={values.builtYear}>
                                         <option value="" selected hidden disabled>Built Year</option>
                                         <option value="2000">2000</option>
                                         <option value="2001">2001</option>
