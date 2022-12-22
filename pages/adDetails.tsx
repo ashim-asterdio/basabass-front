@@ -45,7 +45,7 @@ const AdDetails: NextPage = () => {
       try {
         if (page == 1){
           sessionStorage.clear()
-          // localStorage.clear()
+          localStorage.removeItem("propertyToken")
           router.push('/basicDetails')
         }  
       }
