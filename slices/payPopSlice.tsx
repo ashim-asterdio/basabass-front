@@ -8,8 +8,9 @@ export interface PopUpState {
   popUpPage:number,
   packageInfo:{name:string,price:any,price2:any,plan:string},
   paymentStatus:boolean,
-  registrationStatus:boolean
-  files:any
+  registrationStatus:boolean,
+  files:any,
+  loadingScreen:boolean
 }
 
 const initialState: PopUpState = {
@@ -20,7 +21,8 @@ const initialState: PopUpState = {
   packageInfo:{name:"",price:0,price2:"",plan:""},
   paymentStatus:false,
   registrationStatus:false,
-  files:[]
+  files:[],
+  loadingScreen:false
 }
 
 export const payPopSlice = createSlice({
@@ -52,11 +54,14 @@ export const payPopSlice = createSlice({
     saveFiles:(state,action)=>{
       console.log('files',action.payload)
       state.files=action.payload
+    },
+    changeLoadingScreeen:(state)=>{
+      state.loadingScreen=!state.loadingScreen
     }
   },
 })
 
 // Action creators are generated for each case reducer function
-export const {change,changeInfo,changepopUpBg,changePopUpPage,changePackageInfo,changeRegistrationStatus,changePaymentStatus,saveFiles} =payPopSlice.actions
+export const {change,changeInfo,changepopUpBg,changePopUpPage,changePackageInfo,changeRegistrationStatus,changePaymentStatus,saveFiles,changeLoadingScreeen} =payPopSlice.actions
 
 export default payPopSlice.reducer

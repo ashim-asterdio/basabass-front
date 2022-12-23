@@ -174,8 +174,8 @@
 .propertyCategoryCard div:hover{
     /* background-color: rgb(0, 29, 158); */
     /* color: white; */
-    border: solid #0000FF 2px;
-    opacity: 0.8;
+    border: solid #3366FF 2px ;
+    /* opacity: 0.8; */
 }
 
 /* .propertyCategoryCard:hover p{

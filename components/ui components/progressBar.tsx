@@ -10,24 +10,28 @@ const ProgressBar = (props:any) => {
         backgroundColor:page==1?" #012367":"#1CB35D",
         borderRight: page==1?"solid 1px #012367":"solid 1px #1CB35D",
         borderLeft: page==1?"solid 1px #012367":"solid 1px #1CB35D",
+        opacity:"1"
     }
 
     const styleLine2={
         backgroundColor:page==2&&props.page==2?" #012367":page>2?"#1CB35D":"#DCDCDC",
         borderRight: page==2&&props.page==2?" solid 1px #012367":page>2?"solid 1px #1CB35D":"solid 1px #DCDCDC",
         borderLeft: page==2&&props.page==2?" solid 1px #012367":page>2?"solid 1px #1CB35D":"solid 1px #DCDCDC",
+        opacity:"1"
     }
 
     const styleLine3={
         backgroundColor:page==3&&props.page==3?" #012367":page>3?"#1CB35D":"#DCDCDC",
         borderRight: page==3&&props.page==3?" solid 1px #012367":page>3?"solid 1px #1CB35D":"solid 1px #DCDCDC",
         borderLeft: page==3&&props.page==3?" solid 1px #012367":page>3?"solid 1px #1CB35D":"solid 1px #DCDCDC",
+        opacity:"1"
     }
 
     const styleLine4={
         backgroundColor:page==4&&props.page==4?" #012367":page>4?"#1CB35D":"#DCDCDC",
         borderRight: page==4&&props.page==4?" solid 1px #012367":page>4?"solid 1px #1CB35D":"solid 1px #DCDCDC",
         borderLeft: page==4&&props.page==4?" solid 1px #012367":page>4?"solid 1px #1CB35D":"solid 1px #DCDCDC",
+        opacity:"1"
     }
 
     const styleCircle1={

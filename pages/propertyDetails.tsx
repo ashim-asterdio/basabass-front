@@ -57,7 +57,9 @@ const PropertyDetails: NextPage = () => {
             catch {
                 console.log("milena")
             }
+
             document.title = "Property Details";
+            dispatch(changeInfo("Location"))
             getData()
             // values.wardNumber="ashim"
             if (sessionStorage.getItem("details")) {
@@ -91,6 +93,9 @@ const PropertyDetails: NextPage = () => {
             }
         }
     })
+    // useEffect(()=>{
+
+    // },[])
 
     // useEffect(() => {
     //     console.log(values)
@@ -137,7 +142,9 @@ const PropertyDetails: NextPage = () => {
     const { values, errors, touched, handleSubmit, handleChange } = useFormik({
         initialValues: initialValues,
         validationSchema: propertyDetailsSchema,
+        
         onSubmit: async (values, formikHelpers) => {
+            
             console.log(values)
             // console.log(errors)
             // console.log("call")
@@ -204,7 +211,7 @@ const PropertyDetails: NextPage = () => {
 
                                 <div className={style.dropdown_only}>
                                     <select name="city" onChange={handleChange} value={values.city}>
-                                        <option value="" selected hidden disabled>Property City</option>
+                                        <option value="" selected disabled>Property City</option>
                                         <option value={"6375e1d9a771ab4368586e55"}> Lalitpur</option>
                                         <option value={"6375e1d9a771ab4368586e56"}> Kathmandu</option>
 
@@ -250,18 +257,9 @@ const PropertyDetails: NextPage = () => {
                                         <hr className={style.gapBtw} />
                                         <div className={style.dropdown_with_input}>
                                             {values.areaMetric ? values.areaMetric : "Unit"}
-                                            {/* <select name="totalAreaUnit" onChange={handleChange}>
-                                                <option value="" selected hidden disabled>Unit</option>
-                                                <option value="Aana">Aana</option>
-                                                <option value="Dhur">Dhur</option>
-                                            </select> */}
                                         </div>
                                     </div>
                                     {errors.totalArea && touched.totalArea && <span className={style.error}>{errors.totalArea}</span>}
-                                    {/* {(errors.totalArea || errors.totalAreaUnit) && <span className={style.doubleError}>
-                                        <span className={style.error}>{errors.totalArea}</span>
-                                        {errors.totalAreaUnit && <span className={style.error}>{errors.totalAreaUnit}</span>}
-                                    </span>} */}
                                 </div>
                             </div>
 
@@ -275,18 +273,9 @@ const PropertyDetails: NextPage = () => {
                                         <hr className={style.gapBtw} />
                                         <div className={style.dropdown_with_input}>
                                             {values.areaMetric ? values.areaMetric : "Unit"}
-                                            {/* <select name="builtUpAreaUnit" onChange={handleChange} >
-                                                <option value="" defaultValue="Unit" hidden disabled>Unit</option>
-                                                <option value="Aana">Aana</option>
-                                                <option value="Dhur">Dhur</option>
-                                            </select> */}
                                         </div>
                                     </div>
                                     {errors.builtUpArea && touched.builtUpArea && <span className={style.error}>{errors.builtUpArea}</span>}
-                                    {/* {(errors.builtUpArea || errors.builtUpAreaUnit) && <span className={style.doubleError}>
-                                        <span className={style.error}>{errors.builtUpArea}</span>
-                                        {errors.builtUpAreaUnit && <span className={style.error}>{errors.builtUpAreaUnit}</span>}
-                                    </span>} */}
                                 </div>
                                 <div className={style.feildDiv}>
                                     <input className={style.input_only} type="text" placeholder="Property Face"
@@ -323,7 +312,7 @@ const PropertyDetails: NextPage = () => {
                             </div>
                             <div className={style.dropdown_only}>
                                 <select name="roadType" onChange={handleChange} value={values.roadType}>
-                                    <option value="" selected hidden disabled>Road Type</option>
+                                    <option value="" selected disabled>Road Type</option>
                                     <option value="soil stabilized">Soil Stabilized</option>
                                     <option value="gravelled">Gravelled</option>
                                     <option value="paved">Paved</option>
@@ -344,7 +333,7 @@ const PropertyDetails: NextPage = () => {
                             <div className={style.inputFeildRow}>
                                 <div className={style.dropdown_only}>
                                     <select name="builtYear" onChange={handleChange} value={values.builtYear}>
-                                        <option value="" selected hidden disabled>Built Year</option>
+                                        <option value="" selected disabled>Built Year</option>
                                         <option value="2000">2000</option>
                                         <option value="2001">2001</option>
                                     </select>
@@ -352,7 +341,7 @@ const PropertyDetails: NextPage = () => {
                                 </div>
                                 <div className={style.dropdown_only}>
                                     <select name="totalFloors" onChange={handleChange} value={values.totalFloors}>
-                                        <option value="" selected hidden disabled>Total Floors</option>
+                                        <option value="" selected disabled>Total Floors</option>
                                         <option value="1">1</option>
                                         <option value="2">2</option>
                                         <option value="3">3</option>
@@ -362,7 +351,7 @@ const PropertyDetails: NextPage = () => {
                             </div>
                             <div className={style.dropdown_only}>
                                 <select name="furnishing" onChange={handleChange} value={values.furnishing} >
-                                    <option value="" selected hidden disabled>Furnishing</option>
+                                    <option value="" selected disabled>Furnishing</option>
                                     <option value="fully furnished">Fully Furnished</option>
                                     <option value="unfurnished">Unfurnished</option>
                                     <option value="semi furnished">Semi Furnished</option>
@@ -380,7 +369,7 @@ const PropertyDetails: NextPage = () => {
                         <div className={style.multipleUnits}>
                             <div className={style.dropdown_only}>
                                 <select name="numberOFUnits" onChange={handleChange} value={values.numberOFUnits} >
-                                    <option value="" selected hidden disabled>Number Of Units</option>
+                                    <option value="" selected disabled>Number Of Units</option>
                                     <option value="1">1</option>
                                     <option value="2">2</option>
                                     <option value="3">3</option>
@@ -431,7 +420,7 @@ const PropertyDetails: NextPage = () => {
                     </div>
                     <div className={style.amenitiesComponent}>
                         <label className={style.label} htmlFor="">
-                            Ameneties
+                            Amenities
                             <a href='#' style={{ display: "flex" }}><Icon icon="humbleicons:info-circle" width="20" height="20" className={style.infoIcon} onClick={() => { dispatch(changeInfo("Amenities")) }} /></a>
                         </label>
                         <div className={style.aminitiesDiv}>

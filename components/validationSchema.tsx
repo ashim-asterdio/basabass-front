@@ -14,9 +14,61 @@ export const propertyDetailsSchema =Yup.object({
     city:Yup.string().min(3).max(25).required("Please enter City"),
     propertyArea:Yup.string().min(3).max(25).required("Please enter Location"),
     areaMetric:Yup.string().required("Please enter Metric"),
-    totalArea:Yup.string().matches(areaRegex, "Invalid area").required("Please enter Area"),
+    totalArea:Yup.string().matches(areaRegex, "Invalid area").required("Please enter Area")
+    .test("test-compare",function(value){
+        let totalArea:any=this.resolve(Yup.ref("totalArea"))
+        let builtUpArea:any=this.resolve(Yup.ref("builtUpArea"))
+        if(totalArea&&builtUpArea){
+            var total=totalArea.split("-").reverse()
+            var built=builtUpArea.split("-").reverse()
+            var totalNum=0
+            var builtNum=0
+            for(var i=0;i<total.length;i++){
+                totalNum+=total[i] as number*10**i
+                builtNum+=built[i] as number*10**i
+                console.log('total',totalNum,builtNum)
+            }
+            if(builtNum>totalNum)
+            {
+                console.log('total',totalNum,builtNum)
+                return this.createError({message:"Total area must be greater than Built area",path:"totalArea"})
+            }
+            else{
+                return true
+            }   
+        }
+        else{
+            return true
+        } 
+    }),
     // totalAreaUnit:Yup.string().required("required"),
-    builtUpArea:Yup.string().matches(areaRegex, "Invalid area").required("Please enter Area"),
+    builtUpArea:Yup.string().matches(areaRegex, "Invalid area").required("Please enter Area")
+    .test("test-compare",function(value){
+        let totalArea:any=this.resolve(Yup.ref("totalArea"))
+        let builtUpArea:any=this.resolve(Yup.ref("builtUpArea"))
+        if(totalArea&&builtUpArea){
+            var total=totalArea.split("-").reverse()
+            var built=builtUpArea.split("-").reverse()
+            var totalNum=0
+            var builtNum=0
+            for(var i=0;i<total.length;i++){
+                totalNum+=total[i] as number*10**i
+                builtNum+=built[i] as number*10**i
+                console.log('total',totalNum,builtNum)
+            }
+            if(builtNum>totalNum)
+            {
+                console.log('total',totalNum,builtNum)
+                return this.createError({message:"Built area must be smaller than Total area",path:"builtUpArea"})
+            }
+            else{
+                return true
+            }   
+        }
+        else{
+            return true
+        } 
+    }),
     // builtUpAreaUnit:Yup.string().required("required"),
     propertyFace:Yup.string().required("Please enter Property Facing"),
     roadAreaMetric:Yup.string().required("Please enter Metric"),
@@ -30,7 +82,7 @@ export const propertyDetailsSchema =Yup.object({
     noOfBathroom:Yup.string().required("Please enter No. of Bath Room"),
     noOfKitchen:Yup.string().required("Please enter No. of Kitchen"),
     noOfLivingroom:Yup.string().required("Please enter No. of Living Room"),
-    amenities:Yup.array().of(Yup.string()).min(1,"Require more amenities")
+    amenities:Yup.array().of(Yup.string()).min(1,"Please choose atleast one amenity")
 }) 
 
 

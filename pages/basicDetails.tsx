@@ -77,6 +77,7 @@ const BasicDetail: NextPage = () => {
     if (firstRender.current) {
       firstRender.current = false
       document.title = "Basic Details";
+      dispatch(changeInfo("Ad Category"))
       try {
         if (page == 1) {
           sessionStorage.clear()

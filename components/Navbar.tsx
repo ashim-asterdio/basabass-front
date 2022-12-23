@@ -7,16 +7,27 @@ import navPerson from "../Images/navPerson.svg"
 import type { NextPage } from "next";
 import Head from 'next/head'
 import Link from "next/link";
+import { useRouter } from "next/router"
+import { incrementByAmount } from "../slices/progressBarSlice";
+import { useDispatch, useSelector } from 'react-redux'
+
 
 const Navbar: NextPage = () => {
   const links: any = ["Buy", "Rent", "Home Loans", "Blogs", "Agencies", "Unit Converter"];
+  const router=useRouter()
+  const dispatch=useDispatch()
+  
 
   return (
     <>
       <div className={style.nav}>
 
         <div className={style.leftDiv}>
-          <div className={style.logo}>
+          <div className={style.logo}
+          onClick={()=>{
+            dispatch(incrementByAmount(1))
+            router.push("/basicDetails")
+          }}>
             <Image src={BasobasLogo} alt="no image" />
           </div>
           <div className={style.linkDiv}>

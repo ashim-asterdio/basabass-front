@@ -604,7 +604,7 @@
 
 .infoTableTopic{
     /* border: solid 1px; */
-    min-width: calc(77*100%/377);
+    /* min-width: calc(77*100%/377); */
     width: fit-content;
 
 }

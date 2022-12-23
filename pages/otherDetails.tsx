@@ -45,6 +45,7 @@ const OtherDetails: NextPage = () => {
                 console.log("milena")
             }
             document.title = "Other Details"
+            dispatch(changeInfo("Owner Info"))
             setRollBack(details)
             if (sessionStorage.getItem("details")) {
                 if (sessionStorage.getItem("page") == "4") {

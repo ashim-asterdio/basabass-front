@@ -13,9 +13,6 @@
     top:0px; */
 }
 
-.otherDetailsContainer input:focus,.otherDetailsContainer select:focus{
-    outline: none;
-  }
 
 .title{
     display: flex;
@@ -125,8 +122,9 @@
     border: 1px solid #CED4DA;
     border-radius: 5px;
     flex: none;
-    order: 0;
     flex-grow: 0;
+    color: #969696;
+    outline: none;
 }
 
 .adPricingDiv{
@@ -261,6 +259,7 @@
         border-radius: 5px;
         flex: none;
         align-self: stretch;
+        color: #969696;
         flex-grow: 0;
     }
 

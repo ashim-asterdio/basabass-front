@@ -1,4 +1,6 @@
-
+.propertydetails_container input {
+    color:#969696;
+}
 .propertydetails_container
 {   
     top: 0px;
