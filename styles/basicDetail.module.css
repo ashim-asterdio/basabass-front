@@ -30,13 +30,11 @@
 }
 
 .infoIcon{
-    font-size: larger;
     cursor:pointer;
 }
 
 .infoIcon:hover{
-    height: 25px;
-    width: 25px;
+    color: #333333;
 }
 
 .adCategoryDiv {

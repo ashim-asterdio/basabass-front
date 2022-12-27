@@ -23,6 +23,11 @@
     outline: none;
   }
 
+.propertydetails_container input :focus-visible{
+    outline: none;
+    color: 969696;
+}
+
 .propertydetails_container label{
     font-family: 'Product Sans';
     font-style: normal;
@@ -46,11 +51,12 @@
 .infoIcon{
     font-size: larger;
     cursor:pointer;
+    height: 16px;
+    width: 16px;
 }
 
 .infoIcon:hover{
-    height: 25px;
-    width: 25px;
+    color: #333333;
 }
 
 .locationComponent{

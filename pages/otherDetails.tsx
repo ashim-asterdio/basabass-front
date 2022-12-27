@@ -34,16 +34,17 @@ const OtherDetails: NextPage = () => {
     useEffect(() => {
         if (firstRender.current) {
             firstRender.current = false
-            try {
-                if (page == 1) {
-                    sessionStorage.clear()
-                    localStorage.removeItem("propertyToken")
-                    router.push('/basicDetails')
-                }
-            }
-            catch {
-                console.log("milena")
-            }
+            dispatch(change())
+            // try {
+            //     if (page == 1) {
+            //         sessionStorage.clear()
+            //         localStorage.removeItem("propertyToken")
+            //         router.push('/basicDetails')
+            //     }
+            // }
+            // catch {
+            //     console.log("milena")
+            // }
             document.title = "Other Details"
             dispatch(changeInfo("Owner Info"))
             setRollBack(details)

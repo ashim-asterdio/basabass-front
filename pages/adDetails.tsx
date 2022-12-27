@@ -211,7 +211,7 @@ const AdDetails: NextPage = () => {
             <label className={styles.topic}>
               Upload Images
               <a href='#' style={{ display: "flex" }}>
-                <Icon icon="humbleicons:info-circle" width="20" height="20" className={styles.infoIcon} onClick={() => { dispatch(changeInfo("Upload Image")) }} />
+                <Icon icon="humbleicons:info-circle" width="16" height="16" className={styles.infoIcon} onClick={() => { dispatch(changeInfo("Upload Image")) }} />
               </a>
             </label>
 
@@ -232,7 +232,7 @@ const AdDetails: NextPage = () => {
           <div className={styles.adDetailsYoutube} onClick={() => { setInfo("Youtube Video Link") }}>
             <label className={styles.topic}>
               Youtube Video Link
-              <a href='#' style={{ display: "flex" }}><Icon icon="humbleicons:info-circle" width="20" height="20" className={styles.infoIcon} onClick={() => { dispatch(changeInfo("Youtube Video Link")) }} /></a>
+              <a href='#' style={{ display: "flex" }}><Icon icon="humbleicons:info-circle" width="16" height="16" className={styles.infoIcon} onClick={() => { dispatch(changeInfo("Youtube Video Link")) }} /></a>
             </label>
             <div className={styles.inputWrapper}>
               <CustomizableInputs
@@ -252,7 +252,7 @@ const AdDetails: NextPage = () => {
               <label className={styles.topic}>
                 Title
                 <a href='#' style={{ display: "flex" }}>
-                  <Icon icon="humbleicons:info-circle" width="20" height="20" className={styles.infoIcon} onClick={() => { dispatch(changeInfo("Title")) }} />
+                  <Icon icon="humbleicons:info-circle" width="16" height="16" className={styles.infoIcon} onClick={() => { dispatch(changeInfo("Title")) }} />
                 </a>
               </label>
               <CustomizableInputs
@@ -269,7 +269,7 @@ const AdDetails: NextPage = () => {
             <div className={styles.adDetailsPrice} onClick={() => { setInfo("Price") }}>
               <label className={styles.topic}>
                 Price
-                <a href='#' style={{ display: "flex" }}><Icon icon="humbleicons:info-circle" width="20" height="20" className={styles.infoIcon} onClick={() => { dispatch(changeInfo("Price")) }} /></a>
+                <a href='#' style={{ display: "flex" }}><Icon icon="humbleicons:info-circle" width="16" height="16" className={styles.infoIcon} onClick={() => { dispatch(changeInfo("Price")) }} /></a>
               </label>
               <div className={style.customizableInputButtonsWithSelect}>
                 <input
@@ -307,7 +307,7 @@ const AdDetails: NextPage = () => {
           <div className={styles.adDetailsFormDescription} onClick={() => { setInfo("Description") }}>
             <label className={styles.topic}>
               Description{" "}
-              <a href='#' style={{ display: "flex" }}><Icon icon="humbleicons:info-circle" width="20" height="20" className={styles.infoIcon} onClick={() => { dispatch(changeInfo("Description")) }} /></a>
+              <a href='#' style={{ display: "flex" }}><Icon icon="humbleicons:info-circle" width="16" height="16" className={styles.infoIcon} onClick={() => { dispatch(changeInfo("Description")) }} /></a>
             </label>
             <div className={styles.descriptionDiv}>
               <textarea

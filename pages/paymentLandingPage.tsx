@@ -6,59 +6,58 @@ import Layout from "../components/Layout"
 import SmallRadio from "../components/ui components/radio/smallRadio"
 import { otherDetailsSchema } from "../components/validationSchema"
 import { useRouter } from "next/router"
-import { useState, useEffect,useRef } from "react"
+import { useState, useEffect, useRef } from "react"
 import PaymentPop from '../components/paymentPopUps/paymentPop'
 import PropertyRegisteredPopUp from "../components/PopUps/propertyRegisteredPopUp"
 import { useDispatch, useSelector } from "react-redux"
 import { RootState } from "../store"
-import { change,changeInfo,changePaymentStatus,changepopUpBg, changePopUpPage, changeRegistrationStatus } from "../slices/payPopSlice"
+import { change, changeInfo, changePaymentStatus, changepopUpBg, changePopUpPage, changeRegistrationStatus } from "../slices/payPopSlice"
 import { Icon } from "@iconify/react"
 import { incrementByAmount } from "../slices/progressBarSlice"
 import PaymentStatusPop from "../components/paymentPopUps/paymentStatusPop"
 // import {}
 
 const PaymentLandingPage: NextPage = () => {
- const router = useRouter();
-const dispatch = useDispatch();
+    const router = useRouter();
+    const dispatch = useDispatch();
 
-const query=router.query
-console.log('test',query)
-             if (query.q==="success"){
-                dispatch(changePaymentStatus(true))
-                console.log(query)
-            }
-            else if(router.query.q==="failure") {
-                dispatch(changePaymentStatus(false))
-                console.log(query)
-            }
-// const [query,setQuery]=useState({})
+    const query = router.query
+    console.log('test', query)
+    if (query.q === "success") {
+        dispatch(changePaymentStatus(true))
+        dispatch(changeRegistrationStatus(true))
+        console.log(query)
+    }
+    else if (router.query.q === "failure") {
+        dispatch(changePaymentStatus(false))
+        dispatch(changeRegistrationStatus(true))
+        console.log(query)
+    }
+    // const [query,setQuery]=useState({})
 
-    const isClient=():boolean=>{
-        if (typeof window!=="undefined")
-         return(false)
-        else 
-         return true
+    const isClient = (): boolean => {
+        if (typeof window !== "undefined")
+            return (false)
+        else
+            return true
     }
     // console.log(router.query)
-    const firstRender=useRef(true)
-    useEffect(()=>{
-        if (firstRender.current){
-            firstRender.current=false
+    const firstRender = useRef(true)
+    useEffect(() => {
+        if (firstRender.current) {
+            firstRender.current = false
             // console.log("useEffect",router.query)
             dispatch(incrementByAmount(4))
             dispatch(change())
-            document.title="Payment Status"
+            document.title = "Payment Status"
         }
     })
     // dispatch(changePopUpPage(3))
-    
+
 
     const [info, setInfo] = useState("");
-    // const [pay, setPay] = useState(false);
     const page = useSelector((state: RootState) => state.progressBar.value)
     const pay = useSelector((state: RootState) => state.payPop.paymentStatus);
-    // const id = router.query
-    // console.log(id) 
 
     const previous = (e: Event) => {
         e.preventDefault()
@@ -76,27 +75,26 @@ console.log('test',query)
         initialValues: initialValues,
         // validationSchema: otherDetailsSchema,
         onSubmit: async (values, formikHelpers) => {
-            if (pay)
-            {
+            if (pay) {
                 dispatch(changepopUpBg())
                 dispatch(changeRegistrationStatus(true))
             }
-            else{
+            else {
                 router.push('/otherDetails')
             }
-                
+
         }
     })
 
     return (
         <>
-            <PropertyRegisteredPopUp/>
-            <PaymentStatusPop />
+            <PropertyRegisteredPopUp />
+            {/* <PaymentStatusPop /> */}
             <Layout topic="Other Details" onSubmit={handleSubmit} page="4" back=": Ad Detail" previous={previous} info={info} next=": Save & Continue">
                 <div className={style.otherDetailsContainer}>
                     <div className={style.ownerInfo} >
-                        <p className={style.title}>Owner Info 
-                            <Icon icon="humbleicons:info-circle" width="20" height="20" className={style.infoIcon} onClick={() => {dispatch(changeInfo("Owner Info")) }} />
+                        <p className={style.title}>Owner Info
+                            <Icon icon="humbleicons:info-circle" width="20" height="20" className={style.infoIcon} onClick={() => { dispatch(changeInfo("Owner Info")) }} />
                         </p>
                         <div className={style.ownerRadioDiv}>
                             <SmallRadio name="ownerType" value="Use my info" onChange={handleChange} />

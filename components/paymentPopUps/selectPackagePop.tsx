@@ -8,7 +8,6 @@ import { change, changePopUpPage, changePackageInfo } from "../../slices/payPopS
 import { Icon } from "@iconify/react"
 import { useEffect, useRef, useState } from "react"
 import axios from "axios"
-import { Descriptions } from "antd"
 
 
 const SelectPackagePop = (props: any) => {
@@ -106,11 +105,11 @@ const SelectPackagePop = (props: any) => {
                 <span className={style.smallText}>Here are different plans with exciting offers.</span>
             </label>
 
-            <div className={style.recomended}>Recomended</div>
 
             <div className={style.paymentOptionDiv}>
+
                 <div className={`${style.option1} ${style.paymentOption}`}>
-                    <div className={style.seeFullDiv} style={{display:silverFlag?"none":"block"}}>
+                    <div className={style.seeFullDiv} style={{display:silverFlag?"none":"flex"}}>
                         <span className={style.seeFull} onClick={()=>{setSilverFlag(true)}}>See full package details</span>
                         <span className={style.arrow} onClick={()=>{setSilverFlag(true)}}><Image alt="no image" src={blueArrow} /></span>
                     </div>
@@ -141,7 +140,8 @@ const SelectPackagePop = (props: any) => {
 
 
                 <div className={`${style.option2} ${style.paymentOption}`}>
-                    <div className={style.seeFullDiv} style={{display:goldFlag?"none":"block"}}>
+                <div className={style.recomended}>Recomended</div>
+                    <div className={style.seeFullDiv} style={{display:goldFlag?"none":"flex"}}>
                         <span className={style.seeFull} onClick={()=>{setGoldFlag(true)}}>See full package details</span>
                         <span className={style.arrow} onClick={()=>{setGoldFlag(true)}}><Image alt="no image" src={blueArrow} /></span>
                     </div>
@@ -172,7 +172,7 @@ const SelectPackagePop = (props: any) => {
 
 
                 <div className={`${style.option3} ${style.paymentOption}`}>
-                    <div className={style.seeFullDiv} style={{display:platiniumFlag?"none":"block"}}>
+                    <div className={style.seeFullDiv} style={{display:platiniumFlag?"none":"flex"}}>
                         <span className={style.seeFull} onClick={()=>{setPlatiniumFlag(true)}}>See full package details</span>
                         <span className={style.arrow} onClick={()=>{setPlatiniumFlag(true)}}><Image alt="no image" src={blueArrow} /></span>
                     </div>
@@ -203,7 +203,7 @@ const SelectPackagePop = (props: any) => {
 
 
                 <div className={`${style.option4} ${style.paymentOption}`}>
-                    <div className={style.seeFullDiv} style={{display:titaniumFlag?"none":"block"}}>
+                    <div className={style.seeFullDiv} style={{display:titaniumFlag?"none":"flex"}}>
                         <span className={style.seeFull} onClick={()=>{setTitaniumFlag(true)}}>See full package details</span>
                         <span className={style.arrow} onClick={()=>{setTitaniumFlag(true)}}><Image alt="no image" src={blueArrow} /></span>
                     </div>
@@ -213,7 +213,7 @@ const SelectPackagePop = (props: any) => {
                         <div className={style.topicDiv}>
                             <span className={style.packageName}>Titanium</span>
                             <span className={style.packagePrice}>
-                                <span className={style.before}></span>
+                                {/* <span className={style.before}></span> */}
                                 <span className={style.current}>Contact Sales</span>
                             </span>
                         </div>

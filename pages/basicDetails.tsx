@@ -142,12 +142,12 @@ const BasicDetail: NextPage = () => {
 
   return (
     <>
-      <Layout onSubmit={handleSubmit} topic="Basic Details" page="1" back="none" previous="none" info={info} next=" :Property Detail">
+      <Layout onSubmit={handleSubmit} topic="Basic Details" page="1" back="none" previous="none" info={info} next=" : Property Detail">
         <div className={style.basicDetailWrapper}>
           <div className={style.adCategoryDiv} >
             <p className={style.topic}>Ad Category
               <a style={{ display: "flex" }} href='#' onClick={() => { dispatch(changeInfo("Ad Category")) }}>
-                <Icon icon="humbleicons:info-circle" width="20" height="20" className={style.infoIcon} />
+                <Icon icon="humbleicons:info-circle" width="16" height="16" className={style.infoIcon} />
               </a>
             </p>
             <div className={style.radioDiv}>
@@ -162,14 +162,14 @@ const BasicDetail: NextPage = () => {
             <p className={style.topic}>
               Property Type
               <a style={{ display: "flex" }} href='#' onClick={() => { dispatch(changeInfo("Property Type")) }} >
-                <Icon icon="humbleicons:info-circle" width="20" height="20" className={style.infoIcon} />
+                <Icon icon="humbleicons:info-circle" width="16" height="16" className={style.infoIcon} />
               </a>
             </p>
 
             <div className={style.propertyTypeDivRow}>
-              <RectangleRadio icon={<Icon icon="bx:home" width="20" height="20" inline={true} />}
+              <RectangleRadio icon={<Icon icon="bx:home" width="16" height="16" inline={true} />}
                 value="residential" onChange={handleChange} otherValue={values.propertyType} />
-              <RectangleRadio icon={<Icon icon="icon-park-outline:building-two" width="16" height="20" inline={true} />}
+              <RectangleRadio icon={<Icon icon="icon-park-outline:building-two" width="16" height="16" inline={true} />}
                 value="commercial" onChange={handleChange} otherValue={values.propertyType} />
               <RectangleRadio icon={<Icon icon="icon-park-outline:landscape" width="16" height="18" inline={true} />}
                 value="agricultural" onChange={handleChange} otherValue={values.propertyType} />
@@ -180,14 +180,17 @@ const BasicDetail: NextPage = () => {
           <div className={style.propertyCategoryDiv} >
             <p className={style.topic}>Property Category
               <a style={{ display: "flex" }} href='#' onClick={() => { dispatch(changeInfo("Property Category")) }}>
-                <Icon icon="humbleicons:info-circle" width="20" height="20" className={style.infoIcon} />
+                <Icon icon="humbleicons:info-circle" width="16" height="16" className={style.infoIcon} />
               </a>
             </p>
             <div className={style.propertyCategoryRow} >
               <SquareRadio value="house" icon={<Icon icon="bx:home" width="18" height="18" inline={true} />} onChange={handleChange} otherValue={values.propertyCategory} />
               <SquareRadio value="land" icon={<Icon icon="bx:home" width="18" height="18" inline={true} />} onChange={handleChange} otherValue={values.propertyCategory} />
               {/* <SquareRadio value="flat" icon={<Icon icon="bx:home" width="18" height="18" inline={true} />} onChange={handleChange} /> */}
-              <SquareRadio value="apartment" icon={<Icon icon="bx:home" width="18" height="18" inline={true} />} onChange={handleChange} otherValue={values.propertyCategory} />
+              {
+                (values.propertyType!="agricultural")&&<SquareRadio value="apartment" icon={<Icon icon="bx:home" width="18" height="18" inline={true} />} onChange={handleChange} otherValue={values.propertyCategory} />
+
+              }
               {/* <SquareRadio value="business" icon={<Icon icon="bx:home" width="18" height="18" inline={true} />} onChange={handleChange} /> */}
               {/* <SquareRadio value="office" icon={<Icon icon="bx:home" width="18" height="18" inline={true} />} onChange={handleChange} /> */}
             </div>

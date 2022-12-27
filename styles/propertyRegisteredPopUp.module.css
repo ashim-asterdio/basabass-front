@@ -2,7 +2,7 @@
     position: fixed;
     top: 50vh;
     left: 50vw;
-    transform: translate(-50%,-50%);
+    transform: translate(-50%, -50%);
     isolation: isolate;
     width: 344px;
     height: 370px;
@@ -12,7 +12,7 @@
     /* border: solid 1px; */
 }
 
-.crossButton{
+.crossButton {
     color: #4F4F4F;
     cursor: pointer;
     position: absolute;
@@ -21,11 +21,11 @@
     z-index: 2;
 }
 
-.imageDiv{
+.imageDiv {
     display: none;
 }
 
-.imageDivMobile{
+.imageDivMobile {
     /* border: solid 1px; */
     height: 175px;
     display: flex;
@@ -33,7 +33,7 @@
     gap: 0px;
 }
 
-.cover{
+.cover {
     background: #DEE7E5;
     height: 40px;
     width: 100%;
@@ -41,42 +41,59 @@
 
 
 
-.checkIcon{
-    color:green;
+.checkIcon {
+    color: green;
     /* border: solid 1px; */
     padding: 0px;
     font-size: x-large;
-    position:absolute;
+    position: absolute;
     top: 190px;
     left: 50%;
-    transform: translate(-50%,0%);
+    transform: translate(-50%, 0%);
 }
 
-.message{
+.message {
     position: absolute;
-    width: 297px;
-    height: 48px;
-    left: 24px;
-    top: 245px;
+    width: 288px;
+    height: 76px;
+    left: 28px;
+    top: 213px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    align-items: center;
+    text-align: center;
+    color: #000000;
+    /* border: solid 1px; */
+}
 
+.status {
+    width: 288px;
+    height: 28px;
     font-family: 'Product Sans';
     font-style: normal;
     font-weight: 700;
-    font-size: 18px;
-    line-height: 24px;
-    /* or 133% */
-
-    display: flex;
-    align-items: center;
+    font-size: 20px;
+    line-height: 140%;
     text-align: center;
-
-    color: #000000;
 }
 
-.buttonDiv{
+.regMessage {
+    width: 288px;
+    height: 40px;
+    font-family: 'Product Sans';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 140%;
+    text-align: center;
+    color: #4F4F4F;
+}
+
+.buttonDiv {
     position: absolute;
     left: 50%;
-    transform: translate(-50%,0);
+    transform: translate(-50%, 0);
     top: 316px;
     display: flex;
     flex-direction: row;
@@ -89,7 +106,7 @@
     /* border: solid 1px; */
 }
 
-.buttonDiv button{
+.buttonDiv button {
     font-family: 'Product Sans';
     font-style: normal;
     font-weight: 400;
@@ -103,7 +120,7 @@
     flex-grow: 0;
 }
 
-.viewAd{
+.viewAd {
     box-sizing: border-box;
     display: flex;
     flex-direction: row;
@@ -115,10 +132,10 @@
     height: 40px;
     border: 1px solid #D8D8D8;
     border-radius: 5px;
-    color:#012367;
+    color: #012367;
 }
 
-.postAd{
+.postAd {
     display: flex;
     flex-direction: row;
     justify-content: center;
@@ -127,9 +144,9 @@
     gap: 10px;
     width: 148px;
     height: 40px;
-    background: #3366FF;
+    background: #0000FF;
     border-radius: 5px;
-    border:none;
+    border: none;
     color: #FFFFFF;
 }
 
@@ -141,52 +158,74 @@
         position: fixed;
         isolation: isolate;
         width: 540px;
-        height: 440px;
+        height: 399px;
     }
 
-    .crossButton{
+    .crossButton {
         position: absolute;
         top: 22px;
         right: 23px;
     }
 
-    .checkIcon{
+    .checkIcon {
         top: 230px;
     }
 
-    .imageDivMobile{
+    .imageDivMobile {
         display: none;
     }
 
-    .imageDiv{
+    .imageDiv {
         /* border: solid 1px; */
         width: 100%;
         height: 223px;
         display: flex;
     }
 
-    .message{
+    .message {
         position: absolute;
         width: 387px;
-        height: 68px;
+        height: 62px;
         left: 77px;
-        top: 275px;
+        top: 236px;
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+        align-items: center;
+        text-align: center;
+    }
+
+    .status {
+        width: 387px;
+        height: 34px;
         font-family: 'Product Sans';
         font-style: normal;
         font-weight: 700;
         font-size: 24px;
         line-height: 140%;
-        display: flex;
-        align-items: center;
         text-align: center;
-        color: #000000;
+        flex-grow: 0;
+        text-align: center;
     }
 
-    .buttonDiv{
+    .regMessage {
+        width: 387px;
+        height: 20px;
+        font-family: 'Product Sans';
+        font-style: normal;
+        font-weight: 400;
+        font-size: 14px;
+        line-height: 140%;
+        text-align: center;
+        color: #4F4F4F;
+    }
+
+    .buttonDiv {
         position: absolute;
         left: 50%;
-        transform: translate(-50%,0);
-        top: 370px;
+        transform: translate(-50%, 0);
+        top: 322px;
+        /* bottom: 37px; */
         display: flex;
         flex-direction: row;
         justify-content: center;
@@ -194,12 +233,12 @@
         padding: 0px;
         gap: 16px;
         width: 386px;
-        height: 40px; 
+        height: 40px;
     }
 
-    .buttonDiv button{
+    .buttonDiv button {
         width: 177px;
     }
 
-    
+
 }

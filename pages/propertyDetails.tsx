@@ -33,6 +33,7 @@ const PropertyDetails: NextPage = () => {
         // {
 
         // }
+        console.log(response)
         console.log("list ho la", list)
         // return (response.data.amenities)
     }
@@ -64,7 +65,8 @@ const PropertyDetails: NextPage = () => {
             // values.wardNumber="ashim"
             if (sessionStorage.getItem("details")) {
                 var details: any = JSON.parse(sessionStorage.getItem("details") ?? ' ')
-                // setRollBack(details)
+                setRollBack(details)
+                console.log(details,rollBack)
                 if (details.wardNumber) {
                     values.wardNumber = details.wardNumber
                     // details.wardNumber = values.wardNumber;
@@ -93,18 +95,6 @@ const PropertyDetails: NextPage = () => {
             }
         }
     })
-    // useEffect(()=>{
-
-    // },[])
-
-    // useEffect(() => {
-    //     console.log(values)
-    //     })
-
-    // useEffect(() => {
-    //     if (page==1)
-    //         router.push('/basicDetails')
-    //   })
 
     const previous = (e: Event) => {
         e.preventDefault()
@@ -143,8 +133,7 @@ const PropertyDetails: NextPage = () => {
         initialValues: initialValues,
         validationSchema: propertyDetailsSchema,
         
-        onSubmit: async (values, formikHelpers) => {
-            
+        onSubmit: async (values, formikHelpers) => {   
             console.log(values)
             // console.log(errors)
             // console.log("call")
@@ -239,7 +228,7 @@ const PropertyDetails: NextPage = () => {
                             <div className={style.inputFeildRow}>
                                 <div className={style.dropdown_only}>
                                     <select value={values.areaMetric}
-                                        name="areaMetric" onChange={handleChange} placeholder="Select Area Metric" defaultValue={rollBack.unit}>
+                                        name="areaMetric" onChange={handleChange} placeholder="Select Area Metric" >
                                         <option value="" disabled>Select Area Metric</option>
                                         <option value="aana">Aana</option>
                                         <option value="dhur">Dhur</option>
@@ -264,7 +253,7 @@ const PropertyDetails: NextPage = () => {
                             </div>
 
                             <div className={style.inputFeildRow}>
-                                <div className={style.input_dropdown}>
+                                <div className={style.input_dropdown} style={{display:(rollBack.category=="land")?"none":"block"}}>
                                     <div>
                                         <input className={style.input_with_dropdown} type="text"
                                             placeholder="Built Up Area(e.g. 0-1-2-4)"
@@ -324,7 +313,7 @@ const PropertyDetails: NextPage = () => {
                         </div>
                     </div>
 
-                    <div className={style.buldingDetailsComponent}>
+                    <div className={style.buldingDetailsComponent} style={{display:(rollBack.category=="land")?"none":"block"}}>
                         <label>
                             Building Details
                             <a href='#' style={{ display: "flex" }}><Icon icon="humbleicons:info-circle" width="20" height="20" className={style.infoIcon} onClick={() => { dispatch(changeInfo("Bulding Details")) }} /></a>
@@ -361,7 +350,7 @@ const PropertyDetails: NextPage = () => {
                         </div>
                     </div>
 
-                    <div className={style.multipleUnitsComponent}>
+                    <div className={style.multipleUnitsComponent} style={{display:(rollBack.category=="land")?"none":"block"}}>
                         <label>
                             Muntiple Units
                             <a href='#' style={{ display: "flex" }}><Icon icon="humbleicons:info-circle" width="20" height="20" className={style.infoIcon} onClick={() => { dispatch(changeInfo("Multiple Unit")) }} /></a>
@@ -370,9 +359,9 @@ const PropertyDetails: NextPage = () => {
                             <div className={style.dropdown_only}>
                                 <select name="numberOFUnits" onChange={handleChange} value={values.numberOFUnits} >
                                     <option value="" selected disabled>Number Of Units</option>
-                                    <option value="1">1</option>
-                                    <option value="2">2</option>
-                                    <option value="3">3</option>
+                                    <option value="yes">Yes</option>
+                                    <option value="no">No</option>
+                                    {/* <option value="3">3</option> */}
                                 </select>
                                 {errors.numberOFUnits && touched.numberOFUnits && <span className={style.error}>{errors.numberOFUnits}</span>}
                             </div>
@@ -380,7 +369,7 @@ const PropertyDetails: NextPage = () => {
                     </div>
 
 
-                    <div className={style.totalRoomsComponent}>
+                    <div className={style.totalRoomsComponent} style={{display:(rollBack.category=="land")?"none":"block"}}>
 
                         <label>
                             Total Rooms
