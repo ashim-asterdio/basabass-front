@@ -34,7 +34,7 @@ const OtherDetails: NextPage = () => {
     useEffect(() => {
         if (firstRender.current) {
             firstRender.current = false
-            dispatch(change())
+            // dispatch(change())
             try {
                 if (page == 1) {
                     sessionStorage.clear()
