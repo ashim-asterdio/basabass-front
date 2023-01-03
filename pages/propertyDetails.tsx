@@ -1,10 +1,11 @@
 import type { NextPage } from 'next'
 import style from '../styles/propertyDetails.module.css'
+import SmallRadio from '../components/ui components/radio/smallRadio'
 // import DigitalPaymentPop from '../components/digitalPaymantPop'
 import AmenitiesCheckbox from '../components/ui components/customCheckbox'
 import Layout from '../components/Layout'
 import { FormikValues, useFormik } from 'formik'
-import { propertyDetailsSchema } from '../components/validationSchema'
+import { ashim } from '../components/validationSchema'
 import { useRouter } from 'next/router'
 import { useDispatch, useSelector } from 'react-redux'
 import { RootState } from '../store'
@@ -13,51 +14,80 @@ import { useState, useEffect, useRef } from "react"
 import { changeInfo } from '../slices/payPopSlice'
 import { Icon } from '@iconify/react'
 import axios from "axios"
+import MultipleUnit from '../components/multipleUnit'
+import { array } from 'yup'
 
 
 const PropertyDetails: NextPage = () => {
+    interface multiValuesType { unit: string, varients: { carpetArea: string, price: string }[] }
     const router = useRouter()
     const dispatch = useDispatch();
     const page = useSelector((state: RootState) => state.progressBar.value)
     const [info, setInfo] = useState("");
     const [list, setList] = useState<[]>([]);
+    const [city, setCity] = useState([])
     const [rollBack, setRollBack] = useState<FormikValues>({})
+    const [multiValues, setMultiValues] = useState<multiValuesType[]>([{ unit: "", varients: [{ carpetArea: "", price: "" }] }])
+    const [singleValue, setSingleValue] = useState<multiValuesType>()
+    // const [deleteIndex,setDeleteIndex]=useState(undefined)
     // var list:[]=[]
+
+    const changeValue = (value: multiValuesType, index: number) => {
+        var temp = multiValues
+        temp[index] = value
+        setMultiValues(temp)
+        console.log(multiValues)
+    }
+
+    const addUnit = (e: any) => {
+        e.preventDefault()
+
+        var temp = [{ unit: "", varients: [{ carpetArea: "", price: "" }] }]
+        setMultiValues((prev) => ([...prev, ...temp]))
+
+        // if (multiValues.length > 0) {
+        //     temp = [...multiValues]
+        //     temp.push({ unit: "", varients: [{ carpetArea: "", price: "" }] })
+        //     setMultiValues(temp)
+        // }
+        // else setMultiValues(temp)
+    }
 
 
     const getData = async () => {
-        const response = await axios.get("https://basobaasnew.asterdio.xyz/api/property-amenities/")
-        // list=response.data.amenities
-        setList(response.data.amenities)
-        // if(list.lenght==0)
-        // {
-
-        // }
-        console.log(response)
-        console.log("list ho la", list)
-        // return (response.data.amenities)
+        try {
+            const response = await axios.get("https://basobaasnew.asterdio.xyz/api/property-amenities/")
+            setList(response.data.amenities)
+            // console.log(response)
+            // console.log("list ho la", list)
+            const cityRes = await axios.get("https://basobaasnew.asterdio.xyz/api/city")
+            await setCity(cityRes.data.city)
+            console.log("cityRes:", city)
+        } catch (e) {
+            alert(e)
+        }
     }
 
-    // const singletRender = useRef(true)
-    // useEffect(() => {
-    //     getData()
-    // }, [list])
+    useEffect(() => {
+        console.log(multiValues)
+
+    }, [multiValues])
+
 
     const firstRender = useRef(true)
     useEffect(() => {
         if (firstRender.current) {
             firstRender.current = false
-            try {
-                if (page == 1)
-                {
-                    sessionStorage.clear()
-                    localStorage.removeItem("propertyToken")
-                    router.push('/basicDetails')
-                }     
-            }
-            catch {
-                console.log("milena")
-            }
+            // try {
+            //     if (page == 1) {
+            //         sessionStorage.clear()
+            //         localStorage.removeItem("propertyToken")
+            //         router.push('/basicDetails')
+            //     }
+            // }
+            // catch {
+            //     console.log("milena")
+            // }
 
             document.title = "Property Details";
             dispatch(changeInfo("Location"))
@@ -66,12 +96,12 @@ const PropertyDetails: NextPage = () => {
             if (sessionStorage.getItem("details")) {
                 var details: any = JSON.parse(sessionStorage.getItem("details") ?? ' ')
                 setRollBack(details)
-                console.log(details,rollBack)
+                console.log(details, rollBack)
                 if (details.wardNumber) {
                     values.wardNumber = details.wardNumber
                     // details.wardNumber = values.wardNumber;
                     // details.city = "6375e1d9a771ab4368586e55";
-                    values.city=details.city
+                    values.city = details.city
                     values.propertyArea = details.locality
                     values.areaMetric = details.areaMetric
                     values.totalArea = details.totalArea
@@ -106,6 +136,7 @@ const PropertyDetails: NextPage = () => {
         'Intercom', 'Internet', 'Kids Playground', 'Lift', 'Maintainance', 'Security Staff', 'Store Room'];
 
     const initialValues = {
+
         wardNumber: "",
         city: "",
         propertyArea: "",
@@ -126,18 +157,16 @@ const PropertyDetails: NextPage = () => {
         noOfBathroom: "",
         noOfKitchen: "",
         noOfLivingroom: "",
-        amenities: []
+        amenities: [],
+        multipleValues: [{ unit: "", varients: [{ carpetArea: "", price: "" }] }]
     }
 
     const { values, errors, touched, handleSubmit, handleChange } = useFormik({
         initialValues: initialValues,
-        validationSchema: propertyDetailsSchema,
-        
-        onSubmit: async (values, formikHelpers) => {   
+        validationSchema: ashim(rollBack.category),
+
+        onSubmit: async (values, formikHelpers) => {
             console.log(values)
-            // console.log(errors)
-            // console.log("call")
-            // console.log(values)
             if (page == 2) {
                 dispatch(increment())
             }
@@ -164,13 +193,13 @@ const PropertyDetails: NextPage = () => {
             details.kitchen = values.noOfKitchen
             details.livingRoom = values.noOfLivingroom
             details.amenities = values.amenities
-
             sessionStorage.setItem("page", "3")
             sessionStorage.setItem("details", JSON.stringify(details))
 
             router.push('/adDetails');
         }
     })
+    console.log(multiValues, 'multivalues');
 
 
     return (
@@ -181,7 +210,7 @@ const PropertyDetails: NextPage = () => {
 
                     <div className={style.locationComponent}>
 
-                        <label>
+                        <label className={style.labelTitle}>
                             Location
                             <a href='#' style={{ display: "flex" }} onClick={() => { dispatch(changeInfo("Location")) }}>
                                 <Icon icon="humbleicons:info-circle" width="20" height="20" className={style.infoIcon} />
@@ -201,8 +230,7 @@ const PropertyDetails: NextPage = () => {
                                 <div className={style.dropdown_only}>
                                     <select name="city" onChange={handleChange} value={values.city}>
                                         <option value="" selected disabled>Property City</option>
-                                        <option value={"6375e1d9a771ab4368586e55"}> Lalitpur</option>
-                                        <option value={"6375e1d9a771ab4368586e56"}> Kathmandu</option>
+                                        {city.map((cities: { _id: string, name: string }, index: number) => <option value={cities._id} key={index}>{cities.name}</option>)}
 
                                     </select>
                                     {errors.city && touched.city && <span className={style.error}>{errors.city}</span>}
@@ -219,7 +247,7 @@ const PropertyDetails: NextPage = () => {
                     </div>
 
                     <div className={style.areaComponent}>
-                        <label>
+                        <label className={style.labelTitle}>
                             Area
                             <a href='#' style={{ display: "flex" }}><Icon icon="humbleicons:info-circle" width="20" height="20" className={style.infoIcon} onClick={() => { dispatch(changeInfo("Area Location")) }} /></a>
                         </label>
@@ -253,7 +281,7 @@ const PropertyDetails: NextPage = () => {
                             </div>
 
                             <div className={style.inputFeildRow}>
-                                <div className={style.input_dropdown} style={{display:(rollBack.category=="land")?"none":"block"}}>
+                                <div className={style.input_dropdown} style={{ display: (rollBack.category == "land") ? "none" : "block" }}>
                                     <div>
                                         <input className={style.input_with_dropdown} type="text"
                                             placeholder="Built Up Area(e.g. 0-1-2-4)"
@@ -278,7 +306,7 @@ const PropertyDetails: NextPage = () => {
                     </div>
 
                     <div className={style.roadComponent}>
-                        <label>
+                        <label className={style.labelTitle}>
                             Road
                             <a href='#' style={{ display: "flex" }}><Icon icon="humbleicons:info-circle" width="20" height="20" className={style.infoIcon} onClick={() => { dispatch(changeInfo("Road")) }} /></a>
                         </label>
@@ -313,8 +341,8 @@ const PropertyDetails: NextPage = () => {
                         </div>
                     </div>
 
-                    <div className={style.buldingDetailsComponent} style={{display:(rollBack.category=="land")?"none":"block"}}>
-                        <label>
+                    <div className={style.buldingDetailsComponent} style={{ display: (rollBack.category == "land") ? "none" : "flex" }}>
+                        <label className={style.labelTitle}>
                             Building Details
                             <a href='#' style={{ display: "flex" }}><Icon icon="humbleicons:info-circle" width="20" height="20" className={style.infoIcon} onClick={() => { dispatch(changeInfo("Bulding Details")) }} /></a>
                         </label>
@@ -350,28 +378,61 @@ const PropertyDetails: NextPage = () => {
                         </div>
                     </div>
 
-                    <div className={style.multipleUnitsComponent} style={{display:(rollBack.category=="land")?"none":"block"}}>
-                        <label>
+                    <div className={style.multipleUnitsComponent}>
+                        <label className={style.labelTitle}>
                             Muntiple Units
                             <a href='#' style={{ display: "flex" }}><Icon icon="humbleicons:info-circle" width="20" height="20" className={style.infoIcon} onClick={() => { dispatch(changeInfo("Multiple Unit")) }} /></a>
                         </label>
                         <div className={style.multipleUnits}>
-                            <div className={style.dropdown_only}>
-                                <select name="numberOFUnits" onChange={handleChange} value={values.numberOFUnits} >
-                                    <option value="" selected disabled>Number Of Units</option>
-                                    <option value="yes">Yes</option>
-                                    <option value="no">No</option>
-                                    {/* <option value="3">3</option> */}
-                                </select>
-                                {errors.numberOFUnits && touched.numberOFUnits && <span className={style.error}>{errors.numberOFUnits}</span>}
+                            <div className={style.multipleUnitContent}>
+                                <div className={style.multipleUnitSelect}>
+                                    <div className={style.radioDiv}>
+                                        <SmallRadio value="true" toShow="Yes" name="numberOFUnits" onChange={handleChange} otherValue={values.numberOFUnits} />
+                                        <SmallRadio value="false" toShow="No" name="numberOFUnits" onChange={handleChange} otherValue={values.numberOFUnits} />
+                                    </div>
+                                    <button className={style.addUnitButton} onClick={addUnit} style={{ display: (values.numberOFUnits == "true") ? "flex" : "none" }}>Add Unit</button>
+                                </div>
+                                <div className={style.unitsContainer} style={{ display: (values.numberOFUnits == "true") ? "flex" : "none" }}>
+                                    {
+                                        multiValues.map((content: multiValuesType, index: number) => {
+                                            console.log(index, 'index')
+                                            return (
+                                                <div style={{ position: "relative" }} key={index}>
+                                                    <Icon icon="radix-icons:cross-2" width="20" height="20" className={style.crossButton}
+                                                        onClick={(e) => {
+                                                            console.log(index, 'indexherer');
+                                                            e.preventDefault();
+                                                            var arr: any = [];
+                                                            if (multiValues.length > 0) {
+                                                                arr = [...multiValues]
+                                                            }
+                                                            arr.splice(index, 1);
+                                                            setMultiValues(arr); 
+                                                            console.log("ashim", multiValues)
+                                                             // let updateArr = multiValues.filter((item, indices: number) => indices !== index)
+                                                            // console.log('updateArr', updateArr, index)
+
+                                                            // setMultiValues(updateArr.map(i => i))
+                                                        }}
+                                                    />
+                                                    <MultipleUnit place={index} onChange={changeValue} value={content} />
+                                                </div>
+                                            )
+                                        })
+                                    }
+
+                                </div>
                             </div>
+
+                            {errors.numberOFUnits && touched.numberOFUnits && <span className={style.error}>{errors.numberOFUnits}</span>}
+
                         </div>
                     </div>
 
 
-                    <div className={style.totalRoomsComponent} style={{display:(rollBack.category=="land")?"none":"block"}}>
+                    <div className={style.totalRoomsComponent} style={{ display: (rollBack.category == "land") ? "none" : "flex" }}>
 
-                        <label>
+                        <label className={style.labelTitle}>
                             Total Rooms
                             <a href='#' style={{ display: "flex" }}><Icon icon="humbleicons:info-circle" width="20" height="20" className={style.infoIcon} onClick={() => { dispatch(changeInfo("Total Rooms")) }} /></a>
                         </label>
@@ -408,7 +469,7 @@ const PropertyDetails: NextPage = () => {
                         </div>
                     </div>
                     <div className={style.amenitiesComponent}>
-                        <label className={style.label} htmlFor="">
+                        <label className={style.labelTitle} htmlFor="">
                             Amenities
                             <a href='#' style={{ display: "flex" }}><Icon icon="humbleicons:info-circle" width="20" height="20" className={style.infoIcon} onClick={() => { dispatch(changeInfo("Amenities")) }} /></a>
                         </label>

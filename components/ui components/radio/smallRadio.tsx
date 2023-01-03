@@ -23,7 +23,7 @@ const SmallRadio = (props:any) => {
                 {/* <span></span> */}
                 <span className={style.checkmark}></span> 
             </label>
-            <p style={{fontSize:"14px"}}>{props.value}</p>
+            <p style={{fontSize:"14px"}}>{props.toShow}</p>
         </label>
     </>
   )

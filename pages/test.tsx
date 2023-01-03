@@ -1,9 +1,8 @@
 import type { NextPage } from 'next'
 import LoadingScreen from '../components/PopUps/loadingScreen';
 import CustomUploadZone from '../components/customUploadZone';
-import { Icon } from '@iconify/react';
-import PropertyRegisteredPopUp from '../components/PopUps/propertyRegisteredPopUp'
-// import {spinner-border,sr-only} from 'bootstrap'
+import MultipleUnit from "../components/multipleUnit"
+
 
 
 const test: NextPage = () => {
@@ -13,6 +12,7 @@ const test: NextPage = () => {
       {/* <SelectPackagePop /> */}
       {/* <PropertyRegisteredPopUp/> */}
       {/* <CustomUploadZone /> */}
+      <MultipleUnit/>
       <LoadingScreen/>
       {/* <PaymentStatusPop /> */}
 

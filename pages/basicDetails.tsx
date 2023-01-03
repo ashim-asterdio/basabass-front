@@ -151,8 +151,8 @@ const BasicDetail: NextPage = () => {
               </a>
             </p>
             <div className={style.radioDiv}>
-              <SmallRadio value="sale" name="adCategory" onChange={handleChange} otherValue={values.adCategory} />
-              <SmallRadio value="rent" name="adCategory" onChange={handleChange} otherValue={values.adCategory} />
+              <SmallRadio value="sale" toShow="sale" name="adCategory" onChange={handleChange} otherValue={values.adCategory} />
+              <SmallRadio value="rent" toShow="rent" name="adCategory" onChange={handleChange} otherValue={values.adCategory} />
               {/* <SmallRadio value="Lease" name="adCategory" onChange={handleChange} /> */}
             </div>
             {errors.adCategory && touched.adCategory && <span className={style.error}>{errors.adCategory}</span>}

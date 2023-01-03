@@ -174,8 +174,8 @@ const OtherDetails: NextPage = () => {
                         </p>
                         <div className={style.ownerRadioDivWrapper}>
                             <div className={style.ownerRadioDiv}>
-                                <SmallRadio name="ownerType" value="Use my info" onChange={handleChange} otherValue={values.ownerType} />
-                                <SmallRadio name="ownerType" value="Use Different Owner" onChange={handleChange} otherValue={values.ownerType} />
+                                <SmallRadio name="ownerType" toShow="Use my info" value="Use my info" onChange={handleChange} otherValue={values.ownerType} />
+                                <SmallRadio name="ownerType" toShow="Use Different Owner" value="Use Different Owner" onChange={handleChange} otherValue={values.ownerType} />
                             </div>
                             {errors.ownerType && touched.ownerType && <span className={style.error}>{errors.ownerType}</span>}
                         </div>
