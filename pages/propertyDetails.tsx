@@ -5,7 +5,7 @@ import SmallRadio from '../components/ui components/radio/smallRadio'
 import AmenitiesCheckbox from '../components/ui components/customCheckbox'
 import Layout from '../components/Layout'
 import { FormikValues, useFormik } from 'formik'
-import { ashim } from '../components/validationSchema'
+import { propertyDetailsSchema } from '../components/validationSchema'
 import { useRouter } from 'next/router'
 import { useDispatch, useSelector } from 'react-redux'
 import { RootState } from '../store'
@@ -29,19 +29,28 @@ const PropertyDetails: NextPage = () => {
     const [rollBack, setRollBack] = useState<FormikValues>({})
     const [multiValues, setMultiValues] = useState<multiValuesType[]>([{ unit: "", varients: [{ carpetArea: "", price: "" }] }])
     const [singleValue, setSingleValue] = useState<multiValuesType>()
+    const [multiple, setMultiple] = useState("flase")
     // const [deleteIndex,setDeleteIndex]=useState(undefined)
     // var list:[]=[]
 
     const changeValue = (value: multiValuesType, index: number) => {
         var temp = multiValues
         temp[index] = value
-        setMultiValues(temp)
+        setMultiValues([...temp])
+        values.multipleValue = multiValues
         console.log(multiValues)
+    }
+
+    const check = (error: any) => {
+        if (error && error[0] != undefined && error[0]?.unit != undefined && error[0]?.unit) return error[0]?.unit
+
+        else return "nothing to show"
+
     }
 
     const addUnit = (e: any) => {
         e.preventDefault()
-
+        console.log("error", errors.multipleValue)
         var temp = [{ unit: "", varients: [{ carpetArea: "", price: "" }] }]
         setMultiValues((prev) => ([...prev, ...temp]))
 
@@ -70,7 +79,7 @@ const PropertyDetails: NextPage = () => {
 
     useEffect(() => {
         console.log(multiValues)
-
+        // console.log("mult-status",multiple)
     }, [multiValues])
 
 
@@ -158,15 +167,15 @@ const PropertyDetails: NextPage = () => {
         noOfKitchen: "",
         noOfLivingroom: "",
         amenities: [],
-        multipleValues: [{ unit: "", varients: [{ carpetArea: "", price: "" }] }]
+        multipleValue: [{ unit: "", varients: [{ carpetArea: "", price: "" }] }]
     }
 
     const { values, errors, touched, handleSubmit, handleChange } = useFormik({
         initialValues: initialValues,
-        validationSchema: ashim(rollBack.category),
+        validationSchema: propertyDetailsSchema(rollBack.category, multiple),
 
         onSubmit: async (values, formikHelpers) => {
-            console.log(values)
+            // console.log(values)
             if (page == 2) {
                 dispatch(increment())
             }
@@ -195,12 +204,15 @@ const PropertyDetails: NextPage = () => {
             details.amenities = values.amenities
             sessionStorage.setItem("page", "3")
             sessionStorage.setItem("details", JSON.stringify(details))
-
             router.push('/adDetails');
         }
     })
-    console.log(multiValues, 'multivalues');
+    // console.log(multiValues, 'multivalues');
 
+    useEffect(() => {
+        setMultiple(values.numberOFUnits)
+        console.log("mult-status", multiple)
+    }, [values.numberOFUnits])
 
     return (
         <>
@@ -393,23 +405,25 @@ const PropertyDetails: NextPage = () => {
                                     <button className={style.addUnitButton} onClick={addUnit} style={{ display: (values.numberOFUnits == "true") ? "flex" : "none" }}>Add Unit</button>
                                 </div>
                                 <div className={style.unitsContainer} style={{ display: (values.numberOFUnits == "true") ? "flex" : "none" }}>
+                                    <span>{check(errors.multipleValue)}</span>
+
                                     {
                                         multiValues.map((content: multiValuesType, index: number) => {
-                                            console.log(index, 'index')
+                                            // console.log(index, 'index')
                                             return (
                                                 <div style={{ position: "relative" }} key={index}>
                                                     <Icon icon="radix-icons:cross-2" width="20" height="20" className={style.crossButton}
                                                         onClick={(e) => {
-                                                            console.log(index, 'indexherer');
+                                                            // console.log(index, 'indexherer');
                                                             e.preventDefault();
                                                             var arr: any = [];
                                                             if (multiValues.length > 0) {
                                                                 arr = [...multiValues]
                                                             }
                                                             arr.splice(index, 1);
-                                                            setMultiValues(arr); 
+                                                            setMultiValues(arr);
                                                             console.log("ashim", multiValues)
-                                                             // let updateArr = multiValues.filter((item, indices: number) => indices !== index)
+                                                            // let updateArr = multiValues.filter((item, indices: number) => indices !== index)
                                                             // console.log('updateArr', updateArr, index)
 
                                                             // setMultiValues(updateArr.map(i => i))

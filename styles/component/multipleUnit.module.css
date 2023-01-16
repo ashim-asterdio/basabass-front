@@ -40,6 +40,17 @@
     width: fit-content;
 }
 
+.inputDiv{
+    position: relative;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+    width: 100%;
+    height: fit-content;
+}
+
 .untiNameInput {
     position: relative;
     box-sizing: border-box;
@@ -152,9 +163,13 @@
         gap: calc(16*100%/673);
     }
 
-    .bottomDiv .untiNameInput{
-        width: calc(272.5*100%/673);
+    .bottomDiv .inputDiv{
+        width:calc(272.5*100%/673);
     }
+
+    /* .bottomDiv .untiNameInput{
+        width:100%;
+    } */
 
     .buttonDiv{
         width:calc(96*100%/673);
