@@ -41,10 +41,23 @@ const PropertyDetails: NextPage = () => {
         console.log(multiValues)
     }
 
-    const check = (error: any) => {
-        if (error && error[0] != undefined && error[0]?.unit != undefined && error[0]?.unit) return error[0]?.unit
+    const check = (error: any, param: string, index: number) => {
+        if (param == "unit") {
+            if (error && error[index] != undefined && error[index]?.unit != undefined && error[index]?.unit) return error[index]?.unit
 
-        else return "nothing to show"
+            else return "nothing to show"
+        }
+        else if (param == "carpetArea") {
+            if (error && error[index] != undefined && error[index]?.varients != undefined && error[index]?.varients?.carpetArea != undefined && error[index]?.varients?.carpetArea) return error[index]?.varients?.carpetArea
+
+            else return "nothing to show"
+        }
+        else {
+            if (error && error[index] != undefined && error[index]?.varients != undefined && error[index]?.varients?.price != undefined && error[index]?.varients?.price) return error[index]?.varients?.price
+
+            else return "nothing to show"
+        }
+
 
     }
 
@@ -405,7 +418,7 @@ const PropertyDetails: NextPage = () => {
                                     <button className={style.addUnitButton} onClick={addUnit} style={{ display: (values.numberOFUnits == "true") ? "flex" : "none" }}>Add Unit</button>
                                 </div>
                                 <div className={style.unitsContainer} style={{ display: (values.numberOFUnits == "true") ? "flex" : "none" }}>
-                                    <span>{check(errors.multipleValue)}</span>
+                                    <span>{check(errors.multipleValue, "unit", 0)}</span>
 
                                     {
                                         multiValues.map((content: multiValuesType, index: number) => {
