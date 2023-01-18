@@ -3,7 +3,7 @@ import React, { useState, useEffect } from 'react'
 import style from "../styles/component/multipleUnit.module.css"
 
 const MultipleUnit = (props: any) => {
-
+  
   const [arr2, setArr2] = useState<{ carpetArea: string, price: string }[]>([{ carpetArea: "", price: "" }])
   const [unit, setUnit] = useState<string>()
 
@@ -38,16 +38,19 @@ const MultipleUnit = (props: any) => {
       </label>
       {/* </div> */}
       <div className={style.inputDiv}>
-        <input name="unit" type="text" placeholder='Enter Unit Name' value={( props.value?.unit != undefined) ? props.value.unit : ""} className={style.untiNameInput} onChange={(e) => { setUnit(e.target.value); props.onChange({ unit: e.target.value, varients: arr2 }, props.place) }} />
+        <input name="unit" type="text" placeholder='Enter Unit Name' value={( props.value?.unit != undefined) ? props.value.unit : ""} className={style.untiNameInput} onChange={(e) => {props.handleChange(e); setUnit(e.target.value); props.onChange({ unit: e.target.value, varients: arr2 }, props.place) }} />
+        {props.validation(props.error,"unit",props.place,props.place)}
       </div>
       {
         arr2?.map((value: { carpetArea: string, price: string }, index: number) => {
           return <div className={style.bottomDiv} key={index}>
             <div className={style.inputDiv}>
-              <input name="carpetArea" type="text" placeholder="Enter Carpet Area(e.g.1-1-1-1)" value={value.carpetArea} className={style.untiNameInput} onChange={(e) => { var temp = [...arr2]; temp[index].carpetArea = e.target.value; setArr2(temp); }} />
+              <input name="carpetArea" type="text" placeholder="Enter Carpet Area(e.g.1-1-1-1)" value={value?.carpetArea} className={style.untiNameInput} onChange={(e) => {props.handleChange(e); var temp = [...arr2]; temp[index].carpetArea = e.target.value; setArr2(temp); }} />
+              {(!arr2[index].carpetArea || props.error && props.error[index] != undefined && props.error[props.place]?.varients != undefined && props.error[props.place]?.varients[index]?.carpetArea != undefined && props.error[props.place]?.varients[index]?.carpetArea)&&props.validation(props.error,"carpetArea",props.place,index)}
             </div>
             <div className={style.inputDiv}>
-              <input name="carpetPrice" type="text" placeholder="Enter Price" value={value.price} className={style.untiNameInput} onChange={(e) => { var temp = [...arr2]; temp[index].price = e.target.value; setArr2(temp); }} />
+              <input name="price" type="text" placeholder="Enter Price" value={value?.price} className={style.untiNameInput} onChange={(e) => {props.handleChange(e); var temp = [...arr2]; temp[index].price = e.target.value; setArr2(temp); }} />
+              {props.validation(props.error,"price",props.place,index)}
             </div>
             <div className={style.buttonDiv}>
               {(arr2.length > 1) &&

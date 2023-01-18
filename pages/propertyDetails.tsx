@@ -16,6 +16,7 @@ import { Icon } from '@iconify/react'
 import axios from "axios"
 import MultipleUnit from '../components/multipleUnit'
 import { array } from 'yup'
+import { HandleC } from '@icon-park/react'
 
 
 const PropertyDetails: NextPage = () => {
@@ -37,25 +38,28 @@ const PropertyDetails: NextPage = () => {
         var temp = multiValues
         temp[index] = value
         setMultiValues([...temp])
-        values.multipleValue = multiValues
-        console.log(multiValues)
+        values.multipleValue = [...multiValues]
+        // console.log(multiValues)
     }
 
-    const check = (error: any, param: string, index: number) => {
+    const check = (error: any, param: string, index: number, indx:number) => {
         if (param == "unit") {
-            if (error && error[index] != undefined && error[index]?.unit != undefined && error[index]?.unit) return error[index]?.unit
+            if (error && error[index] != undefined && error[index]?.unit != undefined && error[index]?.unit) 
+            return <span className={style.error}>{error[index]?.unit}</span>
 
-            else return "nothing to show"
+            else return null
         }
         else if (param == "carpetArea") {
-            if (error && error[index] != undefined && error[index]?.varients != undefined && error[index]?.varients?.carpetArea != undefined && error[index]?.varients?.carpetArea) return error[index]?.varients?.carpetArea
+            if (error && error[index] != undefined && error[index]?.varients != undefined && error[index]?.varients[indx]?.carpetArea != undefined && error[index]?.varients[indx]?.carpetArea) 
+            return<span className={style.error}>{error[index]?.varients[indx]?.carpetArea}</span> 
 
-            else return "nothing to show"
+            else return null
         }
         else {
-            if (error && error[index] != undefined && error[index]?.varients != undefined && error[index]?.varients?.price != undefined && error[index]?.varients?.price) return error[index]?.varients?.price
+            if (error && error[index] != undefined && error[index]?.varients != undefined && error[index]?.varients[indx]?.price != undefined && error[index]?.varients[indx]?.price) 
+            return <span className={style.error}>{error[index]?.varients[indx]?.price}</span> 
 
-            else return "nothing to show"
+            else return null
         }
 
 
@@ -188,7 +192,7 @@ const PropertyDetails: NextPage = () => {
         validationSchema: propertyDetailsSchema(rollBack.category, multiple),
 
         onSubmit: async (values, formikHelpers) => {
-            // console.log(values)
+            console.log("vayo k")
             if (page == 2) {
                 dispatch(increment())
             }
@@ -418,7 +422,7 @@ const PropertyDetails: NextPage = () => {
                                     <button className={style.addUnitButton} onClick={addUnit} style={{ display: (values.numberOFUnits == "true") ? "flex" : "none" }}>Add Unit</button>
                                 </div>
                                 <div className={style.unitsContainer} style={{ display: (values.numberOFUnits == "true") ? "flex" : "none" }}>
-                                    <span>{check(errors.multipleValue, "unit", 0)}</span>
+                                    <span>{check(errors.multipleValue, "unit", 0,0)}</span>
 
                                     {
                                         multiValues.map((content: multiValuesType, index: number) => {
@@ -432,17 +436,21 @@ const PropertyDetails: NextPage = () => {
                                                             var arr: any = [];
                                                             if (multiValues.length > 0) {
                                                                 arr = [...multiValues]
+                                                                console.log("multi",multiValues)
                                                             }
                                                             arr.splice(index, 1);
-                                                            setMultiValues(arr);
-                                                            console.log("ashim", multiValues)
+                                                            setMultiValues(()=>multiValues.splice(index, 1));
+                                                            values.multipleValue=[...arr]
+                                                            console.log("arr", arr)
+                                                            console.log("state", multiValues)
+                                                            console.log("ashim", values.multipleValue)
                                                             // let updateArr = multiValues.filter((item, indices: number) => indices !== index)
                                                             // console.log('updateArr', updateArr, index)
 
                                                             // setMultiValues(updateArr.map(i => i))
                                                         }}
                                                     />
-                                                    <MultipleUnit place={index} onChange={changeValue} value={content} />
+                                                    <MultipleUnit place={index} onChange={changeValue} value={content} validation={check} error={errors.multipleValue} handleChange={handleChange} />
                                                 </div>
                                             )
                                         })
