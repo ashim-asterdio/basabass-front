@@ -18,7 +18,6 @@ import { increment } from "../slices/progressBarSlice";
 import { Icon } from '@iconify/react'
 import { changeInfo, changepopUpBg, changeLoadingScreeen } from "../slices/payPopSlice";
 import axios from "axios"
-// import UploadZone from "../components/ui components/uploadZone";
 
 
 const AdDetails: NextPage = () => {
@@ -29,9 +28,6 @@ const AdDetails: NextPage = () => {
   const [images, setImages] = useState<FileList>();
   const [rollBack, setRollBack] = useState<any>({})
 
-  // const imgFile=useRef();
-  // const [persist,setPersist]=useState<any[]>([])
-  // const [processedImages, setProcessedImages] = useState([]);
   const files = useSelector((state: RootState) => state.payPop.files)
 
   let i = typeof window !== 'undefined' && sessionStorage.getItem("image") as any
