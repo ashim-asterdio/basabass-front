@@ -32,8 +32,6 @@ const AdDetails: NextPage = () => {
 
   let i = typeof window !== 'undefined' && sessionStorage.getItem("image") as any
 
-  // console.log('filesfrom', dataURItoBlob(files[0]))
-  // console.log('filesfrom str',files)
   const firstRender = useRef(true)
   useEffect(() => {
     if (firstRender.current) {
@@ -150,7 +148,6 @@ const AdDetails: NextPage = () => {
       for (var key in details) {
         if (key == "amenities") {
           for (let j in details[key]) {
-
             formData.append(key, details[key][j])
           }
         }
